@@ -105,6 +105,15 @@ date_default_timezone_set('Europe/London');
 				<h2>Personal Projects</h2>
 			</div>
 			<div class="project">
+				<div class="projectTitle"><h3>Ski VR</h3></div>
+				<div class="projectDesc">
+					<a href="https://play.google.com/store/apps/details?id=com.GunterGames.SkiVR" target="skivr"><img src="images/ski-vr.png" /></a>
+					<p>Ski VR is a quick VR demo built for Google Cardboard but also playable without a headset.</p>
+					<p>Slide gracefully down the mountain between trees and alpine chalets in a Virtual Reality winter wonderland.</p>
+					<p><a href="https://play.google.com/store/apps/details?id=com.GunterGames.SkiVR" target="skivr">Ski VR on Google Play.</a></p>
+				</div>
+			</div>
+			<div class="project">
 				<div class="projectTitle"><h3>Color Hex</h3></div>
 				<div class="projectDesc">
 					<a href="http://www.guntergames.com/colorhex" target="colorhex"><img src="images/color-hex.jpg" /></a>
