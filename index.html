@@ -1,45 +1,22 @@
-<?
-require_once '../includes/db-social.php';
-require_once '../includes/dbactions.php';
-
-$page = intval($_GET["page"]);
-if($page==0)$page=1;
-$nextPage=$page+1;
-$display_num=6;
-$start_num=($page-1)*$display_num;
-
-date_default_timezone_set('Europe/London');
-
-?>
-
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-	<head>
-		<meta charset="utf-8" />
+<!DOCTYPE html>
+<html lang="en-us" ng-app="andybarefoot">
+    <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<meta name="viewport" content="initial-scale=1.0, width=device-width" />		
 		<title>Andy Barefoot</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-		<script src="jscript/masonry.pkgd.min.js"></script>
 		<script src="jscript/imagesloaded.pkgd.min.js"></script>
-		<script src="jscript/lightbox.js"></script>
+		<script src="jscript/masonry.pkgd.min.js"></script>
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/main-r.css">
-		<link rel="stylesheet" href="css/lightbox.css">
+		<meta charset="utf-8" />
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+        <script src="//code.angularjs.org/1.3.0-rc.1/angular.min.js"></script>
+        <script src="jscript/angular-masonry.min.js"></script>
+        <script src="jscript/andybarefoot.js"></script>
 		<script>
-			var currentPage=2;
 			document.createElement('header');
 			jQuery(document).ready(function( $ ) {
-				var $container = $('#container');
-				// initialize
-				$container.masonry({
-					itemSelector: '.item'
-				});
-				$container.imagesLoaded( function() {
-					$container.masonry();
-				});
 				$(function(){
 					$(".projectTitle").click(function(){
 						$(this).siblings(".projectDesc").slideToggle();
@@ -50,45 +27,17 @@ date_default_timezone_set('Europe/London');
 						$(this).siblings(".projectDesc").slideToggle();
 					});
 				});
-/*				function loadSocial(){
-					console.log( "more" );
-					$('#more').hide();
-					$('#loading').show();
-					$.get("content"+currentPage+".html", function(response, status, xhr) {
-						if ( status == "error" ) {
-					    	var msg = "Sorry but there was an error: ";
-					    	$("#loading").html( msg + xhr.status + " " + xhr.statusText );
-					 	}else{
-							console.log(response);
-							var moreBlocks = response;
-						    var $moreBlocks = $( moreBlocks );
-							console.log( $moreBlocks );
-						    $container.append( $moreBlocks );
-							$container.imagesLoaded( function() {
-							    $container.masonry( 'appended', $moreBlocks );
-								$('#more').show();
-								$('#loading').hide();
-							});
-							currentPage++;
-					 	}
-					});
-				}
-				$(function(){
-					$("#more").click(function(){
-						loadSocial();
-					});
-				});          
-*/			});
+			});
 		</script>
-	</head>	
-	<body>
+    </head>
+    <body ng-controller="mainController">
 		<div id="contact"><!-- contact -->
 			<header>
 				<hgroup>
 					<img id="portrait" src="images/andy-barefoot-portrait.png" alt="Andy Barefoot - Digital Professional" />
 					<div id="summary">
 						<h1><a href="/">Andy Barefoot</a></h1>		
-						<p>Digital professional with over 15 years experience of programming, management and digital strategy at Condé Nast and adidas.</p>
+						<p>Digital professional with over 15 years experience of programming, management and digital strategy at Cond&eacute; Nast and adidas.</p>
 					</div>
 					<ul>
 						<li><a href="https://www.linkedin.com/in/andybarefoot/" target="_blank"><img src="images/icons/png64/linkedin.png" /></a></li>
@@ -218,114 +167,32 @@ date_default_timezone_set('Europe/London');
 					<p><a href="http://discover.adidas.co.uk/goallin/" target="goallin">Go All In</a></p>
 				</div>
 			</div>
+			<div class="highlight">
+				<div class="highlightTitle"><h3>The Webby Awards</h3></div>
+				<div class="projectDesc">
+					<a href="http://webbyawards.com/winners/2009/web/site-features-and-design-categories/best-homewelcome-page/adidascom-homepage/" target="webby"><img src="images/webby.jpg" /></a>
+					<p>The adidas.com redesigned home page won the "Web: Best Home/Welcome Page" at the Webby Awards 2009.</p>
+					<p>I worked on the project from the adidas side with the agencies Molecular and de-construct.</p>
+					<p><a href="http://webbyawards.com/winners/2009/web/site-features-and-design-categories/best-homewelcome-page/adidascom-homepage/" target="webby">The Webby Awards</a></p>
+				</div>
+			</div>
 		</div><!-- highlights -->
 		<div id="social">
 			<div id="socialTitle" class="sectionTitle">
 				<h2>Social Feed</h2>
 			</div><!-- socialTitle -->
-			<div id="container">
-<?
-	$sqlStmt="SELECT * FROM `myposts` ORDER BY `mypost_time` DESC LIMIT ".$start_num.", ".$display_num."";
-	$posts=getData($sqlStmt);
-	foreach($posts as $post){
-		$post_id=$post["mypost_ID"];
-		$post_platform=$post["mypost_platform"];
-		$post_time=$post["mypost_time"];
-		$post_hasimage=$post["mypost_hasimage"];
-		$post_image=$post["mypost_image"];
-		$post_hasvideo=$post["mypost_hasvideo"];
-		$post_video=$post["mypost_video"];
-		$post_caption=stripslashes($post["mypost_caption"]);
-		$date = DateTime::createFromFormat('Y-m-d H:i:s', $post_time);
-		$post_date_str = $date->format('jS F Y');
-		/*
-		if($post_network==1){
-			$tweet_text=stripslashes($post["tweet_text"]);
-			$twitter_acc_name=$post["twitter_acc_name"];
-			$findLinks=true;
-			$offset = 0;
-			while($findLinks){
-				$linkPos = strrpos($tweet_text,"http://",$offset);
-				if($linkPos !== false){
-					$linkEnd = 	strpos($tweet_text," ",$linkPos);
-					if($linkEnd === false){
-						$linkEnd = strlen($tweet_text);
-					}
-					$linkURL = substr($tweet_text, $linkPos, $linkEnd-$linkPos);
-					$tweet_text = substr_replace($tweet_text, '</a>', $linkEnd, 0);
-					$tweet_text = substr_replace($tweet_text, '<a href="'.$linkURL.'" target="_blank">', $linkPos, 0);
-					$offset = 0-(strlen($tweet_text)-$linkPos);
-				}else{
-					$findLinks=false;
-				}
-			}
-			echo '<div class="masonryImage twitterBlock"><p>'.$tweet_text.'</p><div class="dateText">'.$twit_icon_str.$post_date_str.'</div></div>';			
-		}else */
-		if($post_platform==2){
-			echo '<div class="item">'."\n";
-			echo '<div class="dateText">'."\n";
-			echo '<a href="http://instagram.com/andybarefoot" target="_blank"><img src="images/icons/png32/instagram.png" width="24" height="24" /></a>'."\n";
-			echo $post_date_str."\n";
-			echo '</div><!-- class: dateText -->'."\n";
-			if($post_hasvideo==1){
-				echo '<video controls><source src="'.$post_video.'" type="video/mp4"></video>'."\n";
-			}else{
-				echo '<a href="'.$post_image.'" rel="lightbox" title="'.$post_caption.'">'."\n";
-				echo '<img class="photoImg" src="'.$post_image.'" />'."\n";
-				echo '</a>'."\n";;
-			}
-			echo '<p>'.$post_caption.'</p>'."\n";
-
-			echo '</div><!-- class: item -->'."\n";
-			echo "\n";
-		}/*else if($post_network==3){
-			$tumblr_type=stripslashes($post["blog_type"]);
-			$tumblr_text=stripslashes($post["blog_title"]);
-			$tumblr_text="";
-			$tumblr_acc_name=$post["blog_acc_screen_name"];
-			$tumblr_image=$post["blog_thumb"];
-			$tumblr_width=$post["blog_thumb_width"];
-			$tumblr_height=$post["blog_thumb_height"];
-			$tumblr_id=$post["blog_id"];
-			if(($tumblr_type==2)||($tumblr_type==3)){
-				if($tumblr_width>$tumblr_height){
-					$h=306;
-					$w=round($tumblr_width/($tumblr_height/306));
-				}else{
-					$w=306;
-					$h=round($tumblr_height/($tumblr_width/306));
-				}
-				$s_str=' width="'.$w.'" height="'.$h.'"';
-				$offset=round(($w-306)/2);
-				$first=true;
-				$sqlStmt="SELECT * FROM `blog_photos` WHERE `blog_photos`.`blog_id`= ".$tumblr_id." ORDER BY `blog_photos`.`blog_id` ASC";
-				$gallery_images=getData($sqlStmt);
-				$firstURL=$gallery_images[0]["blog_photo_url"];
-				echo '<div class="masonryImage instagramBlock">';
-				if($tumblr_type==2)echo '<img class="icon" src="images/iconPhotoGallery.png" />';
-				if($tumblr_type==3)echo '<img class="icon" src="images/iconPhoto.png" />';
-				echo '<div class="img_container"><a href="'.$firstURL.'" rel="lightbox[blog'.$tumblr_id.']" title="'.$tumblr_text.'"><img src="'.$tumblr_image.'" '.$s_str.' style="margin-left: -'.$offset.'px;"/></a></div><p><span class="blue">'.$tumblr_acc_name.'</span> '.$tumblr_text.'</p><div class="dateText">'.$post_date_str.'</div></div>';			
-	//			echo '<div class="masonryImage instagramBlock"><img class="icon" src="images/iconInstagram.png" /><div class="img_container" style="background: url(\''.$tumblr_image.'\') no-repeat center top;"></div><p><span class="blue">'.$tumblr_acc_name.'</span> '.$tumblr_text.'</p><div class="dateText">'.$post_date_str.'</div></div>';			
-				for($i=1;$i<count($gallery_images); $i++){
-					$gallery_image_url=$gallery_images[$i]["blog_photo_url"];
-					echo '<a href="'.$gallery_image_url.'" rel="lightbox[blog'.$tumblr_id.']" title="'.$tumblr_text.'"></a>';
-				}
-			}else if($tumblr_type==8){
-				echo '<div class="masonryImage videoBlock"><img class="icon" src="images/iconPhotoGallery.png" /><iframe width="632" height="355" src="'.$tumblr_image.'?wmode=transparent&autohide=1&egm=0&hd=1&iv_load_policy=3&modestbranding=1&rel=0&showinfo=0&showsearch=0" frameborder="0" allowfullscreen></iframe><p><span class="blue">'.$tumblr_acc_name.'</span> '.$tumblr_text.'</p><div class="dateText">'.$post_date_str.'</div></div>';
-			}
-		}*/
-	}
-?>	
-	
+			<div masonry id="container">
+				<div class="item masonry-brick" ng-repeat="instagram in instagrams">
+					<div class="dateText">
+						<a ng-href="{{userURLString(instagram.owner.id)}}" target="_blank"><img src="images/icons/png32/instagram.png" width="24" height="24" /></a>
+						{{ userNameString(instagram.owner.id) }}{{ instagram.date * 1000 | date:'d MMMM yyyy' }}
+					</div><!-- class: dateText -->
+					<img ng-src="{{ instagram.display_src }}" alt="{{ instagram.caption }}" />
+					<p>{{ instagram.caption }}</p>
+				</div><!-- class: item -->
 			</div><!-- container -->
-<!--
-			<div id="more" class="dateText">
-				Load more social feed
-			</div>
-			<div id="loading" class="dateText">
-				Loading...
-			</div>
--->
+			<div id="more" class="dateText" ng-show="showMoreSocial" ng-click="loadMoreSocial()">LOAD MORE SOCIAL FEED</div>
+			<div id="all" class="dateText" ng-show="noMoreSocial">SOCIAL FEED FULLY LOADED</div>
 		</div><!-- social -->
 	</body>
 </html>

@@ -1,3 +1,14 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
 body {
 	color: #fff;
 	background-color: #616161;
@@ -101,11 +112,11 @@ hgroup li img{
 }
 
 
-#more, #loading {
+#more, #all, #loading {
     clear: both;
-    margin: 0 20px 20px 20px;
+    margin: 0 0 20px 0;
     text-align:center;	
-	font-size: 1.0em;
+	font-size: 1.4em;
     text-transform: uppercase;
 }
 
@@ -188,6 +199,7 @@ hgroup li img{
 	color: #333;
 	margin: 0 0 20px 0;
 	background: #fff;
+    overflow: auto;
 }
 
 /* photoImg: images within the social feed that have click disabled on mobile devices, on larger screens click triggers lightbox */
@@ -214,7 +226,7 @@ hgroup li img{
 		width: 130px;
 		height: 130px;
 		margin-top: 5px;
-		padding-right: 18px;
+		margin-right: 18px;
 		float: left;
 	}
 	#summary{
