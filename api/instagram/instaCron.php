@@ -87,7 +87,7 @@ for($i = count($newNodes); $i > 0; $i--){
 	}
 }
 
-$allData = ["nodes" => $andyNodes];
+$allData = array("nodes" => $andyNodes);
 $newText = json_encode($allData);
 file_put_contents ('../html/api/instagram/gunterguntychops.txt', $newText);
 

@@ -23,10 +23,10 @@ $gunterNodes = $gunterData['nodes'];
 $allNodes = array_merge($andyNodes,$gunterNodes);
 usort($allNodes, "cmp");
 $nodes = array_slice($allNodes, $OFFSET, $COUNT);
-$data = [
+$data = array (
 	"offset" => $OFFSET,
 	"count" => $COUNT,
-];
+);
 $data["nodes"] = $nodes;
 print json_encode($data);
 
