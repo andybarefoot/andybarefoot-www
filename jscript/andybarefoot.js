@@ -8,7 +8,7 @@ andybarefoot.controller('mainController', ['$scope', '$filter', '$http', functio
 	$scope.noMoreSocial = false;
 	$scope.userNameString = function (userId) {
 		if(userId == 1697196773){
-			return "Günter | "
+			return "Gunter | "
 		}else if(userId == 1539646){
 			return "Andy | "
 		}
