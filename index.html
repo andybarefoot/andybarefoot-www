@@ -187,7 +187,7 @@
 						<a ng-href="{{userURLString(instagram.owner.id)}}" target="_blank"><img src="images/icons/png32/instagram.png" width="24" height="24" /></a>
 						{{ userNameString(instagram.owner.id) }}{{ instagram.date * 1000 | date:'d MMMM yyyy' }}
 					</div><!-- class: dateText -->
-					<img ng-src="{{ instagram.display_src }}" alt="{{ instagram.caption }}" />
+					<img ng-src="{{ getImage(instagram.local_image) }}" alt="{{ instagram.caption }}" />
 					<p>{{ instagram.caption }}</p>
 				</div><!-- class: item -->
 			</div><!-- container -->

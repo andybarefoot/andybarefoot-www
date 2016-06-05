@@ -20,6 +20,9 @@ andybarefoot.controller('mainController', ['$scope', '$filter', '$http', functio
 			return "https://www.instagram.com/andybarefoot/"
 		}
 	};
+	$scope.getImage = function (file) {
+		return "images/instagram/" + file;
+	};
 	$scope.loadMoreSocial = function () {
 		$scope.showMoreSocial = false;
 		$scope.noMoreSocial = false;
