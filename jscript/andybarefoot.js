@@ -23,7 +23,7 @@ andybarefoot.controller('mainController', ['$scope', '$filter', '$http', functio
 	$scope.loadMoreSocial = function () {
 		$scope.showMoreSocial = false;
 		$scope.noMoreSocial = false;
-		url = 'http://andybarefoot.sites.dev/api/instagram/allData.php?offset=' + $scope.instagramOffset + '&count=' + $scope.instagramCount;
+		url = '/api/instagram/allData.php?offset=' + $scope.instagramOffset + '&count=' + $scope.instagramCount;
 		$http.get(url)
 			.success(function (result){
 				console.log(result);
