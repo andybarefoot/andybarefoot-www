@@ -181,7 +181,7 @@
 			<div id="socialTitle" class="sectionTitle">
 				<h2>Social Feed</h2>
 			</div><!-- socialTitle -->
-			<div masonry id="container">
+			<div masonry  preserve-order id="container">
 				<div class="item masonry-brick" ng-repeat="instagram in instagrams">
 					<div class="dateText">
 						<a ng-href="{{userURLString(instagram.owner.id)}}" target="_blank"><img src="images/icons/png32/instagram.png" width="24" height="24" /></a>
