@@ -187,7 +187,10 @@
 						<a ng-href="{{userURLString(instagram.owner.id)}}" target="_blank"><img src="images/icons/png32/instagram.png" width="24" height="24" /></a>
 						{{ userNameString(instagram.owner.id) }}{{ instagram.date * 1000 | date:'d MMMM yyyy' }}
 					</div><!-- class: dateText -->
-					<img ng-src="{{ getImage(instagram.local_image) }}" alt="{{ instagram.caption }}" />
+					<img ng-click="instagram.is_clicked = true" class="video-play" ng-if="instagram.is_video && !instagram.is_clicked" src="images/video-icon.png" />
+					<img ng-src="{{ getImage(instagram.local_image) }}" alt="{{ instagram.caption }}" ng-show="!instagram.is_clicked" />
+					<video ng-if="instagram.is_video && instagram.is_clicked" controls="controls" autoplay name="Video Name" ng-src="{{ getVideo(instagram.local_video) }}"></video>
+<!--					<video ng-show="instagram.is_video" controls><source ng-src="videos/instagram/inst-BF_8_n7G7v_.mp4" type="video/mp4"></video>-->
 					<p>{{ instagram.caption }}</p>
 				</div><!-- class: item -->
 			</div><!-- container -->

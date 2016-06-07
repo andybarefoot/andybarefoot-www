@@ -23,6 +23,9 @@ andybarefoot.controller('mainController', ['$scope', '$filter', '$http', functio
 	$scope.getImage = function (file) {
 		return "images/instagram/" + file;
 	};
+	$scope.getVideo = function (file) {
+		return "videos/instagram/" + file;
+	};
 	$scope.loadMoreSocial = function () {
 		$scope.showMoreSocial = false;
 		$scope.noMoreSocial = false;

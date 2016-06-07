@@ -99,7 +99,11 @@ hgroup li img{
 }
 
 
-
+.video-play {
+	cursor: pointer;
+	position: absolute;
+	z-index: 10;
+}
 
 
 
