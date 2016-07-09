@@ -30,7 +30,7 @@
 			});
 		</script>
     </head>
-    <body ng-controller="mainController">
+    <body>
 		<div id="contact"><!-- contact -->
 			<header>
 				<hgroup>
@@ -54,12 +54,23 @@
 				<h2>Personal Projects</h2>
 			</div>
 			<div class="project">
+				<div class="projectTitle"><h3>MP CoMParison</h3></div>
+				<div class="projectDesc">
+					<a href="/politics/mpcompare/" target="mp-compare"><img src="images/mp-compare.png" /></a>
+					<p>The site <a href="http://www.publicwhip.org.uk/" target="_whip">the Public Whip</a> aggregates the data on how MPs in the UK parliament vote. They then group this by similar votes to provide an insight into how much each MP supports a particular policy.</p>
+					<p>However at the moment the site does not provide a tool to enable users to easily compare MPs and see their relative support for each issue.</p>
+					<p>I made a <a href="/politics/mpcompare/" target="mp-compare">small site</a> that scrapes the data from <a href="http://www.publicwhip.org.uk/" target="_whip">the Public Whip</a> and allows the user to compare support for related policies across groups of MPs. The tool also allows the user to select any policy or MP and add them to the comparison.</p>
+					<p>The site was built using PHP to scrape the data and serve via API, and AngularJS to provide the interactive front-end functionality.</p>
+					<p><a href="/politics/mpcompare/" target="mp-compare">CoMParison - Compare MPs on their support for key policies.</a></p>
+				</div>
+			</div>
+			<div class="project">
 				<div class="projectTitle"><h3>Social Feed</h3></div>
 				<div class="projectDesc">
 					<a href="https://medium.com/@andybarefoot/adding-instagram-photos-to-my-site-with-angularjs-a3eb2a436746#.m70yzvvdb" target="medium-instagram"><img src="images/medium-instagram.png" /></a>
 					<p>I updated the implementation of the social feed on this site to use AngularJS.</p>
 					<p>Due to limitations with the Instagram API I scraped my content directly from the Instagram site and wrote an API in PHP to allow the content to be pulled into the site.</p>
-					<p>I detailed the approach in post on <a href="https://medium.com/@andybarefoot/adding-instagram-photos-to-my-site-with-angularjs-a3eb2a436746#.m70yzvvdb" target="medium-instagram">Medium</a>.</p>
+					<p>I detailed the approach in a post on <a href="https://medium.com/@andybarefoot/adding-instagram-photos-to-my-site-with-angularjs-a3eb2a436746#.m70yzvvdb" target="medium-instagram">Medium</a>.</p>
 				</div>
 			</div>
 			<div class="project">
@@ -68,6 +79,7 @@
 					<a href="https://play.google.com/store/apps/details?id=com.GunterGames.SkiVR" target="skivr"><img src="images/ski-vr.png" /></a>
 					<p>Ski VR is a quick VR demo built for Google Cardboard but also playable without a headset.</p>
 					<p>Slide gracefully down the mountain between trees and alpine chalets in a Virtual Reality winter wonderland.</p>
+					<p>Ski VR was built in <a href="https://unity3d.com/" target="_unity">Unity</a> with the Google Cardboard SDK and uses 3rd party graphical assets.</p>
 					<p><a href="https://play.google.com/store/apps/details?id=com.GunterGames.SkiVR" target="skivr">Ski VR on Google Play.</a></p>
 				</div>
 			</div>
@@ -78,6 +90,7 @@
 					<p>Color Hex is a mobile puzzle game for Android and iOS built and published uing the Unity platform.</p>
 					<p>The player must try and match patterns by mixing colours together on a hexagonal grid. As the patterns get more complicated the puzzle becomes more difficult.</p>
 					<p>There are 2 play modes with a combined total of 222 levels.</p>
+					<p>Color Hex was built in <a href="https://unity3d.com/" target="_unity">Unity</a> which supports exporting to both iOS and Android platforms.</p>
 					<p><a href="https://play.google.com/store/apps/details?id=com.guntergames.colourhexnew" target="colorhexplay">Color Hex on Google Play.</a><br />
 					<a href="https://itunes.apple.com/gb/app/id1093790722" target="colorhexitunes">Super Color Hex on iTunes.</a></p>
 				</div>
@@ -86,7 +99,7 @@
 				<div class="projectTitle"><h3>Super Dice</h3></div>
 				<div class="projectDesc">
 					<a href="http://www.guntergames.com/superdice" target="sneakers"><img src="images/super-dice.jpg" /></a>
-					<p>My first attempt at using the Unity platform to create a mobile game was a mobile version of the dice game Farkle.</p>
+					<p>My first attempt at using the <a href="https://unity3d.com/" target="_unity">Unity</a> platform to create a mobile game was a mobile version of the dice game Farkle.</p>
 					<p><a href="http://www.guntergames.com/superdice" target="sneakers">Super Dice</a></p>
 				</div>
 			</div>
@@ -96,6 +109,7 @@
 					<a href="http://www.allthesneakers.com/" target="sneakers"><img src="images/all-the-sneakers.jpg" /></a>
 					<p>In-progress search engine of sneakers collating and comparing sneakers from a number of eCommerce sites.</p>
 					<p>Regularly spiders a number of sites and compares prices where identical sneakers appear on multiple sites.</p>
+					<p>The spiders and APIs are built in PHP, the database in MySql and the front-end uses <a href="http://sass-lang.com/" target="_sass">SASS</a> for the CSS. 
 					<p><a href="http://www.allthesneakers.com/" target="sneakers">All The Sneakers</a></p>
 				</div>
 			</div>
@@ -151,9 +165,9 @@
 				<div class="highlightTitle"><h3>Cond&eacute; Nast Hackathon</h3></div>
 				<div class="projectDesc">
 					<a href="http://www.whatsnewinpublishing.co.uk/content/f%E2%80%99nito-winner-cond%C3%A9-nast-international-hackathon" target="fnito"><img src="images/conde-nast-fnito.jpg" /></a>
-					<p>I took part in the first Cond&eacute; Nast International Hackathon joining with the "F’Nito" team to help them develop their cross-platform content concept.</p>
-					<p>F'Nito enables the user to read or listen to an article on any of their devices seamlessly switching from text to audio and back and maintaining their place as they switch devices.</p>
-					<p>F'Nito won the first prize at the hackathon.</p>
+					<p>I took part in the first Cond&eacute; Nast International Hackathon joining with the "F&#8217;Nito" team to help them develop their cross-platform content concept.</p>
+					<p>F&#8217;Nito enables the user to read or listen to an article on any of their devices seamlessly switching from text to audio and back and maintaining their place as they switch devices.</p>
+					<p>F&#8217;Nito won the first prize at the hackathon.</p>
 					<p><a href="http://www.whatsnewinpublishing.co.uk/content/f%E2%80%99nito-winner-cond%C3%A9-nast-international-hackathon" target="fnito">Cond&eacute; Nast Hackathon</a></p>
 				</div>
 			</div>
@@ -161,7 +175,7 @@
 				<div class="highlightTitle"><h3>adidas.com</h3></div>
 				<div class="projectDesc">
 					<a href="http://www.adidas.co.uk" target="adidas"><img src="images/go-all-in.jpg" /></a>
-					<p>As Director Digital Brand Platforms led the implementation of the adidas.com global redesig for the Global Marketing department.</p>
+					<p>As Director Digital Brand Platforms led the implementation of the adidas.com global redesign for the Global Marketing department.</p>
 					<p>The site integrates a global CMS that supports each of the local markets as well as the global team.</p>
 					<p><a href="http://www.adidas.co.uk" target="adidas">adidas</a></p>
 				</div>
@@ -186,7 +200,7 @@
 				</div>
 			</div>
 		</div><!-- highlights -->
-		<div id="social">
+		<div id="social" ng-controller="mainController">
 			<div id="socialTitle" class="sectionTitle">
 				<h2>Social Feed</h2>
 			</div><!-- socialTitle -->
