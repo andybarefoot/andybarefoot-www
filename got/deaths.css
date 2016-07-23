@@ -1,0 +1,97 @@
+body {
+	background-color: #1f1f1f;
+	color: #808080;
+	font-family: 'Trirong', georgia, times, serif;
+	font-weight: 200;
+	font-size: 18px;
+}
+
+a {
+	color: #808080;
+}
+
+h1 {
+	font-size: 25px;
+	margin: 10px 2% 10px 2%;
+	font-weight: 100;
+}
+
+p {
+	margin: 10px 2% 0 2%;
+}
+
+#titleImg{
+	margin: 2%;
+	max-width: 96%;
+}
+
+#popup {
+	display: none;
+	position: absolute;
+	color: #808080;
+	background-color: #121212;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #caad2d;
+	width: 400px;
+	height: 220px;
+	top:0; 
+	left:0;
+}
+h2 .charLink{
+	text-decoration: none;
+}
+#close {
+	position: absolute;
+	bottom:0; 
+	right:10px;
+	color: #caad2d;
+}
+#close a{
+	color: #caad2d;
+}
+#popup #imgHolder {
+	width: 150px;
+	height: 200px;
+	float: left;
+	margin: 10px;
+	overflow: hidden;
+}
+#popup img {
+	max-width: 100%;
+}
+
+#popup h2 {
+	font-size: 22px;
+	line-height: 24px;
+	font-weight: 100;
+	margin: 7px 10px 0 0;
+}
+
+#popup p {
+	font-size: 16px;
+	margin: 0 10px 0 0;
+	line-height: 18px;
+}
+
+svg .node text {
+	font-size: 16px;
+	font-family: 'Trirong', georgia, times, serif;
+	fill: #808080;
+}
+
+svg .season{
+	font-size: 14px;
+	font-family: 'Trirong', georgia, times, serif;
+	fill: #808080;
+}
+
+svg .node--internal text-xxx {
+  text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+}
+
+svg .link {
+  fill: none;
+  stroke-opacity: 0.4;
+  stroke-width: 1.0px;
+}

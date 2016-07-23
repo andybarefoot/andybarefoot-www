@@ -2,271 +2,265 @@
 <html lang="en-us">
     <head>
 		<title>Valar Morghulis: All the deaths in Game of Thrones</title>
-<meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css?family=Martel:200" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Trirong:100,200" rel="stylesheet">
-<meta property="og:url"	content="http://andybarefoot.sites.dev/got/" />
-<meta property="og:title" content="Valar Morghulis: All the deaths in Game of Thrones" />
-<meta property="og:description" content="Fans of Game of Thrones know that Valar Morghulis (all men must die) but when over 200 named characters have already gone to meet The Seven (or The Old Gods, or The Drowned God, or The Lord of Light, or The Many-Faced God of Death, or the Great Stallion, etc...) then it gets hard to keep track of the tragedy. Fortunately Maester Barefoot has created a comprehensive record of all these deaths, whether violent, very violent or extremely violent." />
-<meta property="og:image" content="http://www.andybarefoot.com/got/images/fb-got-deaths.png" />
-<style>
-body {
-	background-color: #1f1f1f;
-	color: #808080;
-	font-family: 'Trirong', georgia, times, serif;
-	font-weight: 200;
-	font-size: 18px;
-}
 
-a {
-	color: #808080;
-}
+		<meta charset="utf-8">
+		<meta property="og:url"	content="http://andybarefoot.sites.dev/got/" />
+		<meta property="og:title" content="Valar Morghulis: All the deaths in Game of Thrones" />
+		<meta property="og:description" content="Fans of Game of Thrones know that Valar Morghulis (all men must die) but when over 200 named characters have already gone to meet The Seven (or The Old Gods, or The Drowned God, or The Lord of Light, or The Many-Faced God of Death, or the Great Stallion, etc...) then it gets hard to keep track of the tragedy. Fortunately Maester Barefoot has created a comprehensive record of all these deaths, whether violent, very violent or extremely violent." />
+		<meta property="og:image" content="http://www.andybarefoot.com/got/images/fb-got-deaths.png" />
 
-h1 {
-	font-size: 25px;
-	margin: 0 0 0 32px;
-	font-weight: 100;
-}
+		<link href="https://fonts.googleapis.com/css?family=Martel:200" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Trirong:100,200" rel="stylesheet">
 
-p {
-	margin: 0 0 0 32px;
-}
+		<script src="/jscript/d3.v4.min.js"></script>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
-.node circle {
-  fill: #caad2d;
-}
+		<style>
+			body {
+				background-color: #1f1f1f;
+				color: #808080;
+				font-family: 'Trirong', georgia, times, serif;
+				font-weight: 200;
+				font-size: 18px;
+			}
 
-.node text {
-	font-size: 16px;
-	font-family: 'Trirong', georgia, times, serif;
-	fill: #808080;
-}
+			a {
+				color: #808080;
+			}
 
-.node--internal circle {
-  fill: #caad2d;
-}
+			h1 {
+				font-size: 25px;
+				margin: 0 0 0 32px;
+				font-weight: 100;
+			}
 
-.node--internal text-xxx {
-  text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
-}
+			p {
+				margin: 0 0 0 32px;
+			}
 
-.link {
-  fill: none;
-  stroke: #caad2d;
-  stroke-opacity: 0.4;
-  stroke-width: 1.0px;
-}
+			.node circle {
+			  fill: #caad2d;
+			}
 
-#popup {
-	display: none;
-	position: absolute;
-	color: #808080;
-	background-color: #121212;
-	border-style: solid;
-	border-width: 1px;
-	border-color: #caad2d;
-	width: 400px;
-	height: 220px;
-	top:0; 
-	left:0;
-}
-h2 .charLink{
-	text-decoration: none;
-}
-#close {
-	position: absolute;
-	bottom:0; 
-	right:10px;
-	color: #caad2d;
-}
-#close a{
-	color: #caad2d;
-}
-#popup #imgHolder {
-	width: 150px;
-	height: 200px;
-	float: left;
-	margin: 10px;
-	overflow: hidden;
-}
-#popup img {
-	max-width: 100%;
-}
+			.node text {
+				font-size: 16px;
+				font-family: 'Trirong', georgia, times, serif;
+				fill: #808080;
+			}
 
-#popup h2 {
-	font-size: 22px;
-	line-height: 24px;
-	font-weight: 100;
-	margin: 7px 10px 0 0;
-}
+			.node--internal circle {
+			  fill: #caad2d;
+			}
 
-#popup p {
-	font-size: 16px;
-	margin: 0 10px 0 0;
-	line-height: 18px;
-}
+			.node--internal text-xxx {
+			  text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+			}
 
+			.link {
+			  fill: none;
+			  stroke: #caad2d;
+			  stroke-opacity: 0.4;
+			  stroke-width: 1.0px;
+			}
 
+			#popup {
+				display: none;
+				position: absolute;
+				color: #808080;
+				background-color: #121212;
+				border-style: solid;
+				border-width: 1px;
+				border-color: #caad2d;
+				width: 400px;
+				height: 220px;
+				top:0; 
+				left:0;
+			}
+			h2 .charLink{
+				text-decoration: none;
+			}
+			#close {
+				position: absolute;
+				bottom:0; 
+				right:10px;
+				color: #caad2d;
+			}
+			#close a{
+				color: #caad2d;
+			}
+			#popup #imgHolder {
+				width: 150px;
+				height: 200px;
+				float: left;
+				margin: 10px;
+				overflow: hidden;
+			}
+			#popup img {
+				max-width: 100%;
+			}
 
+			#popup h2 {
+				font-size: 22px;
+				line-height: 24px;
+				font-weight: 100;
+				margin: 7px 10px 0 0;
+			}
 
-
-</style>
+			#popup p {
+				font-size: 16px;
+				margin: 0 10px 0 0;
+				line-height: 18px;
+			}
+		</style>
     </head>
 	<body>
-<div id="popup"><div id="imgHolder"><a href="#" class="charLink" target="_blank"><img /></a></div><h2><a href="#" class="charLink" target="_blank"></a></h2><p></p><div id="close"><a href="javascript:closePopup()">X</a></div></div>
-<img src="images/valar-morghulis.png" />
-<h1>A guide to who has killed who in Game of Thrones</h1>
-<p>All data and images from the excellent <a href="http://gameofthrones.wikia.com/wiki/Game_of_Thrones_Wiki" target="_blank">Game of Thrones wiki</a>.</p>
-<svg id="mySVG" width="1000" height="8000"></svg>
-<script src="//d3js.org/d3.v4.min.js"></script>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script>
+		<div id="popup">
+			<div id="imgHolder">
+				<a href="#" class="charLink" target="_blank"><img /></a>
+			</div>
+			<h2><a href="#" class="charLink" target="_blank"></a></h2>
+			<p></p>
+			<div id="close">
+				<a href="javascript:closePopup()">X</a>
+			</div>
+		</div>
 
-var popUpClicked = 0;
+		<img src="images/valar-morghulis.png" />
+		<h1>A guide to who has killed who in Game of Thrones</h1>
+		<p>All data and images from the excellent <a href="http://gameofthrones.wikia.com/wiki/Game_of_Thrones_Wiki" target="_blank">Game of Thrones wiki</a>.</p>
 
-function clickPopup(charID, trans){
-	populatePopup(charID, trans);
-	if(popUpClicked==charID){
-		$("#popup").hide();
-		popUpClicked=0;
-	}else{
-		$("#popup").show();
-		popUpClicked=charID;
-	}
-}
+		<svg id="mySVG" width="1000" height="8000"></svg>
 
-function closePopup(){
-	console.log("close");
-	$("#popup").hide();
-	popUpClicked=0;
-}
+		<script>
+			// MANAGE CHARACTER OVERLAY
+			var popUpClicked = 0;
 
-function mouseOverPopup(charID, trans){
-	if(popUpClicked==0){
-		populatePopup(charID, trans);
-		$("#popup").show();
-	}
-}
+			function clickPopup(charID, trans){
+				populatePopup(charID, trans);
+				if(popUpClicked==charID){
+					$("#popup").hide();
+					popUpClicked=0;
+				}else{
+					$("#popup").show();
+					popUpClicked=charID;
+				}
+			}
 
-function mouseOutPopup(charID, trans){
-	if(popUpClicked==0){
-		$("#popup").hide();
-	}
-}
+			function closePopup(){
+				console.log("close");
+				$("#popup").hide();
+				popUpClicked=0;
+			}
 
-function populatePopup(charID, trans){
-	charData = charJson.filter(function (charData) { return charData.charID == charID });
-	if(charData[0]['charDead']==1){
-		pString = charData[0]['charDeathDesc'] + "<br/><br/>";
-		if(charData[0]['episodeNumber']){
-			pString += "<a href='" + charData[0]['episodeURL'] + "' class='epiLink' target='_blank'>S" + charData[0]['episodeSeason'] + ":E" + charData[0]['episodeNumber'] + " " + charData[0]['episodeName'] + "</a>";
-		}
-	}else{
-		pString = "Not yet taken by the gods."
-	}
-	xPos = trans.left + 30;
-	yPos = trans.top + 30;
-	if((xPos + 430) > 1000)xPos = xPos-440;
-	if((yPos) > 8000)yPos = yPos-260;
-	if(charData[0]['charThumb']!=""){
-		imgSrc = "images/char"+charData[0]['charID']+".png";
-	}else{
-		imgSrc = "";
-	}
-	$("#popup").find( "h2" ).find( "a" ).html(charData[0]['charName']);
-	$("#popup").find( "p" ).html(pString);
-	$("#popup").find( "img" ).attr('src',"");
-	$("#popup").find( "img" ).attr('src',imgSrc);
-	$("#popup").css('left', xPos);
-	$("#popup").css('top', yPos);
-	$(".charLink").attr('href',charData[0]['charURL']);
-}
+			function mouseOverPopup(charID, trans){
+				if(popUpClicked==0){
+					populatePopup(charID, trans);
+					$("#popup").show();
+				}
+			}
 
-var charStr = $.ajax({
-	url: "characters.json",
-	dataType: "json",
-	async: false
-}).responseText;
+			function mouseOutPopup(charID, trans){
+				if(popUpClicked==0){
+					$("#popup").hide();
+				}
+			}
 
-charJson = JSON.parse(charStr)
-// console.log(charJson);
+			function populatePopup(charID, trans){
+				charData = charJson.filter(function (charData) { return charData.charID == charID });
+				if(charData[0]['charDead']==1){
+					pString = charData[0]['charDeathDesc'] + "<br/><br/>";
+					if(charData[0]['episodeNumber']){
+						pString += "<a href='" + charData[0]['episodeURL'] + "' class='epiLink' target='_blank'>S" + charData[0]['episodeSeason'] + ":E" + charData[0]['episodeNumber'] + " " + charData[0]['episodeName'] + "</a>";
+					}
+				}else{
+					pString = "Not yet taken by the gods."
+				}
+				xPos = trans.left + 30;
+				yPos = trans.top + 30;
+				if((xPos + 430) > 1000)xPos = xPos-440;
+				if((yPos) > 8000)yPos = yPos-260;
+				if(charData[0]['charThumb']!=""){
+					imgSrc = "images/char"+charData[0]['charID']+".png";
+				}else{
+					imgSrc = "";
+				}
+				$("#popup").find( "h2" ).find( "a" ).html(charData[0]['charName']);
+				$("#popup").find( "p" ).html(pString);
+				$("#popup").find( "img" ).attr('src',"");
+				$("#popup").find( "img" ).attr('src',imgSrc);
+				$("#popup").css('left', xPos);
+				$("#popup").css('top', yPos);
+				$(".charLink").attr('href',charData[0]['charURL']);
+			}
 
+			// IMPORT DATA
+			var charStr = $.ajax({
+				url: "characters.json",
+				dataType: "json",
+				async: false
+			}).responseText;
 
-var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height"),
-    g = svg.append("g").attr("transform", "translate(40,0)");
+			charJson = JSON.parse(charStr)
 
-var tree = d3.tree()
-    .size([height, width - 220]);
+			// MANAGE CHART
+			var svg = d3.select("svg"),
+			    width = +svg.attr("width"),
+			    height = +svg.attr("height"),
+			    g = svg.append("g").attr("transform", "translate(40,0)");
 
-var stratify = d3.stratify()
-    .parentId(function(d) { return d.id.substring(0, d.id.lastIndexOf(".")); });
+			var tree = d3.tree()
+			    .size([height, width - 220]);
 
-d3.csv("deaths.csv", function(error, data) {
-  if (error) throw error;
+			var stratify = d3.stratify()
+			    .parentId(function(d) { return d.id.substring(0, d.id.lastIndexOf(".")); });
 
-  var root = stratify(data)
-      .sort(function(a, b) { return (a.height - b.height) || a.id.localeCompare(b.id); });
-//  console.log(root);
-  tree(root);
+			d3.csv("deaths.csv", function(error, data) {
+			  if (error) throw error;
 
-  var link = g.selectAll(".link")
-      .data(root.descendants().slice(1))
-    .enter().append("path")
-      .attr("class", "link")
-      .attr("d", function(d) {
-        return "M" + d.y + "," + d.x
-            + "C" + (d.y + d.parent.y) / 2 + "," + d.x
-            + " " + (d.y + d.parent.y) / 2 + "," + d.parent.x
-            + " " + d.parent.y + "," + d.parent.x;
-      });
+			  var root = stratify(data)
+			      .sort(function(a, b) { return (a.height - b.height) || a.id.localeCompare(b.id); });
+			  tree(root);
 
-  var node = g.selectAll(".node")
-      .data(root.descendants())
-    .enter().append("g")
-      .attr("class", function(d) { return "node" + (d.children ? " node--internal" : " node--leaf"); })
-      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
-      .attr("id", function(d) { return "id" + d.data.value; })
+			  var link = g.selectAll(".link")
+			      .data(root.descendants().slice(1))
+			    .enter().append("path")
+			      .attr("class", "link")
+			      .attr("d", function(d) {
+			        return "M" + d.y + "," + d.x
+			            + "C" + (d.y + d.parent.y) / 2 + "," + d.x
+			            + " " + (d.y + d.parent.y) / 2 + "," + d.parent.x
+			            + " " + d.parent.y + "," + d.parent.x;
+			      });
 
-  node.append("circle")
-		.attr("r", 5)
-		.attr("data-id", function(d) { return d.data.value; })
-/*		.on("mouseover", function(d) {
-			d3.select(this).attr("r", 10)
-			populatePopup(d3.select(this).attr("data-id"),$(this).position());
-			$("#popup").show()
-		})
-		.on("click", function(d) {
-			d3.select(this).attr("r", 10)
-			populatePopup(d3.select(this).attr("data-id"),$(this).position());
-			$("#popup").show()
-		})
-		.on("mouseout", function() {
-			d3.select(this).attr("r", 5)
-			$("#popup").hide()
-		});
-*/
-		.on("click", function(d) {
-			clickPopup(d3.select(this).attr("data-id"),$(this).position());
-		})
-		.on("mouseover", function(d) {
-			d3.select(this).attr("r", 10)
-			mouseOverPopup(d3.select(this).attr("data-id"),$(this).position());
-		})
-		.on("mouseout", function() {
-			d3.select(this).attr("r", 5)
-			mouseOutPopup(d3.select(this).attr("data-id"),$(this).position());
-		});
+			  var node = g.selectAll(".node")
+			      .data(root.descendants())
+			    .enter().append("g")
+			      .attr("class", function(d) { return "node" + (d.children ? " node--internal" : " node--leaf"); })
+			      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+			      .attr("id", function(d) { return "id" + d.data.value; })
 
-  node.append("text")
-      .attr("dy", 5)
-      .attr("x", function(d) { return d.children ? -15 : 15; })
-      .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
-      .text(function(d) { return d.id.substring(d.id.lastIndexOf(".") + 1); });
-});
+			  node.append("circle")
+					.attr("r", 5)
+					.attr("data-id", function(d) { return d.data.value; })
+					.on("click", function(d) {
+						clickPopup(d3.select(this).attr("data-id"),$(this).position());
+					})
+					.on("mouseover", function(d) {
+						d3.select(this).attr("r", 10)
+						mouseOverPopup(d3.select(this).attr("data-id"),$(this).position());
+					})
+					.on("mouseout", function() {
+						d3.select(this).attr("r", 5)
+						mouseOutPopup(d3.select(this).attr("data-id"),$(this).position());
+					});
 
+			  node.append("text")
+			      .attr("dy", 5)
+			      .attr("x", function(d) { return d.children ? -15 : 15; })
+			      .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
+			      .text(function(d) { return d.id.substring(d.id.lastIndexOf(".") + 1); });
+			});
 
-</script>
+		</script>
 	</body>
 </html>
