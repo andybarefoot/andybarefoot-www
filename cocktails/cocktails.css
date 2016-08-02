@@ -1,0 +1,246 @@
+body {
+	background-color: #eb622d;
+	color: #333333;
+	font-family: 'Playfair Display', serif;
+	font-weight: 200;
+	font-size: 16px;
+}
+
+a {
+	color: #808080;
+}
+
+h1 {
+	font-size: 25px;
+	margin: 10px 2% 10px 2%;
+	font-weight: 100;
+}
+
+p {
+	margin: 10px 2% 0 2%;
+}
+
+#titleImg{
+	margin: 2%;
+	max-width: 96%;
+}
+
+#popup {
+	display: none;
+	position: absolute;
+	color: #808080;
+	background-color: #121212;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #caad2d;
+	width: 400px;
+	height: 220px;
+	top:0; 
+	left:0;
+}
+h2 .charLink{
+	text-decoration: none;
+}
+#close {
+	position: absolute;
+	bottom:8px; 
+	right:8px;
+	color: #caad2d;
+}
+#close a{
+	color: #caad2d;
+}
+#popup #imgHolder {
+	width: 150px;
+	height: 200px;
+	float: left;
+	margin: 10px;
+	overflow: hidden;
+}
+#popup img {
+	max-width: 100%;
+}
+
+#popup h2 {
+	font-size: 22px;
+	line-height: 24px;
+	font-weight: 100;
+	margin: 7px 10px 0 0;
+}
+
+#popup p {
+	font-size: 16px;
+	margin: 0 10px 0 0;
+	line-height: 18px;
+}
+
+.cocktail{
+	width: 82%;
+	background-color: #edece4;
+	float: left;
+	margin: 0 6% 20px 6%;
+	padding: 3%;
+}
+
+#header{
+	width: 82%;
+	background-color: #edece4;
+	margin: 20px 6% 20px 6%;
+	padding: 3%;
+}
+
+#intro {
+	width: 96%;
+	border-style: dashed;
+	border-width: 1px;
+	border-color: #6d9bc9;
+	padding: 2%;
+	text-align: center;
+}
+
+#intro p{
+	margin-bottom: 15px;
+}
+
+svg {
+	width: 96%;
+	border-style: dashed;
+	border-width: 1px;
+	border-color: #6d9bc9;
+	padding: 2%;
+}
+
+svg text  .ingredient{
+	font-size: 16px;
+	fill: #333333;
+}
+
+svg .cocktailName {
+	font-size: 24px;
+}
+
+svg .season{
+	font-size: 14px;
+	font-family: 'Playfair Display', 
+	serif;	fill: #808080;
+}
+
+svg .node--internal text-xxx {
+  text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+}
+
+svg .link {
+  fill: none;
+  stroke-opacity: 0.4;
+  stroke-width: 1.0px;
+}
+
+svg .noLink{
+	fill: none;
+  stroke-opacity: 0;
+  stroke-width: 0;
+}
+
+@media screen and (min-width: 600px){	
+	.cocktail{
+		margin-bottom: 40px;
+	}
+	svg text  .ingredient{
+		font-size: 16px;
+	}
+
+	#header{
+		margin-top: 40px;
+		margin-bottom: 40px;
+	}
+
+	h1 {
+		font-size: 30px;
+	}
+
+
+}	
+
+@media screen and (min-width: 800px){	
+	.cocktail{
+		width: 42.5%;
+		margin: 0 0 20px 3%;
+		padding: 1.5%;
+	}
+
+	svg text .ingredient{
+		font-size: 18px; 
+	}
+
+	#header{
+		width: 91%;
+		margin: 20px 0 20px 3%;
+		padding: 1.5%;
+	}
+
+	#intro p{
+		width: 675px;
+		margin: auto;
+	}
+
+}	
+
+@media screen and (min-width: 1000px){	
+	.cocktail{
+		margin-bottom: 40px;
+	}
+	svg text .ingredient{
+		font-size: 16px;
+	}
+	#header{
+		margin-top: 40px;
+		margin-bottom: 40px;
+	}
+}
+
+@media screen and (min-width: 1200px){	
+	.cocktail{
+		width: 28.666666666666%;
+		margin: 0 0 20px 2%;
+		padding: 1%;
+	}
+
+	svg text .ingredient{
+		font-size: 18px; */
+	}
+	#header{
+		width: 94%;
+		margin: 20px 0 20px 2%;
+		padding: 1%;
+	}
+
+}	
+
+@media screen and (min-width: 1400px){	
+	.cocktail{
+		margin-bottom: 40px;
+	}
+	svg text .ingredient{
+		font-size: 16px;
+	}
+	#header{
+		margin-top: 40px;
+		margin-bottom: 40px;
+	}
+}
+
+@media screen and (min-width: 1800px){	
+	.cocktail{
+		width: 21.625%;
+		margin: 0 0 20px 1.5%;
+		padding: 0.75%;
+	}
+	#header{
+		width: 95.5%;
+		margin: 20px 0 20px 1.5%;
+		padding: 0.75%;
+	}
+}
+
+
+

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+		<title>Cocktails</title>
+
+		<meta charset="utf-8">
+		<meta property="og:url"	content="http://www.andybarefoot.com/cocktails/" />
+		<meta property="og:title" content="Cocktails" />
+		<meta property="og:description" content="Cocktails: A data visualisation of cocktail recipes" />
+		<meta property="og:image" content="http://www.andybarefoot.com/cocktails/fb-cocktails.png" />
+
+		<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400i" rel="stylesheet">
+		<script src="/jscript/d3.v4.min.js"></script>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<link rel="stylesheet" href="../css/reset.css">
+		<link rel="stylesheet" href="cocktails.css">
+	   <script>
+			// VARIABLES
+	   		// COCKTAIL "CARD"
+			var w = 550; // width of cocktail "card"
+			var h = 550; // height of cocktail "card"
+			// GLASSES
+			// Glass IDs:
+			//	1 = curved cocktail, 2 = tumbler, 3 = shot, 4 = wine, 5 = long, 6 = tapered tumbler, 7 = champagne, 8 = straight cocktail
+			var glassHOff = [0,275,195,195,195,195,195,195,275]; // Horizontal position of centre of glass
+			var glassVOff = [0,270,440,430,350,440,440,350,270]; // Vertical position of base of liquid
+			var glassVols = [0,13,12,5,15,20,10,13,10]; // volume of glass in cl
+			var glassWidths = [0,175,130,80,15,110,130,13,175]; // radius of liquid in glass at top (of liquid, not glass)
+			var glassHeights = [0,190,260,180,250,350,260,271,190]; // height of liquid in glass at asthetic max (not necessarily very top of glass)
+			var glassTapers = [0,0,4,14,15,4,14,13,0]; // additional width of glass at top than bottom 
+			var glassShapes = [0,2,1,1,3,1,1,3,2]; // 1: straight-ish sides 2: triangular 3: bowl
+			var glasses = []; // array to hold glass shape definitions
+			// the coordinates for the shape of each type of glass are defined below 
+			glasses[1] = [[-184,-190],[-3,6],[-3,173],[-70,173],[-70,179],[70,179],[70,173],[3,173],[3,6],[184,-190]]; 
+			glasses[2] = [[-140,-300],[-136,6],[136,6],[140,-300]];
+			glasses[3] = [[-100,-200],[-86,6],[86,6],[100,-200]];
+			glasses[4] = [[-3,-10],[-3,93],[-70,93],[-70,99],[70,99],[70,93],[3,93],[3,-10]]; // only the stem is defined here. The bulb is defined later
+			glasses[5] = [[-120,-370],[-116,6],[116,6],[120,-370]];
+			glasses[6] = [[-150,-300],[-136,6],[136,6],[150,-300]];
+			glasses[7] = [[-3,-10],[-3,93],[-50,93],[-50,99],[50,99],[50,93],[3,93],[3,-10]]; // only the stem is defined here. The bulb is defined later
+			glasses[8] = [[-184,-190],[-3,6],[-3,173],[-70,173],[-70,179],[70,179],[70,173],[3,173],[3,6],[184,-190]];
+			// TEXT
+			var titleHOff = 30; // Horizontal position for cocktail title and type 
+			var titleVOff = 50; // Vertical position for cocktail title and type
+			var textHOff = [0,340,380,350,350,340,360,300,340]; // Horizontal position for start of text (ingredients, etc) for each glass type
+			var textVOff = [0,270,250,250,170,150,200,170,270]; // Wertical position for start of text (ingredients, etc) for each glass type
+			// MISC
+			var tempVol = 0; // A variable to hold the cumulative volume of the ingredients as we loop through each in turn
+
+	   		// FUNCTIONS
+	   		// return coordinates for plotting layers of ingredients
+			function getCoords(thisGlass, thisVol, tempVol){
+				glassVol = glassVols[thisGlass];
+				glassShape = glassShapes[thisGlass];
+				glassWidth = glassWidths[thisGlass];
+				glassHeight = glassHeights[thisGlass];
+				glassTaper = glassTapers[thisGlass];
+				if(glassShape==1 || glassShape==3 ){
+					var endX = glassWidth+Math.round(glassTaper * (thisVol + tempVol)/glassVol);;
+					var endY = Math.round(glassHeight * (thisVol + tempVol)/glassVol);
+					var startX = glassWidth+Math.round(glassTaper * tempVol/glassVol);
+					var startY = Math.round(glassHeight * tempVol/glassVol);
+				}else if(glassShape==2){
+					var endX = Math.round(glassWidth * Math.sqrt(thisVol + tempVol)/Math.sqrt(glassVol));
+					var endY = Math.round(glassHeight * Math.sqrt(thisVol + tempVol)/Math.sqrt(glassVol));
+					var startX = Math.round(glassWidth * Math.sqrt(tempVol)/Math.sqrt(glassVol));
+					var startY = Math.round(glassHeight * Math.sqrt(tempVol)/Math.sqrt(glassVol));
+				}
+				thisCoords = [startX,endX,startY,endY];
+				return thisCoords;
+			}
+
+
+			function wrap(text, width) {
+				text.each(function() {
+					var text = d3.select(this),
+					words = text.text().split(/\s+/).reverse(),
+					word,
+					line = [],
+					lineNumber = 0,
+					lineHeight = 1.1, // ems
+					x = text.attr("x"),
+					dx = parseFloat(text.attr("dx")),
+					y = text.attr("y"),
+					dy = parseFloat(text.attr("dy")),
+					tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
+					while (word = words.pop()) {
+						line.push(word);
+						tspan.text(line.join(" "));
+						if (tspan.node().getComputedTextLength() > width) {
+							line.pop();
+							tspan.text(line.join(" "));
+							line = [word];
+							tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+						}
+					}
+				});
+			}
+
+
+	   		// Draw each card
+	   		function draw(data) {
+				console.log(data);
+				// For each cocktail create a new div containing a SVG
+				var node = d3.select("body")
+					.selectAll(".node")
+					.data(data)
+					.enter()
+		            .append("div")
+		            .attr("class", "cocktail")
+		            .append("svg")
+		            .attr("viewBox", "0 0 " + w + " " + h)
+		            .attr("class", "node")
+				;
+				// add a background to the SVG
+				node.append("rect")
+					.attr("x", 0)
+					.attr("y", 0)
+					.attr("width", w)
+					.attr("height", h)
+					.attr("fill", "#6d9bc9")
+				;
+				// draw the glass
+				node.append("polygon")
+					.attr("fill","#878787")
+					.attr("points",function(d){
+						var pointStr = "";
+						// loop through the array defining the glass to define all points in the polygon
+						for(var i =0; i<glasses[d.glassID].length; i++){
+							pointStr += (glasses[d.glassID][i][0] + glassHOff[d.glassID]) + "," + (glasses[d.glassID][i][1] + glassVOff[d.glassID]) + " ";
+						}
+						return pointStr;
+					})
+				;
+				// if glass is type 4 (wine glass) draw a partial eclipse for the bowl of the glass
+				node.filter(function(d) {
+						if(d.glassID==4){
+							return true;
+						}else{
+							return false;
+						}
+					})
+					.append("path")
+					.attr("fill","#878787")
+					.attr("d",function(d){
+						var exr = 100; // eclipse X Radius
+						var eyr = 170; // eclipse Y Radius
+						var xh = 100; // height above centre of eclipse for glass cut-off
+						var startY = eyr+xh;
+						var startX = Math.round(Math.sqrt(exr*exr*(1-(((xh)*(xh))/(eyr*eyr)))));
+						hOff = glassHOff[d.glassID];
+						vOff = glassVOff[d.glassID];
+						return "M "+(hOff-startX)+" "+(vOff-startY)+"  A " + exr + " " + eyr + " 0 1 0 "+(hOff+startX)+" "+(vOff-startY)+" L"+(hOff-startX)+" "+(vOff-startY);
+					})
+				;
+				// if glass is type 7 (champagne glass) draw a partial eclipse with extended straight sides for the bowl of the glass
+				node.filter(function(d) {
+						if(d.glassID==7){
+							return true;
+						}else{
+							return false;
+						}
+					})
+					.append("path")
+					.attr("fill","#878787")
+					.attr("d",function(d){
+						var exr = 60; // eclipse X Radius
+						var eyr = 150; // eclipse Y Radius
+						var xh = 120; // extra height of glass above eclipse
+						var xt = 5; // taper of glass above eclipse
+						hOff = glassHOff[d.glassID];
+						vOff = glassVOff[d.glassID];
+						// arc A [x-rad] [y-rad] [x-rot] [large-arc] [sweep] [end-x] [end-y]
+						return "M "+(hOff-exr)+" "+(vOff-eyr)+"  A " + exr + " " + eyr + " 0 1 0 "+(hOff+exr)+" "+(vOff-eyr)+" L"+(hOff+(exr-xt))+" "+(vOff-(xh+eyr))+" L"+(hOff-(exr-xt))+" "+(vOff-(xh+eyr))+"";
+					})
+				;
+				// add title of cocktail inset from right edge
+				node.append("text")
+					.attr("x", w-titleHOff)
+					.attr("y", titleVOff)
+					.attr("class", "cocktailName")
+					.style("text-anchor", "end")
+					.text(function(d) { 
+						return d.recipeName; 
+					})
+				;
+/*				// add type of cocktail inset from right edge
+				node.append("text")
+					.attr("x", w-titleHOff)
+					.attr("y", titleVOff)
+					.attr("class", "cocktailName")
+					.style("text-anchor", "end")
+					.text(function(d) { 
+						return d.typeName; 
+					})
+				;
+*/
+				// LAYERS OF INGREDIENTS
+				// add nodes for all invidiual ingredients
+				var g  = node.selectAll("g")
+					.data(function(d) { 
+						return d.components; 
+					})
+					.enter()
+				;
+				// draw the ingredient layer for each ingredient
+				// check that we don't have a round bottom glass
+				// then check the ingredient actually has a volume (e.g. not salt)
+				g.filter(function(d,i,j) {
+						var thisGlass = j[0]._parent.__data__.glassID;
+						if((thisGlass==7)||(thisGlass==4)){
+							return false;
+						}else{
+							if(d.measureVolume==0){
+								return false;
+							}else{
+								return true;
+							}
+						}
+					})
+					// add a polygon for each ingredient
+					.append("polygon")
+					.attr("fill", function(d) {
+						return d.ingredientColour; 
+					})
+					// calculate the coordinates for the polygon based on glass type and volume before and after this layer
+					.attr("points",function(d,i){
+						if(i==0)tempVol=0;
+						var thisVol = parseFloat(d.compQuant)*parseFloat(d.measureVolume);
+						var thisGlass = d3.select(this.parentNode).datum().glassID;
+						coords = getCoords(thisGlass, thisVol, tempVol);
+						tempVol+=thisVol;
+						var startX = coords[0];
+						var endX = coords[1];
+						var startY = coords[2];
+						var endY = coords[3];
+						var glassH = glassHOff[thisGlass];
+						var glassV = glassVOff[thisGlass]; 
+						return (glassH - endX)+","+(glassV - endY)+" "+(glassH - startX)+","+(glassV - startY)+" "+(glassH + startX)+","+(glassV - startY)+" "+(glassH + endX)+","+(glassV - endY);
+					})
+				;
+				// check we have the wine glass
+				g.filter(function(d,i,j) {
+						var thisGlass = j[0]._parent.__data__.glassID;
+						if(thisGlass==4){
+							if(d.measureVolume==0){
+								return false;
+							}else{
+								return true;
+							}
+						}else{
+							return false;
+						}
+					})
+					// add a path for partial eclipse shaped fill
+					.append("path")
+					.attr("fill", function(d) {
+						return d.ingredientColour; 
+					})
+					.attr("d",function(d,i){
+						if(i==0)tempVol=0;
+						var thisVol = parseFloat(d.compQuant)*parseFloat(d.measureVolume);
+						var thisGlass = d3.select(this.parentNode).datum().glassID;
+						var glassVol = glassVols[thisGlass];
+						var exr = 94; // eclipse X Radius
+						var eyr = 164; // eclipse Y Radius
+						var xh = 80; // height above centre of eclipse for glass cut-off
+						hOff = glassHOff[thisGlass];
+						vOff = glassVOff[thisGlass]-5;
+						var startY = Math.round((eyr + xh) * tempVol/glassVol);
+						var endY = Math.round((eyr + xh) * (thisVol + tempVol)/glassVol);
+						tempVol+=thisVol;
+						var startX = Math.round(Math.sqrt(exr*exr*(1-(((startY-eyr)*(startY-eyr))/(eyr*eyr)))));
+						var endX = Math.round(Math.sqrt(exr*exr*(1-(((endY-eyr)*(endY-eyr))/(eyr*eyr)))));
+						// arc A [x-rad] [y-rad] [x-rot] [large-arc] [sweep] [end-x] [end-y]
+						return "M "+(hOff-startX)+" "+(vOff-startY)+"  A " + exr + " " + eyr + " 0 0 1 "+(hOff-endX)+" "+(vOff-endY)+" L"+(hOff+endX)+" "+(vOff-endY)+"  A " + exr + " " + eyr + " 0 0 1 "+(hOff+startX)+" "+(vOff-startY)+" L"+(hOff-startX)+" "+(vOff-startY)+"";
+					})
+				;
+				// check we have the champagne glass
+				g.filter(function(d,i,j) {
+						if(j[0]._parent.__data__.glassID==7){
+							if(d.measureVolume==0){
+								return false;
+							}else{
+								return true;
+							}
+						}else{
+							return false;
+						}
+					})
+					// add a path for partial eclipse shaped fill
+					.append("path")
+					.attr("fill", function(d) {
+						return d.ingredientColour; 
+					})
+					.attr("d",function(d,i){
+						if(i==0)tempVol=0;
+						var thisVol = parseFloat(d.compQuant)*parseFloat(d.measureVolume);
+						var thisGlass = d3.select(this.parentNode).datum().glassID;
+						var glassVol = glassVols[thisGlass];
+						var exr = 55; // eclipse X Radius
+						var eyr = 145; // eclipse Y Radius
+						var xh = 120; // extra height of glass above eclipse
+						var xt = 5; // taper of glass above eclipse
+						hOff = glassHOff[thisGlass];
+						vOff = glassVOff[thisGlass]-5;
+						var startY = Math.round((eyr + xh) * tempVol/glassVol);
+						var endY = Math.round((eyr + xh) * (thisVol + tempVol)/glassVol);
+						tempVol+=thisVol;
+						if((startY<eyr)&&(endY<eyr)){
+							maxY=endY;
+							var startX = Math.round(Math.sqrt(exr*exr*(1-(((startY-eyr)*(startY-eyr))/(eyr*eyr)))));
+							var endX = Math.round(Math.sqrt(exr*exr*(1-(((maxY-eyr)*(maxY-eyr))/(eyr*eyr)))));
+							// arc A [x-rad] [y-rad] [x-rot] [large-arc] [sweep] [end-x] [end-y]
+							return "M "+(hOff-startX)+" "+(vOff-startY)+"  A " + exr + " " + eyr + " 0 0 1 "+(hOff-endX)+" "+(vOff-maxY)+" L"+(hOff+endX)+" "+(vOff-maxY)+"  A " + exr + " " + eyr + " 0 0 1 "+(hOff+startX)+" "+(vOff-startY)+" L"+(hOff-startX)+" "+(vOff-startY)+"";
+						}
+						if((startY<eyr)&&(endY>eyr)){
+							var startX = Math.round(Math.sqrt(exr*exr*(1-(((startY-eyr)*(startY-eyr))/(eyr*eyr)))));
+							var endX = exr-(xt*(endY-eyr)/xh);
+							// arc A [x-rad] [y-rad] [x-rot] [large-arc] [sweep] [end-x] [end-y]
+							return "M "+(hOff-startX)+" "+(vOff-startY)+"  A " + exr + " " + eyr + " 0 0 1 "+(hOff-exr)+" "+(vOff-eyr)+ " L"+(hOff-endX)+" "+(vOff-endY)+ " L"+(hOff+endX)+" "+(vOff-endY)+ " L"+(hOff+exr)+" "+(vOff-eyr)+ "  A " + exr + " " + eyr + " 0 0 1 "+(hOff+startX)+" "+(vOff-startY)+ " L"+(hOff-startX)+" "+(vOff-startY)+"";
+						}
+						if((startY>eyr)&&(endY>eyr)){
+							var endX = exr-(xt*(endY-eyr)/xh);
+							var startX = exr-(xt*(startY-eyr)/xh);
+							return "M"+(hOff-startX)+" "+(vOff-startY)+" L"+(hOff+startX)+" "+(vOff-startY)+" L"+(hOff+endX)+" "+(vOff-endY)+" L"+(hOff-endX)+" "+(vOff-endY)+"";
+						}
+					})
+				;
+				// add names of each ingredient
+				g.append("text")
+					.attr("x",function(d,i,j) { 
+						var glassID = d3.select(this.parentNode).datum().glassID;
+						return textHOff[glassID]; 
+					})
+					.attr("y", function(d,i,j) { 
+						var glassID = d3.select(this.parentNode).datum().glassID;
+						return textVOff[glassID] + 30*(j.length-i); 
+					})
+					.style("text-anchor", "start")
+		            .attr("class", "ingredient")
+					.text(function(d) {
+						return d.compQuant + d.measureName + " " + d.ingredientName; 
+					})
+			      ;
+
+				;
+				// add path from name to centre of each ingredient
+				g.append("path")
+					.attr("d", function(d,i,j) {
+						var thisGlass = d3.select(this.parentNode).datum().glassID;
+						if(i==0)tempVol=0;
+						var thisVol = parseFloat(d.compQuant)*parseFloat(d.measureVolume);
+						coords = getCoords(thisGlass, thisVol, tempVol);
+						var startY = coords[2];
+						var endY = coords[3];
+						if(d.measureVolume!=0)tempVol+=thisVol;
+
+						endX = glassHOff[thisGlass];
+						endY = glassVOff[thisGlass] - ((startY + endY)/2);
+
+						startX = textHOff[thisGlass] - 10;
+						startY = textVOff[thisGlass] + 30*(j.length-i) -5;
+
+						str = "M " + startX + "," + startY
+					+ " C " + (startX + endX) / 2 + " " + startY
+					+ "," + (startX + endX) / 2 + " " + endY
+					+ "," + endX + " " + endY;
+					return str;
+					})
+					.attr("class", function(d,i,j) {
+						if(d.measureVolume==0){
+							return "noLink";
+						}else{
+							return "link";
+						}
+					})
+					.attr("stroke", function(d) { return "#000"; })
+				;
+				// add method text
+				node.filter(function(d) {
+						if(d.recipeMethod==""){
+							return false;
+						}else{
+							return true;
+						}
+					})
+					.append("text")
+					.attr("x", titleHOff)
+					.attr("y", h-60)
+					.attr("dx", 0)
+					.attr("dy", 0)
+					.style("font-size","18px")
+					.style("text-anchor", "start")
+					.text(function(d) {
+						return "Method: " + d.recipeMethod; 
+					})
+					.call(wrap, w-80); // wrap the text in <= 30 pixels
+				;
+				// add garnish text
+/*
+				node.filter(function(d) {
+						if(d.recipeGarnish==""){
+							return false;
+						}else{
+							return true;
+						}
+					})
+					.append("text")
+					.attr("x", titleHOff)
+					.attr("y", h-30)
+					.style("text-anchor", "start")
+					.text(function(d) {
+						return "Garnish: " + d.recipeGarnish; 
+					})
+				;
+*/
+			}
+	    </script>
+	</head>
+	<body>
+		<div id="header">
+			<div id="intro">
+				<h1>The Cocktail Menu</h1>
+				<p>An exercise in using D3.js and SVG to create data visualisations of cocktails and their ingredients by <a href="http://www.andybarefoot.com" target="_blank">Andy Barefoot</a>. Based on this <a href="http://www.informationisbeautiful.net/visualizations/cocktails/" target="_blank">original visualisation</a> by Tatjana Dubovina & David McCandless.</p>
+			</div>
+		</div>
+		<script>
+			d3.json("cocktails.json", draw); 
+//			$(window).resize(drawChart);
+//			$( document ).ready(drawChart);
+		</script>
+	</body>
+</html>
+
+
+
