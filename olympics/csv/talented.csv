@@ -1,0 +1,207 @@
+name,value,continent
+Grenada,9.62,North America
+New Zealand,1.79,Oceania
+Slovenia,1.46,Europe
+Denmark,1.26,Europe
+Hungary,1.19,Europe
+Fiji,1.17,Oceania
+Jamaica,1.10,North America
+Lithuania,1.00,Europe
+Australia,0.96,Oceania
+Bahrain,0.80,Asia
+Estonia,0.75,Europe
+Croatia,0.68,Europe
+Switzerland,0.67,Europe
+Sweden,0.66,Europe
+Mongolia,0.63,Asia
+Norway,0.60,Europe
+Czech Republic,0.58,Europe
+Great Britain & N. Ireland,0.58,Europe
+Kosovo,0.54,Europe
+Netherlands,0.53,Europe
+Kazakhstan,0.46,Asia
+Cuba,0.45,North America
+Georgia,0.43,Europe
+Belarus,0.42,Europe
+Canada,0.39,North America
+Slovakia,0.37,Europe
+Belgium,0.36,Europe
+Italy,0.35,Europe
+France,0.33,Europe
+South Korea,0.28,Asia
+Puerto Rico,0.25,North America
+Ireland,0.24,Europe
+Israel,0.24,Asia
+North Korea,0.24,Asia
+United States,0.22,North America
+Azerbaijan,0.21,Asia
+Germany,0.21,Europe
+Russia,0.21,Europe
+Japan,0.20,Asia
+United Arab Emirates,0.19,Asia
+Greece,0.18,Europe
+Kyrgyzstan,0.18,Asia
+Romania,0.18,Europe
+Singapore,0.18,Asia
+Uzbekistan,0.18,Asia
+South Africa,0.14,Africa
+Chinese Taipei,0.13,Asia
+Spain,0.11,Europe
+Poland,0.10,Europe
+Portugal,0.10,Europe
+Tunisia,0.10,Africa
+Colombia,0.09,South America
+Ukraine,0.09,Europe
+Kenya,0.08,Africa
+Thailand,0.06,Asia
+Argentina,0.05,South America
+Ethiopia,0.05,Africa
+Iran,0.04,Asia
+Brazil,0.03,South America
+China,0.03,Asia
+Malaysia,0.03,Asia
+Venezuela,0.03,South America
+Egypt,0.02,Africa
+Vietnam,0.02,Asia
+Indonesia,0.01,Asia
+Philippines,0.01,Asia
+Turkey,0.01,Asia
+Afghanistan,0.00,Asia
+Albania,0.00,Europe
+Algeria,0.00,Africa
+American Samoa,0.00,Oceania
+Andorra,0.00,Europe
+Angola,0.00,Africa
+Antigua & Barbuda,0.00,North America
+Armenia,0.00,Asia
+Aruba,0.00,North America
+Austria,0.00,Europe
+Bahamas,0.00,North America
+Bangladesh,0.00,Asia
+Barbados,0.00,North America
+Belize,0.00,North America
+Benin,0.00,Africa
+Bermuda,0.00,North America
+Bhutan,0.00,Asia
+Bolivia,0.00,South America
+Bosnia & Herzegovina,0.00,Europe
+Botswana,0.00,Africa
+British Virgin Islands,0.00,North America
+Brunei,0.00,Asia
+Bulgaria,0.00,Europe
+Burkina Faso,0.00,Africa
+Burundi,0.00,Africa
+Cambodia,0.00,Asia
+Cameroon,0.00,Africa
+Cape Verde,0.00,Africa
+Cayman Islands,0.00,North America
+Central African Republic,0.00,Africa
+Chad,0.00,Africa
+Chile,0.00,South America
+Comoros,0.00,Africa
+Congo,0.00,Africa
+Cook Islands,0.00,Oceania
+Costa Rica,0.00,North America
+Cyprus,0.00,Europe
+Cote d'Ivoire,0.00,Africa
+DR Congo,0.00,Africa
+Djibouti,0.00,Africa
+Dominica,0.00,North America
+Dominican Republic,0.00,North America
+Ecuador,0.00,South America
+El Salvador,0.00,North America
+Equatorial Guinea,0.00,Africa
+Eritrea,0.00,Africa
+FYR Macedonia,0.00,Europe
+Federated States of Micronesia,0.00,Oceania
+Finland,0.00,Europe
+Gabon,0.00,Africa
+Gambia,0.00,Africa
+Ghana,0.00,Africa
+Guam,0.00,Oceania
+Guatemala,0.00,North America
+Guinea,0.00,Africa
+Guinea-Bissau,0.00,Africa
+Guyana,0.00,South America
+Haiti,0.00,North America
+Honduras,0.00,North America
+Hong Kong,0.00,Asia
+Iceland,0.00,Europe
+India,0.00,Asia
+Iraq,0.00,Asia
+Jordan,0.00,Asia
+Kiribati,0.00,Oceania
+Laos,0.00,Asia
+Latvia,0.00,Europe
+Lebanon,0.00,Asia
+Lesotho,0.00,Africa
+Liberia,0.00,Africa
+Libya,0.00,Africa
+Liechtenstein,0.00,Europe
+Luxembourg,0.00,Europe
+Madagascar,0.00,Africa
+Malawi,0.00,Africa
+Maldives,0.00,Asia
+Mali,0.00,Africa
+Malta,0.00,Europe
+Marshall Islands,0.00,Oceania
+Mauritania,0.00,Africa
+Mauritius,0.00,Africa
+Mexico,0.00,North America
+Moldova,0.00,Europe
+Monaco,0.00,Europe
+Montenegro,0.00,Europe
+Morocco,0.00,Africa
+Mozambique,0.00,Africa
+Myanmar,0.00,Asia
+Namibia,0.00,Africa
+Nauru,0.00,Oceania
+Nepal,0.00,Asia
+Nicaragua,0.00,North America
+Niger,0.00,Africa
+Nigeria,0.00,Africa
+Oman,0.00,Asia
+Pakistan,0.00,Asia
+Palau,0.00,Oceania
+Palestine,0.00,Asia
+Panama,0.00,North America
+Papua New Guinea,0.00,Oceania
+Paraguay,0.00,South America
+Peru,0.00,South America
+Qatar,0.00,Asia
+Rwanda,0.00,Africa
+Saint Kitts & Nevis,0.00,North America
+Saint Lucia,0.00,North America
+Samoa,0.00,Oceania
+San Marino,0.00,Europe
+Sao Tome & Principe,0.00,Africa
+Saudi Arabia,0.00,Asia
+Senegal,0.00,Africa
+Serbia,0.00,Europe
+Seychelles,0.00,Africa
+Sierra Leone,0.00,Africa
+Solomon Islands,0.00,Oceania
+Somalia,0.00,Africa
+South Sudan,0.00,Africa
+Sri Lanka,0.00,Asia
+St Vincent & the Grenadines,0.00,North America
+Sudan,0.00,Africa
+Suriname,0.00,South America
+Swaziland,0.00,Africa
+Syria,0.00,Asia
+Tajikistan,0.00,Asia
+Tanzania,0.00,Africa
+Timor-Leste,0.00,Asia
+Togo,0.00,Africa
+Tonga,0.00,Oceania
+Trinidad & Tobago,0.00,North America
+Turkmenistan,0.00,Asia
+Tuvalu,0.00,Oceania
+US Virgin Islands,0.00,North America
+Uganda,0.00,Africa
+Uruguay,0.00,South America
+Vanuatu,0.00,Oceania
+Yemen,0.00,Asia
+Zambia,0.00,Africa
+Zimbabwe,0.00,Africa
+Independent Olympic Athletes,,

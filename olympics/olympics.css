@@ -1,0 +1,64 @@
+body {
+  padding: 15px;
+  color: #37474F;
+  background: #CFD8DC;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+svg {
+  max-width: 1400px;
+}
+h1 {
+  font-size: 60px;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-style: italic;
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 30px;
+}
+
+text {
+  font-size: 14px;
+  fill: #37474F;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.axis path {
+  fill: none;
+}
+
+.x.axis line {
+  stroke: #ECEFF1;
+  stroke-opacity: .8;
+}
+
+.y.axis path {
+  stroke: #37474F;
+}
+
+.button {
+    background-color: #37474F;
+    border: none;
+    color: #CFD8DC;
+    padding: 8px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    margin: 0 10px 10px 0;
+}

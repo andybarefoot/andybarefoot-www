@@ -1,0 +1,207 @@
+name,value,continent
+Cook Islands,432.46,Oceania
+Palau,257.61,Oceania
+San Marino,180.31,Europe
+British Virgin Islands,173.91,North America
+Nauru,162.22,Oceania
+Saint Kitts & Nevis,134.62,North America
+Seychelles,114.32,Africa
+Bermuda,107.69,North America
+Antigua & Barbuda,102.27,North America
+Monaco,93.79,Europe
+Bahamas,93.57,North America
+Liechtenstein,91.35,Europe
+Tuvalu,89.72,Oceania
+Andorra,73.10,Europe
+Cayman Islands,71.43,North America
+Marshall Islands,67.91,Oceania
+Tonga,65.95,Oceania
+Aruba,65.42,North America
+US Virgin Islands,63.64,North America
+Fiji,59.56,Oceania
+American Samoa,58.23,Oceania
+Grenada,57.69,North America
+Montenegro,56.79,Europe
+Federated States of Micronesia,47.12,Oceania
+Samoa,44.69,Oceania
+New Zealand,44.56,Oceania
+Barbados,42.97,North America
+St Vincent & the Grenadines,36.70,North America
+Estonia,31.34,Europe
+Kiribati,31.14,Oceania
+Guam,31.10,Oceania
+Slovenia,30.24,Europe
+Dominica,29.85,North America
+Saint Lucia,29.07,North America
+Bahrain,28.04,Asia
+Iceland,26.04,Europe
+Trinidad & Tobago,23.90,North America
+Denmark,22.29,Europe
+Luxembourg,22.29,Europe
+Lithuania,22.09,Europe
+Jamaica,21.70,North America
+Croatia,19.83,Europe
+Qatar,18.96,Asia
+Australia,18.19,Oceania
+Ireland,18.18,Europe
+Malta,17.61,Europe
+Sweden,16.94,Europe
+Vanuatu,16.67,Oceania
+Hungary,15.48,Europe
+Latvia,14.99,Europe
+Serbia,14.61,Europe
+Netherlands,14.14,Europe
+Sao Tome & Principe,14.11,Africa
+Cyprus,13.64,Europe
+Mongolia,13.52,Asia
+Switzerland,13.32,Europe
+Belarus,12.69,Europe
+Norway,11.76,Europe
+Cape Verde,11.64,Africa
+Djibouti,11.22,Africa
+Armenia,10.77,Asia
+Finland,10.66,Europe
+Puerto Rico,10.55,North America
+Cuba,10.26,North America
+Maldives,10.14,Asia
+Czech Republic,9.85,Europe
+Belize,9.77,North America
+Belgium,9.63,Europe
+Mauritius,9.34,Africa
+Canada,9.20,North America
+Slovakia,9.04,Europe
+Portugal,8.93,Europe
+Suriname,8.72,South America
+Georgia,8.58,Europe
+Greece,8.45,Europe
+Austria,8.08,Europe
+Guyana,7.77,South America
+Brunei,7.34,Asia
+Bulgaria,6.69,Europe
+Spain,6.44,Europe
+Poland,6.29,Europe
+Solomon Islands,6.06,Oceania
+France,5.99,Europe
+Kazakhstan,5.99,Asia
+Azerbaijan,5.79,Asia
+Tunisia,5.72,Africa
+Israel,5.65,Asia
+Great Britain & N. Ireland,5.62,Europe
+Comoros,5.32,Africa
+Argentina,5.31,South America
+Hong Kong,5.25,Asia
+Germany,5.22,Europe
+Botswana,5.02,Africa
+Italy,5.00,Europe
+Moldova,4.96,Europe
+Uruguay,4.89,South America
+Namibia,4.74,Africa
+Romania,4.52,Europe
+Singapore,4.52,Asia
+Ukraine,4.39,Europe
+Kosovo,4.30,Europe
+South Korea,4.10,Asia
+Gabon,3.96,Africa
+Lesotho,3.75,Africa
+Honduras,3.62,North America
+Kyrgyzstan,3.27,Asia
+Guinea-Bissau,3.26,Africa
+Equatorial Guinea,3.16,Africa
+Colombia,3.13,South America
+FYR Macedonia,2.92,Europe
+Panama,2.90,North America
+Bhutan,2.79,Asia
+Congo,2.74,Africa
+Venezuela,2.72,South America
+Zimbabwe,2.72,Africa
+Dominican Republic,2.68,North America
+Japan,2.65,Asia
+South Africa,2.63,Africa
+Bosnia & Herzegovina,2.60,Europe
+Timor-Leste,2.57,Asia
+Ecuador,2.54,South America
+Chinese Taipei,2.51,Asia
+Uzbekistan,2.43,Asia
+Chile,2.42,South America
+Brazil,2.31,South America
+United Arab Emirates,2.26,Asia
+Gambia,2.24,Africa
+Costa Rica,2.18,North America
+Albania,2.12,Europe
+Eritrea,2.12,Africa
+Kenya,2.05,Africa
+Angola,2.03,Africa
+Lebanon,1.93,Asia
+Russia,1.91,Europe
+Algeria,1.87,Africa
+Swaziland,1.78,Africa
+United States,1.76,North America
+Paraguay,1.61,South America
+Turkmenistan,1.58,Asia
+Papua New Guinea,1.55,Oceania
+Senegal,1.53,Africa
+Guatemala,1.50,North America
+Morocco,1.41,Africa
+Central African Republic,1.33,Africa
+Egypt,1.32,Africa
+Palestine,1.32,Asia
+El Salvador,1.30,North America
+Oman,1.29,Asia
+Turkey,1.28,Asia
+North Korea,1.26,Asia
+Jordan,1.23,Asia
+Bolivia,1.22,South America
+Cameroon,1.22,Africa
+Mexico,1.12,North America
+Libya,1.11,Africa
+Malaysia,1.10,Asia
+Haiti,1.00,North America
+Peru,1.00,South America
+Laos,0.91,Asia
+Tajikistan,0.90,Asia
+Nicaragua,0.87,North America
+Togo,0.83,Africa
+Burundi,0.81,Africa
+Iran,0.79,Asia
+Thailand,0.79,Asia
+Rwanda,0.76,Africa
+Iraq,0.71,Asia
+Benin,0.68,Africa
+Uganda,0.65,Africa
+Mauritania,0.64,Africa
+Sierra Leone,0.62,Africa
+Ghana,0.59,Africa
+Zambia,0.59,Africa
+Cote d'Ivoire,0.58,Africa
+Liberia,0.58,Africa
+Guinea,0.50,Africa
+Mali,0.47,Africa
+Ethiopia,0.45,Africa
+Nigeria,0.45,Africa
+Sri Lanka,0.42,Asia
+Cambodia,0.40,Asia
+South Sudan,0.36,Africa
+Malawi,0.35,Africa
+Saudi Arabia,0.34,Asia
+Niger,0.33,Africa
+Burkina Faso,0.32,Africa
+Syria,0.31,Asia
+China,0.30,Asia
+Madagascar,0.29,Africa
+Mozambique,0.28,Africa
+Vietnam,0.25,Asia
+Nepal,0.23,Asia
+Somalia,0.20,Africa
+Chad,0.19,Africa
+Sudan,0.19,Africa
+Tanzania,0.16,Africa
+Yemen,0.16,Asia
+Philippines,0.14,Asia
+Myanmar,0.13,Asia
+Indonesia,0.11,Asia
+Afghanistan,0.10,Asia
+India,0.10,Asia
+DR Congo,0.06,Africa
+Bangladesh,0.05,Asia
+Pakistan,0.04,Asia
+Independent Olympic Athletes,,
