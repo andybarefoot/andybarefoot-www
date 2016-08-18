@@ -10,24 +10,48 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="medals.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="//d3js.org/d3.v3.min.js"></script>
   </head>
   <body>
-    <h1>Olympics 2016</h1>
-    <h2>Gold Medals Awarded</h2>
-    <p id="intro">Total number of golds awarded in each sport. This number includes the gold medals given to each member of the winning country in a team sport.</p>
-
-    <div id="key">
-      <div id="list">
+    <div id="main-content">
+      <h1>Olympics 2016</h1>
+      <div id="buttons">
       </div>
-    <p>Interesting facts:</p>
-    <p>1) Triathlon, Golf and Modern Pentathlon are the scarcest Golds with only 1 gold medal given out per gender.</p>
-    <p>2) Overall men receive 22 more gold medals than women.</p>
-    <p>3) Women receive all 10 gold medals for synchronised swimming.</p>
-    <p>4) Swimming throws around medals like confetti. If it wasn't for Michael Phelps we could all have won one by now.</p>
+      <h2>Gold Medals Awarded</h2>
+      <p id="intro">Total number of golds awarded in each sport. This number includes the gold medals given to each member of the winning country in a team sport.</p>
+
+      <div id="key">
+        <div id="list">
+        </div>
+      <p>Interesting facts:</p>
+      <p>1) Triathlon, Golf and Modern Pentathlon are the scarcest Golds with only 1 gold medal given out per gender.</p>
+      <p>2) Overall men receive 22 more gold medals than women.</p>
+      <p>3) Women receive all 10 gold medals for synchronised swimming.</p>
+      <p>4) Swimming throws medals around like confetti. If it wasn't for Michael Phelps we could all have won one by now.</p>
+      </div>
     </div>
     <script>
+
+
+var dataFiles = [
+    ['csv/compsTotal.csv','Competitors','The number of athletes each nation has sent to the Olympic Games.','competitors'],
+    ['csv/medalsTotal.csv','Medals','The total number of medals each nation has won so far.','medals'],
+    ['csv/golds.csv','Gold Medals','The total number of gold medals each nation has won so far.','gold-medals'],
+    ['csv/sporty.csv','Participation','The number of competitors each nation sent to the Olympics per million of population.','participation'],
+    ['csv/efficiency.csv','Medal Efficiency','The number of medals each nation has won per 100 competitors they sent.','medal-efficiency'],
+    ['csv/goldEfficiency.csv','Gold Efficiency','The number of gold medals each nation has won per 100 competitors they sent.','gold-efficiency'],
+    ['csv/talented.csv','Population Talent','The number of medals each nation has won per million of population.','population-talent'],
+    ['csv/goldTalent.csv','Gold Talent','The number of gold medals each nation has won per million of population.','gold-talent']
+]
+
+for(i=0;i<dataFiles.length;i++){
+    var newButton = jQuery('<input/>').attr( { type:"button", class:"button", value:dataFiles[i][1], onclick:"document.location.href = 'index.html#"+dataFiles[i][3]+"'" } );
+    newButton.appendTo($("#buttons"));
+}
+    var newButton = jQuery('<input/>').attr( { type:"button", class:"button", value:"Golds Awarded", onclick:"document.location.href = 'golds.html'" } );
+    newButton.appendTo($("#buttons"));
 
       var files = [
         ['medalsSports.json']
@@ -374,7 +398,7 @@ function changeText(name,size,children){
           .append("ul")
         ;
         svg = d3
-          .select("body")
+          .select("#main-content")
           .append("svg")
           .attr("viewBox", "0 0 " + width + " " + height)
 //          .attr("width", width)
@@ -533,6 +557,20 @@ function changeText(name,size,children){
       $(document).ready(loadData(files[0]));
 
     </script>
+  <div id="barefoot-footer">
+    <div id="barefoot-home-links">
+      <a href="/">Andy Barefoot</a> > Olympics
+    </div>
+    <div id="barefoot-social-links">
+     <div id="barefoot-social-links">
+      <a href="https://www.linkedin.com/in/andybarefoot/" target="_blank"><img src="/images/icons/png32/linkedin.png"></a>
+      <a href="mailto:andy@andybarefoot.com"><img src="/images/icons/png32/email.png"></a>
+      <a href="http://instagram.com/andybarefoot" target="_blank"><img src="/images/icons/png32/instagram.png"></a>
+      <a href="http://twitter.com/andybarefoot" target="_blank"><img src="/images/icons/png32/twitter.png"></a>
+      <a href="http://www.facebook.com/profile.php?id=729980577" target="_blank"><img src="/images/icons/png32/facebook.png"></a>
+    </div>
+    </div>
+  </div>
   </body>
 </html>
 

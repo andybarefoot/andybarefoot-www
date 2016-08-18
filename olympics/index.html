@@ -11,15 +11,18 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="olympics.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="/jscript/d3.v3.min.js"></script>
     </head>
     <body>
+      <div id="main-content">
         <h1>Olympics 2016</h1>
         <div id="buttons">
         </div>
         <h2>Number of competitiors:</h2>
         <p>The number of athletes each nation has sent to the Olympic Games.</p>
+      </div>
 <script>
 
 function getColour(cont){
@@ -73,7 +76,7 @@ var x = d3.scale.linear().range([0, w]),
 var xAxis = d3.svg.axis().scale(x).orient("top").tickSize(-h),
     yAxis = d3.svg.axis().scale(y).orient("left").tickSize(0);
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#main-content").append("svg")
     .attr("viewBox", "0 0 1020 4000")
 //    .attr("width", w + m[1] + m[3])
 //    .attr("height", h + m[0] + m[2])
@@ -84,6 +87,8 @@ for(i=0;i<dataFiles.length;i++){
     var newButton = jQuery('<input/>').attr( { type:"button", class:"button", value:dataFiles[i][1], onclick:"updateData("+i+")" } );
     newButton.appendTo($("#buttons"));
 }
+   var newButton = jQuery('<input/>').attr( { type:"button", class:"button", value:"Golds Awarded", onclick:"document.location.href = 'golds.html'" } );
+    newButton.appendTo($("#buttons"));
 
 
 function drawChart(dataset){
@@ -232,5 +237,19 @@ if(window.location.hash) {
 
 
 </script>
+  <div id="barefoot-footer">
+    <div id="barefoot-home-links">
+      <a href="/">Andy Barefoot</a> > Olympics
+    </div>
+    <div id="barefoot-social-links">
+      <ul>
+        <li><a href="https://www.linkedin.com/in/andybarefoot/" target="_blank"><img src="/images/icons/png32/linkedin.png"></a></li>
+        <li><a href="mailto:andy@andybarefoot.com"><img src="/images/icons/png32/email.png"></a></li>
+        <li><a href="http://instagram.com/andybarefoot" target="_blank"><img src="/images/icons/png32/instagram.png"></a></li>
+        <li><a href="http://twitter.com/andybarefoot" target="_blank"><img src="/images/icons/png32/twitter.png"></a></li>
+        <li><a href="http://www.facebook.com/profile.php?id=729980577" target="_blank"><img src="/images/icons/png32/facebook.png"></a></li>
+      </ul>
+    </div>
+  </div>
 </body>
 </html>
