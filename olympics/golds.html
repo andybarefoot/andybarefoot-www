@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Olympics 2016: Some key numbers</title>
+    <meta charset="utf-8">
+    <meta property="og:url" content="http://www.andybarefoot.com/olympics/" />
+    <meta property="og:title" content="Olympics 2016: Gold Medals Awarded" />
+    <meta property="og:description" content="Data visualisation of all gold medals awarded during the Summer Olympics 2016." />
+    <meta property="og:image" content="http://www.andybarefoot.com/olympics/images/fb-golds.png" />
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="medals.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+  </head>
+  <body>
+    <h1>Olympics 2016</h1>
+    <h2>Gold Medals Awarded</h2>
+    <p id="intro">Total number of golds awarded in each sport. This number includes the gold medals given to each member of the winning country in a team sport.</p>
+
+    <div id="key">
+      <div id="list">
+      </div>
+    <p>Interesting facts:</p>
+    <p>1) Triathlon, Golf and Modern Pentathlon are the scarcest Golds with only 1 gold medal given out per gender.</p>
+    <p>2) Overall men receive 22 more gold medals than women.</p>
+    <p>3) Women receive all 10 gold medals for synchronised swimming.</p>
+    <p>4) Swimming throws around medals like confetti. If it wasn't for Michael Phelps we could all have won one by now.</p>
+    </div>
+    <script>
+
+      var files = [
+        ['medalsSports.json']
+      ];
+
+      var svg;
+      var ul;
+
+      var segmentColours = [];
+
+      var count=0;
+      var labelCount;
+      var currentDepth;
+      var maxDepth;
+      var spoke;
+
+      var width = 800;
+      var height = 800;
+      var radius = (Math.min(width, height) / 2);
+
+      var colours = [
+        "#546E7A",
+        [
+          ["#880E4F","#F06292"], // Pink
+          ["#880E4F","#F06292"], // Pink
+          ["#311B92","#B39DDB"], // Deep Purple
+          ["#33691E","#9CCC65"], // Light Green
+          ["#880E4F","#F06292"], // Pink
+          ["#004D40","#80CBC4"], // Teal
+          ["#880E4F","#F06292"], // Pink
+          ["#004D40","#80CBC4"], // Teal
+          ["#FF6F00","#FFCA28"], // Amber
+          ["#311B92","#B39DDB"], // Deep Purple
+          ["#004D40","#80CBC4"], // Teal
+          ["#FF6F00","#FFCA28"], // Amber
+          ["#FF6F00","#FFCA28"], // Amber
+          ["#311B92","#B39DDB"], // Deep Purple
+          ["#01579B","#81D4FA"], // Light Blue
+          ["#311B92","#B39DDB"], // Deep Purple
+          ["#33691E","#9CCC65"], // Light Green
+          ["#311B92","#B39DDB"], // Deep Purple
+          ["#FF6F00","#FFCA28"], // Amber
+          ["#33691E","#9CCC65"], // Light Green
+          ["#004D40","#80CBC4"], // Teal
+          ["#33691E","#9CCC65"], // Light Green
+          ["#01579B","#81D4FA"], // Light Blue
+          ["#004D40","#80CBC4"], // Teal
+          ["#33691E","#9CCC65"], // Light Green
+          ["#FF6F00","#FFE082"], // Amber
+          ["#01579B","#81D4FA"], // Light Blue
+          ["#33691E","#9CCC65"], // Light Green
+          ["#01579B","#81D4FA"], // Light Blue
+          ["#01579B","#81D4FA"], // Light Blue
+          ["#880E4F","#F06292"] // Pink
+        ]
+      ];
+
+      var formatNumber = d3.format(",d");
+
+      var x = d3
+        .scale
+        .linear()
+        .range([0, 2 * Math.PI])
+      ;
+      var y = d3
+        .scale
+        .sqrt()
+        .range([0, radius])
+      ;
+
+      var partition = d3
+        .layout
+        .partition()
+        .value(function(d) { 
+          return d.size;
+        })
+      ;
+
+      var arc = d3
+        .svg
+        .arc()
+        .startAngle(function(d) { 
+          return Math.max(0, Math.min(2 * Math.PI, x(d.x)));
+        })
+        .endAngle(function(d) { 
+          return Math.max(0, Math.min(2 * Math.PI, x(d.x + d.dx)));
+        })
+        .innerRadius(function(d) {
+          return Math.max(0, y(d.y)); 
+        })
+        .outerRadius(function(d) { 
+          return Math.max(0, y(d.y + d.dy)); 
+        })
+      ;
+      
+      function setColour(d,i){
+        thisArray = ["seg"+d.thisID];
+        thisArray[2] = spoke[d.depth];
+        spoke[d.depth]++;
+        if(d.depth>maxDepth)maxDepth=d.depth;
+        if(d.depth==0){
+          thisColour = colours[0];
+          thisArray[1] = thisColour;
+          segmentColours.push(thisArray);
+          return thisColour;
+        }else if(d.depth==1){
+          count++;
+          colours[1][count][2] = d.x;
+          colours[1][count][3] = d.dx;
+          thisColour = colourScale(colours[1][count][0],colours[1][count][1],0.5);
+          thisArray[1] = thisColour;
+          segmentColours.push(thisArray);
+          return thisColour;
+        }else if(d.depth>1){
+          mid=d.x+(d.dx/2);
+          pos=mid-d.parent.x;
+          scale = pos/d.parent.dx;
+          thisColour = colourScale(colours[1][count][0],colours[1][count][1],scale);
+          thisArray[1] = thisColour;
+          segmentColours.push(thisArray);
+          return thisColour;
+        }
+      }
+
+      function getClass(d,i){
+        var result = 0;
+        if(d.depth!=0){
+          for (var i = 0; i < segmentColours.length; i++ ) {
+            if( segmentColours[i][0] === d.parent.name ) {
+              result = segmentColours[i][2];
+              break;
+            }
+          }
+        }
+        return "id-"+d.depth+"-"+result;
+      }
+
+      function getColour(d,i){
+        var result;
+        for (var i = 0; i < segmentColours.length; i++ ) {
+          if( segmentColours[i][0] === "seg"+d.thisID ) {
+            result = segmentColours[i][1];
+            break;
+          }
+        }
+        return result;
+      }
+
+      function colourScale(maxColour, minColour, scale){
+        r1 = parseInt(maxColour.substring(1, 3), 16);
+        g1 = parseInt(maxColour.substring(3, 5), 16);
+        b1 = parseInt(maxColour.substring(5, 7), 16);
+        r2 = parseInt(minColour.substring(1, 3), 16);
+        g2 = parseInt(minColour.substring(3, 5), 16);
+        b2 = parseInt(minColour.substring(5, 7), 16);
+        r = Math.round(r1 + (scale*(r2-r1)));
+        g = Math.round(g1 + (scale*(g2-g1)));
+        b = Math.round(b1 + (scale*(b2-b1)));
+        r = r.toString(16);
+        g = g.toString(16);
+        b = b.toString(16);
+        if(r.length<2)r="0"+r;
+        if(g.length<2)g="0"+g;
+        if(b.length<2)b="0"+b;
+        col = "#"+r+g+b;
+        return col;
+      }
+
+function angleFromCoords(x,y){
+    var dy = y;
+    var dx = x;
+    var theta = Math.atan2(dy, dx); // range (-PI, PI]
+    theta *= 180 / Math.PI; // rads to degs, range (-180, 180]
+    //if (theta < 0) theta = 360 + theta; // range [0, 360)
+    return theta;
+}
+function changeText(name,size,children){
+  $( ".label" ).hide();
+  $('#centreText').hide();
+  setTimeout(function(){
+      if(currentDepth==0){
+        $('#centreText').attr("dy", 5);
+      }else{
+        $('#centreText').attr("dy", 55);
+      }
+      $('#centreText').text(name+": "+size);
+      $('#centreText').show();
+      $('.label').each( function(index){
+        str = $( this ).parents('g').children('path').attr("d");
+        str = str.substring(1);
+        arr1 = str.split('A');
+        if(arr1[1]){
+          arr2 = arr1[1].split('L');
+          strL = arr2[1];
+          strM = arr1[0];
+          strA1 = arr2[0];
+          strA2 = arr1[2];
+        }
+        if(strA1&&strA2){
+          arr3 = strA1.split(',');
+          arr4 = strA2.split(',');
+
+          rad = parseFloat(arr3[0]) - 10;
+          $( this ).attr("dx",rad);
+          
+          arr5 = arr3[2].split(' ');
+          arr6 = arr4[2].split(' ');
+          x1 = parseFloat(arr5[1]);
+          x2 = parseFloat(arr6[1]);
+          y1 = parseFloat(arr3[3]);
+          y2 = parseFloat(arr4[3]);
+          ang1 = angleFromCoords(x1,y1);
+          ang2 = angleFromCoords(x2,y2);
+        }
+        if((ang1>=0)&&(ang2>=0)){
+          ang=(ang1+ang2)/2;
+        }else if((ang1<=0)&&(ang2<=0)){
+          ang=(ang1+ang2)/2;
+          if(ang1<ang2){
+            ang+=180;
+          }
+        }else if((ang1>=0)&&(ang2<=0)){
+          ang=(ang1+ang2)/2;
+        }else{
+          ang=180+(ang1+ang2)/2;
+        }
+        ang+=0;
+        $( this ).attr("transform","rotate("+ang+")");
+        thisDepth = $( this ).attr("data-depth");
+        if(Math.abs(ang1-ang2)>2){
+          if(thisDepth==currentDepth+1){
+            $( this ).show();
+          }else{
+            $( this ).hide();
+          }
+          if((thisDepth==4)&&(currentDepth==2)){
+            $( this ).show();
+          }
+        }else{
+          $( this ).hide();
+        }
+
+
+//          $( this ).css("visibility", "visible");
+
+  //      if((Math.abs(x1)>0.1)&&(Math.abs(x2)>0.1)&&(Math.abs(y1)>0.1)&&(Math.abs(y2)>0.1)){
+//        if(!((Math.abs(x1)<0.1)&&(Math.abs(x2)<0.1)&&(y1*y1>0))){
+//        if(true){
+//        }
+//        if($( this ).attr("data-show")=="no"){
+  //        $( this ).hide();
+    //    }
+      });
+      
+  }, 800);
+}
+
+  function showParent(id){
+    selThis = "li[id="+id+"]"
+    thisParent = $(selThis).attr("data-parentid");
+    if(thisParent!=-1){
+      selParent = "li[id="+thisParent+"]";
+      $(selParent).show();
+      showParent(thisParent);
+    }
+  }
+
+  function showList(id){
+    selChildren = "li[data-parentid="+id+"]"
+    selThis = "li[id="+id+"]"
+    $(selChildren).show();
+    $(selThis).show();
+    showParent(id);
+  }
+
+  function makeList(id){
+    $("li").hide();
+    showList(id);
+  }
+
+
+      function click(d) {
+        currentDepth=d.depth;
+        if(d.children){
+          children=true;
+        }else{
+          children=false;
+        }
+        changeText(d.name,d.size,children);
+        makeList(d.thisID);
+        clicked = d;
+         showDepth = d.depth+1;
+        svg.transition()
+          .duration(750)
+          .tween("scale", function() {
+            var xd = d3.interpolate(x.domain(), [d.x, d.x + d.dx]),
+            yd = d3.interpolate(y.domain(), [d.y, 1]),
+            yr = d3.interpolate(y.range(), [d.y ? 20 : 0, radius]);
+//            yr = d3.interpolate(y.range(), [d.y ? 20 : -5*radius, radius]);
+            return function(t) { 
+              x.domain(xd(t)); 
+              y.domain(yd(t)).range(yr(t));
+            };
+          })
+          .selectAll("path")
+          .attrTween("d", function(d) {
+            return function() { 
+              return arc(d);
+            };
+          })
+
+
+
+            svg.selectAll(".label")
+              .attr("data-show", function(d) {
+                     if((d.depth==showDepth) && (clicked == d.parent)){
+                      return "yes"; 
+                    }else{
+                      return "no"; 
+                    }
+              })
+
+
+
+
+          ;
+      }
+
+      function resetPage(){
+        segmentColours = [];
+        count = -1;
+        labelCount = -1;
+        currentDepth = 0;
+        maxDepth = 0;
+        spoke = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+        $("svg").remove();
+        $("ul").remove();
+      }
+
+      function draw(data){
+        
+        ul = d3
+          .select("#list")
+          .append("ul")
+        ;
+        svg = d3
+          .select("body")
+          .append("svg")
+          .attr("viewBox", "0 0 " + width + " " + height)
+//          .attr("width", width)
+//          .attr("height", height)
+          .append("g")
+          .attr("transform", "translate(" + width / 2 + "," + (height / 2) + ")")
+        ;
+
+        g = svg
+          .selectAll("g")
+          .data(partition.nodes(data))
+          .enter()
+          .append("g")
+          .attr("class", "segments")
+        ;
+
+        g
+          .append("path")
+          .attr("stroke-width", 0.25)
+          .style("fill", function(d,i) { 
+            d.thisID = i;
+            color = setColour(d,i);
+            newY = Math.round( d.y * 10) / 10;
+            if(newY==0){
+              d.y=0;
+              d.dy=0.01;
+            }else if(newY==0.2){
+              d.y=0.01;
+              d.dy=0.24;
+            }else if(newY==0.4){
+              d.y=0.25;
+              d.dy=0.25;
+            }else if(newY==0.6){
+              d.y=0.5;
+              d.dy=0.25;
+            }else if(newY==0.8){
+              d.y=0.75;
+              d.dy=0.25;
+            }
+//            d.y = 0.5*d.y;
+            return color;
+          })
+          .attr("d", arc)
+          .on("click", click)
+          .append("title")
+          .text(function(d) { 
+            return d.name + "\n" + formatNumber(d.size); 
+          })
+        ;
+
+        ul
+          .selectAll("li")
+          .data(partition.nodes(data))
+          .enter()
+          .append("li")
+          .text(function (d) {
+            spaceStr="";
+            for(i=0;i<d.depth;i++){
+              spaceStr = "  "+spaceStr;
+            }
+            newY = Math.round( d.y * 10) / 10;
+            if(newY==0){
+              d.y=0;
+              d.dy=0.01;
+            }else if(newY==0.2){
+              d.y=0.01;
+              d.dy=0.24;
+            }else if(newY==0.4){
+              d.y=0.25;
+              d.dy=0.25;
+            }else if(newY==0.6){
+              d.y=0.5;
+              d.dy=0.25;
+            }else if(newY==0.8){
+              d.y=0.75;
+              d.dy=0.25;
+            }
+            return spaceStr + d.name + ": " + formatNumber(d.size);
+          })
+          .style("background", function(d,i) { 
+            color = getColour(d,i);
+            return color;
+          })
+         .attr("class",  function(d,i) { 
+            return "depth"+d.depth;
+          })
+ //         .attr("class",  function(d,i) { 
+ //           className = getClass(d,i);
+//
+//            return className;
+//          })
+          .attr("id",  function(d,i,j) {
+            d.thisID = i;
+//            return d.name.replace(/ /g,"_");
+            return i;
+          })
+          .attr("data-parentID",  function(d,i,j) {
+            if(d.parent){
+              return d.parent.thisID;
+            } else {
+              return -1;
+            }
+          })
+          .on("click", click)
+        ;
+
+        svg
+          .selectAll(".segments")
+            .append("text")
+            .attr("class", "label")
+            .attr("fill", "#ECEFF1")
+            .attr("transform", function(d) { 
+              angle1 = Math.max(0, Math.min(2 * Math.PI, x(d.x)));
+              angle2 = Math.max(0, Math.min(2 * Math.PI, x(d.x + d.dx)));
+              avgAng = ((180/Math.PI)*(angle1+angle2)/2 - 90);
+              return "rotate("+avgAng+")"; 
+            })
+            .attr("dx", function(d) { 
+                return 5 + Math.max(0, y(d.y)); 
+            })
+            .attr("data-depth", function(d) { 
+                return d.depth; 
+            })
+
+            .text(function(d) { 
+                if(d.size==0){
+                  return "";
+                }else{
+                  return d.name + ": " + d.size;
+                }
+            })
+            .style("text-anchor", "end")
+          .on("click", click)
+        ;
+
+        svg
+          .append("text")
+          .attr("id", "centreText")
+          .attr("fill", "#ECEFF1")
+          .attr("dy", 5)
+          .style("text-anchor", "middle")
+          .text("All: 625")
+        ;
+
+
+        $('.label').hide();
+        changeText("All","625",true);
+        makeList(0);
+      }
+
+      function loadData(dataFile){
+        resetPage();
+        d3.json(dataFile[0], draw);
+      }
+
+      $(document).ready(loadData(files[0]));
+
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

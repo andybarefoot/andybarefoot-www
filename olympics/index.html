@@ -41,14 +41,14 @@ function getColour(cont){
 }
 
 var dataFiles = [
-    ['csv/compsTotal.csv','Competitors','The number of athletes each nation has sent to the Olympic Games.'],
-    ['csv/medalsTotal.csv','Medals','The total number of medals each nation has won so far.'],
-    ['csv/golds.csv','Gold Medals','The total number of gold medals each nation has won so far.'],
-    ['csv/sporty.csv','Participation','The number of competitors each nation sent to the Olympics per million of population.'],
-    ['csv/efficiency.csv','Medal Efficiency','The number of medals each nation has won per 100 competitors they sent.'],
-    ['csv/goldEfficiency.csv','Gold Efficiency','The number of gold medals each nation has won per 100 competitors they sent.'],
-    ['csv/talented.csv','Population Talent','The number of medals each nation has won per million of population.'],
-    ['csv/goldTalent.csv','Gold Talent','The number of gold medals each nation has won per million of population.']
+    ['csv/compsTotal.csv','Competitors','The number of athletes each nation has sent to the Olympic Games.','competitors'],
+    ['csv/medalsTotal.csv','Medals','The total number of medals each nation has won so far.','medals'],
+    ['csv/golds.csv','Gold Medals','The total number of gold medals each nation has won so far.','gold-medals'],
+    ['csv/sporty.csv','Participation','The number of competitors each nation sent to the Olympics per million of population.','participation'],
+    ['csv/efficiency.csv','Medal Efficiency','The number of medals each nation has won per 100 competitors they sent.','medal-efficiency'],
+    ['csv/goldEfficiency.csv','Gold Efficiency','The number of gold medals each nation has won per 100 competitors they sent.','gold-efficiency'],
+    ['csv/talented.csv','Population Talent','The number of medals each nation has won per million of population.','population-talent'],
+    ['csv/goldTalent.csv','Gold Talent','The number of gold medals each nation has won per million of population.','gold-talent']
 ]
 
 var colours = [
@@ -86,80 +86,84 @@ for(i=0;i<dataFiles.length;i++){
 }
 
 
+function drawChart(dataset){
+  dataFile = dataFiles[dataset][0];
+  dataTitle = dataFiles[dataset][1]+":";
+  dataText = dataFiles[dataset][2];
+  $("h2").text(dataTitle);
+  $("p").text(dataText);
 
-dataFile = dataFiles[0][0];
-dataTitle = dataFiles[0][1]+":";
-dataText = dataFiles[0][2];
-$("h2").text(dataTitle);
-$("p").text(dataText);
+  d3.csv(dataFile, function(error, data) {
+    if (error) throw error;
 
-d3.csv(dataFile, function(error, data) {
-  if (error) throw error;
+    // Parse numbers, and sort by value.
+    data.forEach(function(d) { d.value = +d.value; });
+    data.sort(function(a, b) { return b.value - a.value; });
 
-  // Parse numbers, and sort by value.
-  data.forEach(function(d) { d.value = +d.value; });
-  data.sort(function(a, b) { return b.value - a.value; });
+    // Set the scale domain.
+    x.domain([0, d3.max(data, function(d) { return d.value; })]);
+    y.domain(data.map(function(d) { return d.name; }));
 
-  // Set the scale domain.
-  x.domain([0, d3.max(data, function(d) { return d.value; })]);
-  y.domain(data.map(function(d) { return d.name; }));
+    var bar = svg.selectAll("g.bar")
+        .data(data)
+      .enter().append("g")
+        .attr("class", "bar")
+        .attr("transform", function(d) { return "translate(0," + y(d.name) + ")"; });
 
-  var bar = svg.selectAll("g.bar")
-      .data(data)
-    .enter().append("g")
-      .attr("class", "bar")
-      .attr("transform", function(d) { return "translate(0," + y(d.name) + ")"; });
+    bar.append("rect")
+        .attr("width", function(d) { return x(d.value); })
+        .attr("height", y.rangeBand())
+      .style("fill", function(d,i) { 
+      color = getColour(d.continent);
+      return color;
+    })
+  ;
 
-  bar.append("rect")
-      .attr("width", function(d) { return x(d.value); })
-      .attr("height", y.rangeBand())
-    .style("fill", function(d,i) { 
-    color = getColour(d.continent);
-    return color;
-  })
-;
+    bar.append("text")
+        .attr("class", "value")
+        .attr("x", function(d) { return x(d.value); })
+        .attr("y", y.rangeBand() / 2)
+        .attr("dx", 3.5)
+        .attr("dy", ".35em")
+        .attr("text-anchor", "start")
+        .text(function(d) { 
+          if(d.value==0){
+              return "";
+          }else{
+              return d.value; 
+          }
+          });
 
-  bar.append("text")
-      .attr("class", "value")
-      .attr("x", function(d) { return x(d.value); })
-      .attr("y", y.rangeBand() / 2)
-      .attr("dx", 3.5)
-      .attr("dy", ".35em")
-      .attr("text-anchor", "start")
-      .text(function(d) { 
-        if(d.value==0){
-            return "";
-        }else{
-            return d.value; 
-        }
-        });
+    svg.append("g")
+        .attr("class", "x axis")
+        .call(xAxis);
 
-  svg.append("g")
-      .attr("class", "x axis")
-      .call(xAxis);
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
 
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis);
+  for(i=1;i<colours.length;i++){
+    svg.append("rect")
+        .attr("width", 80)
+        .attr("height", 20)
+        .style("fill", colours[i][0])
+        .attr("transform", "translate(600,"+ (200+22*i) + ")")
+      ; 
+      svg.append("text")
+        .attr("transform", "translate(685,"+ (216+22*i) + ")")
+        .text(colours[i][1]);
+  }
 
-for(i=1;i<colours.length;i++){
-  svg.append("rect")
-      .attr("width", 80)
-      .attr("height", 20)
-      .style("fill", colours[i][0])
-      .attr("transform", "translate(600,"+ (200+22*i) + ")")
-    ; 
-    svg.append("text")
-      .attr("transform", "translate(685,"+ (216+22*i) + ")")
-      .text(colours[i][1]);
+  });
+
 }
-
-});
 
 function updateData(dataID){
     dataFile = dataFiles[dataID][0];
     dataTitle = dataFiles[dataID][1]+":";
     dataText = dataFiles[dataID][2];
+    dataHash = dataFiles[dataID][3];
+    window.location.hash = '#'+dataHash;
     $("h2").text(dataTitle);
     $("p").text(dataText);
     d3.csv(dataFile, function(error, data) {
@@ -210,6 +214,21 @@ function updateData(dataID){
     });
 }
 
+
+
+
+if(window.location.hash) {
+  console.log(window.location.hash);
+  dataset=0;
+  for(i=0;i<dataFiles.length;i++){
+      if(("#"+dataFiles[i][3])==window.location.hash){
+        dataset=i;
+      }
+  }
+  drawChart(dataset);
+} else {
+  drawChart(0);
+}
 
 
 </script>
