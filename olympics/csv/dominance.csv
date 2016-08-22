@@ -1,0 +1,399 @@
+Archery,South Korea,4,0,1,5
+Archery,United States,0,1,1,2
+Archery,Germany,0,1,0,1
+Archery,France,0,1,0,1
+Archery,Russia,0,1,0,1
+Archery,Australia,0,0,1,1
+Archery,Chinese Taipei,0,0,1,1
+Athletics,United States,13,10,9,32
+Athletics,Kenya,6,6,1,13
+Athletics,Jamaica,6,3,2,11
+Athletics,China,2,2,2,6
+Athletics,South Africa,2,2,0,4
+Athletics,Great Britain,2,1,4,7
+Athletics,Croatia,2,0,1,3
+Athletics,Germany,2,0,1,3
+Athletics,Ethiopia,1,2,5,8
+Athletics,Canada,1,1,4,6
+Athletics,Poland,1,1,1,3
+Athletics,Bahrain,1,1,0,2
+Athletics,Spain,1,1,0,2
+Athletics,Bahamas,1,0,1,2
+Athletics,Belgium,1,0,0,1
+Athletics,Brazil,1,0,0,1
+Athletics,Colombia,1,0,0,1
+Athletics,Greece,1,0,0,1
+Athletics,Slovakia,1,0,0,1
+Athletics,Tajikistan,1,0,0,1
+Athletics,France,0,3,3,6
+Athletics,Algeria,0,2,0,2
+Athletics,New Zealand,0,1,3,4
+Athletics,Australia,0,1,1,2
+Athletics,Japan,0,1,1,2
+Athletics,Belarus,0,1,0,1
+Athletics,Bulgaria,0,1,0,1
+Athletics,Burundi,0,1,0,1
+Athletics,Denmark,0,1,0,1
+Athletics,Grenada,0,1,0,1
+Athletics,Mexico,0,1,0,1
+Athletics,Netherlands,0,1,0,1
+Athletics,Qatar,0,1,0,1
+Athletics,Venezuela,0,1,0,1
+Athletics,Cuba,0,0,1,1
+Athletics,Czech Republic,0,0,1,1
+Athletics,Hungary,0,0,1,1
+Athletics,Kazakhstan,0,0,1,1
+Athletics,Serbia,0,0,1,1
+Athletics,Trinidad and Tobago,0,0,1,1
+Athletics,Turkey,0,0,1,1
+Athletics,Ukraine,0,0,1,1
+Badminton,China,2,0,1,3
+Badminton,Japan,1,0,1,2
+Badminton,Indonesia,1,0,0,1
+Badminton,Spain,1,0,0,1
+Badminton,Malaysia,0,3,0,3
+Badminton,Denmark,0,1,1,2
+Badminton,India,0,1,0,1
+Badminton,Great Britain,0,0,1,1
+Badminton,South Korea,0,0,1,1
+Basketball,United States,2,0,0,2
+Basketball,Spain,0,1,1,2
+Basketball,Serbia,0,1,1,2
+Boxing,Uzbekistan,3,2,2,7
+Boxing,Cuba,3,0,3,6
+Boxing,France,2,2,2,6
+Boxing,Kazakhstan,1,2,2,5
+Boxing,Russia,1,1,3,5
+Boxing,Great Britain,1,1,1,3
+Boxing,United States,1,1,1,3
+Boxing,Brazil,1,0,0,1
+Boxing,China,0,1,3,4
+Boxing,Azerbaijan,0,1,1,2
+Boxing,Colombia,0,1,1,2
+Boxing,Netherlands,0,1,0,1
+Boxing,Croatia,0,0,1,1
+Boxing,Finland,0,0,1,1
+Boxing,Germany,0,0,1,1
+Boxing,Mexico,0,0,1,1
+Boxing,Mongolia,0,0,1,1
+Boxing,Morocco,0,0,1,1
+Boxing,Venezuela,0,0,1,1
+Canoeing,Germany,4,2,1,7
+Canoeing,Spain,3,0,1,4
+Canoeing,Hungary,3,0,0,3
+Canoeing,Great Britain,2,2,0,4
+Canoeing,France,1,1,1,3
+Canoeing,New Zealand,1,1,1,3
+Canoeing,Slovakia,1,2,0,3
+Canoeing,Ukraine,1,0,1,2
+Canoeing,Brazil,0,2,1,3
+Canoeing,Azerbaijan,0,1,1,2
+Canoeing,Czech Republic,0,1,2,3
+Canoeing,Poland,0,1,1,2
+Canoeing,Denmark,0,1,0,1
+Canoeing,Serbia,0,1,0,1
+Canoeing,Slovenia,0,1,0,1
+Canoeing,Australia,0,0,2,2
+Canoeing,Belarus,0,0,1,1
+Canoeing,Japan,0,0,1,1
+Canoeing,Lithuania,0,0,1,1
+Canoeing,Moldova,0,0,1,1
+Canoeing,Russia,0,0,1,1
+Cycling,Great Britain,6,4,2,12
+Cycling,Netherlands,2,3,1,6
+Cycling,United States,2,3,0,5
+Cycling,Switzerland,2,0,0,2
+Cycling,Sweden,1,1,0,2
+Cycling,Belgium,1,0,1,2
+Cycling,Colombia,1,0,1,2
+Cycling,Germany,1,0,1,2
+Cycling,Italy,1,0,1,2
+Cycling,China,1,0,0,1
+Cycling,Russia,0,2,1,3
+Cycling,Denmark,0,1,2,3
+Cycling,Australia,0,1,1,2
+Cycling,Poland,0,1,1,2
+Cycling,Czech Republic,0,1,0,1
+Cycling,New Zealand,0,1,0,1
+Cycling,Canada,0,0,2,2
+Cycling,France,0,0,1,1
+Cycling,Malaysia,0,0,1,1
+Cycling,Spain,0,0,1,1
+Cycling,Venezuela,0,0,1,1
+Diving,China,7,2,1,10
+Diving,Great Britain,1,1,1,3
+Diving,United States,0,2,1,3
+Diving,Italy,0,1,1,2
+Diving,Malaysia,0,1,0,1
+Diving,Mexico,0,1,0,1
+Diving,Canada,0,0,2,2
+Diving,Australia,0,0,1,1
+Diving,Germany,0,0,1,1
+Equestrian,Germany,2,2,2,6
+Equestrian,Great Britain,2,1,0,3
+Equestrian,France,2,1,0,3
+Equestrian,United States,0,1,2,3
+Equestrian,Sweden,0,1,0,1
+Equestrian,Australia,0,0,1,1
+Equestrian,Canada,0,0,1,1
+Fencing,Russia,4,1,2,7
+Fencing,Hungary,2,1,1,4
+Fencing,Italy,1,3,0,4
+Fencing,France,1,1,1,3
+Fencing,South Korea,1,0,1,2
+Fencing,Romania,1,0,0,1
+Fencing,United States,0,2,2,4
+Fencing,China,0,1,1,2
+Fencing,Ukraine,0,1,1,2
+Fencing,Tunisia,0,0,1,1
+Football,Germany,1,1,0,2
+Football,Brazil,1,0,0,1
+Football,Sweden,0,1,0,1
+Football,Canada,0,0,1,1
+Football,Nigeria,0,0,1,1
+Golf,Great Britain,1,0,0,1
+Golf,South Korea,1,0,0,1
+Golf,New Zealand,0,1,0,1
+Golf,Sweden,0,1,0,1
+Golf,China,0,0,1,1
+Golf,United States,0,0,1,1
+Gymnastics,United States,4,6,2,12
+Gymnastics,Russia,2,5,3,10
+Gymnastics,Great Britain,2,2,3,7
+Gymnastics,Japan,2,0,1,3
+Gymnastics,Ukraine,1,1,1,3
+Gymnastics,Germany,1,0,1,2
+Gymnastics,Belarus,1,0,0,1
+Gymnastics,Canada,1,0,0,1
+Gymnastics,Greece,1,0,0,1
+Gymnastics,Netherlands,1,0,0,1
+Gymnastics,North Korea,1,0,0,1
+Gymnastics,Brazil,0,2,1,3
+Gymnastics,China,0,1,4,5
+Gymnastics,Switzerland,0,0,1,1
+Handball,Denmark,1,0,0,1
+Handball,Russia,1,0,0,1
+Handball,France,0,2,0,2
+Handball,Germany,0,0,1,1
+Handball,Norway,0,0,1,1
+Hockey,Argentina,1,0,0,1
+Hockey,Great Britain,1,0,0,1
+Hockey,Belgium,0,1,0,1
+Hockey,Netherlands,0,1,0,1
+Hockey,Germany,0,0,2,2
+Judo,Japan,3,1,8,12
+Judo,France,2,2,1,5
+Judo,Russia,2,0,1,3
+Judo,Italy,1,1,0,2
+Judo,United States,1,1,0,2
+Judo,Brazil,1,0,2,3
+Judo,Slovenia,1,0,1,2
+Judo,Argentina,1,0,0,1
+Judo,Czech Republic,1,0,0,1
+Judo,Kosovo,1,0,0,1
+Judo,South Korea,0,2,1,3
+Judo,Azerbaijan,0,2,0,2
+Judo,Georgia,0,1,1,2
+Judo,Kazakhstan,0,1,1,2
+Judo,Colombia,0,1,0,1
+Judo,Cuba,0,1,0,1
+Judo,Mongolia,0,1,0,1
+Judo,China,0,0,2,2
+Judo,Israel,0,0,2,2
+Judo,Uzbekistan,0,0,2,2
+Judo,Belgium,0,0,1,1
+Judo,Germany,0,0,1,1
+Judo,Great Britain,0,0,1,1
+Judo,Netherlands,0,0,1,1
+Judo,Portugal,0,0,1,1
+Judo,United Arab Emirates,0,0,1,1
+Modern Pentathlon,Australia,1,0,0,1
+Modern Pentathlon,Russia,1,0,0,1
+Modern Pentathlon,France,0,1,0,1
+Modern Pentathlon,Ukraine,0,1,0,1
+Modern Pentathlon,Mexico,0,0,1,1
+Modern Pentathlon,Poland,0,0,1,1
+Rowing,Great Britain,3,2,0,5
+Rowing,Germany,2,1,0,3
+Rowing,New Zealand,2,1,0,3
+Rowing,Australia,1,2,0,3
+Rowing,Netherlands,1,1,1,3
+Rowing,Croatia,1,1,0,2
+Rowing,United States,1,1,0,2
+Rowing,France,1,0,1,2
+Rowing,Poland,1,0,1,2
+Rowing,Switzerland,1,0,0,1
+Rowing,Denmark,0,1,1,2
+Rowing,Lithuania,0,1,1,2
+Rowing,Canada,0,1,0,1
+Rowing,Ireland,0,1,0,1
+Rowing,South Africa,0,1,0,1
+Rowing,China,0,0,2,2
+Rowing,Italy,0,0,2,2
+Rowing,Norway,0,0,2,2
+Rowing,Czech Republic,0,0,1,1
+Rowing,Estonia,0,0,1,1
+Rowing,Romania,0,0,1,1
+Rugby Sevens,Australia,1,0,0,1
+Rugby Sevens,Fiji,1,0,0,1
+Rugby Sevens,Great Britain,0,1,0,1
+Rugby Sevens,New Zealand,0,1,0,1
+Rugby Sevens,Canada,0,0,1,1
+Rugby Sevens,South Africa,0,0,1,1
+Sailing,Great Britain,2,1,0,3
+Sailing,Netherlands,2,0,0,2
+Sailing,Australia,1,3,0,4
+Sailing,New Zealand,1,2,1,4
+Sailing,Croatia,1,1,0,2
+Sailing,France,1,0,2,3
+Sailing,Argentina,1,0,0,1
+Sailing,Brazil,1,0,0,1
+Sailing,China,0,1,0,1
+Sailing,Ireland,0,1,0,1
+Sailing,Slovenia,0,1,0,1
+Sailing,Denmark,0,0,2,2
+Sailing,Austria,0,0,1,1
+Sailing,Germany,0,0,1,1
+Sailing,Greece,0,0,1,1
+Sailing,Russia,0,0,1,1
+Sailing,United States,0,0,1,1
+Shooting,Italy,4,3,0,7
+Shooting,Germany,3,1,0,4
+Shooting,China,1,2,4,7
+Shooting,South Korea,1,1,0,2
+Shooting,Vietnam,1,1,0,2
+Shooting,United States,1,0,2,3
+Shooting,Greece,1,0,1,2
+Shooting,Independent Olympic Athletes,1,0,1,2
+Shooting,Australia,1,0,0,1
+Shooting,Croatia,1,0,0,1
+Shooting,Russia,0,2,2,4
+Shooting,France,0,1,1,2
+Shooting,Brazil,0,1,0,1
+Shooting,New Zealand,0,1,0,1
+Shooting,Sweden,0,1,0,1
+Shooting,Ukraine,0,1,0,1
+Shooting,Great Britain,0,0,2,2
+Shooting,North Korea,0,0,1,1
+Shooting,Switzerland,0,0,1,1
+Swimming,United States,16,8,9,33
+Swimming,Australia,3,4,3,10
+Swimming,Hungary,3,2,2,7
+Swimming,Japan,2,2,3,7
+Swimming,Netherlands,2,0,0,2
+Swimming,Great Britain,1,5,0,6
+Swimming,China,1,2,3,6
+Swimming,Canada,1,1,4,6
+Swimming,Italy,1,1,2,4
+Swimming,Sweden,1,1,1,3
+Swimming,Denmark,1,0,1,2
+Swimming,Spain,1,0,1,2
+Swimming,Kazakhstan,1,0,0,1
+Swimming,Singapore,1,0,0,1
+Swimming,South Africa,0,3,0,3
+Swimming,Russia,0,2,2,4
+Swimming,France,0,2,1,3
+Swimming,Belgium,0,1,0,1
+Swimming,Greece,0,1,0,1
+Swimming,Belarus,0,0,1,1
+Swimming,Brazil,0,0,1,1
+Synchronized swimming,Russia,2,0,0,2
+Synchronized swimming,China,0,2,0,2
+Synchronized swimming,Japan,0,0,2,2
+Table Tennis,China,4,2,0,6
+Table Tennis,Japan,0,1,2,3
+Table Tennis,Germany,0,1,1,2
+Table Tennis,North Korea,0,0,1,1
+Taekwondo,South Korea,2,0,3,5
+Taekwondo,China,2,0,0,2
+Taekwondo,Great Britain,1,1,1,3
+Taekwondo,Azerbaijan,1,0,2,3
+Taekwondo,Ivory Coast,1,0,1,2
+Taekwondo,Jordan,1,0,0,1
+Taekwondo,Spain,0,1,1,2
+Taekwondo,Thailand,0,1,1,2
+Taekwondo,France,0,1,0,1
+Taekwondo,Mexico,0,1,0,1
+Taekwondo,Niger,0,1,0,1
+Taekwondo,Russia,0,1,0,1
+Taekwondo,Serbia,0,1,0,1
+Taekwondo,Brazil,0,0,1,1
+Taekwondo,Dominican Republic,0,0,1,1
+Taekwondo,Egypt,0,0,1,1
+Taekwondo,Iran,0,0,1,1
+Taekwondo,Tunisia,0,0,1,1
+Taekwondo,Turkey,0,0,1,1
+Taekwondo,United States,0,0,1,1
+Tennis,United States,1,1,1,3
+Tennis,Puerto Rico,1,0,0,1
+Tennis,Spain,1,0,0,1
+Tennis,Russia,1,0,0,1
+Tennis,Great Britain,1,0,0,1
+Tennis,Germany,0,1,0,1
+Tennis,Romania,0,1,0,1
+Tennis,Switzerland,0,1,0,1
+Tennis,Argentina,0,1,0,1
+Tennis,Czech Republic,0,0,3,3
+Tennis,Japan,0,0,1,1
+Triathlon,Great Britain,1,1,1,3
+Triathlon,United States,1,0,0,1
+Triathlon,Switzerland,0,1,0,1
+Triathlon,South Africa,0,0,1,1
+Volleyball,Brazil,2,1,0,3
+Volleyball,China,1,0,0,1
+Volleyball,Germany,1,0,0,1
+Volleyball,Italy,0,2,0,2
+Volleyball,Serbia,0,1,0,1
+Volleyball,United States,0,0,3,3
+Volleyball,Netherlands,0,0,1,1
+Water Polo,Serbia,1,0,0,1
+Water Polo,United States,1,0,0,1
+Water Polo,Italy,0,1,1,2
+Water Polo,Croatia,0,1,0,1
+Water Polo,Russia,0,0,1,1
+Weightlifting,China,5,2,0,7
+Weightlifting,Thailand,2,1,1,4
+Weightlifting,Iran,2,0,0,2
+Weightlifting,North Korea,1,3,0,4
+Weightlifting,Kazakhstan,1,1,3,5
+Weightlifting,Chinese Taipei,1,0,1,2
+Weightlifting,Colombia,1,0,1,2
+Weightlifting,Georgia,1,0,1,2
+Weightlifting,Uzbekistan,1,0,0,1
+Weightlifting,Armenia,0,2,0,2
+Weightlifting,Belarus,0,2,0,2
+Weightlifting,Indonesia,0,2,0,2
+Weightlifting,Philippines,0,1,0,1
+Weightlifting,Turkey,0,1,0,1
+Weightlifting,Egypt,0,0,2,2
+Weightlifting,Japan,0,0,1,1
+Weightlifting,Lithuania,0,0,1,1
+Weightlifting,Romania,0,0,1,1
+Weightlifting,South Korea,0,0,1,1
+Weightlifting,Spain,0,0,1,1
+Weightlifting,United States,0,0,1,1
+Wrestling,Russia,4,3,2,9
+Wrestling,Japan,4,3,0,7
+Wrestling,Cuba,2,1,0,3
+Wrestling,United States,2,0,1,3
+Wrestling,Turkey,1,2,2,5
+Wrestling,Iran,1,1,3,5
+Wrestling,Armenia,1,1,0,2
+Wrestling,Georgia,1,0,3,4
+Wrestling,Canada,1,0,0,1
+Wrestling,Serbia,1,0,0,1
+Wrestling,Azerbaijan,0,3,6,9
+Wrestling,Belarus,0,1,2,3
+Wrestling,Kazakhstan,0,1,2,3
+Wrestling,Denmark,0,1,0,1
+Wrestling,Ukraine,0,1,1,2
+Wrestling,Uzbekistan,0,0,3,3
+Wrestling,China,0,0,2,2
+Wrestling,Sweden,0,0,2,2
+Wrestling,Bulgaria,0,0,1,1
+Wrestling,Germany,0,0,1,1
+Wrestling,India,0,0,1,1
+Wrestling,Norway,0,0,1,1
+Wrestling,Poland,0,0,1,1
+Wrestling,South Korea,0,0,1,1
+Wrestling,Tunisia,0,0,1,1
