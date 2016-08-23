@@ -1,51 +1,63 @@
 name,value,continent
+Tajikistan,14.29,Asia
+Jordan,12.50,Asia
 Kosovo,12.50,Europe
 Independent Olympic Athletes,11.11,
-United States,4.73,North America
+Jamaica,10.17,North America
+United States,8.36,North America
+Ivory Coast,8.33,Africa
+Kenya,7.50,Africa
+Great Britain & N. Ireland,7.38,Europe
+Russia,6.91,Europe
+China,6.50,Asia
+North Korea,6.45,Asia
+Uzbekistan,5.80,Asia
+Croatia,5.68,Europe
+Hungary,5.13,Europe
+Georgia,5.00,Europe
+Iran,4.84,Asia
+South Korea,4.39,Asia
+Cuba,4.35,North America
 Vietnam,4.35,Asia
-Great Britain & N. Ireland,4.10,Europe
+Slovakia,4.08,Europe
+Germany,4.04,Europe
 Singapore,4.00,Asia
 Thailand,3.77,Asia
-China,3.75,Asia
-Jamaica,3.39,North America
-Russia,3.27,Europe
-Iran,3.23,Asia
-North Korea,3.23,Asia
-Hungary,3.21,Europe
-South Korea,2.93,Asia
+Indonesia,3.57,Asia
+Japan,3.55,Asia
+Netherlands,3.35,Europe
+Greece,3.19,Europe
+Armenia,3.13,Asia
+Bahamas,3.13,North America
+Switzerland,3.00,Europe
+Bahrain,2.86,Asia
+Kazakhstan,2.86,Asia
+Italy,2.64,Europe
 Ethiopia,2.63,Africa
+France,2.53,Europe
 Puerto Rico,2.38,North America
-Italy,2.31,Europe
-Croatia,2.27,Europe
-Japan,2.07,Asia
-Slovakia,2.04,Europe
-Switzerland,2.00,Europe
+Spain,2.31,Europe
+Colombia,2.04,South America
+New Zealand,2.01,Oceania
 Fiji,1.96,Oceania
-Germany,1.90,Europe
-Kazakhstan,1.90,Asia
+Serbia,1.92,Europe
+Australia,1.91,Oceania
 Belgium,1.89,Europe
-France,1.77,Europe
+Azerbaijan,1.82,Asia
 Chinese Taipei,1.69,Asia
-Netherlands,1.67,Europe
+Denmark,1.61,Europe
 Slovenia,1.61,Europe
-Uzbekistan,1.45,Asia
-Australia,1.43,Oceania
-Colombia,1.36,South America
-Kenya,1.25,Africa
-Greece,1.06,Europe
+Brazil,1.50,South America
+South Africa,1.47,Africa
+Argentina,1.40,South America
+Sweden,1.30,Europe
+Canada,1.29,North America
 Romania,1.02,Europe
-New Zealand,1.01,Oceania
+Ukraine,1.01,Europe
 Czech Republic,0.99,Europe
-Spain,0.99,Europe
-Cuba,0.87,North America
+Turkey,0.98,Asia
 Belarus,0.83,Europe
-Denmark,0.81,Europe
-South Africa,0.74,Africa
-Canada,0.65,North America
-Sweden,0.65,Europe
-Argentina,0.47,South America
-Poland,0.41,Europe
-Brazil,0.21,South America
+Poland,0.82,Europe
 Afghanistan,0.00,Asia
 Albania,0.00,Europe
 Algeria,0.00,Africa
@@ -53,12 +65,8 @@ American Samoa,0.00,Oceania
 Andorra,0.00,Europe
 Angola,0.00,Africa
 Antigua & Barbuda,0.00,North America
-Armenia,0.00,Asia
 Aruba,0.00,North America
 Austria,0.00,Europe
-Azerbaijan,0.00,Asia
-Bahamas,0.00,North America
-Bahrain,0.00,Asia
 Bangladesh,0.00,Asia
 Barbados,0.00,North America
 Belize,0.00,North America
@@ -85,7 +93,6 @@ Congo,0.00,Africa
 Cook Islands,0.00,Oceania
 Costa Rica,0.00,North America
 Cyprus,0.00,Europe
-Cote d'Ivoire,0.00,Africa
 DR Congo,0.00,Africa
 Djibouti,0.00,Africa
 Dominica,0.00,North America
@@ -101,7 +108,6 @@ Federated States of Micronesia,0.00,Oceania
 Finland,0.00,Europe
 Gabon,0.00,Africa
 Gambia,0.00,Africa
-Georgia,0.00,Europe
 Ghana,0.00,Africa
 Grenada,0.00,North America
 Guam,0.00,Oceania
@@ -114,11 +120,9 @@ Honduras,0.00,North America
 Hong Kong,0.00,Asia
 Iceland,0.00,Europe
 India,0.00,Asia
-Indonesia,0.00,Asia
 Iraq,0.00,Asia
 Ireland,0.00,Europe
 Israel,0.00,Asia
-Jordan,0.00,Asia
 Kiribati,0.00,Oceania
 Kyrgyzstan,0.00,Asia
 Laos,0.00,Asia
@@ -173,7 +177,6 @@ San Marino,0.00,Europe
 Sao Tome & Principe,0.00,Africa
 Saudi Arabia,0.00,Asia
 Senegal,0.00,Africa
-Serbia,0.00,Europe
 Seychelles,0.00,Africa
 Sierra Leone,0.00,Africa
 Solomon Islands,0.00,Oceania
@@ -185,19 +188,16 @@ Sudan,0.00,Africa
 Suriname,0.00,South America
 Swaziland,0.00,Africa
 Syria,0.00,Asia
-Tajikistan,0.00,Asia
 Tanzania,0.00,Africa
 Timor-Leste,0.00,Asia
 Togo,0.00,Africa
 Tonga,0.00,Oceania
-Trinidad & Tobago,0.00,North America
+Trinidad and Tobago,0.00,North America
 Tunisia,0.00,Africa
-Turkey,0.00,Asia
 Turkmenistan,0.00,Asia
 Tuvalu,0.00,Oceania
 US Virgin Islands,0.00,North America
 Uganda,0.00,Africa
-Ukraine,0.00,Europe
 United Arab Emirates,0.00,Asia
 Uruguay,0.00,South America
 Vanuatu,0.00,Oceania

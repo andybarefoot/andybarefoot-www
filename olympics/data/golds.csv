@@ -1,83 +1,99 @@
 name,value,continent
-United States,26,North America
-Great Britain & N. Ireland,15,Europe
-China,15,Asia
-Russia,9,Europe
-Germany,8,Europe
-France,7,Europe
-Italy,7,Europe
-Japan,7,Asia
-Australia,6,Oceania
-South Korea,6,Asia
-Hungary,5,Europe
-Netherlands,4,Europe
-Spain,3,Europe
-New Zealand,2,Oceania
-Canada,2,North America
-Kazakhstan,2,Asia
-Colombia,2,South America
-Switzerland,2,Europe
+United States,46,North America
+Great Britain & N. Ireland,27,Europe
+China,26,Asia
+Russia,19,Europe
+Germany,17,Europe
+Japan,12,Asia
+France,10,Europe
+South Korea,9,Asia
+Italy,8,Europe
+Australia,8,Oceania
+Netherlands,8,Europe
+Hungary,8,Europe
+Brazil,7,South America
+Spain,7,Europe
+Kenya,6,Africa
+Jamaica,6,North America
+Croatia,5,Europe
+Cuba,5,North America
+New Zealand,4,Oceania
+Canada,4,North America
+Uzbekistan,4,Asia
+Kazakhstan,3,Asia
+Colombia,3,South America
+Switzerland,3,Europe
+Iran,3,Asia
+Greece,3,Europe
+Argentina,3,South America
+Denmark,2,Europe
+Sweden,2,Europe
+South Africa,2,Africa
+Ukraine,2,Europe
+Serbia,2,Europe
+Poland,2,Europe
+North Korea,2,Asia
 Belgium,2,Europe
 Thailand,2,Asia
-Croatia,2,Europe
-Iran,2,Asia
-Jamaica,2,North America
-South Africa,1,Africa
-Sweden,1,Europe
-Denmark,1,Europe
-North Korea,1,Asia
-Brazil,1,South America
+Slovakia,2,Europe
+Georgia,2,Europe
+Azerbaijan,1,Asia
 Belarus,1,Europe
-Kenya,1,Africa
-Cuba,1,North America
-Poland,1,Europe
-Romania,1,Europe
-Slovenia,1,Europe
-Argentina,1,South America
-Slovakia,1,Europe
-Vietnam,1,Asia
+Turkey,1,Asia
+Armenia,1,Asia
 Czech Republic,1,Europe
-Uzbekistan,1,Asia
 Ethiopia,1,Africa
+Slovenia,1,Europe
+Indonesia,1,Asia
+Romania,1,Europe
+Bahrain,1,Asia
+Vietnam,1,Asia
 Chinese Taipei,1,Asia
-Greece,1,Europe
+Bahamas,1,North America
 Independent Olympic Athletes,1,
+Ivory Coast,1,Africa
 Fiji,1,Oceania
+Jordan,1,Asia
 Kosovo,1,Europe
 Puerto Rico,1,North America
 Singapore,1,Asia
-Ukraine,0,Europe
-Azerbaijan,0,Asia
-Indonesia,0,Asia
-Lithuania,0,Europe
-Georgia,0,Europe
-Mongolia,0,Asia
-Bahrain,0,Asia
-Grenada,0,North America
-Ireland,0,Europe
+Tajikistan,1,Asia
 Malaysia,0,Asia
-Philippines,0,Asia
-Turkey,0,Asia
+Mexico,0,North America
+Algeria,0,Africa
+Ireland,0,Europe
+Lithuania,0,Europe
+Bulgaria,0,Europe
 Venezuela,0,South America
+India,0,Asia
+Mongolia,0,Asia
+Burundi,0,Africa
+Grenada,0,North America
+Niger,0,Africa
+Philippines,0,Asia
+Qatar,0,Asia
 Norway,0,Europe
 Egypt,0,Africa
-Israel,0,Asia
-Estonia,0,Europe
-Kyrgyzstan,0,Asia
-Portugal,0,Europe
 Tunisia,0,Africa
+Israel,0,Asia
+Austria,0,Europe
+Dominican Republic,0,North America
+Estonia,0,Europe
+Finland,0,Europe
+Kyrgyzstan,0,Asia
+Moldova,0,Europe
+Morocco,0,Africa
+Nigeria,0,Africa
+Portugal,0,Europe
+Trinidad and Tobago,0,North America
 United Arab Emirates,0,Asia
 Afghanistan,0,Asia
 Albania,0,Europe
-Algeria,0,Africa
 American Samoa,0,Oceania
 Andorra,0,Europe
 Angola,0,Africa
 Antigua & Barbuda,0,North America
-Armenia,0,Asia
 Aruba,0,North America
-Austria,0,Europe
-Bahamas,0,North America
 Bangladesh,0,Asia
 Barbados,0,North America
 Belize,0,North America
@@ -89,9 +105,7 @@ Bosnia & Herzegovina,0,Europe
 Botswana,0,Africa
 British Virgin Islands,0,North America
 Brunei,0,Asia
-Bulgaria,0,Europe
 Burkina Faso,0,Africa
-Burundi,0,Africa
 Cambodia,0,Asia
 Cameroon,0,Africa
 Cape Verde,0,Africa
@@ -104,18 +118,15 @@ Congo,0,Africa
 Cook Islands,0,Oceania
 Costa Rica,0,North America
 Cyprus,0,Europe
-Cote d'Ivoire,0,Africa
 DR Congo,0,Africa
 Djibouti,0,Africa
 Dominica,0,North America
-Dominican Republic,0,North America
 Ecuador,0,South America
 El Salvador,0,North America
 Equatorial Guinea,0,Africa
 Eritrea,0,Africa
 FYR Macedonia,0,Europe
 Federated States of Micronesia,0,Oceania
-Finland,0,Europe
 Gabon,0,Africa
 Gambia,0,Africa
 Ghana,0,Africa
@@ -128,9 +139,7 @@ Haiti,0,North America
 Honduras,0,North America
 Hong Kong,0,Asia
 Iceland,0,Europe
-India,0,Asia
 Iraq,0,Asia
-Jordan,0,Asia
 Kiribati,0,Oceania
 Laos,0,Asia
 Latvia,0,Europe
@@ -148,19 +157,14 @@ Malta,0,Europe
 Marshall Islands,0,Oceania
 Mauritania,0,Africa
 Mauritius,0,Africa
-Mexico,0,North America
-Moldova,0,Europe
 Monaco,0,Europe
 Montenegro,0,Europe
-Morocco,0,Africa
 Mozambique,0,Africa
 Myanmar,0,Asia
 Namibia,0,Africa
 Nauru,0,Oceania
 Nepal,0,Asia
 Nicaragua,0,North America
-Niger,0,Africa
-Nigeria,0,Africa
 Oman,0,Asia
 Pakistan,0,Asia
 Palau,0,Oceania
@@ -169,7 +173,6 @@ Panama,0,North America
 Papua New Guinea,0,Oceania
 Paraguay,0,South America
 Peru,0,South America
-Qatar,0,Asia
 Rwanda,0,Africa
 Saint Kitts & Nevis,0,North America
 Saint Lucia,0,North America
@@ -178,7 +181,6 @@ San Marino,0,Europe
 Sao Tome & Principe,0,Africa
 Saudi Arabia,0,Asia
 Senegal,0,Africa
-Serbia,0,Europe
 Seychelles,0,Africa
 Sierra Leone,0,Africa
 Solomon Islands,0,Oceania
@@ -190,12 +192,10 @@ Sudan,0,Africa
 Suriname,0,South America
 Swaziland,0,Africa
 Syria,0,Asia
-Tajikistan,0,Asia
 Tanzania,0,Africa
 Timor-Leste,0,Asia
 Togo,0,Africa
 Tonga,0,Oceania
-Trinidad & Tobago,0,North America
 Turkmenistan,0,Asia
 Tuvalu,0,Oceania
 US Virgin Islands,0,North America
