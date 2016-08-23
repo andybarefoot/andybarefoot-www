@@ -6,34 +6,6 @@ body {
   font-size: 20px;
 }
 
-#barefoot-footer {
-  padding: 5px;
-  font-size: 16px;
-  color: #FFF;
-  background: #00A6FF;
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-weight: 300;
-  text-align:right;
-}
-
-#barefoot-footer a{
-  color: #FFF;
-}
-
-#barefoot-footer li {
-  display: inline;
-}
-
-#barefoot-footer li img{
-  width: 16px;
-  height: 16px;
-  margin: 0 4px 0 0;
-}
-
-#barefoot-home-links{
-  float: left;
-}
-
 #main-content{
   margin: 15px;
 }
@@ -61,8 +33,28 @@ p {
 }
 
 text {
-  font-size: 14px;
+  font-size: 13px;
   fill: #37474F;
+}
+
+.country1 {
+  font-size: 14px;
+}
+
+.country2 {
+  font-size: 12px;
+}
+
+.country3 {
+  font-size: 11px;
+}
+
+.country4 {
+  font-size: 10px;
+}
+
+.country5 {
+  font-size: 9px;
 }
 
 .axis {

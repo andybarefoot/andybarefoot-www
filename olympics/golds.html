@@ -8,9 +8,11 @@
     <meta property="og:description" content="Data visualisation of all gold medals awarded during the Summer Olympics 2016." />
     <meta property="og:image" content="http://www.andybarefoot.com/olympics/images/fb-golds.png" />
     <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="medals.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="css/medals.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+    <script src="/jscript/analyticstracking.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="//d3js.org/d3.v3.min.js"></script>
   </head>
@@ -36,14 +38,14 @@
 
 
 var dataFiles = [
-    ['csv/compsTotal.csv','Competitors','The number of athletes each nation has sent to the Olympic Games.','competitors'],
-    ['csv/medalsTotal.csv','Medals','The total number of medals each nation has won so far.','medals'],
-    ['csv/golds.csv','Gold Medals','The total number of gold medals each nation has won so far.','gold-medals'],
-    ['csv/sporty.csv','Participation','The number of competitors each nation sent to the Olympics per million of population.','participation'],
-    ['csv/efficiency.csv','Medal Efficiency','The number of medals each nation has won per 100 competitors they sent.','medal-efficiency'],
-    ['csv/goldEfficiency.csv','Gold Efficiency','The number of gold medals each nation has won per 100 competitors they sent.','gold-efficiency'],
-    ['csv/talented.csv','Population Talent','The number of medals each nation has won per million of population.','population-talent'],
-    ['csv/goldTalent.csv','Gold Talent','The number of gold medals each nation has won per million of population.','gold-talent']
+    ['data/compsTotal.csv','Competitors','The number of athletes each nation has sent to the Olympic Games.','competitors'],
+    ['data/medalsTotal.csv','Medals','The total number of medals each nation has won so far.','medals'],
+    ['data/golds.csv','Gold Medals','The total number of gold medals each nation has won so far.','gold-medals'],
+    ['data/sporty.csv','Participation','The number of competitors each nation sent to the Olympics per million of population.','participation'],
+    ['data/efficiency.csv','Medal Efficiency','The number of medals each nation has won per 100 competitors they sent.','medal-efficiency'],
+    ['data/goldEfficiency.csv','Gold Efficiency','The number of gold medals each nation has won per 100 competitors they sent.','gold-efficiency'],
+    ['data/talented.csv','Population Talent','The number of medals each nation has won per million of population.','population-talent'],
+    ['data/goldTalent.csv','Gold Talent','The number of gold medals each nation has won per million of population.','gold-talent']
 ]
 
 for(i=0;i<dataFiles.length;i++){
@@ -58,7 +60,7 @@ for(i=0;i<dataFiles.length;i++){
       newButton.appendTo($("#buttons"));
 
       var files = [
-        ['medalsSports.json']
+        ['data/medalsSports.json']
       ];
 
       var svg;
@@ -297,17 +299,6 @@ function changeText(name,size,children){
         }else{
           $( this ).hide();
         }
-
-
-//          $( this ).css("visibility", "visible");
-
-  //      if((Math.abs(x1)>0.1)&&(Math.abs(x2)>0.1)&&(Math.abs(y1)>0.1)&&(Math.abs(y2)>0.1)){
-//        if(!((Math.abs(x1)<0.1)&&(Math.abs(x2)<0.1)&&(y1*y1>0))){
-//        if(true){
-//        }
-//        if($( this ).attr("data-show")=="no"){
-  //        $( this ).hide();
-    //    }
       });
       
   }, 800);
@@ -561,20 +552,19 @@ function changeText(name,size,children){
       $(document).ready(loadData(files[0]));
 
     </script>
-  <div id="barefoot-footer">
-    <div id="barefoot-home-links">
-      <a href="/">Andy Barefoot</a> > Olympics
+<!-- FOOTER: Requires footer.css & Open Sans font to be included -->
+<!-- Modified version to other pages with no <li> due to jQuery for chart -->
+    <div id="barefoot-footer">
+      <div id="barefoot-home-links">
+        <a href="/">Andy Barefoot</a> > Olympics
+      </div>
+      <div id="barefoot-social-links">
+        <div id="barefoot-social-links">
+          <a href="https://www.linkedin.com/in/andybarefoot/" target="_blank"><img src="/images/icons/png32/linkedin.png"></a><a href="mailto:andy@andybarefoot.com"><img src="/images/icons/png32/email.png"></a><a href="http://instagram.com/andybarefoot" target="_blank"><img src="/images/icons/png32/instagram.png"></a><a href="http://twitter.com/andybarefoot" target="_blank"><img src="/images/icons/png32/twitter.png"></a><a href="http://www.facebook.com/profile.php?id=729980577" target="_blank"><img src="/images/icons/png32/facebook.png"></a>
+        </div>
+      </div>
     </div>
-    <div id="barefoot-social-links">
-     <div id="barefoot-social-links">
-      <a href="https://www.linkedin.com/in/andybarefoot/" target="_blank"><img src="/images/icons/png32/linkedin.png"></a>
-      <a href="mailto:andy@andybarefoot.com"><img src="/images/icons/png32/email.png"></a>
-      <a href="http://instagram.com/andybarefoot" target="_blank"><img src="/images/icons/png32/instagram.png"></a>
-      <a href="http://twitter.com/andybarefoot" target="_blank"><img src="/images/icons/png32/twitter.png"></a>
-      <a href="http://www.facebook.com/profile.php?id=729980577" target="_blank"><img src="/images/icons/png32/facebook.png"></a>
-    </div>
-    </div>
-  </div>
+<!-- END FOOTER -->
   </body>
 </html>
 

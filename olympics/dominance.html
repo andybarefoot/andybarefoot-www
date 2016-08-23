@@ -8,9 +8,11 @@
     <meta property="og:description" content="Data visualisations of some key numbers from the 2016 Summer olympics." />
     <meta property="og:image" content="http://www.andybarefoot.com/olympics/images/fb-dominance.png" />
     <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="dominance.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="css/dominance.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+    <script src="/jscript/analyticstracking.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="/jscript/d3.v3.min.js"></script>
     </head>
@@ -25,14 +27,14 @@
       <script>
 
         var dataFiles = [
-        ['csv/compsTotal.csv','Competitors','The number of athletes each nation has sent to the Olympic Games.','competitors'],
-        ['csv/medalsTotal.csv','Medals','The total number of medals each nation has won so far.','medals'],
-        ['csv/golds.csv','Gold Medals','The total number of gold medals each nation has won so far.','gold-medals'],
-        ['csv/sporty.csv','Participation','The number of competitors each nation sent to the Olympics per million of population.','participation'],
-        ['csv/efficiency.csv','Medal Efficiency','The number of medals each nation has won per 100 competitors they sent.','medal-efficiency'],
-        ['csv/goldEfficiency.csv','Gold Efficiency','The number of gold medals each nation has won per 100 competitors they sent.','gold-efficiency'],
-        ['csv/talented.csv','Population Talent','The number of medals each nation has won per million of population.','population-talent'],
-        ['csv/goldTalent.csv','Gold Talent','The number of gold medals each nation has won per million of population.','gold-talent']
+        ['data/compsTotal.csv','Competitors','The number of athletes each nation has sent to the Olympic Games.','competitors'],
+        ['data/medalsTotal.csv','Medals','The total number of medals each nation has won so far.','medals'],
+        ['data/golds.csv','Gold Medals','The total number of gold medals each nation has won so far.','gold-medals'],
+        ['data/sporty.csv','Participation','The number of competitors each nation sent to the Olympics per million of population.','participation'],
+        ['data/efficiency.csv','Medal Efficiency','The number of medals each nation has won per 100 competitors they sent.','medal-efficiency'],
+        ['data/goldEfficiency.csv','Gold Efficiency','The number of gold medals each nation has won per 100 competitors they sent.','gold-efficiency'],
+        ['data/talented.csv','Population Talent','The number of medals each nation has won per million of population.','population-talent'],
+        ['data/goldTalent.csv','Gold Talent','The number of gold medals each nation has won per million of population.','gold-talent']
         ]
 
         for(i=0;i<dataFiles.length;i++){
@@ -280,46 +282,24 @@
           d3.json(dataFile, draw);
         }
 
-        $(document).ready(loadData('dominance.json'));
-
-/*
-yOff=0;
-//$("body").append( "<svg viewBox='0 0 1020 4000'></svg>" );
-$("svg").append( "<g class='allSports' transform=translate(190,30)></g>" );
-$.getJSON( "dominance.json", function( data ) {  
-  $.each(data['sports'], function(key, value) {
-//    console.log(value['Sport']);
-//    console.log(value['Golds']);
-//    console.log(value['dominance']);
-//    console.log(value['countries']);
-    sport = value['Sport'];
-    stripSport = sport.replace(/ /g,'');   
-    g="<g id='"+stripSport+"' class='sport' transform=translate(0,"+yOff+")></g>";
-    s="<text dy='.32em' x='-3' y='0' style='text-anchor: end;'>"+sport+"</text>";
-    thisG = $(".allSports").append( g );
-    thisG.append(s);
-    yOff+=100;
-  });
-});
-
-//$("body").html($("body").html());
-
-*/
+        $(document).ready(loadData('data/dominance.json'));
 
 </script>
-  <div id="barefoot-footer">
-    <div id="barefoot-home-links">
-      <a href="/">Andy Barefoot</a> > Olympics
-    </div>
-    <div id="barefoot-social-links">
-      <ul>
-        <li><a href="https://www.linkedin.com/in/andybarefoot/" target="_blank"><img src="/images/icons/png32/linkedin.png"></a></li>
-        <li><a href="mailto:andy@andybarefoot.com"><img src="/images/icons/png32/email.png"></a></li>
-        <li><a href="http://instagram.com/andybarefoot" target="_blank"><img src="/images/icons/png32/instagram.png"></a></li>
-        <li><a href="http://twitter.com/andybarefoot" target="_blank"><img src="/images/icons/png32/twitter.png"></a></li>
-        <li><a href="http://www.facebook.com/profile.php?id=729980577" target="_blank"><img src="/images/icons/png32/facebook.png"></a></li>
-      </ul>
-    </div>
-  </div>
+<!-- FOOTER: Requires footer.css & Open Sans font to be included -->
+      <div id="barefoot-footer">
+        <div id="barefoot-home-links">
+          <a href="/">Andy Barefoot</a> > Olympics
+        </div>
+        <div id="barefoot-social-links">
+          <ul>
+            <li><a href="https://www.linkedin.com/in/andybarefoot/" target="_blank"><img src="/images/icons/png32/linkedin.png"></a></li>
+            <li><a href="mailto:andy@andybarefoot.com"><img src="/images/icons/png32/email.png"></a></li>
+            <li><a href="http://instagram.com/andybarefoot" target="_blank"><img src="/images/icons/png32/instagram.png"></a></li>
+            <li><a href="http://twitter.com/andybarefoot" target="_blank"><img src="/images/icons/png32/twitter.png"></a></li>
+            <li><a href="http://www.facebook.com/profile.php?id=729980577" target="_blank"><img src="/images/icons/png32/facebook.png"></a></li>
+          </ul>
+        </div>
+      </div>
+<!-- END FOOTER -->
 </body>
 </html>

@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -30px; 
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+#barefoot-footer, .page-wrap:after {
+  height: 30px; 
+}
+
+#barefoot-footer {
+	clear: both;
+	font-size: 16px;
+	color: #FFF;
+	background: #00A6FF;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: 300;
+	text-align:right;
+}
+
+#barefoot-footer a{
+  color: #FFF;
+}
+
+#barefoot-footer li {
+  display: inline;
+}
+
+#barefoot-footer img{
+  width: 16px;
+  height: 16px;
+  margin: 7px 7px 0 0;
+}
+
+#barefoot-home-links{
+  float: left;
+  margin: 7px 0 0 7px;
+}
+

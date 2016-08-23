@@ -8,11 +8,13 @@
 		<meta property="og:title" content="Cocktails" />
 		<meta property="og:description" content="Cocktails: A data visualisation of cocktail recipes" />
 		<meta property="og:image" content="http://www.andybarefoot.com/cocktails/fb-cocktails.png" />
-
 		<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400i" rel="stylesheet">
+	    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+		<script src="/jscript/analyticstracking.js"></script>
 		<script src="/jscript/d3.v4.min.js"></script>
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<link rel="stylesheet" href="../css/reset.css">
+		<link rel="stylesheet" href="/css/reset.css">
+		<link rel="stylesheet" href="/css/footer.css">
 		<link rel="stylesheet" href="cocktails.css">
 	   <script>
 			// VARIABLES
@@ -102,7 +104,7 @@
 	   		function draw(data) {
 				console.log(data);
 				// For each cocktail create a new div containing a SVG
-				var node = d3.select("body")
+				var node = d3.select("#mainContent")
 					.selectAll(".node")
 					.data(data)
 					.enter()
@@ -425,11 +427,29 @@
 				<p>An exercise in using D3.js and SVG to create data visualisations of cocktails and their ingredients by <a href="http://www.andybarefoot.com" target="_blank">Andy Barefoot</a>. Based on this <a href="http://www.informationisbeautiful.net/visualizations/cocktails/" target="_blank">original visualisation</a> by Tatjana Dubovina & David McCandless.</p>
 			</div>
 		</div>
+		<div id="mainContent">
+		</div>
 		<script>
 			d3.json("cocktails.json", draw); 
 //			$(window).resize(drawChart);
 //			$( document ).ready(drawChart);
 		</script>
+<!-- FOOTER: Requires footer.css & Open Sans font to be included -->
+     <div id="barefoot-footer">
+        <div id="barefoot-home-links">
+          <a href="/">Andy Barefoot</a> > Cocktails
+        </div>
+        <div id="barefoot-social-links">
+          <ul>
+            <li><a href="https://www.linkedin.com/in/andybarefoot/" target="_blank"><img src="/images/icons/png32/linkedin.png"></a></li>
+            <li><a href="mailto:andy@andybarefoot.com"><img src="/images/icons/png32/email.png"></a></li>
+            <li><a href="http://instagram.com/andybarefoot" target="_blank"><img src="/images/icons/png32/instagram.png"></a></li>
+            <li><a href="http://twitter.com/andybarefoot" target="_blank"><img src="/images/icons/png32/twitter.png"></a></li>
+            <li><a href="http://www.facebook.com/profile.php?id=729980577" target="_blank"><img src="/images/icons/png32/facebook.png"></a></li>
+          </ul>
+        </div>
+      </div>
+<!-- END FOOTER -->
 	</body>
 </html>
 

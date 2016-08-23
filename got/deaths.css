@@ -74,6 +74,10 @@ h2 .charLink{
 	line-height: 18px;
 }
 
+svg {
+	margin-bottom: 100px;
+}
+
 svg .node text {
 	font-size: 16px;
 	font-family: 'Trirong', georgia, times, serif;

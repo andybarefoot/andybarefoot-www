@@ -8,32 +8,7 @@
     font-size: 20px;
     color: #37474F;
   }
-  #barefoot-footer {
-    clear: both;
-    padding: 5px;
-    font-size: 16px;
-    color: #FFF;
-    background: #00A6FF;
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-weight: 300;
-    text-align:right;
-    margin-top: 200px;
-  }
-
-  #barefoot-footer a{
-    color: #FFF;
-  }
-
-  #barefoot-footer img{
-    width: 16px;
-    height: 16px;
-    margin: 0 4px 0 0;
-  }
-
-  #barefoot-home-links{
-    float: left;
-  }
-
+  
   #main-content{
     margin: 15px;
   }
