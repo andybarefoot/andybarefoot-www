@@ -11,7 +11,8 @@ html {
 
 body {
 	color: #fff;
-	background-color: #616161;
+	background-color: #363537;
+/*	background-color: #333333; */
 	font-family: 'Open Sans Condensed', sans-serif;
 }
 
@@ -60,7 +61,8 @@ h3 a {
 }
 
 #contact {
-	background-color: #00A6FF;
+	background-color: #08BDBD;
+/*	background-color: #00A6FF; */
 	padding: 18px 18px 8px 18px ;
 	color: #FFFFFF;
 }
@@ -143,17 +145,22 @@ hgroup li img{
 }
 
 .sectionTitle {
-	background-color: #333333;
+011627
+	background-color: #01161E;
+	background-color: #011627;
+/*	background-color: #333333; */
 }
 
 .projectTitle {
 	cursor: pointer;
-	background-color: #ffd900;
+	background-color: #E40066;
+/*	background-color: #ffd900; */
 }
 
 .highlightTitle {
 	cursor: pointer;
-	background-color: #17e004;
+	background-color: #345995;
+/*	background-color: #17e004; */
 }
 
 .projectDesc {
@@ -182,7 +189,8 @@ hgroup li img{
 /* dateText: area of social post showing date posted and sharing options */
 .dateText {
 	color: #fff;
-	background-color: #FF5900;
+	background-color: #FB4D3D;
+/*	background-color: #FF5900; */
 	padding: 24px;
 	font-size: 1.4em;
 }
