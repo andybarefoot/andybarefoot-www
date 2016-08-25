@@ -1,0 +1,222 @@
+[
+{
+	"record":"World Record for individual event",
+	"events":[
+		{
+			"recordStr":"12.20 s",
+			"percent":"1.00",
+			"holder":"Kendra Harrison",
+			"score":"1248",
+			"date":"",
+			"venue":""
+		},{
+			"recordStr":"2.09 m",
+			"percent":"1",
+			"holder":"Stefka Kostadinova",
+			"score":"1359",
+			"date":"",
+			"venue":""
+		},{
+			"recordStr":"22.63 m",
+			"percent":"1",
+			"holder":"Natalya Lisovskaya",
+			"score":"1378",
+			"date":"",
+			"venue":""
+		},{
+			"recordStr":"21.34 s",
+			"percent":"1",
+			"holder":"Florence Griffith Joyner",
+			"score":"1251",
+			"date":"",
+			"venue":""
+		},{
+			"recordStr":"7.52 m",
+			"percent":"1",
+			"holder":"Galina Chistyakova",
+			"score":"1351",
+			"date":"",
+			"venue":""
+		},{
+			"recordStr":"72.28 m",
+			"percent":"1",
+			"holder":"Barbora Špotáková",
+			"score":"1295",
+			"date":"",
+			"venue":""
+		},{
+			"recordStr":"1 min 53.28",
+			"percent":"1",
+			"holder":"Jarmila Kratochvílová",
+			"score":"1224",
+			"date":"",
+			"venue":""
+		}
+	]
+},
+{
+	"record":"Best ever during Heptathlon",
+	"events":[
+		{
+			"recordStr":"12.54 s",
+			"percent":"0.972886762360446",
+			"holder":"Jessica Ennis",
+			"score":"1195",
+			"date":"",
+			"venue":""
+		},{
+			"recordStr":"1.98 m",
+			"percent":"0.947368421052632",
+			"holder":"Nafissatou Thiam & Katarina Johnson-Thompson",
+			"score":"1211",
+			"date":"",
+			"venue":""
+		},{
+			"recordStr":"17.31 m",
+			"percent":"0.764913831197525",
+			"holder":"Austra Skujytė",
+			"score":"1016",
+			"date":"",
+			"venue":""
+		},{
+			"recordStr":"22.30 s",
+			"percent":"0.95695067264574",
+			"holder":"Jackie Joyner Kersee",
+			"score":"1150",
+			"date":"",
+			"venue":""
+		},{
+			"recordStr":"7.27 m",
+			"percent":"0.966755319148936",
+			"holder":"Jackie Joyner Kersee",
+			"score":"1264",
+			"date":"",
+			"venue":""
+		},{
+			"recordStr":"60.90 m",
+			"percent":"0.842556723851688",
+			"holder":"Barbora Špotáková",
+			"score":"1072",
+			"date":"",
+			"venue":""
+		},{
+			"recordStr":"2 min 01.84",
+			"percent":"0.929743926460932",
+			"holder":"Nadine Debois",
+			"score":"1087",
+			"date":"",
+			"venue":""
+		}
+	]
+},
+{
+	"record":"Olympics 2016 Heptathlon Gold",
+	"events":[
+		{
+			"recordStr":"13.56 s",
+			"percent":"0.899705014749262",
+			"holder":"Nafissatou Thiam (BEL)",
+			"score":"1041",
+			"date":"12 August 2016",
+			"venue":"Rio de Janeiro, Brazil"
+		},{
+			"recordStr":"1.98 m",
+			"percent":"0.947368421052632",
+			"holder":"Nafissatou Thiam (BEL)",
+			"score":"1211",
+			"date":"12 August 2016",
+			"venue":"Rio de Janeiro, Brazil"
+		},{
+			"recordStr":"14.91 m",
+			"percent":"0.658859920459567",
+			"holder":"Nafissatou Thiam (BEL)",
+			"score":"855",
+			"date":"12 August 2016",
+			"venue":"Rio de Janeiro, Brazil"
+		},{
+			"recordStr":"25.10 s",
+			"percent":"0.850199203187251",
+			"holder":"Nafissatou Thiam (BEL)",
+			"score":"878",
+			"date":"12 August 2016",
+			"venue":"Rio de Janeiro, Brazil"
+		},{
+			"recordStr":"6.58 m",
+			"percent":"0.875",
+			"holder":"Nafissatou Thiam (BEL)",
+			"score":"1033",
+			"date":"13 August 2016",
+			"venue":"Rio de Janeiro, Brazil"
+		},{
+			"recordStr":"53.13 m",
+			"percent":"0.735058107360266",
+			"holder":"Nafissatou Thiam (BEL)",
+			"score":"921",
+			"date":"13 August 2016",
+			"venue":"Rio de Janeiro, Brazil"
+		},{
+			"recordStr":"2 min 16.54",
+			"percent":"0.829646989893072",
+			"holder":"Nafissatou Thiam (BEL)",
+			"score":"871",
+			"date":"13 August 2016",
+			"venue":"Rio de Janeiro, Brazil"
+		}
+	]
+},
+{
+	"record":"Heptathlon World Record",
+	"events":[
+		{
+			"recordStr":"12.69 s",
+			"percent":"0.961386918833727",
+			"holder":"Jackie Joyner-Kersey",
+			"score":"1172",
+			"date":"23 September 1988",
+			"venue":"Seoul, Korea"
+		},{
+			"recordStr":"1.86 m",
+			"percent":"0.889952153110048",
+			"holder":"Jackie Joyner-Kersey",
+			"score":"1054",
+			"date":"23 September 1988",
+			"venue":"Seoul, Korea"
+		},{
+			"recordStr":"15.80 m",
+			"percent":"0.69818824569156",
+			"holder":"Jackie Joyner-Kersey",
+			"score":"915",
+			"date":"23 September 1988",
+			"venue":"Seoul, Korea"
+		},{
+			"recordStr":"22.56 s",
+			"percent":"0.945921985815603",
+			"holder":"Jackie Joyner-Kersey",
+			"score":"1123",
+			"date":"23 September 1988",
+			"venue":"Seoul, Korea"
+		},{
+			"recordStr":"7.27 m",
+			"percent":"0.966755319148936",
+			"holder":"Jackie Joyner-Kersey",
+			"score":"1264",
+			"date":"24 September 1988",
+			"venue":"Seoul, Korea"
+		},{
+			"recordStr":"45.66 m",
+			"percent":"0.631710016602103",
+			"holder":"Jackie Joyner-Kersey",
+			"score":"776",
+			"date":"24 September 1988",
+			"venue":"Seoul, Korea"
+		},{
+			"recordStr":"2 min 08.51",
+			"percent":"0.881487821959381",
+			"holder":"Jackie Joyner-Kersey",
+			"score":"987",
+			"date":"24 September 1988",
+			"venue":"Seoul, Korea"
+		}
+	]
+}
+]

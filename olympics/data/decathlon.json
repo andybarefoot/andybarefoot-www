@@ -1,211 +1,173 @@
 [
 {
-	"record":"World Record",
+	"record":"World Record for individual event",
 	"events":[
 		{
-			"event":"100 metres",
-			"recordStr":"9.58 seconds",
-			"record":"",
-			"units":"m/s",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Long Jump",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Shot Put",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"High Jump",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"400 metres",
-			"recordStr":"",
-			"record":"",
-			"units":"m/s",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"110 metre hurdles",
-			"recordStr":"",
-			"record":"",
-			"units":"m/s",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Discus",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Pole vault",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Javelin",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"1500 metres",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
+			"recordID":0,
+			"recordStr":"9.58 s",
+			"percent":"1",
+			"holder":"Usain Bolt (JAM)",
+			"score":"1,202",
+			"date":"16 August 2009",
+			"venue":"Berlin"
+		},{
+			"recordID":0,
+			"recordStr":"8.95 m",
+			"percent":"1",
+			"holder":"Mike Powell (USA)",
+			"score":"1,312",
+			"date":"30 August 1991",
+			"venue":"Tokyo"
+		},{
+			"recordID":0,
+			"recordStr":"23.12 m",
+			"percent":"1",
+			"holder":"Randy Barnes (USA)",
+			"score":"1,295",
+			"date":"20 May 1990",
+			"venue":"Westwood"
+		},{
+			"recordID":0,
+			"recordStr":"2.45 m",
+			"percent":"1",
+			"holder":"Javier Sotomayor (CUB)",
+			"score":"1,244",
+			"date":"27 July 1993",
+			"venue":"Salamanca"
+		},{
+			"recordID":0,
+			"recordStr":"43.03 s",
+			"percent":"1",
+			"holder":"Wayde van Niekerk (RSA)",
+			"score":"1,164",
+			"date":"14 August 2016",
+			"venue":"Rio de Janeiro"
+		},{
+			"recordID":0,
+			"recordStr":"12.80 s",
+			"percent":"1.00",
+			"holder":"Aries Merritt (USA)",
+			"score":"1,135",
+			"date":"7 September 2012",
+			"venue":"Brussels"
+		},{
+			"recordID":0,
+			"recordStr":"74.08 m",
+			"percent":"1",
+			"holder":"Jürgen Schult (GDR)",
+			"score":"1,383",
+			"date":"6 June 1986",
+			"venue":"Neubrandenburg"
+		},{
+			"recordID":0,
+			"recordStr":"6.16 m",
+			"percent":"1",
+			"holder":"Renaud Lavillenie (FRA)",
+			"score":"1,284",
+			"date":"15 February 2014",
+			"venue":"Donetsk"
+		},{
+			"recordID":0,
+			"recordStr":"98.48 m",
+			"percent":"1",
+			"holder":"Jan Železný (CZE)",
+			"score":"1,331",
+			"date":"25 May 1996",
+			"venue":"Jena"
+		},{
+			"recordID":0,
+			"recordStr":"3 m 26.00 s",
+			"percent":"1",
+			"holder":"Hicham El Guerrouj (MAR)",
+			"score":"1,218",
+			"date":"14 July 1998",
+			"venue":"Rome"
 		}
 	]
 },
 {
-	"record":"Decathlon Record",
+	"record":"Best ever during Decathlon",
 	"events":[
 		{
-			"event":"100 metres",
-			"recordStr":"",
-			"record":"",
-			"units":"m/s",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Long Jump",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Shot Put",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"High Jump",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"400 metres",
-			"recordStr":"",
-			"record":"",
-			"units":"m/s",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"110 metre hurdles",
-			"recordStr":"",
-			"record":"",
-			"units":"m/s",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Discus",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Pole vault",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Javelin",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"1500 metres",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
+			"recordID":1,
+			"recordStr":"10.15 s",
+			"percent":"0.94384236453202",
+			"holder":"Damian Warner (CAN)",
+			"score":"1,059",
+			"date":"28 May 2016",
+			"venue":"Götzis"
+		},{
+			"recordID":1,
+			"recordStr":"8.23 m",
+			"percent":"0.919553072625698",
+			"holder":"Ashton Eaton (USA)",
+			"score":"1,120",
+			"date":"22 June 2012",
+			"venue":"Eugene"
+		},{
+			"recordID":1,
+			"recordStr":"19.17 m",
+			"percent":"0.829152249134948",
+			"holder":"Edy Hubacher (SUI)",
+			"score":"1,048",
+			"date":"5 October 1969",
+			"venue":"Bern"
+		},{
+			"recordID":1,
+			"recordStr":"2.27 m",
+			"percent":"0.926530612244898",
+			"holder":"Rolf Beilschmidt (GDR) & Christian Schenk (GDR)",
+			"score":"1,061",
+			"date":"1 October 1977 & 28 September 1988",
+			"venue":"Jena & Seoul"
+		},{
+			"recordID":1,
+			"recordStr":"45.00 s",
+			"percent":"0.956222222222222",
+			"holder":"Ashton Eaton (USA)",
+			"score":"1,060",
+			"date":"28 August 2015",
+			"venue":"Beijing"
+		},{
+			"recordID":1,
+			"recordStr":"13.44 s",
+			"percent":"0.952380952380952",
+			"holder":"Damian Warner (CAN)",
+			"score":"1,048",
+			"date":"23 July 2015",
+			"venue":"Toronto"
+		},{
+			"recordID":1,
+			"recordStr":"55.87 m",
+			"percent":"0.754184665226782",
+			"holder":"Bryan Clay (USA)",
+			"score":"993",
+			"date":"24 June 2005",
+			"venue":"Carson"
+		},{
+			"recordID":1,
+			"recordStr":"5.76 m",
+			"percent":"0.935064935064935",
+			"holder":"Tim Lobinger (GER)",
+			"score":"1,152",
+			"date":"16 September 1999",
+			"venue":"Leverkusen"
+		},{
+			"recordID":1,
+			"recordStr":"79.80 m",
+			"percent":"0.810316815597075",
+			"holder":"Peter Blank (FRG)",
+			"score":"1,040",
+			"date":"19 July 1992",
+			"venue":"Emmelshausen"
+		},{
+			"recordID":1,
+			"recordStr":"3 m 58.70 s",
+			"percent":"0.863007959782153",
+			"holder":"Robert Baker (USA)",
+			"score":"963",
+			"date":"3 April 1980",
+			"venue":"Austin"
 		}
 	]
 },
@@ -213,314 +175,148 @@
 	"record":"Olympics 2016 Decathlon Gold",
 	"events":[
 		{
-			"event":"100 metres",
-			"recordStr":"",
-			"record":"",
-			"units":"m/s",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Long Jump",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Shot Put",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"High Jump",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"400 metres",
-			"recordStr":"",
-			"record":"",
-			"units":"m/s",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"110 metre hurdles",
-			"recordStr":"",
-			"record":"",
-			"units":"m/s",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Discus",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Pole vault",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Javelin",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"1500 metres",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
+			"recordStr":"10.46 s",
+			"percent":"0.915869980879541",
+			"holder":"Ashton Eaton (USA)",
+			"score":"985",
+			"date":"17 August 2016",
+			"venue":"Rio de Janeiro, Brazil"
+		},{
+			"recordStr":"7.94 m",
+			"percent":"0.887150837988827",
+			"holder":"Ashton Eaton (USA)",
+			"score":"1045",	"date":"17 August 2016",
+			"venue":"Rio de Janeiro, Brazil"
+		},{
+			"recordStr":"14.73 m",
+			"percent":"0.637110726643599",
+			"holder":"Ashton Eaton (USA)",
+			"score":"773",
+			"date":"17 August 2016",
+			"venue":"Rio de Janeiro, Brazil"
+		},{
+			"recordStr":"2.01 m",
+			"percent":"0.820408163265306",
+			"holder":"Ashton Eaton (USA)",
+			"score":"813",
+			"date":"17 August 2016",
+			"venue":"Rio de Janeiro, Brazil"
+		},{
+			"recordStr":"46.07 s",
+			"percent":"0.934013457781637",
+			"holder":"Ashton Eaton (USA)",
+			"score":"1005",	"date":"17 August 2016",
+			"venue":"Rio de Janeiro, Brazil"
+		},{
+			"recordStr":"13.80 s",
+			"percent":"0.93",
+			"holder":"Ashton Eaton (USA)",
+			"score":"1000",	"date":"18 August 2016",
+			"venue":"Rio de Janeiro, Brazil"
+		},{
+			"recordStr":"45.49 m",
+			"percent":"0.614065874730022",
+			"holder":"Ashton Eaton (USA)",
+			"score":"777",
+			"date":"18 August 2016",
+			"venue":"Rio de Janeiro, Brazil"
+		},{
+			"recordStr":"5.20 m",
+			"percent":"0.844155844155844",
+			"holder":"Ashton Eaton (USA)",
+			"score":"972",
+			"date":"18 August 2016",
+			"venue":"Rio de Janeiro, Brazil"
+		},{
+			"recordStr":"59.77 m",
+			"percent":"0.606925264012998",
+			"holder":"Ashton Eaton (USA)",	
+			"score":"734",
+			"date":"18 August 2016",
+			"venue":"Rio de Janeiro, Brazil"
+		},{
+			"recordStr":"4m 23.33 s",
+			"percent":"0.782288383397258",
+			"holder":"Ashton Eaton (USA)",
+			"score":"789",
+			"date":"18 August 2016",
+			"venue":"Rio de Janeiro, Brazil"
 		}
 	]
 },
 {
-	"record":"Ashton Easton Personal Bests",
+	"record":"Decathlon World Record",
 	"events":[
 		{
-			"event":"100 metres",
-			"recordStr":"",
-			"record":"",
-			"units":"m/s",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Long Jump",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Shot Put",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"High Jump",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"400 metres",
-			"recordStr":"",
-			"record":"",
-			"units":"m/s",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"110 metre hurdles",
-			"recordStr":"",
-			"record":"",
-			"units":"m/s",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Discus",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Pole vault",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Javelin",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"1500 metres",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		}
-	]
-},
-{
-	"record":"Olympics 2016 Individual Events Gold",
-	"events":[
-		{
-			"event":"100 metres",
-			"recordStr":"",
-			"record":"",
-			"units":"m/s",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Long Jump",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Shot Put",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"High Jump",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"400 metres",
-			"recordStr":"",
-			"record":"",
-			"units":"m/s",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"110 metre hurdles",
-			"recordStr":"",
-			"record":"",
-			"units":"m/s",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Discus",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Pole vault",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"Javelin",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
-		},
-		{
-			"event":"1500 metres",
-			"recordStr":"",
-			"record":"",
-			"units":"m",
-			"holder":"",
-			"country":"",
-			"date":"",
-			"venue":""
+			"recordStr":"10.23 s",
+			"percent":"0.936461388074291",
+			"holder":"Ashton Eaton (USA)",
+			"score":"1040",
+			"date":"28 August 2015",
+			"venue":"Beijing, China"
+		},{
+			"recordStr":"7.88 m",
+			"percent":"0.880446927374302",
+			"holder":"Ashton Eaton (USA)",
+			"score":"1030",
+			"date":"28 August 2015",
+			"venue":"Beijing, China"
+		},{
+			"recordStr":"14.52 m",
+			"percent":"0.6280276816609",
+			"holder":"Ashton Eaton (USA)",
+			"score":"760",
+			"date":"28 August 2015",
+			"venue":"Beijing, China"
+		},{
+			"recordStr":"2.01 m",
+			"percent":"0.820408163265306",
+			"holder":"Ashton Eaton (USA)",
+			"score":"813",
+			"date":"28 August 2015",
+			"venue":"Beijing, China"
+		},{
+			"recordStr":"45.00 s",
+			"percent":"0.956222222222222",
+			"holder":"Ashton Eaton (USA)",
+			"score":"1060",
+			"date":"28 August 2015",
+			"venue":"Beijing, China"
+		},{
+			"recordStr":"13.69 m",
+			"percent":"0.934989043097151",
+			"holder":"Ashton Eaton (USA)",
+			"score":"1015",
+			"date":"29 August 2015",
+			"venue":"Beijing, China"
+		},{
+			"recordStr":"43.34 m",
+			"percent":"0.585043196544277",
+			"holder":"Ashton Eaton (USA)",
+			"score":"733",
+			"date":"29 August 2015",
+			"venue":"Beijing, China"
+		},{
+			"recordStr":"5.20 m",
+			"percent":"0.844155844155844",
+			"holder":"Ashton Eaton (USA)",
+			"score":"972",
+			"date":"29 August 2015",
+			"venue":"Beijing, China"
+		},{
+			"recordStr":"63.63 m",
+			"percent":"0.646121039805037",
+			"holder":"Ashton Eaton (USA)",
+			"score":"793",
+			"date":"29 August 2015",
+			"venue":"Beijing, China"
+		},{
+			"recordStr":"4m 17.52 s",
+			"percent":"0.799937868903386",
+			"holder":"Ashton Eaton (USA)",
+			"score":"829",
+			"date":"29 August 2015",
+			"venue":"Beijing, China"
 		}
 	]
 }

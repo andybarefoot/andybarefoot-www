@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Olympics 2016: Some key numbers</title>
+    <meta charset="utf-8">
+    <meta property="og:url" content="http://www.andybarefoot.com/olympics/decathlon.html" />
+    <meta property="og:title" content="Olympics 2016: Decathlon" />
+    <meta property="og:description" content="Data visualisations of some key numbers from the 2016 Summer olympics." />
+    <meta property="og:image" content="http://www.andybarefoot.com/olympics/images/fb-decathlon.png" />
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="css/decathlon.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+    <script src="/jscript/analyticstracking.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/jscript/d3.v3.min.js"></script>
+    </head>
+    <body>
+     <div id="main-content">
+        <h1>Olympics 2016</h1>
+        <div id="buttons">
+        </div>
+        <h2>Decathlon:</h2>
+        <p>How decathletes compare in each event compared to the individual world records in those events.</p>
+      </div>
+      <script>
+
+        var dataFiles = [
+        ['data/compsTotal.csv','Competitors','The number of athletes each nation has sent to the Olympic Games.','competitors'],
+        ['data/medalsTotal.csv','Medals','The total number of medals each nation has won so far.','medals'],
+        ['data/golds.csv','Gold Medals','The total number of gold medals each nation has won so far.','gold-medals'],
+        ['data/sporty.csv','Participation','The number of competitors each nation sent to the Olympics per million of population.','participation'],
+        ['data/efficiency.csv','Medal Efficiency','The number of medals each nation has won per 100 competitors they sent.','medal-efficiency'],
+        ['data/goldEfficiency.csv','Gold Efficiency','The number of gold medals each nation has won per 100 competitors they sent.','gold-efficiency'],
+        ['data/talented.csv','Population Talent','The number of medals each nation has won per million of population.','population-talent'],
+        ['data/goldTalent.csv','Gold Talent','The number of gold medals each nation has won per million of population.','gold-talent']
+        ]
+
+        var otherPages = [
+        ['golds.html','Golds Awarded'],
+        ['dominance.html','Sport Dominance'],
+        ['decathlon.html','Decathlon']
+        ]
+
+        for(i=0;i<dataFiles.length;i++){
+          var newButton = jQuery('<input/>').attr( { type:"button", class:"button", value:dataFiles[i][1], onclick:"document.location.href = 'index.html#"+dataFiles[i][3]+"'" } );
+          newButton.appendTo($("#buttons"));
+        }
+
+        for(i=0;i<otherPages.length;i++){
+          var newButton = jQuery('<input/>').attr( { type:"button", class:"button", value:otherPages[i][1], onclick:"document.location.href = '"+otherPages[i][0]+"'" } );
+          newButton.appendTo($("#buttons"));
+        }
+    
+        var events = [
+          ["100 metres","9.58 seconds"],
+          ["Long jump","8.95 metres"],
+          ["Shot put","23.12 metres"],
+          ["High jump","2.45 metres"],
+          ["400 metres","43.03 seconds"],
+          ["110 metres hurdles","12.80 seconds"],
+          ["Discus","74.08 metres"],
+          ["Pole vault","6.16 metres"],
+          ["Javelin","98.48 metres"],
+          ["1500 metres","3 minutes 26.00"]
+        ];
+ 
+        var colours = [
+          "#8BC34A",
+          "#673AB7",
+          "#E91E63",
+          "#03A9F4",
+          "#009688",
+          "#FFC107",
+          "#F44336"
+        ];
+
+        var width=1020;
+        var height=1020;
+        var padX1 = 20;
+        var padY1 = 20;
+        var padX2 = 20;
+        var padY2 = 20;
+        var barHeight = 20;
+        var chartWidth = width-(padX1+padX2);
+        var chartHeight = height-(padY1+padY2);
+        var axisLength = chartWidth/2 -40;
+
+        function polarFromCart(length,angle){
+          this.x = length*Math.cos(angle);
+          this.y = length*Math.sin(angle);
+        }
+
+        function draw(data){
+          console.log(data);
+ 
+          svg = d3
+            .select("#main-content")
+            .append("svg")
+            .attr("viewBox", "0 0 " + width + " " + height)
+          ;
+
+          axis = svg
+            .append("g")
+            .attr("id", "axis")
+            .attr("transform", "translate(" + chartWidth/2 + "," + chartHeight/2 + ")")
+          ;
+
+// draw concurrent circles
+          for(k=0;k<10;k++){
+            axis
+              .append("circle")
+              .attr("cx", 0)
+              .attr("cy", 0)
+              .attr("r", (k+1)*axisLength/10)
+              .attr("fill", "none")
+              .attr("style", "stroke:#ECEFF1;stroke-width:1;stroke-opacity:0.8;")
+            ;
+          }
+
+// add an axis for each event
+          for(k=0;k<events.length;k++){
+// add group for each axis
+            axis
+              .append("g")
+              .attr("id", "axis"+k)
+            ;
+// calculate X,Y coordinates for axis and text label
+            lineCoord = new polarFromCart(axisLength, k*2*Math.PI/events.length);
+            textCoord = new polarFromCart(axisLength+20, k*2*Math.PI/events.length);
+            textRotate = 90 + k*360/events.length;
+// draw radial lines for axis
+            axis
+              .select("#axis"+k)
+              .append("line")
+              .attr("x1", 0)
+              .attr("x2", lineCoord.x)
+              .attr("y1", 0)
+              .attr("y2", lineCoord.y)
+              .attr("style", "stroke:#ECEFF1;stroke-width:1;stroke-opacity:0.8;")
+            ;
+// add event name labels
+            axis
+              .select("#axis"+k)
+              .append("text")
+              .attr("class", "scale")
+              .attr("fill", "#ECEFF1")
+              .style("text-anchor", "middle")
+              .attr("transform", "translate(" + textCoord.x + "," + textCoord.y + ") rotate("+ textRotate +",0,0)")
+              .attr("dx", 0)
+              .attr("dy", -8)
+              .text(events[k][0])
+            ;
+// add event World Record labels
+            axis
+              .select("#axis"+k)
+              .append("text")
+              .attr("class", "scale")
+              .attr("fill", "#ECEFF1")
+              .style("text-anchor", "middle")
+              .attr("transform", "translate(" + textCoord.x + "," + textCoord.y + ") rotate("+ textRotate +",0,0)")
+              .attr("dx", 0)
+              .attr("dy", 10)
+              .text("WR: " + events[k][1])
+            ;
+          }
+// add a group for the "records" (sets of results)
+          records = svg
+            .append("g")
+            .attr("id", "records")
+            .attr("transform", "translate(" + chartWidth/2 + "," + chartHeight/2 + ")")
+          ;
+// add a group for each record
+          g = records
+            .selectAll("g")
+            .data(data)
+            .enter()
+            .append("g")
+            .attr("class", function (d,i) {
+              return "record"+i;
+            })
+          ;
+// draw polygon for each record
+          records
+            .selectAll("g")
+            .append("path")
+            .attr("d", function (d,i) {
+              pathStr = "M ";
+                for(z=0;z<d.events.length;z++){
+                  if(z!=0)pathStr+="L ";
+                  thisCoord = new polarFromCart(axisLength*d.events[z].percent, z*2*Math.PI/d.events.length);
+                  pathStr+=thisCoord.x+" "+thisCoord.y+" ";
+                }
+              pathStr+="Z";
+              return pathStr;
+            })
+            .attr("fill", "none")
+            .attr("stroke", function (d,i) {
+              return colours[i];
+            })
+          ;
+// add text to key for each record
+          records
+            .selectAll("g")
+            .append("text")
+            .attr("class", "key")
+            .attr("fill", function (d,i) {
+              return colours[i];
+            })
+            .style("text-anchor", "start")
+            .attr("transform", function (d,i) {
+              return "translate(-30," + ((25*i)-40) + ")";
+            })
+            .text(function (d,i) {
+              return d.record;
+            })
+          ;
+// add line to key for each record
+          records
+            .selectAll("g")
+            .append("line")
+            .attr("x1", -130)
+            .attr("x2", -40)
+            .attr("y1", function (d,i) {
+              return ((25*i)-46);
+            })
+            .attr("y2", function (d,i) {
+              return ((25*i)-46);
+            })
+            .attr("style", function (d,i) {
+              return "stroke:" + colours[i] + ";stroke-width:11;stroke-opacity:1;";
+            })
+          ;
+// for each record add circle for each individual event
+          events = g
+            .selectAll('.record')
+            .data(function (d) {
+              return d.events;
+            })
+            .enter()
+            .append("circle")
+            .attr("cx", function(d,i) { 
+              thisCoord = new polarFromCart(axisLength*d.percent, i*Math.PI/5); 
+              return thisCoord.x;
+            })
+            .attr("cy", function(d,i) { 
+              thisCoord = new polarFromCart(axisLength*d.percent, i*Math.PI/5); 
+              return thisCoord.y;
+            })
+            .attr("r", 4)
+            .attr("fill", function(d,i) {
+              return this.parentNode.getElementsByTagName("path")[0].getAttribute("stroke");
+            })
+            .append("title")
+            .text(function(d) { 
+              console.log(d);
+              return d.recordStr + "\n" + d.holder + "\n" + d.date + "\n" + d.venue; 
+            })
+
+          ;
+
+
+        }
+
+        function loadData(dataFile){
+          d3.json(dataFile, draw);
+        }
+
+        $(document).ready(loadData('data/decathlon.json'));
+
+</script>
+<!-- FOOTER: Requires footer.css & Open Sans font to be included -->
+      <div id="barefoot-footer">
+        <div id="barefoot-home-links">
+          <a href="/">Andy Barefoot</a> > Olympics
+        </div>
+        <div id="barefoot-social-links">
+          <ul>
+            <li><a href="https://www.linkedin.com/in/andybarefoot/" target="_blank"><img src="/images/icons/png32/linkedin.png"></a></li>
+            <li><a href="mailto:andy@andybarefoot.com"><img src="/images/icons/png32/email.png"></a></li>
+            <li><a href="http://instagram.com/andybarefoot" target="_blank"><img src="/images/icons/png32/instagram.png"></a></li>
+            <li><a href="http://twitter.com/andybarefoot" target="_blank"><img src="/images/icons/png32/twitter.png"></a></li>
+            <li><a href="http://www.facebook.com/profile.php?id=729980577" target="_blank"><img src="/images/icons/png32/facebook.png"></a></li>
+          </ul>
+        </div>
+      </div>
+<!-- END FOOTER -->
+</body>
+</html>

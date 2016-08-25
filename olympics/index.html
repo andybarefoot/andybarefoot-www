@@ -56,6 +56,23 @@ var dataFiles = [
     ['data/goldTalent.csv','Gold Talent','The number of gold medals each nation has won per million of population.','gold-talent']
 ]
 
+for(i=0;i<dataFiles.length;i++){
+  var newButton = jQuery('<input/>').attr( { type:"button", class:"button", value:dataFiles[i][1], onclick:"updateData("+i+")" } );
+  newButton.appendTo($("#buttons"));
+}
+
+var otherPages = [
+  ['golds.html','Golds Awarded'],
+  ['dominance.html','Sport Dominance'],
+  ['decathlon.html','Decathlon'],
+  ['heptathlon.html','Heptathlon']
+]
+
+for(i=0;i<otherPages.length;i++){
+  var newButton = jQuery('<input/>').attr( { type:"button", class:"button", value:otherPages[i][1], onclick:"document.location.href = '"+otherPages[i][0]+"'" } );
+  newButton.appendTo($("#buttons"));
+}
+
 var colours = [
   ["#8BC34A",""], // Light Green
   ["#673AB7","Africa"], // Deep Purple
@@ -85,16 +102,6 @@ var svg = d3.select("#main-content").append("svg")
   .append("g")
     .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
 
-for(i=0;i<dataFiles.length;i++){
-    var newButton = jQuery('<input/>').attr( { type:"button", class:"button", value:dataFiles[i][1], onclick:"updateData("+i+")" } );
-    newButton.appendTo($("#buttons"));
-}
-   var newButton = jQuery('<input/>').attr( { type:"button", class:"button", value:"Golds Awarded", onclick:"document.location.href = 'golds.html'" } );
-    newButton.appendTo($("#buttons"));
-
-var newButton = jQuery('<input/>').attr( { type:"button", class:"button", value:"Sport Dominance", onclick:"document.location.href = 'dominance.html'" } );
-
-newButton.appendTo($("#buttons"));
 
 
 function drawChart(dataset){

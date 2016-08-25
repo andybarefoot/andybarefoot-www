@@ -37,27 +37,33 @@
     <script>
 
 
-var dataFiles = [
-    ['data/compsTotal.csv','Competitors','The number of athletes each nation has sent to the Olympic Games.','competitors'],
-    ['data/medalsTotal.csv','Medals','The total number of medals each nation has won so far.','medals'],
-    ['data/golds.csv','Gold Medals','The total number of gold medals each nation has won so far.','gold-medals'],
-    ['data/sporty.csv','Participation','The number of competitors each nation sent to the Olympics per million of population.','participation'],
-    ['data/efficiency.csv','Medal Efficiency','The number of medals each nation has won per 100 competitors they sent.','medal-efficiency'],
-    ['data/goldEfficiency.csv','Gold Efficiency','The number of gold medals each nation has won per 100 competitors they sent.','gold-efficiency'],
-    ['data/talented.csv','Population Talent','The number of medals each nation has won per million of population.','population-talent'],
-    ['data/goldTalent.csv','Gold Talent','The number of gold medals each nation has won per million of population.','gold-talent']
-]
+      var dataFiles = [
+          ['data/compsTotal.csv','Competitors','The number of athletes each nation has sent to the Olympic Games.','competitors'],
+          ['data/medalsTotal.csv','Medals','The total number of medals each nation has won so far.','medals'],
+          ['data/golds.csv','Gold Medals','The total number of gold medals each nation has won so far.','gold-medals'],
+          ['data/sporty.csv','Participation','The number of competitors each nation sent to the Olympics per million of population.','participation'],
+          ['data/efficiency.csv','Medal Efficiency','The number of medals each nation has won per 100 competitors they sent.','medal-efficiency'],
+          ['data/goldEfficiency.csv','Gold Efficiency','The number of gold medals each nation has won per 100 competitors they sent.','gold-efficiency'],
+          ['data/talented.csv','Population Talent','The number of medals each nation has won per million of population.','population-talent'],
+          ['data/goldTalent.csv','Gold Talent','The number of gold medals each nation has won per million of population.','gold-talent']
+      ]
 
-for(i=0;i<dataFiles.length;i++){
-    var newButton = jQuery('<input/>').attr( { type:"button", class:"button", value:dataFiles[i][1], onclick:"document.location.href = 'index.html#"+dataFiles[i][3]+"'" } );
-    newButton.appendTo($("#buttons"));
-}
-    var newButton = jQuery('<input/>').attr( { type:"button", class:"button", value:"Golds Awarded", onclick:"document.location.href = 'golds.html'" } );
-    newButton.appendTo($("#buttons"));
+      var otherPages = [
+        ['golds.html','Golds Awarded'],
+        ['dominance.html','Sport Dominance'],
+        ['decathlon.html','Decathlon'],
+        ['heptathlon.html','Heptathlon']
+      ]
 
-      var newButton = jQuery('<input/>').attr( { type:"button", class:"button", value:"Sport Dominance", onclick:"document.location.href = 'dominance.html'" } );
-  
-      newButton.appendTo($("#buttons"));
+      for(i=0;i<dataFiles.length;i++){
+          var newButton = jQuery('<input/>').attr( { type:"button", class:"button", value:dataFiles[i][1], onclick:"document.location.href = 'index.html#"+dataFiles[i][3]+"'" } );
+          newButton.appendTo($("#buttons"));
+      }
+
+      for(i=0;i<otherPages.length;i++){
+        var newButton = jQuery('<input/>').attr( { type:"button", class:"button", value:otherPages[i][1], onclick:"document.location.href = '"+otherPages[i][0]+"'" } );
+        newButton.appendTo($("#buttons"));
+      }
 
       var files = [
         ['data/medalsSports.json']
