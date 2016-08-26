@@ -32,11 +32,11 @@
         <a class="vis" id="faster" href="javascript:faster()">FASTER</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a class="vis" id="slower" href="javascript:slower()">SLOWER</a></span>
         <div id="matchDetails">
-          <p id="matchNumber">&nbsp;</p>
-          <p id="matchResult">&nbsp;</p>
-          <p id="matchTourn">&nbsp;</p>
-          <p id="matchVenue">&nbsp;</p>
-          <p id="matchChamp">&nbsp;</p>
+          <p id="matchNumber">Last Match: No. 918</p>
+          <p id="matchResult">ARGENTINA 0-0 CHILE</p>
+          <p id="matchTourn">Copa America</p>
+          <p id="matchVenue">EAST RUTHERFORD (26/06/2016)</p>
+          <p id="matchChamp">CHAMPIONS: CHILE</p>
         </div>
      </div>
      </div>
@@ -1276,6 +1276,7 @@
               .append("text")
               .attr("id", "team"+i)
               .attr("class", "team")
+              .attr("stroke", "#5C6672")
               .style("text-anchor", thisStart)
               .attr("transform", "translate(" + thisCoord.x + "," + thisCoord.y + ") rotate("+ thisRotate +",0,0)")
               .attr("dx", xOff)
@@ -1283,7 +1284,7 @@
               .text(teamsData[i][0])
            ;
           }
-          $(".team").hide();
+//          $(".team").hide();
 
 
 // add group for games
@@ -1313,11 +1314,11 @@
               .attr("id", "game"+i)
               .attr("class", "game")
               .attr("fill", "none")
-              .attr("stroke", "#ECEFF1")
+              .attr("stroke", "#5C6672")
               .attr("d", curveStr)
            ;
           }
-          $(".game").hide();
+//          $(".game").hide();
         }
 
         function startVis(){
