@@ -22,9 +22,17 @@ nav {
 }
 
 #logo{
-	float: left;
 	height: 60px;
-	margin: 5px;
+	margin: auto;
+	margin-top: 5px;
+	margin-left: 15px;
+}
+
+#menu-icon {
+	float: right;
+	width: 40px;
+	height: 40px;
+	margin: 15px;
 }
 
 nav ul {
@@ -51,13 +59,6 @@ nav li:first-of-type {
 nav li a{
 	text-decoration: none;
 	color: #1fb3a9;
-}
-
-#menu-icon {
-	float: right;
-	width: 60px;
-	height: 60px;
-	margin: 5px;
 }
 
 #main-body {
@@ -120,6 +121,7 @@ td {
 	nav ul {
 		float: right;
 		display: block;
+		margin-right: 15px;
 		width: auto;
 	}
 	nav li {
@@ -140,6 +142,12 @@ td {
 	}
 	#menu-icon {
 		display: none;
+	}
+	#logo{
+		float: left;
+		height: 60px;
+		margin-left: 20px;
+		margin-top: 5px;
 	}
 }
 
