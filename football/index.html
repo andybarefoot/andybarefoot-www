@@ -26,22 +26,20 @@
         <p>The Unofficial Football World Championships imagines what would happen if the World Football Champions were not decided once every four years at a tournament but instead followed the boxing model.</p>
         <p>Starting from the very first international game between Scotland and England the reigning World Champions retain their crown only until the next match they lose, at which point the title transfers to their victorious opponents.</p>
         <p>This magnificent folly is documented at the <a href="http://www.ufwc.co.uk/">Unofficial Football World Championships</a> and what you can find here is merely an exercise in data visualisation based on their results.</p>
-        <p>Start the visualisation to see each of the 918 matches so far. The reigning champion is shown in gold. Each challenge is shown as a link to the challenging country. If the challenge was successful the link and the new champion is shown in gold. Next to each country is displayed the number of times it has won the title.</p>
-        <div id="run">
+        <p>Start the visualisation to see each of the 920 matches so far. The reigning champion is shown in gold. Each challenge is shown as a link to the challenging country. If the challenge was successful the link and the new champion is shown in gold. Next to each country is displayed the number of times it has won the title.</p>
+        <div id="links">
           <a class="vis" id="start" href="javascript:startVis()">PLAY VISUALISATION</a>
           <a class="vis" id="restart" href="javascript:restartVis()">CONTINUE</a>
-        </div>
-        <div id="pause">
-          <a class="vis" href="javascript:pauseVis()">PAUSE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a class="vis" id="faster" href="javascript:faster()">FASTER</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a class="vis" id="pause" href="javascript:pauseVis()">PAUSE</a>
+          <a class="vis" id="faster" href="javascript:faster()">FASTER</a>
           <a class="vis" id="slower" href="javascript:slower()">SLOWER</a>
         </div>
         <div id="matchDetails">
-          <p id="matchNumber">Last Match: No. 918</p>
-          <p id="matchResult">ARGENTINA 0-0 CHILE</p>
-          <p id="matchTourn">Copa America</p>
-          <p id="matchVenue">EAST RUTHERFORD (26/06/2016)</p>
-          <p id="matchChamp">CHAMPIONS: CHILE</p>
+          <p id="matchNumber">Last Match: No. 920</p>
+          <p id="matchResult">URUGUAY 4-0 PARAGUAY</p>
+          <p id="matchTourn">World Cup Qualifier</p>
+          <p id="matchVenue">MONTEVIDEO (06/09/2016)</p>
+          <p id="matchChamp">CHAMPIONS: URUGUAY</p>
         </div>
      </div>
      </div>
@@ -1220,7 +1218,9 @@
           ["MEXICO","MEXICO","1-1","VENEZUELA","Copa America","13/06/2016","HOUSTON"],
           ["CHILE","MEXICO","0-7","CHILE","Copa America","18/06/2016","SANTA CLARA"],
           ["CHILE","COLOMBIA","0-2","CHILE","Copa America","22/06/2016","CHICAGO"],
-          ["CHILE","ARGENTINA","0-0","CHILE","Copa America","26/06/2016","EAST RUTHERFORD"]
+          ["CHILE","ARGENTINA","0-0","CHILE","Copa America","26/06/2016","EAST RUTHERFORD"],
+          ["PARAGUAY","PARAGUAY","2-1","CHILE","World Cup Qualifier","01/09/2016","ASUNCION"],
+          ["URUGUAY","URUGUAY","4-0","PARAGUAY","World Cup Qualifier","06/09/2016","MONTEVIDEO"]
         ];
 
         var width=1020;
@@ -1333,50 +1333,60 @@
               $("#team"+i).text(teamsData[i][0]);
           }
           speed = 300;
-          $("#faster").show();
-          $("#slower").hide();
+          $("#start").hide();
+          $("#faster").css('display', 'inline-block');
+          $("#pause").css('display', 'inline-block');
           $(".team").hide();
           $(".game").hide();
           runVis = setInterval(showGames, speed);
-          $("#run").hide();
-          $("#pause").show();
         }
+/*
+          <a class="vis" id="start" href="javascript:startVis()">PLAY VISUALISATION</a>
+          <a class="vis" id="restart" href="javascript:restartVis()">CONTINUE</a>
+          <a class="vis" id="pause" href="javascript:pauseVis()">PAUSE</a>
+          <a class="vis" id="faster" href="javascript:faster()">FASTER</a>
+          <a class="vis" id="slower" href="javascript:slower()">SLOWER</a>
+*/
+
 
         function restartVis(){
           runVis = setInterval(showGames, speed);
-          $("#run").hide();
-          $("#pause").show();
+          $("#restart").hide();
+          $("#pause").css('display', 'inline-block');
         }
 
         function pauseVis(){
           clearInterval(runVis);
-          $("#run").show();
-          $("#start").hide();
-          $("#restart").show();
           $("#pause").hide();
+          $("#restart").css('display', 'inline-block');
         }
 
         function stopVis(){
           clearInterval(runVis);
-          $("#run").show();
-          $("#start").show();
+          $("#start").css('display', 'inline-block');
           $("#restart").hide();
           $("#pause").hide();
+          $("#slower").hide();
+          $("#faster").hide();
         }
 
         function faster(){
           speed = 50;
           clearInterval(runVis);
-          $("#slower").show();
+          $("#slower").css('display', 'inline-block');
           $("#faster").hide();
+          $("#restart").hide();
+          $("#pause").css('display', 'inline-block');
           runVis = setInterval(showGames, speed);
         }
 
         function slower(){
           speed = 300;
           clearInterval(runVis);
-          $("#faster").show();
+          $("#faster").css('display', 'inline-block');
           $("#slower").hide();
+          $("#restart").hide();
+          $("#pause").css('display', 'inline-block');
           runVis = setInterval(showGames, speed);
         }
 

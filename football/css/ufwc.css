@@ -60,27 +60,30 @@ a {
 .vis {
   font-family: 'Abril Fatface', cursive;
   font-size: 2em;
+  line-height: 1em;
   text-decoration: none;
-}
-
-#run {
-  margin: auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  display: inline-block;
+  border: 1px solid #d0d0d0;
+  padding: 5px 8px 5px 8px;
 }
 
 #pause {
-  margin: auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  display: inline-block;
   display: none;
 }
 
 #restart {
+  display: inline-block;
+  display: none;
+}
+
+#faster {
+  display: inline-block;
   display: none;
 }
 
 #slower {
+  display: inline-block;
   display: none;
 }
 

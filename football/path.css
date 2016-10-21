@@ -1,0 +1,84 @@
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  color: #d0d0d0;
+  background: #2A2C39;
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-weight: 400;
+  text-align: center;
+  font-size: 1.25em;
+  margin: 0;
+}
+
+h1 {
+  font-family: 'Abril Fatface', cursive;
+  font-size: 3.2em;
+  line-height: 0.8;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+
+h2 {
+  text-align: left;
+  font-family: 'Abril Fatface', cursive;
+  font-size: 1.4em;
+  margin-left: 50px;
+  margin-top: 40px;
+  margin-bottom: 0;
+}
+
+a {
+  color: #d0d0d0;
+}
+
+p {
+  max-width: 700px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.nav {
+  font-size: 1.4em;
+  margin: auto;
+  margin-top: 30px;
+  display: inline-block;
+}
+.navBox {
+  float: left;
+  margin: 0 20px;
+}
+.xaxis path, .xaxis line {
+    fill: none;
+    stroke: #31363D;
+    shape-rendering: crispEdges;
+}
+
+.xaxis text {
+    fill: #5c6672;
+    font-family: sans-serif;
+    font-size: 11px;
+}
+
+svg text {
+    fill: #5c6672;
+    font-family: sans-serif;
+    font-size: 18px;
+}
+
+svg .teamName {
+    fill: #d0d0d0;
+    font-family: 'Abril Fatface', cursive;
+    font-size: 20px;
+}
+
+svg .playerName, svg .playerCity {
+    fill: #d0d0d0;
+    font-family: sans-serif;
+    font-size: 12px;
+}
+
+svg .link {
+  fill: none;
+  stroke: #d0d0d0;
+  stroke-width: 1.0px;
+}
