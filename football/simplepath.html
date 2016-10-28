@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Premier League Players</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/jscript/d3.v3.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Yanone+Kaffeesatz:400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:400" rel="stylesheet">
+    <link rel="stylesheet" href="path.css">
+  </head>
+
+  <body>
+	<a href="javascript:showBirthTeam();">Birthplace to Club</a> | 
+	<a href="javascript:showTransfersTeam();">All transfers</a>
+	<h2></h2>
+    <script type="text/javascript">
+		var w = 1200;
+		var h = 15000;
+		var lPad = 50;
+		var rPad = 50;
+		var tPad = 50;
+		var bPad = 50;
+
+		var teamSpacing = 100;
+		var barWidth = 25;
+		var barTop = 200;
+		var linkHeight = 70;
+		var nameLeft = 48;
+		var nameSpacing = 37;
+		var fontSize = 9;
+		var nameOffset = 35;
+		var lineSpacing = 15;
+
+		var globalData;
+
+		var barStart = 0;
+		var contractStart = 0;
+
+		var clubColours = [
+			[12,"#EE242B", "#ffffff"],
+			[219,"#BF0C10", "#0C0D0F"],
+			[218,"#750040", "#96BADD"],
+			[50,"#074893", "#7187BC"],
+			[55,"#C21231", "#024B90"],
+			[70,"#005AA5", "#000080"],
+			[93,"#f6a22e", "#000000"],
+			[104,"#323C8B", "#F1F2F6"],
+			[109,"#D81E2B", "#007360"],
+			[118,"#6CAEDC", "#F2F3F3"],
+			[119,"#D81A23", "#F3CA07"],
+			[123,"#db1d23", "#F0F1F1"],
+			[177,"#D84041", "#F0F1F1"],
+			[187,"#d71f30", "#ffffff"],
+			[190,"#F22337", "#A78D39"],
+			[192,"#ffffff", "#000000"],
+			[197,"#F1F1F5", "#031C58"],
+			[208,"#FFF61B", "#E4002D"],
+			[209,"#083272", "#F4F2F2"],
+			[210,"#8E2E44", "#3BC5EC"]
+		];
+
+		function getColour(id,opt){
+			for(i=0;i<clubColours.length;i++){
+				if(clubColours[i][0]==id){
+					return clubColours[i][opt];
+				}
+			}
+			return 0;
+		}
+
+		function numberWithCommas(x) {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+
+
+
+		// Create scale
+		var xScale = d3
+			.scale
+			.linear()
+			.range([0, w-(lPad+rPad)])
+		;
+
+		// Create axis
+		var xAxis = d3
+			.svg
+			.axis()
+			.scale(xScale)
+			.orient("top")
+			.tickSize(tPad+bPad-h)
+		;
+
+		//Create SVG element
+		var svg = d3.select("body")
+			.append("svg")
+			.attr("viewBox", "0 0 " + w + " " + h)
+		;
+
+		$( document ).ready(function() {
+		    initiate("birthTeam");
+		});
+
+		$( window ).resize(function() {
+		});
+
+// function called on load of page to load in data and initiate elements
+		function initiate(dataView){
+			//Load in players data
+	        d3.json("players.json", function(data) {
+	        	console.log(data);
+	        	globalData=data;
+			    xScale
+			    	.domain([0, 1])
+			    ;
+				svg
+					.append("g")
+					.attr("class", "xaxis")
+					.attr("transform", "translate("+lPad+","+tPad+")")
+	    			.call(xAxis)
+				;
+	            // add a group to hold all teams
+				contracts = svg
+		            .append("g")
+		            .attr("id", "teams")
+					.attr("transform", "translate("+lPad+","+tPad+")")
+				;
+	            // add a group for each team
+				teams = contracts
+		            .selectAll("g")
+		            .data(data)
+		            .enter()
+		            .append("g")
+		            .attr("id", function(d) {
+		              return "team-" + d.clubID;
+		            })
+		            .attr("class", "team")
+					.attr("transform", "translate(0,0)")
+	            ;
+	            teams
+					.append("text")
+					.attr("class", "teamName")
+					.attr("x", 0)
+					.attr("y", 0)
+					.attr("dx", 20)
+					.attr("dy", 35)
+					.attr("text-anchor", "start")
+				;
+	            // add a rectangle for each team
+		        teams
+				    .append("rect")
+					.attr("x",0)
+					.attr("y",50)
+					.attr("class", "teamBar")
+			        .attr("height", barWidth)
+					.style("fill", function(d,i) {
+						return getColour(d.clubID, 1); 
+					})
+				;
+				if(dataView=="birthIndiv"){
+					showBirthIndiv();
+				}else if(dataView=="birthTeam"){
+					showBirthTeam();
+				}else if(dataView=="transfersIndiv"){
+					showTransfersIndiv();
+				}else if(dataView=="transfersTeam"){
+					showTransfersTeam();
+				}else if(dataView=="contractsIndiv"){
+					showContractsIndiv();
+				}else if(dataView=="contractsTeam"){
+					showContractsTeam();
+				}
+	        });
+		}
+
+		function showBirthTeam(){
+			$("h2").html("Distance travelled from Birthplace to current Club");
+			data = globalData;
+		    data.sort(function(a, b) { 
+		    	return b.totalBirthDistance - a.totalBirthDistance; 
+		    });
+		    xScale
+		    	.domain([0, d3.max(data, function(d) {
+		    		return d.totalBirthDistance;
+		    	})])
+		    ;
+			var svg = d3.select("body").transition();
+			svg.select(".xaxis")
+				.duration(750)
+				.call(xAxis)
+			;
+			svg
+				.selectAll("g .team")
+				.duration(750)
+				.attr("transform", function(d,i) {
+	              return "translate(0,"+teamSpacing*i+")";
+	            })
+			;
+			svg
+				.selectAll(".teamBar")
+				.duration(750)
+        		.attr("width",  function(d) {
+					return xScale(d.totalBirthDistance);
+	            })
+			;
+			svg
+				.selectAll(".teamName")
+				.text(function(d) { 
+					return d.clubName+": Total distance "+numberWithCommas(d.totalBirthDistance)+" km"; 
+				})
+			;
+		}
+
+		function showTransfersTeam(){
+			$("h2").html("Total distance of all transfers up to current Club");
+			data = globalData;
+		    data.sort(function(a, b) {
+		    	return d3.ascending(b.totalClubContractDistance, a.totalClubContractDistance);
+		    });
+		    xScale
+		    	.domain([0, d3.max(data, function(d) {
+		    		return d.totalClubContractDistance;
+		    	})])
+		    ;
+			var svg = d3.select("body").transition();
+			svg.select(".xaxis")
+				.duration(750)
+				.call(xAxis)
+			;
+			svg
+				.selectAll(".team")
+				.duration(750)
+				.attr("transform", function(d,i) {
+	             	return "translate(0,"+teamSpacing*i+")";
+	            })
+			;
+			svg
+				.selectAll(".teamBar")
+				.duration(750)
+        		.attr("width",  function(d) {
+					return xScale(d.totalClubContractDistance);
+	            })
+			;
+			svg
+				.selectAll(".teamName")
+				.text(function(d) { 
+					return d.clubName+": Total distance "+numberWithCommas(d.totalClubContractDistance)+" km"; 
+				})
+			;
+		}
+
+
+    </script>
+
+
+  </body>
+</html>

@@ -56,7 +56,7 @@
 219 A.F.C. Bournemouth
 */
 		var w = 1200;
-		var h = 40000;
+		var h = 15000;
 		var lPad = 50;
 		var rPad = 50;
 		var tPad = 50;
@@ -100,8 +100,6 @@
 			[210,"#8E2E44", "#3BC5EC"]
 		];
 
-		var playerDataArray = [];
-
 		function getColour(id,opt){
 			for(i=0;i<clubColours.length;i++){
 				if(clubColours[i][0]==id){
@@ -143,36 +141,6 @@
 
 		$( window ).resize(function() {
 		});
-    	
-    	function populatePlayers(playerID, birthDistance, contractsTotal){
-    		newPlayer = [playerID, birthDistance, contractsTotal];
-    		playerDataArray.push(newPlayer);
-    	}
-
-		function sortByBirth(a, b) {
-		    if (a[1] === b[1]) {
-		        return 0;
-		    } else {
-		    	return (b[1] < a[1]) ? -1 : 1;
-		    }
-		}
-
-		function sortByTransfers(a, b) {
-		    if (a[2] === b[2]) {
-		        return 0;
-		    } else {
-		    	return (b[2] < a[2]) ? -1 : 1;
-		    }
-		}
-
-		function getListPos(playerID){
-			for (var i = 0; i < playerDataArray.length; i++) {
-				if(playerDataArray[i][0]==playerID){
-					return i;
-				}
-			}
-			return 0;
-		}
 
 // function called on load of page to load in data and initiate elements
 		function initiate(dataView){
@@ -230,13 +198,12 @@
 	            players = teams
 		            .selectAll("g")
 		            .data(function(d) {
-						return d.players.sort(function(a, b) { return b.contractsTotal - a.contractsTotal; });
+		              return d.players.sort(function(a, b) { return b.contractsTotal - a.contractsTotal; });
 		            })
 		            .enter()
 		            .append("g")
 		            .attr("id", function(d) {
-		            	populatePlayers(d.playerID, d.birthDistance, d.contractsTotal);
-						return "player-" + d.playerID;
+		              return "player-" + d.playerID;
 		            })
 		            .attr("class", "player")
 					.attr("transform", "translate(0,0)")
@@ -274,7 +241,6 @@
 				}else if(dataView=="contractsTeam"){
 					showContractsTeam();
 				}
-				getListPos(528, "birth");
 	        });
 		}
 
@@ -309,9 +275,6 @@
 				.sort(function(a, b){
 					return parseFloat(b.birthDistance) - parseFloat(a.birthDistance);
 				})
-				.transition()
-				.duration(750)
-				.attr("transform", "translate(0,0)")
 			;
 			svg
 				.selectAll(".team")
@@ -424,9 +387,6 @@
 				.sort(function(a, b){
 					return parseFloat(b.contractsTotal) - parseFloat(a.contractsTotal);
 				})
-				.transition()
-				.duration(750)
-				.attr("transform", "translate(0,0)")
 			;
 			svg
 				.selectAll(".team")
@@ -524,7 +484,6 @@
 		}
 
 		function showTransfersIndiv(){
-	    	playerDataArray.sort(sortByTransfers);
 			$("h2").html("Total distance of all transfers up to current Club");
 			data = globalData;
 		    xScale
@@ -534,45 +493,42 @@
 					});
 				})])
 		    ;
+			var svg = d3.select("body").transition();
 			svg.select(".xaxis")
-				.transition()
 				.duration(750)
 				.call(xAxis)
 			;
 			svg
-				.selectAll(".team")
-				.transition()
-				.duration(750)
-				.attr("transform", "translate(0,0)")
-			;
-			svg
-				.selectAll(".team")
-				.selectAll(".player")
-				.transition()
-				.duration(750)
-				.attr("transform", function(d,i) {
-	             	return "translate(0," + (15+(getListPos(d.playerID)*45)) +")";
-	            })
-			;
-			svg
 				.selectAll("rect")
-				.transition()
 				.duration(750)
 				.attr("x",0)
-				.attr("y",0)
+				.attr("y",function(d,i) { 
+					return 15 + d.birthOrder*45;
+	            })
 				.attr("height",20)
         		.attr("width", function(d) { return xScale(d.contractsTotal); })
 				.style("fill", function(d) {
 					return getColour(d.clubID, 1); 
 				})
 			;
+			svg
+				.selectAll("g .team")
+				.duration(750)
+				.attr("transform", "translate(0,0)")
+			;
+			svg
+				.selectAll("g .player")
+				.duration(750)
+				.attr("transform", "translate(0,0)")
+			;
 
 			svg
 				.selectAll(".playerName")
-				.transition()
 				.duration(750)
         		.attr("x", function(d) { return xScale(d.contractsTotal); })
-				.attr("y",0)
+				.attr("y",function(d,i) { 
+					return 15 + d.birthOrder*45;
+	            })
 				.attr("dx", function(d,i) { 
 					if(xScale(d.contractsTotal)>(w-(lPad+rPad+400))){
 						return -5;
@@ -593,21 +549,12 @@
 				})
 			;
 			svg
-				.selectAll(".teamName")
-				.text("")
-			;
-			svg
-				.selectAll(".link")
-				.attr("d", "M0,0L0,0")
-			;
-			;
-			svg
 				.selectAll(".playerCity")
-				.transition()
 				.duration(750)
         		.attr("x", 0)
-				.attr("y", 18)
-				.attr("dx", 0)
+				.attr("y",function(d,i) { 
+					return 32 + d.birthOrder*45;
+	            })
 				.attr("dy", 15)
 				.attr("text-anchor", "start")
 				.text(function(d) { 
@@ -622,11 +569,19 @@
 					return str; 
 				})
 			;
+			svg
+				.selectAll(".teamName")
+				.text("")
+			;
+			svg
+				.selectAll(".link")
+				.attr("d", "M0,0L0,0")
+			;
 		}
 
 		function showBirthIndiv(){
-	    	playerDataArray.sort(sortByBirth);
 			$("h2").html("Distance travelled from Birthplace to current Club");
+			data = globalData;
 		    xScale
 		    	.domain([0, d3.max(data, function(d) {
 					return d3.max(d.players, function(e) { 
@@ -634,34 +589,18 @@
 					});
 				})])
 		    ;
+			var svg = d3.select("body").transition();
 			svg.select(".xaxis")
-				.transition()
 				.duration(750)
 				.call(xAxis)
 			;
-
-			svg
-				.selectAll(".team")
-				.transition()
-				.duration(750)
-				.attr("transform", "translate(0,0)")
-			;
-			svg
-				.selectAll(".team")
-				.selectAll(".player")
-				.transition()
-				.duration(750)
-				.attr("transform", function(d,i) {
-	             	return "translate(0," + (15+(getListPos(d.playerID)*25)) +")";
-	            })
-			;
-
 			svg
 				.selectAll("rect")
-				.transition()
 				.duration(750)
 				.attr("x",0)
-				.attr("y",0)
+				.attr("y",function(d,i) { 
+					return 15 + d.birthOrder*25;
+	            })
 				.attr("height",20)
         		.attr("width", function(d) { return xScale(d.birthDistance); })
 				.style("fill", function(d) {
@@ -669,11 +608,22 @@
 				})
 			;
 			svg
+				.selectAll("g .team")
+				.duration(750)
+				.attr("transform", "translate(0,0)")
+			;
+			svg
+				.selectAll("g .player")
+				.duration(750)
+				.attr("transform", "translate(0,0)")
+			;
+			svg
 				.selectAll(".playerName")
-				.transition()
 				.duration(750)
         		.attr("x", function(d) { return xScale(d.birthDistance); })
-				.attr("y",0)
+				.attr("y",function(d,i) { 
+					return 15 + d.birthOrder*25;
+	            })
 				.attr("dx", function(d,i) { 
 					if(xScale(d.birthDistance)>(w-(lPad+rPad+400))){
 						return -5;
@@ -706,6 +656,7 @@
 				.attr("d", "M0,0L0,0")
 			;
 		}
+
 
     </script>
 
