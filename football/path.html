@@ -13,25 +13,24 @@
   <body>
   	<h1>The Path to the Premier League</h1>
 	<p>The Premier League has players from almost every continent, with only Antarctica not giving 110%.</p>
-	<p>These charts show which players have traveled the furthest to play for their clubs. View the direct distance from a player's birthplace to their current club, or include all the transfers on the way. Or see how many transfers each player has had to see the ultimate journeymen.</p>
+	<p>These charts show which players have traveled the furthest to play for their clubs. View the direct distance from a player's birthplace to their current club, or include all the transfers on the way. Or see how many transfers each player has had to find the ultimate journeymen.</p>
 	<p>All data scraped from Wikipedia.</p>
 	<div class="nav">
 		<div class="navBox">
 			<p>Birthplace to Club<br/>
-			<a href="javascript:showBirthTeam();">Team</a> | <a href="javascript:showBirthIndiv();">Individual</a></p>
+			<a href="javascript:showBirthTeam();">Club</a> | <a href="javascript:showBirthIndiv();">Individual</a></p>
 		</div>
 		<div class="navBox">
 			<p>All Transfers<br/>
-			<a href="javascript:showTransfersTeam();">Team</a> | <a href="javascript:showTransfersIndiv();">Individual</a></p>
+			<a href="javascript:showTransfersTeam();">Club</a> | <a href="javascript:showTransfersIndiv();">Individual</a></p>
 		</div>
 		<div class="navBox">
 			<p>Number of Contracts<br/>
-<!--			<a href="javascript:showContractsTeam();">Team</a> | <a href="javascript:showContractsIndiv();">Individual</a></p>
--->
-			<a href="javascript:alert('Not yet implemented');">Team</a> | <a href="javascript:alert('Not yet implemented');">Individual</a></p>
+			<a href="javascript:showContractsTeam();">Club</a> | <a href="javascript:showContractsIndiv();">Individual</a></p>
 		</div>
 	</div>
 	<h2></h2>
+	<p id="key"></p>
     <script type="text/javascript">
 /*
 12  Arsenal
@@ -76,30 +75,31 @@
 
 		var barStart = 0;
 		var contractStart = 0;
+		var calcHeight = 0;
 
 		var clubColours = [
-			[12,"#EE242B", "#ffffff"],
-			[219,"#BF0C10", "#0C0D0F"],
-			[218,"#750040", "#96BADD"],
-			[50,"#074893", "#7187BC"],
-			[55,"#C21231", "#024B90"],
-			[70,"#005AA5", "#000080"],
-			[93,"#f6a22e", "#000000"],
-			[104,"#323C8B", "#F1F2F6"],
-			[109,"#D81E2B", "#007360"],
-			[118,"#6CAEDC", "#F2F3F3"],
-			[119,"#D81A23", "#F3CA07"],
-			[123,"#db1d23", "#F0F1F1"],
-			[177,"#D84041", "#F0F1F1"],
-			[187,"#d71f30", "#ffffff"],
-			[190,"#F22337", "#A78D39"],
-			[192,"#ffffff", "#000000"],
-			[197,"#F1F1F5", "#031C58"],
-			[208,"#FFF61B", "#E4002D"],
-			[209,"#083272", "#F4F2F2"],
-			[210,"#8E2E44", "#3BC5EC"]
+			[12,"#EE242B", "#ffffff", "#2A2C39"],
+			[219,"#BF0C10", "#0C0D0F", "#d0d0d0"],
+			[218,"#750040", "#96BADD", "#d0d0d0"],
+			[50,"#074893", "#7187BC", "#d0d0d0"],
+			[55,"#C21231", "#024B90", "#d0d0d0"],
+			[70,"#005AA5", "#000080", "#d0d0d0"],
+			[93,"#f6a22e", "#000000", "#2A2C39"],
+			[104,"#323C8B", "#F1F2F6", "#d0d0d0"],
+			[109,"#D81E2B", "#007360", "#d0d0d0"],
+			[118,"#6CAEDC", "#F2F3F3", "#2A2C39"],
+			[119,"#D81A23", "#F3CA07", "#d0d0d0"],
+			[123,"#db1d23", "#F0F1F1", "#d0d0d0"],
+			[177,"#D84041", "#F0F1F1", "#2A2C39"],
+			[187,"#d71f30", "#ffffff", "#d0d0d0"],
+			[190,"#F22337", "#A78D39", "#d0d0d0"],
+			[192,"#ffffff", "#000000", "#2A2C39"],
+			[197,"#F1F1F5", "#031C58", "#2A2C39"],
+			[208,"#FFF61B", "#E4002D", "#2A2C39"],
+			[209,"#083272", "#F4F2F2", "#d0d0d0"],
+			[210,"#8E2E44", "#3BC5EC", "#d0d0d0"]
 		];
-
+// #2A2C39
 		var playerDataArray = [];
 
 		function getColour(id,opt){
@@ -144,8 +144,8 @@
 		$( window ).resize(function() {
 		});
     	
-    	function populatePlayers(playerID, birthDistance, contractsTotal){
-    		newPlayer = [playerID, birthDistance, contractsTotal];
+    	function populatePlayers(playerID, birthDistance, contractsTotal, transfersTotal){
+    		newPlayer = [playerID, birthDistance, contractsTotal, transfersTotal];
     		playerDataArray.push(newPlayer);
     	}
 
@@ -162,6 +162,14 @@
 		        return 0;
 		    } else {
 		    	return (b[2] < a[2]) ? -1 : 1;
+		    }
+		}
+
+		function sortByContracts(a, b) {
+		    if (a[3] === b[3]) {
+		        return 0;
+		    } else {
+		    	return (b[3] < a[3]) ? -1 : 1;
 		    }
 		}
 
@@ -235,7 +243,7 @@
 		            .enter()
 		            .append("g")
 		            .attr("id", function(d) {
-		            	populatePlayers(d.playerID, d.birthDistance, d.contractsTotal);
+		            	populatePlayers(d.playerID, d.birthDistance, d.contractsTotal, d.transfersTotal);
 						return "player-" + d.playerID;
 		            })
 		            .attr("class", "player")
@@ -252,10 +260,16 @@
 					.attr("class", "playerName")
 				;
 	            // add city and distance for each player
-	            players
+	            textCity = players
 					.append("text")
 					.attr("class", "playerCity")
 				;
+				textCity
+					.append("tspan")
+					.attr("class", "playerCityT1")
+				textCity
+					.append("tspan")
+					.attr("class", "playerCityT2")
 	            // add link for each player
 	            players
 					.append("path")
@@ -278,8 +292,29 @@
 	        });
 		}
 
+// BIRTHPLACE  >> CLUB
+
 		function showBirthTeam(){
+			svg
+				.selectAll(".playerName")
+				.text("")
+			;
+			svg
+				.selectAll(".playerCityT1")
+				.text("")
+			;
+			svg
+				.selectAll(".playerCityT2")
+				.text("")
+			;
+			svg
+				.selectAll(".link")
+				.attr("d", "M0,0L0,0")
+			;
+
+
 			$("h2").html("Distance travelled from Birthplace to current Club");
+			$("#key").html("");
 			data = globalData;
 		    xScale
 		    	.domain([0, d3.max(data, function(d) {
@@ -300,6 +335,7 @@
 				.transition()
 				.duration(750)
 				.attr("transform", function(d,i) {
+					calcHeight = teamSpacing*(i+1.5);
 	            	return "translate(0,"+teamSpacing*i+")";
 	            })
 	        ;
@@ -338,7 +374,8 @@
 				.selectAll(".team")
 				.selectAll(".playerName")
 				.transition()
-				.duration(750)
+				.delay(750)
+				.duration(0)
 				.attr("x", function(d,i) {
 					return nameLeft + (i-(i%2))*nameSpacing; 
 				})
@@ -350,6 +387,7 @@
 					return fontSize * (i%2) + lineSpacing * ((i%2)-1); 
 				})
 				.attr("text-anchor", "middle")
+				.attr("style", "fill: #d0d0d0; font-size: 12px;")
 				.text(function(d) { 
 					return d.playerName; 
 				})
@@ -358,7 +396,8 @@
 				.selectAll(".team")
 				.selectAll(".playerCity")
 				.transition()
-				.duration(750)
+				.delay(750)
+				.duration(0)
 				.attr("x", function(d,i) {
 					return nameLeft + (i-(i%2))*nameSpacing; 
 				})
@@ -370,6 +409,14 @@
 					return fontSize * (i%2) + lineSpacing * ((i%2)-1); 
 				})
 				.attr("text-anchor", "middle")
+				.attr("style", "fill: #d0d0d0; font-size: 12px;")
+			;
+			svg
+				.selectAll(".team")
+				.selectAll(".playerCityT1")
+				.transition()
+				.delay(750)
+				.duration(0)
 				.text(function(d) { 
 					return numberWithCommas(d.birthDistance) + " km (" + d.birthCity + ")"; 
 				})
@@ -377,6 +424,9 @@
 			svg
 				.selectAll(".team")
 				.selectAll(".link")
+				.transition()
+				.delay(750)
+				.duration(0)
 				.attr("d", function(d,i) {
 					if(i==0)barStart=0;
 
@@ -391,11 +441,36 @@
 					+ " " + x2 + "," + y2;
 				})
 			;
+			svg
+				.attr("viewBox", "0 0 " + w + " " + calcHeight)
+			;
+		;
+
+
 
 		}
 
+// TRANSFERS  >> CLUB
+
 		function showTransfersTeam(){
+			svg
+				.selectAll(".playerName")
+				.text("")
+			;
+			svg
+				.selectAll(".playerCityT1")
+				.text("")
+			;
+			svg
+				.selectAll(".playerCityT2")
+				.text("")
+			;
+			svg
+				.selectAll(".link")
+				.attr("d", "M0,0L0,0")
+			;
 			$("h2").html("Total distance of all transfers up to current Club");
+			$("#key").html("");
 			data = globalData;
 		    xScale
 		    	.domain([0, d3.max(data, function(d) {
@@ -415,6 +490,7 @@
 				.transition()
 				.duration(750)
 				.attr("transform", function(d,i) {
+					calcHeight = teamSpacing*(i+1.5);
 	             	return "translate(0,"+teamSpacing*i+")";
 	            })
 			;
@@ -452,7 +528,8 @@
 				.selectAll(".team")
 				.selectAll(".playerName")
 				.transition()
-				.duration(750)
+				.delay(750)
+				.duration(0)
 				.attr("x", function(d,i) {
 					return nameLeft + (i-(i%2))*nameSpacing; 
 				})
@@ -464,6 +541,7 @@
 					return fontSize * (i%2) + lineSpacing * ((i%2)-1); 
 				})
 				.attr("text-anchor", "middle")
+				.attr("style", "fill: #d0d0d0; font-size: 12px;")
 				.text(function(d) { 
 					return d.playerName; 
 				})
@@ -472,7 +550,8 @@
 				.selectAll(".team")
 				.selectAll(".playerCity")
 				.transition()
-				.duration(750)
+				.delay(750)
+				.duration(0)
 				.attr("x", function(d,i) {
 					return nameLeft + (i-(i%2))*nameSpacing; 
 				})
@@ -484,9 +563,25 @@
 					return fontSize * (i%2) + lineSpacing * ((i%2)-1); 
 				})
 				.attr("text-anchor", "middle")
+				.attr("style", "fill: #d0d0d0; font-size: 12px;")
+			;
+			svg
+				.selectAll(".team")
+				.selectAll(".playerCityT1")
+				.transition()
+				.delay(750)
+				.duration(0)
 				.text(function(d) { 
-					return numberWithCommas(d.contractsTotal) + " km (" + d.contracts.length + " transfers)"; 
+					if(d.transfersTotal==1){
+						return numberWithCommas(d.contractsTotal) + " km (" + d.contracts.length + " transfer)"; 
+					}else{
+						return numberWithCommas(d.contractsTotal) + " km (" + d.contracts.length + " transfers)"; 
+					}
 				})
+			;
+			svg
+				.selectAll(".playerCityT2")
+				.text("")
 			;
 			svg
 				.selectAll(".teamName")
@@ -502,6 +597,9 @@
 			svg
 				.selectAll(".team")
 				.selectAll(".link")
+				.transition()
+				.delay(750)
+				.duration(0)
 				.attr("d", function(d,i) {
 					if(i==0)barStart=0;
 
@@ -516,23 +614,38 @@
 					+ " " + x2 + "," + y2;
 				})
 			;
+			svg
+				.attr("viewBox", "0 0 " + w + " " + calcHeight)
+			;
+		}
 
-		}
-		function showContractsIndiv(){
-		}
+// CONTRACTS  >> CLUB
+
+
 		function showContractsTeam(){
-		}
-
-		function showTransfersIndiv(){
-	    	playerDataArray.sort(sortByTransfers);
-			$("h2").html("Total distance of all transfers up to current Club");
+			svg
+				.selectAll(".playerName")
+				.text("")
+			;
+			svg
+				.selectAll(".playerCityT1")
+				.text("")
+			;
+			svg
+				.selectAll(".playerCityT2")
+				.text("")
+			;
+			svg
+				.selectAll(".link")
+				.attr("d", "M0,0L0,0")
+			;
+			$("h2").html("Total number of transfers for the squad.");
+			$("#key").html("");
 			data = globalData;
 		    xScale
 		    	.domain([0, d3.max(data, function(d) {
-					return d3.max(d.players, function(e) { 
-						return e.contractsTotal;
-					});
-				})])
+		    		return d.totalClubContracts;
+		    	})])
 		    ;
 			svg.select(".xaxis")
 				.transition()
@@ -541,92 +654,170 @@
 			;
 			svg
 				.selectAll(".team")
+				.sort(function(a, b){
+					return parseFloat(b.totalClubContracts) - parseFloat(a.totalClubContracts);
+				})
+				.transition()
+				.duration(750)
+				.attr("transform", function(d,i) {
+					calcHeight = teamSpacing*(i+1.5);
+	             	return "translate(0,"+teamSpacing*i+")";
+	            })
+			;
+			svg
+				.selectAll(".team")
+				.selectAll(".player")
+				.sort(function(a, b){
+					return parseFloat(b.transfersTotal) - parseFloat(a.transfersTotal);
+				})
 				.transition()
 				.duration(750)
 				.attr("transform", "translate(0,0)")
 			;
 			svg
 				.selectAll(".team")
-				.selectAll(".player")
+				.selectAll(".player rect")
 				.transition()
 				.duration(750)
-				.attr("transform", function(d,i) {
-	             	return "translate(0," + (15+(getListPos(d.playerID)*45)) +")";
+				.attr("x", function(d,i) {
+					if(i==0)barStart=0;
+					thisX = barStart;
+					barStart+=xScale(d.transfersTotal);
+					return thisX;
 	            })
-			;
-			svg
-				.selectAll("rect")
-				.transition()
-				.duration(750)
-				.attr("x",0)
-				.attr("y",0)
-				.attr("height",20)
-        		.attr("width", function(d) { return xScale(d.contractsTotal); })
-				.style("fill", function(d) {
-					return getColour(d.clubID, 1); 
+				.attr("y",barTop)
+        		.attr("width",  function(d) {
+					return xScale(d.transfersTotal);
+	            })
+		        .attr("height", barWidth)
+				.style("fill", function(d,i) {
+					return getColour(d.clubID, 1 + (i%2)); 
 				})
 			;
-
 			svg
+				.selectAll(".team")
 				.selectAll(".playerName")
 				.transition()
-				.duration(750)
-        		.attr("x", function(d) { return xScale(d.contractsTotal); })
-				.attr("y",0)
-				.attr("dx", function(d,i) { 
-					if(xScale(d.contractsTotal)>(w-(lPad+rPad+400))){
-						return -5;
-					}else{
-						return 5;
-					}
-	            })
-				.attr("dy", 15)
-				.attr("text-anchor", function(d,i) { 
-					if(xScale(d.contractsTotal)>(w-(lPad+rPad+400))){
-						return "end";
-					}else{
-						return "start";
-					}
-	            })
-				.text(function(d) { 
-					return d.playerName + " (" + d.clubName + ") " + numberWithCommas(d.contractsTotal) + " km"; 
+				.delay(750)
+				.duration(0)
+				.attr("x", function(d,i) {
+					return nameLeft + (i-(i%2))*nameSpacing; 
 				})
+				.attr("y", function(d,i) {
+					return (barTop + barWidth*(i%2) + (linkHeight+5) * (2*(i%2)-1)) + nameOffset * (Math.floor(i/2)%2) * (2*(i%2)-1);
+				})
+				.attr("dx", 0)
+				.attr("dy", function(d,i) {
+					return fontSize * (i%2) + lineSpacing * ((i%2)-1); 
+				})
+				.attr("text-anchor", "middle")
+				.attr("style", "fill: #d0d0d0; font-size: 12px;")
+				.text(function(d) { 
+					return d.playerName; 
+				})
+			;
+			svg
+				.selectAll(".team")
+				.selectAll(".playerCity")
+				.transition()
+				.delay(750)
+				.duration(0)
+				.attr("x", function(d,i) {
+					return nameLeft + (i-(i%2))*nameSpacing; 
+				})
+				.attr("y", function(d,i) {
+					return (barTop + barWidth*(i%2) + (linkHeight+5) * (2*(i%2)-1)) + nameOffset * (Math.floor(i/2)%2) * (2*(i%2)-1) + lineSpacing;
+				})
+				.attr("dx", 0)
+				.attr("dy", function(d,i) {
+					return fontSize * (i%2) + lineSpacing * ((i%2)-1); 
+				})
+				.attr("text-anchor", "middle")
+				.attr("style", "fill: #d0d0d0; font-size: 12px;")
+			;
+			svg
+				.selectAll(".team")
+				.selectAll(".playerCityT1")
+				.transition()
+				.delay(750)
+				.duration(0)
+				.text(function(d) { 
+					if(d.transfersTotal==1){
+						return numberWithCommas(d.transfersTotal)  + " transfer"; 
+					}else{
+						return numberWithCommas(d.transfersTotal)  + " transfers"; 
+					}
+				})
+			;
+			svg
+				.selectAll(".playerCityT2")
+				.text("")
 			;
 			svg
 				.selectAll(".teamName")
+				.attr("x", 0)
+				.attr("y", 0)
+				.attr("dx", 20)
+				.attr("dy", 35)
+				.attr("text-anchor", "start")
+				.text(function(d) { 
+					return d.clubName+": Total transfers "+numberWithCommas(d.totalClubContracts); 
+				})
+			;
+			svg
+				.selectAll(".team")
+				.selectAll(".link")
+				.transition()
+				.delay(750)
+				.duration(0)
+				.attr("d", function(d,i) {
+					if(i==0)barStart=0;
+
+					x1 = barStart + xScale(d.transfersTotal)/2;
+					x2 = nameLeft + (i-(i%2))*nameSpacing;
+					y1 = barTop + barWidth*(i%2);
+					y2 = y1 + 2*linkHeight*(i%2) - linkHeight;
+					barStart+=xScale(d.transfersTotal);
+					return "M" + x1 + "," + y1
+					+ "C" + x1 + "," + (y1 + y2) / 2
+					+ " " + x2 + "," + (y1 + y2) / 2
+					+ " " + x2 + "," + y2;
+				})
+			;
+			svg
+				.attr("viewBox", "0 0 " + w + " " + calcHeight)
+			;
+		}
+
+// BIRTHPLACE >> INDIV
+
+
+		function showBirthIndiv(){
+			svg
+				.selectAll(".teamName")
+				.text("")
+			;
+			svg
+				.selectAll(".playerName")
+				.text("")
+			;
+			svg
+				.selectAll(".playerCityT1")
+				.text("")
+			;
+			svg
+				.selectAll(".playerCityT2")
 				.text("")
 			;
 			svg
 				.selectAll(".link")
 				.attr("d", "M0,0L0,0")
 			;
-			;
-			svg
-				.selectAll(".playerCity")
-				.transition()
-				.duration(750)
-        		.attr("x", 0)
-				.attr("y", 18)
-				.attr("dx", 0)
-				.attr("dy", 15)
-				.attr("text-anchor", "start")
-				.text(function(d) { 
-					str = d.birthCity;
-					lastClub = "";
-					for(z=0;z<d.contracts.length;z++){
-						if(lastClub != d.contracts[z].contractClub){
-							str+=" > " + d.contracts[z].contractClub;
-						}
-						lastClub = d.contracts[z].contractClub;
-					}
-					return str; 
-				})
-			;
-		}
 
-		function showBirthIndiv(){
+	    	calcHeight=0;
 	    	playerDataArray.sort(sortByBirth);
 			$("h2").html("Distance travelled from Birthplace to current Club");
+			$("#key").html("");
 		    xScale
 		    	.domain([0, d3.max(data, function(d) {
 					return d3.max(d.players, function(e) { 
@@ -652,7 +843,9 @@
 				.transition()
 				.duration(750)
 				.attr("transform", function(d,i) {
-	             	return "translate(0," + (15+(getListPos(d.playerID)*25)) +")";
+					newCalcHeight = (15+((getListPos(d.playerID)+4)*30));
+					if(newCalcHeight>calcHeight)calcHeight=newCalcHeight;
+	             	return "translate(0," + (15+(getListPos(d.playerID)*30)) +")";
 	            })
 			;
 
@@ -662,7 +855,7 @@
 				.duration(750)
 				.attr("x",0)
 				.attr("y",0)
-				.attr("height",20)
+				.attr("height",25)
         		.attr("width", function(d) { return xScale(d.birthDistance); })
 				.style("fill", function(d) {
 					return getColour(d.clubID, 1); 
@@ -671,22 +864,30 @@
 			svg
 				.selectAll(".playerName")
 				.transition()
-				.duration(750)
+				.delay(750)
+				.duration(0)
         		.attr("x", function(d) { return xScale(d.birthDistance); })
 				.attr("y",0)
 				.attr("dx", function(d,i) { 
-					if(xScale(d.birthDistance)>(w-(lPad+rPad+400))){
+					if(xScale(d.birthDistance)>(w-(lPad+rPad+450))){
 						return -5;
 					}else{
 						return 5;
 					}
 	            })
-				.attr("dy", 15)
+				.attr("dy", 18)
 				.attr("text-anchor", function(d,i) { 
-					if(xScale(d.birthDistance)>(w-(lPad+rPad+400))){
+					if(xScale(d.birthDistance)>(w-(lPad+rPad+450))){
 						return "end";
 					}else{
 						return "start";
+					}
+	            })
+				.attr("style", function(d,i) { 
+					if(xScale(d.birthDistance)>(w-(lPad+rPad+450))){
+						return "fill: "+getColour(d.clubID, 3)+"; font-size: 15px;"; 
+					}else{
+						return "fill: #d0d0d0; font-size: 15px;";
 					}
 	            })
 				.text(function(d) { 
@@ -694,16 +895,336 @@
 				})
 			;
 			svg
+				.attr("viewBox", "0 0 " + w + " " + calcHeight)
+			;
+		}
+
+// TRANSFERS  >> INDIV
+
+		function showTransfersIndiv(){
+			svg
 				.selectAll(".teamName")
 				.text("")
 			;
 			svg
-				.selectAll(".playerCity")
+				.selectAll(".playerName")
+				.text("")
+			;
+			svg
+				.selectAll(".playerCityT1")
+				.text("")
+			;
+			svg
+				.selectAll(".playerCityT2")
 				.text("")
 			;
 			svg
 				.selectAll(".link")
 				.attr("d", "M0,0L0,0")
+			;
+	    	calcHeight=0;
+	    	playerDataArray.sort(sortByTransfers);
+			$("h2").html("Total distance of all transfers up to current Club");
+			$("#key").html("* signifies a loan move");
+			data = globalData;
+		    xScale
+		    	.domain([0, d3.max(data, function(d) {
+					return d3.max(d.players, function(e) { 
+						return e.contractsTotal;
+					});
+				})])
+		    ;
+			svg.select(".xaxis")
+				.transition()
+				.duration(750)
+				.call(xAxis)
+			;
+			svg
+				.selectAll(".team")
+				.transition()
+				.duration(750)
+				.attr("transform", "translate(0,0)")
+			;
+			svg
+				.selectAll(".team")
+				.selectAll(".player")
+				.transition()
+				.duration(750)
+				.attr("transform", function(d,i) {
+					newCalcHeight = (15+((getListPos(d.playerID)+2)*70));
+					if(newCalcHeight>calcHeight)calcHeight=newCalcHeight;
+	             	return "translate(0," + (15+(getListPos(d.playerID)*70)) +")";
+	            })
+			;
+			svg
+				.selectAll("rect")
+				.transition()
+				.duration(750)
+				.attr("x",0)
+				.attr("y",0)
+				.attr("height",25)
+        		.attr("width", function(d) { return xScale(d.contractsTotal); })
+				.style("fill", function(d) {
+					return getColour(d.clubID, 1); 
+				})
+			;
+
+			svg
+				.selectAll(".playerName")
+				.transition()
+				.delay(750)
+				.duration(0)
+        		.attr("x", function(d) { return xScale(d.contractsTotal); })
+				.attr("y",0)
+				.attr("dx", function(d,i) { 
+					if(xScale(d.contractsTotal)>(w-(lPad+rPad+450))){
+						return -5;
+					}else{
+						return 5;
+					}
+	            })
+				.attr("dy", 18)
+				.attr("text-anchor", function(d,i) { 
+					if(xScale(d.contractsTotal)>(w-(lPad+rPad+450))){
+						return "end";
+					}else{
+						return "start";
+					}
+	            })
+				.attr("style", function(d,i) { 
+					if(xScale(d.contractsTotal)>(w-(lPad+rPad+450))){
+						console.log(d);
+						return "fill: "+getColour(d.clubID, 3)+"; font-size: 15px;"; 
+					}else{
+						return "fill: #d0d0d0; font-size: 15px;";
+					}
+	            })
+				.text(function(d) { 
+					return d.playerName + " (" + d.clubName + ") " + numberWithCommas(d.contractsTotal) + " km"; 
+				})
+			;
+			svg
+				.selectAll(".playerCity")
+				.transition()
+				.delay(750)
+				.duration(0)
+        		.attr("x", 0)
+				.attr("y", 25)
+				.attr("dx", 0)
+				.attr("dy", 15)
+				.attr("text-anchor", "start")
+				.attr("style", "fill: #d0d0d0; font-size: 13px;")
+			;
+			svg
+				.selectAll(".playerCityT1")
+				.transition()
+				.delay(750)
+				.duration(0)
+				.text(function(d) { 
+					str = d.birthCity;
+					lastClub = "";
+					max=8;
+					if(d.contracts.length<max)max=d.contracts.length;
+					for(z=0;z<max;z++){
+						if(lastClub != d.contracts[z].contractClub){
+							str+=" > " + d.contracts[z].contractClub;
+							if(d.contracts[z].contractType=="Loan")str+="*"
+						}
+						lastClub = d.contracts[z].contractClub;
+					}
+					return str; 
+				})
+			;
+			svg
+				.selectAll(".playerCityT2")
+				.transition()
+				.delay(750)
+				.duration(0)
+				.attr("x", "0")
+				.attr("dy", "1.2em")
+				.text(function(d) { 
+					str = "";
+					lastClub = "";
+					max=8;
+					for(z=max;z<d.contracts.length;z++){
+						if(lastClub != d.contracts[z].contractClub){
+							str+=" > " + d.contracts[z].contractClub;
+							if(d.contracts[z].contractType=="Loan")str+="*"
+						}
+						lastClub = d.contracts[z].contractClub;
+					}
+					return str; 
+				})
+			;
+			svg
+				.attr("viewBox", "0 0 " + w + " " + calcHeight)
+			;
+		}
+
+// CONTRACTS  >> INDIV
+
+
+		function showContractsIndiv(){
+			svg
+				.selectAll(".teamName")
+				.text("")
+			;
+			svg
+				.selectAll(".playerName")
+				.text("")
+			;
+			svg
+				.selectAll(".playerCityT1")
+				.text("")
+			;
+			svg
+				.selectAll(".playerCityT2")
+				.text("")
+			;
+			svg
+				.selectAll(".link")
+				.attr("d", "M0,0L0,0")
+			;
+	    	calcHeight=0;
+	    	playerDataArray.sort(sortByContracts);
+			$("h2").html("Total number of transfers per player");
+			$("#key").html("* signifies a loan move");
+			data = globalData;
+		    xScale
+		    	.domain([0, d3.max(data, function(d) {
+					return d3.max(d.players, function(e) { 
+						return e.transfersTotal;
+					});
+				})])
+		    ;
+			svg.select(".xaxis")
+				.transition()
+				.duration(750)
+				.call(xAxis)
+			;
+			svg
+				.selectAll(".team")
+				.transition()
+				.duration(750)
+				.attr("transform", "translate(0,0)")
+			;
+			svg
+				.selectAll(".team")
+				.selectAll(".player")
+				.transition()
+				.duration(750)
+				.attr("transform", function(d,i) {
+					newCalcHeight = (15+((getListPos(d.playerID)+2)*70));
+					if(newCalcHeight>calcHeight)calcHeight=newCalcHeight;
+	             	return "translate(0," + (15+(getListPos(d.playerID)*70)) +")";
+	            })
+			;
+			svg
+				.selectAll("rect")
+				.transition()
+				.duration(750)
+				.attr("x",0)
+				.attr("y",0)
+				.attr("height",25)
+        		.attr("width", function(d) { return xScale(d.transfersTotal); })
+				.style("fill", function(d) {
+					return getColour(d.clubID, 1); 
+				})
+			;
+			svg
+				.selectAll(".playerName")
+				.transition()
+				.delay(750)
+				.duration(0)
+        		.attr("x", function(d) { return xScale(d.transfersTotal); })
+				.attr("y",0)
+				.attr("dx", function(d,i) { 
+					if(xScale(d.transfersTotal)>(w-(lPad+rPad+450))){
+						return -5;
+					}else{
+						return 5;
+					}
+	            })
+				.attr("dy", 18)
+				.attr("text-anchor", function(d,i) { 
+					if(xScale(d.transfersTotal)>(w-(lPad+rPad+450))){
+						return "end";
+					}else{
+						return "start";
+					}
+	            })
+				.attr("style", function(d,i) { 
+					if(xScale(d.transfersTotal)>(w-(lPad+rPad+450))){
+						return "fill: "+getColour(d.clubID, 3)+"; font-size: 15px;"; 
+					}else{
+						return "fill: #d0d0d0; font-size: 15px;";
+					}
+	            })
+				.text(function(d) { 
+					if(d.transfersTotal==1){
+						return d.playerName + " (" + d.clubName + ") " + numberWithCommas(d.transfersTotal) + " transfer"; 
+					}else{
+						return d.playerName + " (" + d.clubName + ") " + numberWithCommas(d.transfersTotal) + " transfers"; 
+					}
+				})
+			;
+			svg
+				.selectAll(".playerCity")
+				.transition()
+				.delay(750)
+				.duration(0)
+        		.attr("x", 0)
+				.attr("y", 25)
+				.attr("dx", 0)
+				.attr("dy", 15)
+				.attr("text-anchor", "start")
+				.attr("style", "fill: #d0d0d0; font-size: 13px;")
+			;
+			svg
+				.selectAll(".playerCityT1")
+				.transition()
+				.delay(750)
+				.duration(0)
+				.text(function(d) { 
+					console.log(d);
+					str = "";
+					lastClub = "";
+					max=8;
+					if(d.contracts.length<max)max=d.contracts.length;
+					for(z=0;z<max;z++){
+						if(lastClub != d.contracts[z].contractClub){
+							if(z!=0)str+=" > ";
+							str+=d.contracts[z].contractClub;
+							if(d.contracts[z].contractType=="Loan")str+="*"
+						}
+						lastClub = d.contracts[z].contractClub;
+					}
+					return str; 
+				})
+			;
+			svg
+				.selectAll(".playerCityT2")
+				.transition()
+				.delay(750)
+				.duration(0)
+				.attr("x", "0")
+				.attr("dy", "1.2em")
+				.text(function(d) { 
+					str = "";
+					lastClub = "";
+					max=8;
+					for(z=max;z<d.contracts.length;z++){
+						if(lastClub != d.contracts[z].contractClub){
+							str+=" > " + d.contracts[z].contractClub;
+							if(d.contracts[z].contractType=="Loan")str+="*"
+						}
+						lastClub = d.contracts[z].contractClub;
+					}
+					return str; 
+				})
+			;
+			svg
+				.attr("viewBox", "0 0 " + w + " " + calcHeight)
 			;
 		}
 
