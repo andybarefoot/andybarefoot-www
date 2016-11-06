@@ -1,11 +1,20 @@
-var andybarefoot = angular.module('andybarefoot', ['wu.masonry']);
+var andybarefoot = angular.module('andybarefoot', ['wu.masonry',]);
 
-andybarefoot.controller('mainController', ['$scope', '$filter', '$http', function ($scope, $filter, $http) {
+andybarefoot.controller('mainController', ['$scope', '$filter', '$http', '$sce', function ($scope, $filter, $http, $sce) {
 	$scope.instagramOffset = 0;
 	$scope.instagramCount = 6;
 	$scope.instagrams = [];
 	$scope.showMoreSocial = false;
 	$scope.noMoreSocial = false;
+
+	$scope.renderHtml = function (htmlCode) {
+        return $sce.trustAsHtml(htmlCode);
+    };
+	
+	$scope.facebookPostLink = function (id) {
+		parts = id.split('_')
+		return "https://www.facebook.com/" + parts[0] + "/posts/" + parts[1]
+	};
 	$scope.userNameString = function (userId) {
 		if(userId == 1697196773){
 			return "Gunter | "
@@ -29,7 +38,7 @@ andybarefoot.controller('mainController', ['$scope', '$filter', '$http', functio
 	$scope.loadMoreSocial = function () {
 		$scope.showMoreSocial = false;
 		$scope.noMoreSocial = false;
-		url = '/api/instagram/allData.php?offset=' + $scope.instagramOffset + '&count=' + $scope.instagramCount;
+		url = '/api/social/allData.php?offset=' + $scope.instagramOffset + '&count=' + $scope.instagramCount;
 		$http.get(url)
 			.success(function (result){
 				console.log(result);

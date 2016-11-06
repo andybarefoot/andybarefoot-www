@@ -10,6 +10,8 @@ html {
 
 
 body {
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
 	color: #fff;
 	background-color: #363537;
 /*	background-color: #333333; */
@@ -145,7 +147,6 @@ hgroup li img{
 }
 
 .sectionTitle {
-011627
 	background-color: #01161E;
 	background-color: #011627;
 /*	background-color: #333333; */
@@ -220,10 +221,43 @@ hgroup li img{
 	cursor: default;
 }
 
-/* Container: required for Masonry, the large container in whoich all the masonry elements exist */
-#container p{
+.item p{
 	margin: 24px;
 }
+
+.facebook-link{
+	border-top: 1px solid #FB4D3D;
+	border-bottom: 1px solid #FB4D3D;
+	margin: 24px;
+	overflow: auto;
+}
+
+.facebook-link img{
+	float: left;
+	margin-right: 15px;
+}
+
+.facebook-link a{
+	color: #333;
+	text-decoration: none;
+}
+
+.facebook-link h4{
+	font-weight: 700;
+	line-height: 1em;
+	margin: 15px 0 0 0;
+}
+
+.facebook-link p{
+	margin: 0 0 15px 0;
+}
+
+.facebook-caption{
+	margin: 0 0 15px 0;
+}
+
+
+
 
 @media screen and (min-width: 600px){	
 /* For an 800 pixel screen we want the 2 columns to have a width of 390 px with a 20px gap between them*/
