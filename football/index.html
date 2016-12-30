@@ -26,7 +26,7 @@
         <p>The Unofficial Football World Championships imagines what would happen if the World Football Champions were not decided once every four years at a tournament but instead followed the boxing model.</p>
         <p>Starting from the very first international game between Scotland and England the reigning World Champions retain their crown only until the next match they lose, at which point the title transfers to their victorious opponents.</p>
         <p>This magnificent folly is documented at the <a href="http://www.ufwc.co.uk/">Unofficial Football World Championships</a> and what you can find here is merely an exercise in data visualisation based on their results.</p>
-        <p>Start the visualisation to see each of the 920 matches so far. The reigning champion is shown in gold. Each challenge is shown as a link to the challenging country. If the challenge was successful the link and the new champion is shown in gold. Next to each country is displayed the number of times it has won the title.</p>
+        <p>Start the visualisation to see each of the <span id="matchTotal"></span> matches so far. The reigning champion is shown in gold. Each challenge is shown as a link to the challenging country. If the challenge was successful the link and the new champion is shown in gold. Next to each country is displayed the number of times it has won the title.</p>
         <div id="links">
           <a class="vis" id="start" href="javascript:startVis()">PLAY VISUALISATION</a>
           <a class="vis" id="restart" href="javascript:restartVis()">CONTINUE</a>
@@ -35,11 +35,11 @@
           <a class="vis" id="slower" href="javascript:slower()">SLOWER</a>
         </div>
         <div id="matchDetails">
-          <p id="matchNumber">Last Match: No. 920</p>
-          <p id="matchResult">URUGUAY 4-0 PARAGUAY</p>
-          <p id="matchTourn">World Cup Qualifier</p>
-          <p id="matchVenue">MONTEVIDEO (06/09/2016)</p>
-          <p id="matchChamp">CHAMPIONS: URUGUAY</p>
+          <p id="matchNumber"><!-- Last Match: No. 924 --></p>
+          <p id="matchResult"><!-- URUGUAY 4-0 PARAGUAY --></p>
+          <p id="matchTourn"><!-- World Cup Qualifier --></p>
+          <p id="matchVenue"><!-- MONTEVIDEO (06/09/2016) --></p>
+          <p id="matchChamp"><!-- CHAMPIONS: URUGUAY --></p>
         </div>
      </div>
      </div>
@@ -300,6 +300,8 @@
           "ZIMBABWE"
         ];
 
+
+        // WINNING TEAM, HOME TEAM, SCORE, AWAY TEAM, MATCH TYPE, DATE, VENUE
         var gamesData = [
           ["","SCOTLAND","0-0","ENGLAND","Friendly fixture","30/11/1872","GLASGOW"],
           ["ENGLAND","ENGLAND","4-2","SCOTLAND","Friendly fixture","08/03/1873","LONDON"],
@@ -1220,7 +1222,11 @@
           ["CHILE","COLOMBIA","0-2","CHILE","Copa America","22/06/2016","CHICAGO"],
           ["CHILE","ARGENTINA","0-0","CHILE","Copa America","26/06/2016","EAST RUTHERFORD"],
           ["PARAGUAY","PARAGUAY","2-1","CHILE","World Cup Qualifier","01/09/2016","ASUNCION"],
-          ["URUGUAY","URUGUAY","4-0","PARAGUAY","World Cup Qualifier","06/09/2016","MONTEVIDEO"]
+          ["URUGUAY","URUGUAY","4-0","PARAGUAY","World Cup Qualifier","06/09/2016","MONTEVIDEO"],
+          ["URUGUAY","URUGUAY","3-0","VENEZUELA","World Cup Qualifier","06/10/2016","MONTEVIDEO"],
+          ["URUGUAY","COLOMBIA","2-2","URUGUAY","World Cup Qualifier","11/10/2016","BARRANQUILLA"],
+          ["URUGUAY","URUGUAY","2-1","ECUADOR","World Cup Qualifier","10/11/2016","MONTEVIDEO"],
+          ["CHILE","CHILE","3-1","URUGUAY","World Cup Qualifier","15/11/2016","SANTIAGO"]
         ];
 
         var width=1020;
@@ -1446,6 +1452,18 @@
           }
         }
 
+        function lastMatch(){
+          lastMatchId = gamesData.length-1;
+          $("#matchTotal").text(gamesData.length);
+          $("#matchNumber").text("Last Match: No. " + (gamesData.length));
+          $("#matchResult").text(gamesData[lastMatchId][1] + " " + gamesData[lastMatchId][2] + " " + gamesData[lastMatchId][3]);
+          $("#matchTourn").text(gamesData[lastMatchId][4]);
+          $("#matchVenue").text(gamesData[lastMatchId][6] + " (" + gamesData[lastMatchId][5] + ")");
+          $("#matchChamp").text("CHAMPIONS: " + gamesData[lastMatchId][0]);
+
+        }
+
+        lastMatch();
         drawChart();
 
 
