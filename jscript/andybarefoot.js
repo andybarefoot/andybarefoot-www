@@ -35,6 +35,7 @@ andybarefoot.controller('mainController', ['$scope', '$filter', '$http', '$sce',
 	$scope.getVideo = function (file) {
 		return "videos/instagram/" + file;
 	};
+
 	$scope.loadMoreSocial = function () {
 		$scope.showMoreSocial = false;
 		$scope.noMoreSocial = false;
@@ -46,7 +47,21 @@ andybarefoot.controller('mainController', ['$scope', '$filter', '$http', '$sce',
 					$scope.instagrams.push.apply($scope.instagrams, result.nodes);
 					$scope.instagramOffset += $scope.instagramCount;
 					$scope.showMoreSocial = true;
-					$scope.noMoreSocial = false;
+// make sure masonry reconfigures layout once images have loaded
+					$container = $("#container");
+// set timeout delay of 0.1s to ensure Angular has processed and called images
+					setTimeout(
+// call function 
+						function() {
+// set "imagesLoaded" on div containing social content
+							$container.imagesLoaded()
+// "always" specifies all images must be downloaded or confirmed broken
+								.always( function() {
+// run masonry layout on social div
+									$("#container").masonry();
+								})
+							;
+						}, 100);
 				}else{
 					$scope.showMoreSocial = false;
 					$scope.noMoreSocial = true;
