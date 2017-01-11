@@ -1,6 +1,6 @@
 var andybarefoot = angular.module('andybarefoot', ['wu.masonry',]);
 
-andybarefoot.controller('mainController', ['$scope', '$filter', '$http', '$sce', function ($scope, $filter, $http, $sce) {
+andybarefoot.controller('mainController', ['$scope', '$filter', '$http', '$sce', '$timeout', function ($scope, $filter, $http, $sce, $timeout) {
 	$scope.instagramOffset = 0;
 	$scope.instagramCount = 6;
 	$scope.instagrams = [];
@@ -47,21 +47,23 @@ andybarefoot.controller('mainController', ['$scope', '$filter', '$http', '$sce',
 					$scope.instagrams.push.apply($scope.instagrams, result.nodes);
 					$scope.instagramOffset += $scope.instagramCount;
 					$scope.showMoreSocial = true;
-// make sure masonry reconfigures layout once images have loaded
+// make sure masonry reconfigures layout once new images have loaded
+// We need to:
+// a) make sure  Angular has rendered new content in DOM
+// b) make sure new images are fully loaded
+// c) make sure Masonry layout is optimised for new image dimensions
 					$container = $("#container");
-// set timeout delay of 0.1s to ensure Angular has processed and called images
-					setTimeout(
-// call function 
-						function() {
-// set "imagesLoaded" on div containing social content
-							$container.imagesLoaded()
+// Firstly wait until images are rendered in DOM using $timeout 
+					$timeout(function(){
+// Then use imagesLoaded jQuery plugin to manage when all images are loaded
+						$container.imagesLoaded()
 // "always" specifies all images must be downloaded or confirmed broken
-								.always( function() {
+							.always( function() {
 // run masonry layout on social div
-									$("#container").masonry();
-								})
-							;
-						}, 100);
+								$("#container").masonry();
+							})
+						;
+					})
 				}else{
 					$scope.showMoreSocial = false;
 					$scope.noMoreSocial = true;
@@ -71,6 +73,7 @@ andybarefoot.controller('mainController', ['$scope', '$filter', '$http', '$sce',
 				console.log(data);
 			})
 	};
+
 
 	$scope.loadMoreSocial();
 
