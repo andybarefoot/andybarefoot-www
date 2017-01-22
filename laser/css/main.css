@@ -1,0 +1,26 @@
+p {
+  text-align: center;
+  font-size: 5em;
+  text-transform: uppercase;
+  border-style: solid;
+  border-color: black;
+  border-width: 20px;
+  border-spacing: 20px;
+}
+
+#design {
+  text-align: center;
+  background-image: url("../svg/moor6opti.svg"), none;
+}
+
+#text-message {
+  display: inline-block;
+  margin: auto;
+  background-color: #fff;
+}
+
+#f2 {
+  font-family: 'Bevan', cursive;
+  line-height: 0.7em;
+  letter-spacing: -6px;
+}

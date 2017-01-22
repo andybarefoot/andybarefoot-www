@@ -1,0 +1,384 @@
+
+      body {
+        margin: 0;
+        color: #d0d0d0;
+        background-color: #2A2C39;
+        font-family: 'Yanone Kaffeesatz', sans-serif;
+        font-weight: 200;
+        font-size: 17px;
+        line-height: 17px;
+      }
+      
+      svg {
+        width: 100vw;
+      }
+
+
+      svg .contract {
+        fill: none;
+        stroke-opacity: 1;
+        stroke-width: 0.5px;
+        display: none;
+      }
+
+      svg .club {
+        display: none;
+      }
+
+      svg .birth {
+        fill: none;
+        stroke-opacity: 1;
+        stroke-width: 0.5px;
+      }
+
+      a {
+        color: #d0d0d0;
+      }
+
+      #close {
+        text-align: right;
+      }
+
+      #close a{
+        text-decoration: none;
+      }
+
+      #info {
+        font-family: 'Abril Fatface', cursive;
+        font-size: 32px;
+        text-decoration: none;
+        position:relative;
+        top:-3px;
+        margin-right: 10px
+      }
+
+      h1 {
+        line-height: 34px;
+        font-family: 'Abril Fatface', cursive;
+        text-align: center;
+      }
+
+      h1 #t1,#t2 {
+        font-size: 50px;
+      }
+
+      h1 #t3,#t4 {
+        font-size: 43px;
+      }
+
+      h2 {
+        font-size: 17px;
+        line-height: 17px;
+        margin: 0;
+      }
+
+      #progressFlag{
+        background: url("images/icons/prog-flag.png") no-repeat;
+        width: 23px;
+        height: 18px;
+        padding-top: 1px;
+        font-size: 12px;
+        text-align: center;
+        z-index: 90;
+        position: absolute;
+      }
+
+
+      #navigation #champions,#controls,#currentGameDetails {
+          padding-top: 20px;
+      }
+
+      #navigation {
+        z-index: 30;
+        width: 100%;
+        left: 0;
+        top: 0;
+        padding: 0;
+        background-color: rgba(61, 63, 61, 0.8);
+        background-color: #2A2C39;
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+      }
+
+
+      #champions{
+        xborder-style: solid;
+        xborder-color: red;
+        height: 70px;
+        text-align: center;
+      }
+
+      #controls {
+        xborder-style: solid;
+        xborder-color: green;
+        padding-left: 20px;
+        float: left;
+      }
+
+      #controls img{
+        width: 30px;
+        margin: 20px 0 0 0;
+      }
+
+      #currentGameDetails {
+        display: none;
+        xborder-style: solid;
+        xborder-color: blue;
+        padding-right: 20px;
+        width: 500px;
+        float: right;
+        text-align: right;
+      }
+
+      #detailsChampions {
+        line-height: 40px;
+        font-size: 40px;
+        font-family: 'Abril Fatface', cursive;
+      }
+
+      #detailsResult {
+        line-height: 25px;
+        font-size: 25px;
+        font-family: 'Abril Fatface', cursive;
+      }
+
+      #gameDisplay {
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+        -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+      }
+      #gameNo {
+        font-size: 13px;
+      }
+      #gameHome {
+        font-size: 18px;
+        font-family: 'Abril Fatface', cursive;
+      }
+      #gameScore {
+        font-size: 18px;
+        font-family: 'Abril Fatface', cursive;
+      }
+      #gameAway {
+        font-size: 18px;
+        font-family: 'Abril Fatface', cursive;
+      }
+      #gameDetails {
+        font-size: 13px;
+      }
+
+      .progressButton {
+        display: inline-block;
+        height: 10px;
+      }
+
+      .countryLabel, .scoreLabel{
+        display: none;
+      }
+
+      #overlay {
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+        position: absolute;
+        background-color: rgba(42, 43, 56, 0.8);
+      }
+
+      #textContent {
+        z-index: 110;
+        display: block;
+        width: 500px;
+        height: auto;
+        padding: 20px;
+        padding-bottom: 0;
+        margin: auto;
+        margin-top: 50px;
+        background-color: #2A2C39;
+        border:  1px solid #d0d0d0;
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      }
+
+      #tooltip {
+        z-index: 20;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 400;
+        position: absolute;
+        height: auto;
+        padding: 10px;
+        color: #E8F1F2;
+        background-color: rgba(61, 63, 61, 0.8);
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        pointer-events: none;
+      }
+
+      #tooltip.hidden {
+        display: none;
+      }
+
+      #tooltip p {
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 16px;
+        line-height: 20px;
+      }
+
+      .smoothed{
+        -webkit-transition: width 0.2s, height 0.2s, left 0.2s, top 0.2s; /* Safari */
+        transition: width 0.2s, height 0.2s, left 0.2s, top 0.2s; */
+      }
+
+      .key{
+        display: inline-block;
+        width: 40px;
+        text-align: center;
+      }
+      .keyClub{
+        color: #B3EFB2;
+      }
+      .keyBirth{
+        color: #FFD60C;
+      }
+      .keyLoan{
+        vertical-align: 5px;
+        border-bottom: 1px dashed;
+      }
+      .keyPerm{
+        vertical-align: 5px;
+        border-bottom: 1px solid;
+      }
+      button {
+        background-color: rgba(61, 63, 61, 0.0);
+        border: 1px solid #E8F1F2;
+        color: #B3EFB2;
+        padding: 2px 2px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1em;
+        margin-bottom: 3px;
+        width: 250px;
+      }
+      button:focus {
+        outline:0;
+      }
+      .buttonChosen {
+        background-color: #B3EFB2;
+        border: 1px solid #B3EFB2;
+        color:  rgba(61, 63, 61, 1);
+      }
+      .XXXmoveButton {
+        width: 164px;
+        margin-right: 1.6px;
+      }
+      .teamButton {
+        width: 46px;
+        margin-right: 0.8px;
+      }
+      #button-12{ border-color: #7B0D1E; color: #E8F1F2; }
+      #button-12.buttonChosen, #button-12:hover { background-color: #7B0D1E; color: rgba(61, 63, 61, 1); }
+      #button-219 { border-color: #9F2042; color: #E8F1F2; }
+      #button-219.buttonChosen, #button-219:hover { background-color: #9F2042; color: rgba(61, 63, 61, 1); }
+      #button-218 { border-color: #EF2D56; color: #E8F1F2; }
+      #button-218.buttonChosen, #button-218:hover { background-color: #EF2D56; color: rgba(61, 63, 61, 1); }
+      #button-50 { border-color: #EC4E20; color: #E8F1F2; }
+      #button-50.buttonChosen, #button-50:hover { background-color: #EC4E20; color: rgba(61, 63, 61, 1); }
+      #button-55 { border-color: #DD7230; color: #E8F1F2; }
+      #button-55.buttonChosen, #button-55:hover { background-color: #DD7230; color: rgba(61, 63, 61, 1); }
+      #button-70 { border-color: #FFC755; color: #E8F1F2; }
+      #button-70.buttonChosen, #button-70:hover { background-color: #FFC755; color: rgba(61, 63, 61, 1); }
+      #button-93 { border-color: #DCED31; color: #E8F1F2; }
+      #button-93.buttonChosen, #button-93:hover { background-color: #DCED31; color: rgba(61, 63, 61, 1); }
+      #button-104 { border-color: #F3FFC6; color: #E8F1F2; }
+      #button-104.buttonChosen, #button-104:hover { background-color: #F3FFC6; color: rgba(61, 63, 61, 1); }
+      #button-109 { border-color: #C3EB78; color: #E8F1F2; }
+      #button-109.buttonChosen, #button-109:hover { background-color: #C3EB78; color: rgba(61, 63, 61, 1); }
+      #button-118 { border-color: #0CCE6B; color: #E8F1F2; }
+      #button-118.buttonChosen, #button-118:hover { background-color: #0CCE6B; color: rgba(61, 63, 61, 1); }
+      #button-119 { border-color: #697A21; color: #E8F1F2; }
+      #button-119.buttonChosen, #button-119:hover { background-color: #697A21; color: rgba(61, 63, 61, 1); }
+      #button-123 { border-color: #5A7651; color: #E8F1F2; }
+      #button-123.buttonChosen, #button-123:hover { background-color: #5A7651; color: rgba(61, 63, 61, 1); }
+      #button-177 { border-color: #0B6E4F; color: #E8F1F2; }
+      #button-177.buttonChosen, #button-177:hover { background-color: #0B6E4F; color: rgba(61, 63, 61, 1); }
+      #button-187 { border-color: #2C666E; color: #E8F1F2; }
+      #button-187.buttonChosen, #button-187:hover { background-color: #2C666E; color: rgba(61, 63, 61, 1); }
+      #button-190 { border-color: #44BBA4; color: #E8F1F2; }
+      #button-190.buttonChosen, #button-190:hover { background-color: #44BBA4; color: rgba(61, 63, 61, 1); }
+      #button-192 { border-color: #90DDF0; color: #E8F1F2; }
+      #button-192.buttonChosen, #button-192:hover { background-color: #90DDF0; color: rgba(61, 63, 61, 1); }
+      #button-197 { border-color: #00A8E8; color: #E8F1F2; }
+      #button-197.buttonChosen, #button-197:hover { background-color: #00A8E8; color: rgba(61, 63, 61, 1); }
+      #button-208 { border-color: #007EA7; color: #E8F1F2; }
+      #button-208.buttonChosen, #button-208:hover { background-color: #007EA7; color: rgba(61, 63, 61, 1); }
+      #button-209 { border-color: #5158BB; color: #E8F1F2; }
+      #button-209.buttonChosen, #button-209:hover { background-color: #5158BB; color: rgba(61, 63, 61, 1); }
+      #button-210 { border-color: #9055A2; color: #E8F1F2; }
+      #button-210.buttonChosen, #button-210:hover { background-color: #9055A2; color: rgba(61, 63, 61, 1); }
+      #options,#key {
+        float: left;
+      }
+      #key {
+        margin-right: 20px;
+        margin-top: 2px;
+      }
+      .toggle {
+        text-align: right;        
+      }
+      .toggle a{
+        color: #E8F1F2;
+      }
+
+
+@media screen and (min-width: 800px){
+  #textContent {
+    width: 680px;
+  }
+  h1 {
+    line-height: 40px;
+  }
+  h1 #t1,#t2 {
+    font-size: 69px;
+  }
+  h1 #t3,#t4 {
+    font-size: 60px;
+  }
+}
+
+
+@media screen and (min-width: 1200px){  
+  #gameNo {
+    font-size: 17px;
+  }
+  #gameHome {
+    font-size: 25px;
+  }
+  #gameScore {
+    font-size: 25px;
+  }
+  #gameAway {
+    font-size: 25px;
+  }
+  #gameDetails {
+    font-size: 17px;
+  }
+  #currentGameDetails {
+    display: block;
+  }
+  #textContent {
+    margin-top: 100px;
+  }
+}
+
+@media screen and (min-width: 1500px){  
+  #textContent {
+    margin-top: 200px;
+  }
+}
+
+
+
