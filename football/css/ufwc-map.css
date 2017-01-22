@@ -73,7 +73,7 @@
       }
 
       #progressFlag{
-        background: url("images/icons/prog-flag.png") no-repeat;
+        background: url("/football/images/icons/prog-flag.png") no-repeat;
         width: 23px;
         height: 18px;
         padding-top: 1px;
