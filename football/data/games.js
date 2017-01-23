@@ -65,7 +65,7 @@
      ["SCOTLAND","SCOTLAND","5-2","WALES","Friendly fixture","19/03/1898","MOTHERWELL"],
      ["SCOTLAND","IRELAND","0-3","SCOTLAND","Friendly fixture","26/03/1898","BELFAST"],
      ["ENGLAND","SCOTLAND","1-3","ENGLAND","Friendly fixture","02/04/1898","GLASGOW"],
-     ["IRELAND","ENGLAND","13-2","IRELAND","Friendly fixture","18/02/1899","SUNDERLAND"],
+     ["ENGLAND","ENGLAND","13-2","IRELAND","Friendly fixture","18/02/1899","SUNDERLAND"],
      ["ENGLAND","ENGLAND","4-0","WALES","Friendly fixture","20/03/1899","BRISTOL"],
      ["ENGLAND","ENGLAND","2-1","SCOTLAND","Friendly fixture","08/04/1899","BIRMINGHAM"],
      ["ENGLAND","IRELAND","0-2","ENGLAND","Friendly fixture","17/03/1900","DUBLIN"],
