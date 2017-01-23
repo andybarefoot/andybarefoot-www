@@ -124,6 +124,7 @@
         svg
           .attr("viewBox", "0 0 " + $(window).width() + " " + ($(window).height() - $("#navigation").height()))
         ;
+        console.log("resize");
         moveProgressFlag();
         sizeDisplayBox();
         displayGame(currentGame);
@@ -756,6 +757,7 @@
         // update progress bar
         $(".progressButton").css("background-color",challengerColour);
         $("#progButton"+gameNo).css("background-color",championColour);
+        console.log("displayGame");
         moveProgressFlag();
         // display game details in game display box
         gameNoTxt.text("Match No. " + gameNo + "/" + gamesData.length);
@@ -789,96 +791,6 @@
         boundArray.push(getCountryBounds(awayCode));
         combinedBound = combineBounds(boundArray);
         boxZoom(combinedBound, 20);
-  }
-
-      // display the passed game as the current game
-      function displayGameOld(gameNo){
-        $("#gameDisplay").hide();
-        $("#homeArrow").hide();
-        $("#awayArrow").hide();
-        // get details of game (teams, champion, etc)
-        currentWinner = gamesData[gameNo-1][0];
-        currentHome = gamesData[gameNo-1][1];
-        currentAway = gamesData[gameNo-1][3];
-        currentScore = gamesData[gameNo-1][2];
-        currentTournament = gamesData[gameNo-1][4];
-        currentDate = gamesData[gameNo-1][5];
-        currentVenue = gamesData[gameNo-1][6];
-        currentIndexH = findTeamIndex(currentHome);
-        currentIndexA = findTeamIndex(currentAway);
-        winnerIndex = findTeamIndex(currentWinner);
-        homeCode = findTeamCode(currentHome);
-        awayCode = findTeamCode(currentAway);
-        winnerCode = findTeamCode(currentWinner);
-        // update progress bar
-        $(".progressButton").css("background-color",challengerColour);
-        $("#progButton"+gameNo).css("background-color",championColour);
-        // display game details in game display box
-        gameNoTxt.text("Match No. " + gameNo + "/" + gamesData.length);
-        gameHomeTxt.text(currentHome);
-        gameScoreTxt.text(currentScore);
-        gameAwayTxt.text(currentAway);
-        gameDetailsTxt.text(currentTournament + " - " + currentVenue + " (" + currentDate + ")");
-        if(winnerCode==homeCode){
-          gameHomeTxt.attr("fill",championColour);
-        }else{
-          gameHomeTxt.attr("fill",challengerColour);
-        }
-        if(winnerCode==awayCode){
-          gameAwayTxt.attr("fill",championColour);
-        }else{
-          gameAwayTxt.attr("fill",challengerColour);
-        }
-        // display game details in navigation
-        $("#detailsNo").text("Match No. " + gameNo + "/" + gamesData.length);
-        $("#detailsResult").text(currentHome + " " + currentScore + " " + currentAway);
-        $("#detailsEvent").text(currentTournament);
-        $("#detailsVenue").text(" - " + currentVenue + " (" + currentDate + ")");
-        if(currentWinner==""){
-          $("#detailsChampions").text("NO CHAMPION");
-        }else{
-          $("#detailsChampions").text(currentWinner);
-        }
-        // display correct country colours
-        if(winnerIndex==currentIndexH){
-          countryFill(homeCode,championColour);
-          homeArrow.attr("stroke",championColour);
-        }else{
-          countryFill(homeCode,challengerColour);
-          homeArrow.attr("stroke",challengerColour);
-        }
-        if(winnerIndex==currentIndexA){
-          countryFill(awayCode,championColour);
-          awayArrow.attr("stroke",championColour);
-        }else{
-          countryFill(awayCode,challengerColour);
-          awayArrow.attr("stroke",challengerColour);
-        }
-        // zoom to countries on map
-        boundArray = [];
-        boundArray.push(getCountryBounds(homeCode));
-        boundArray.push(getCountryBounds(awayCode));
-        combinedBound = combineBounds(boundArray);
-        boxZoom(combinedBound, 20);
-
-        homeFeature = countriesGroup.selectAll('path')
-          .filter(function(d) {
-            return d.properties.iso_a3 === homeCode;
-          })
-        ;
-        awayFeature = countriesGroup.selectAll('path')
-          .filter(function(d) {
-            return d.properties.iso_a3 === awayCode;
-          })
-        ;
-        homeArrow
-          .attr("x2", getCountryCentroid(homeFeature.datum())[0])
-          .attr("y2", getCountryCentroid(homeFeature.datum())[1])
-        ;
-        awayArrow
-          .attr("x2", getCountryCentroid(awayFeature.datum())[0])
-          .attr("y2", getCountryCentroid(awayFeature.datum())[1])
-        ;
   }
 
       // display the passed game as a past game (i.e. change the colours to represent previous success)

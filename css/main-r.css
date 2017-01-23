@@ -142,10 +142,21 @@ hgroup li img{
 /*    box-shadow: 0 0 6px rgba(0,0,0,0.27); */
 }
 
+.project a {
+	font-weight: bold;
+}
+
+.project .ext {
+	font-weight: normal;
+}
+
 .highlight {
     clear: both;	
 }
 
+.highlight a {
+	font-weight: bold;
+}
 .sectionTitle {
 	background-color: #01161E;
 	background-color: #011627;

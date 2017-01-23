@@ -24,7 +24,7 @@ var teamsData = [
   ["ITALY",0, 'ITA'],
   ["CZECHOSLOVAKIA",0, 'CZE'],
   ["SWEDEN",0, 'SWE'],
-  ["YUGOSLAVIA",0, 'MNE'],
+  ["YUGOSLAVIA",0, 'SRB'],
   ["ROMANIA",0, 'ROU'],
   ["FINLAND",0, 'FIN'],
   ["CROATIA",0, 'HRV'],
