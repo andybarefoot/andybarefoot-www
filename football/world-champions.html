@@ -10,8 +10,6 @@
     <meta property="og:image" content="http://www.andybarefoot.com/football/images/fb-football-world-champs.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="/jscript/d3.v3.js"></script>
-    <script type="text/javascript" src="data/countries.js"></script>
-    <script type="text/javascript" src="data/games.js"></script>
     <script src="/jscript/analyticstracking.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Yanone+Kaffeesatz:200" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
@@ -53,20 +51,23 @@
         <p>Key:</p>
         <p><nobr><img src="images/icons/key-champ.png"> Current Champion</nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nobr><img src="images/icons/key-chall.png"> Last challenger</nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nobr><img src="images/icons/key-ex-champ.png"> Ex-champion</nobr> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nobr><img src="images/icons/key-ex-chall.png"> Ex-challenger</nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <nobr><img src="images/icons/key-score.png"> Times won or defended championship</nobr></p>
-        <p id="close"><a href="javascript:closeOverlay()">[X]</a></p>
+        <p id="close">[Loading data...]</p>
      </div>
    </div>
 
     <div id="progressFlag"></div>
 
     <script type="text/javascript">
-      // scalefactor
-      // - to view whole map left to right scale = width/2*PI
 
-      //Globals for use later
-      //Width and height
+////// DEFINE VARIABLES ////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      //Width and height of SVG (Needs to be 10:4 ration for world map)
       var w = 8000;
       var h = 3200;
+      // map initial settings
+      // to view whole map left to right scale = width/2*PI
+      var initScale = [w/(2*Math.PI)];
+      var initTranslate = [w/2, h/2];
       // colours
       var oceanColour = "#2A2C39";
       var landColour = "#5c6672";
@@ -74,363 +75,126 @@
       var challengerColour = "#d0d0d0";
       var pastChampionColour = "#ab8d5b"
       var pastChallengerColour = "#79818a";
-      // animation settings
+      // current game
       var currentGame;
+      // animation settings
       var frameGap = 1500;
       var zoomDuration = 500;
       var minGap = 300;
       var maxGap = 3000;
       var playing = false;
-      // map initial settings
-      var initScale = [w/(2*Math.PI)];
-      var initTranslate = [w/2, h/2];
+      // responsive values
+      // respIndex will hold the index of the responsive breakpoiint as the browser is resized
+      var respIndex;
+      // game display overlay box
+      // value for breakpoint
+      var gameDisplayBreak = 1200;
+      // different sizes for different breakpoints, biggest first
+      var gameDisplayOffset = [[300,200],[180,100]];
+      var gameDisplayDimensions = [[380,200],[300,140]];
+      var gameDisplayTextSpacing = [[-60,-25,5,35,68],[-40,-15,5,25,48]]
 
-      var countriesGroup;
-
-      var homeCode;
-      var awayCode;
-
-      var gameDisplayOffsetX = 300;
-      var gameDisplayOffsetY = 200;
-
-      var gameDisplayX = gameDisplayOffsetX;
-      var gameDisplayY = gameDisplayOffsetY;
-
+////// MAP DEFINITIONS/ ////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       //Define map projection
       var projection = d3.geo.equirectangular()
         .center([0, 14])
         .translate(initTranslate)
         .scale(initScale)
       ;
-
+      // Define map zoom behaviour
       var zoom = d3.behavior.zoom()
         .on("zoom", zoomed)
       ;
-
       //Define path generator
       var path = d3.geo.path()
         .projection(projection)
       ;
 
-      //Create SVG element
-      var svg = d3.select("body")
-        .append("svg")
-        .attr("viewBox", "0 0 " + $( window ).width() + " " + ($(window).height() - $("#navigation").height()))
-        .call(zoom)
-      ;
-
-      $(window).resize(function() {
-        $(".progressButton").width($(window).width()/gamesData.length);
-        svg
-          .attr("viewBox", "0 0 " + $(window).width() + " " + ($(window).height() - $("#navigation").height()))
-        ;
-        console.log("resize");
-        moveProgressFlag();
-        sizeDisplayBox();
-        displayGame(currentGame);
+////// PAGE/WINDOW EVENTS///////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      // once page has loaded
+      $(window).on('load', function() {
+        // set up values that are dependent on browser size
+        setResponsiveBreakIndex();
+        // load in countries data and games data
+        $.when(
+          $.getScript( "data/countries.js" ),
+          $.getScript( "data/games.js" ),
+          $.Deferred(function( deferred ){
+            $( deferred.resolve );
+          })
+        ).done(function(response1, response2){
+          // if country data not found
+          if(response1[2].status!=200){
+            console.error("Countries data not found");
+          // if game data not found
+          }else if(response2[2].status!=200){
+            console.error("Games data not found");
+          // if all data loaded
+          }else{
+            // create progress bar
+            createProgressBar();
+            // generate SVG
+            generateSVG();
+          }
+        });
       });
 
-      function sizeDisplayBox(){
-        if($("svg").width()>=1200){
-          gameDisplayOffsetX = 300;
-          gameDisplayOffsetY = 200;
-          gameDisplayRect
-            .attr("x", -190)
-            .attr("y", -100)
-            .attr("width", 380)
-            .attr("height", 200)
-          ;
-          gameNoTxt.attr("dy", -60);
-          gameHomeTxt.attr("dy", -25);
-          gameScoreTxt.attr("dy", 5);
-          gameAwayTxt.attr("dy", 35);
-          gameDetailsTxt.attr("dy", 68);
+      // on window resize
+      $(window).resize(function() {
+        // change responsive breakpoint index
+        setResponsiveBreakIndex();
+        // resize Progress bar and move flag
+        resizeProgressButtons();
+        moveProgressFlag();
+        // Resize SVG elements:
+        // SVG viewbox
+        resizeViewBox();
+        // Game Display Box
+        sizeDisplayBox();
+        // Display the current game will reset map zoom 
+        displayGamePreZoom();
+      });
+
+      // set an index that indicates which breakpoint should be used when resizing SVG elements
+      function setResponsiveBreakIndex(){
+        if($("svg").width()<gameDisplayBreak){
+          respIndex=1;
         }else{
-          gameDisplayOffsetX = 180;
-          gameDisplayOffsetY = 100;
-          gameDisplayRect
-            .attr("x", -150)
-            .attr("y", -70)
-            .attr("width", 300)
-            .attr("height", 140)
-          ;
-          gameNoTxt.attr("dy", -40);
-          gameHomeTxt.attr("dy", -15);
-          gameScoreTxt.attr("dy", 5);
-          gameAwayTxt.attr("dy", 25);
-          gameDetailsTxt.attr("dy", 48);
+          respIndex=0;
         }
       }
 
-      function initZoom(){
-        bestFit = Math.max($( window ).width()/w,$( window ).height()/h);
-        zoom.scaleExtent([bestFit, 40*bestFit])
-        initScale = Math.max($( window ).width()/w,$( window ).height()/h);
-      }
-
-// zoom to show an area defined by coordinates as large as possible within available screen size
-      function zoomed() {
-        dx = d3.event.translate[0];
-        dy = d3.event.translate[1];
-        dx = Math.min(0,dx);
-        dy = Math.min(0,dy);
-        dx = Math.max($("svg").width() - w*d3.event.scale,dx);
-        dy = Math.max($("svg").height() - h*d3.event.scale,dy);
-        zoom.translate([dx,dy]); 
-        countriesGroup.attr("transform", "translate(" + [dx,dy] + ")scale(" + d3.event.scale + ")");
-        zoomFinished();
-      }
-
-      function showLabel(labelID) {
-        $("#"+labelID).show();
-      }
-
-      function hideLabel(labelID) {
-        $("#"+labelID).hide();
-      }
-
+////// OPEN/CLOSE OVERLAY //////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       function openOverlay(){
         $("#overlay").show();
       }
-
       function closeOverlay(){
         $("#overlay").hide();
       }
-
-      //Load in GeoJSON data
-      d3.json("mapdata/custom50ukSplit.json", function(json) {
-//      d3.json("mapdata/justUnitedKingdom.json", function(json) {
-        console.log(json);
-        //Bind data and create one path per GeoJSON feature
-        countriesGroup = svg
-          .append("g")
-          .attr("id", "map")
-        ;
-        countriesGroup.append("rect")
-          .attr("x", 0)
-          .attr("y", 0)
-          .attr("width", w)
-          .attr("height", h)
-          .attr("fill", oceanColour)
-        ;
-
-        countries = countriesGroup
-          .selectAll("path")
-          .data(json.features)
-          .enter()
-          .append("path")
-          .attr("d", path)
-          .attr("fill", landColour)
-          .attr("stroke", oceanColour)
-          .on("mouseover", function(d,i) {
-            showLabel("countryLabel" + d.properties.iso_a3);
-          })
-          .on("mouseout", function(d,i) {
-            hideLabel("countryLabel" + d.properties.iso_a3);
-          })
-          .filter(function(d) {
-            return d.properties.iso_a3 === "GBR";
-          })
-          .remove()
-        ;
-
-        homeArrow = countriesGroup
-          .append("line")
-          .attr("id", "homeArrow")
-          .attr("x1", 800)
-          .attr("y1", 300)
-          .attr("x2", 7800)
-          .attr("y2", 3000)
-          .attr("stroke", championColour)
-          .attr("stroke-width", 10)
-        ;
-
-        awayArrow = countriesGroup
-          .append("line")
-          .attr("id", "awayArrow")
-          .attr("x1", 900)
-          .attr("x2", 1100)
-          .attr("y1", 200)
-          .attr("y2", 900)
-          .attr("stroke", challengerColour)
-          .attr("stroke-width", 10)
-        ;
-
-        countryLabels = countriesGroup
-          .selectAll("g")
-          .data(json.features)
-          .enter()
-          .append("g")
-          .attr("class", "countryLabel")
-          .attr("id", function(d) {
-            return "countryLabel" + d.properties.iso_a3;
-          })
-          .attr("transform", function(d) {
-            return "translate("+getCountryCentroid(d)[0]+","+getCountryCentroid(d)[1]+")";
-          })
-          .on("mouseover", function(d,i) {
-            showLabel("countryLabel" + d.properties.iso_a3);
-          })
-          .on("mouseout", function(d,i) {
-            hideLabel("countryLabel" + d.properties.iso_a3);
-          })
-        ;
-
-        countryLabels
-          .append("text")
-          .attr("class", "countryName")
-          .attr("fill", challengerColour)
-          .style("text-anchor", "middle")
-          .attr("dx", 0)
-          .attr("dy", 0)
-          .text(function(d) {
-            return d.properties.name;
-          })
-          .call(getTextBox)
-        ;
-
-        countryLabels
-          .insert("rect","text")
-          .attr("transform", function(d) {
-            return "translate("+(d.bbox.x-2)+","+(d.bbox.y)+")";
-          })
-          .attr("width", function(d){return (d.bbox.width+4)})
-          .attr("height", function(d){return d.bbox.height})
-          .style("fill", oceanColour)
-        ;
-
-        scoreLabels = countriesGroup
-          .selectAll(".scorelabel")
-          .data(json.features)
-          .enter()
-          .append("g")
-          .attr("class", "scoreLabel")
-          .attr("id", function(d) {
-            return "scoreLabel" + d.properties.iso_a3;
-          })
-          .attr("transform", function(d) {
-            return "translate("+getCountryCentroid(d)[0]+","+(getCountryCentroid(d)[1]+20)+")";
-          })
-          .on("mouseover", function(d,i) {
-            showLabel("countryLabel" + d.properties.iso_a3);
-          })
-          .on("mouseout", function(d,i) {
-            hideLabel("countryLabel" + d.properties.iso_a3);
-          })
-        ;
-
-        scoreLabels
-          .append("circle")
-          .attr("cx", 0)
-          .attr("cy", 0)
-          .attr("r", 12)
-          .style("fill", oceanColour)
-        ;
-
-        scoreLabels
-          .append("text")
-          .attr("class", "labelScore")
-          .attr("id", function(d) {
-            return "labelScore" + d.properties.iso_a3;
-          })
-          .attr("fill", challengerColour)
-          .style("text-anchor", "middle")
-          .attr("dx", 0)
-          .attr("dy", 5)
-          .text(28)
-        ;
-
-
-        gameDisplay = svg
-          .append("g")
-          .attr("id", "gameDisplay")
-          .attr("transform", "translate("+gameDisplayX+","+gameDisplayY+")")
-        ;
-
-        gameDisplayRect = gameDisplay
-          .append("rect")
-          .attr("x", -190)
-          .attr("y", -100)
-          .attr("width", 380)
-          .attr("height", 200)
-          .attr("fill", oceanColour)
-          .attr("stroke", championColour)
-          .attr("stroke-width", 2)
-        ;
-
-        gameNoTxt = gameDisplay
-          .append("text")
-          .attr("id", "gameNo")
-          .attr("fill", challengerColour)
-          .style("text-anchor", "middle")
-          .attr("dx", 0)
-          .attr("dy", -60)
-          .text("Match No. 123/926")
-        ;
-
-        gameHomeTxt = gameDisplay
-          .append("text")
-          .attr("id", "gameHome")
-          .attr("fill", challengerColour)
-          .style("text-anchor", "middle")
-          .attr("dx", 0)
-          .attr("dy", -25)
-          .text("TRINIDAD & TOBAGO")
-        ;
-
-        gameScoreTxt = gameDisplay
-          .append("text")
-          .attr("id", "gameScore")
-          .attr("fill", challengerColour)
-          .style("text-anchor", "middle")
-          .attr("dx", 0)
-          .attr("dy", 5)
-          .text("1-0")
-        ;
-
-        gameAwayTxt = gameDisplay
-          .append("text")
-          .attr("id", "gameAway")
-          .attr("fill", challengerColour)
-          .style("text-anchor", "middle")
-          .attr("dx", 0)
-          .attr("dy", 35)
-          .text("CZECHOSLOVAKIA")
-        ;
-
-        gameDetailsTxt = gameDisplay
-          .append("text")
-          .attr("id", "gameDetails")
-          .attr("fill", challengerColour)
-          .style("text-anchor", "middle")
-          .attr("dx", 0)
-          .attr("dy", 68)
-          .text("China Cup Qualifier - NANNING (15/01/2017)")
-        ;
-        sizeDisplayBox();
-        initZoom();
-        goToLast();
-      });
-
+      // allows the overlay to be closed
+      function allowOverlayClose(){
+        $("#close").html('[X]');
+        $("#close").click(function (event){
+          closeOverlay();
+        });
+        $("#overlay").click(function (event){
+          if($(event.target).is("#overlay")) {
+            closeOverlay();
+          }
+        });
+      }
+////// GET TEXT BOX (for sizing background rectangle) //////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       function getTextBox(selection) {
         selection.each(function(d) { d.bbox = this.getBBox(); })
       }
 
-      function findTeamIndex(teamVal){
-        for(var i = 0; i<teamsData.length; i++) {
-            if(teamsData[i][0] == teamVal) return i;
-        }
-        return -1;
-      }
-
-      function findTeamCode(teamVal){
-        for(var i = 0; i<teamsData.length; i++) {
-            if(teamsData[i][0] == teamVal) return teamsData[i][2];
-        }
-        return "";
-      }
-
-
+////// CHANGE COUNTRY DISPLAY ATTRIBUTES////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      // set country outline colour and thickness
       function countryStroke(countryID, strokeColour, strokeThickness){
         countriesGroup.selectAll('path')
           .filter(function(d) {
@@ -439,7 +203,7 @@
           .style('stroke', strokeColour)
           .style('stroke-width', strokeThickness)
       }
-
+      // set country fill colour
       function countryFill(countryID, fillColour){
         countriesGroup.selectAll('path')
           .filter(function(d) {
@@ -448,379 +212,17 @@
           .style('fill', fillColour)
       }
 
-      function boxZoom(box, paddingPerc){
-        point1 = box[0];
-        point2 = box[1];
-        // find size of map area defined
-        zoomWidth = Math.abs(point1[0]-point2[0]);
-        zoomHeight = Math.abs(point1[1]-point2[1]);
-        // increase map area to include padding
-        zoomWidth = zoomWidth * (100+paddingPerc)/100;
-        zoomHeight = zoomHeight * (100+paddingPerc)/100;
-        // find midpoint of map area defined
-        zoomMidX = (point1[0]+point2[0])/2;
-        zoomMidY = (point1[1]+point2[1])/2;
-        // find scale required for area to fill svg
-        maxXscale = $("svg").width()/zoomWidth;
-        maxYscale = $("svg").height()/zoomHeight;
-        zoomScale = Math.min(maxXscale, maxYscale);
-        // Find screen pixel equivalent once scaled
-        offsetX = zoomScale*zoomMidX;
-        offsetY = zoomScale*zoomMidY;
-        // Find offset to centre, making sure no gap at left or top of holder
-        dleft = Math.min(0,($("svg").width()/2)-offsetX);
-        dtop = Math.min(0,($("svg").height()/2)-offsetY);
-        // Make sure no gap at bottom or right of holder
-        dleft = Math.max($("svg").width()-(w*zoomScale),dleft);
-        dtop = Math.max($("svg").height()-(h*zoomScale),dtop);
-        zoom.translate([dleft,dtop]).scale(zoomScale); 
-//        zoom.translate([0,0]).scale(zoomScale); 
-        countriesGroup
-          .transition()
-          .duration(zoomDuration)
-          .attr("transform", "translate(" + [dleft,dtop] + ")scale(" + zoomScale + ")")
-          .each("end", zoomFinished);
-        ;
-
-      }
-
-      function zoomFinished(){
-        newScale = countriesGroup.node().getCTM().a;
-        newXoffset = countriesGroup.node().getCTM().e;
-        newYoffset = countriesGroup.node().getCTM().f;
-        currentWinner = gamesData[currentGame-1][0];
-        currentHome = gamesData[currentGame-1][1];
-        currentAway = gamesData[currentGame-1][3];
-        currentIndexH = findTeamIndex(currentHome);
-        currentIndexA = findTeamIndex(currentAway);
-        winnerIndex = findTeamIndex(currentWinner);
-        homeCode = findTeamCode(currentHome);
-        awayCode = findTeamCode(currentAway);
-        winnerCode = findTeamCode(currentWinner);
-        // update score labels
-        d3.select("#labelScore"+winnerCode).text(teamsData[winnerIndex][4]);
-        $("#scoreLabel"+winnerCode).show();
-        homeFeature = countriesGroup.selectAll('path')
-          .filter(function(d) {
-            return d.properties.iso_a3 === homeCode;
-          })
-        ;
-        awayFeature = countriesGroup.selectAll('path')
-          .filter(function(d) {
-            return d.properties.iso_a3 === awayCode;
-          })
-        ;
-        homeFeature = countriesGroup.selectAll('path')
-          .filter(function(d) {
-            return d.properties.iso_a3 === homeCode;
-          })
-        ;
-        awayFeature = countriesGroup.selectAll('path')
-          .filter(function(d) {
-            return d.properties.iso_a3 === awayCode;
-          })
-        ;
-        homeArrow
-          .attr("x2", getCountryCentroid(homeFeature.datum())[0])
-          .attr("y2", getCountryCentroid(homeFeature.datum())[1])
-        ;
-        awayArrow
-          .attr("x2", getCountryCentroid(awayFeature.datum())[0])
-          .attr("y2", getCountryCentroid(awayFeature.datum())[1])
-        ;
-
-        homeCentroidX = getCountryCentroid(homeFeature.datum())[0];
-        homeCentroidY = getCountryCentroid(homeFeature.datum())[1];
-        awayCentroidX = getCountryCentroid(awayFeature.datum())[0];
-        awayCentroidY = getCountryCentroid(awayFeature.datum())[1];
-        homeScreenX = (homeCentroidX*newScale)+newXoffset;
-        homeScreenY = (homeCentroidY*newScale)+newYoffset;
-        awayScreenX = (awayCentroidX*newScale)+newXoffset;
-        awayScreenY = (awayCentroidY*newScale)+newYoffset;
-        // display correct country colours
-        if(winnerIndex==currentIndexH){
-          countryFill(homeCode,championColour);
-          homeArrow.attr("stroke",championColour);
-        }else{
-          countryFill(homeCode,challengerColour);
-          homeArrow.attr("stroke",challengerColour);
-        }
-        if(winnerIndex==currentIndexA){
-          countryFill(awayCode,championColour);
-          awayArrow.attr("stroke",championColour);
-        }else{
-          countryFill(awayCode,challengerColour);
-          awayArrow.attr("stroke",challengerColour);
-        }
- 
-        quads=[0,0,0,0];
-        if(homeScreenX<$("svg").width()/2){
-          // home is at left
-          if(homeScreenY<$("svg").height()/2){
-            // home is at top left
-            quads[0]++;
-          }else{
-            // home is at bottom left
-            quads[2]++;
-          }
-        }else{
-          // home is at right
-          if(homeScreenY<$("svg").height()/2){
-            // home is at top right
-            quads[1]++;
-          }else{
-            // home is at bottom right
-            quads[3]++;
-          }
-        }
-        if(awayScreenX<$("svg").width()/2){
-          // away is at left
-          if(awayScreenY<$("svg").height()/2){
-            // away is at top left
-            quads[0]++;
-          }else{
-            // away is at bottom left
-            quads[2]++;
-          }
-        }else{
-          // away is at right
-          if(awayScreenY<$("svg").height()/2){
-            // away is at top right
-            quads[1]++;
-          }else{
-            // away is at bottom right
-            quads[3]++;
-          }
-        }
-        if(quads[0]==2){
-          gameDisplayX = $("svg").width()-gameDisplayOffsetX;
-          gameDisplayY = $("svg").height()-gameDisplayOffsetY;
-        }else if(quads[1]==2){
-           gameDisplayX = gameDisplayOffsetX;
-           gameDisplayY = $("svg").height()-gameDisplayOffsetY;
-        }else if(quads[2]==2){
-           gameDisplayX = $("svg").width()-gameDisplayOffsetX;
-           gameDisplayY = gameDisplayOffsetY;
-        }else if(quads[3]==2){
-           gameDisplayX = gameDisplayOffsetX;
-           gameDisplayY = gameDisplayOffsetY;
-        }else if(quads[0]==0){
-           gameDisplayX = gameDisplayOffsetX;
-           gameDisplayY = gameDisplayOffsetY;
-        }else if(quads[1]==0){
-           gameDisplayX = $("svg").width()-gameDisplayOffsetX;
-           gameDisplayY = gameDisplayOffsetY;
-        }else if(quads[2]==0){
-           gameDisplayX = gameDisplayOffsetX;
-           gameDisplayY = $("svg").height()-gameDisplayOffsetY;
-        }else {
-           gameDisplayX = $("svg").width()-gameDisplayOffsetX;
-           gameDisplayY = $("svg").height()-gameDisplayOffsetY;
-        }
-        gameDisplay
-          .attr("transform", "translate("+gameDisplayX+","+gameDisplayY+")")
-        ;
-        homeArrow
-          .attr("x1", (gameDisplayX-newXoffset)/newScale)
-          .attr("y1", (gameDisplayY-newYoffset)/newScale)
-          .attr("stroke-width", 2/newScale)
-        ;
-        awayArrow
-          .attr("x1", (gameDisplayX-newXoffset)/newScale)
-          .attr("y1", (gameDisplayY-newYoffset)/newScale)
-          .attr("stroke-width", 2/newScale)
-        ;
-
-        $("#gameDisplay").show();
-        $("#homeArrow").show();
-        $("#awayArrow").show();
-     }
-
-      function getCountryBounds(countryID){
-        countryFeature = countriesGroup.selectAll('path')
-          .filter(function(d) {
-            return d.properties.iso_a3 === countryID
-          })
-          .datum();
-        pureBounds = path.bounds(countryFeature);
-        // hack the bounds for nicer display for certain countries
-        // ignore some French colonies
-        if(countryID=="FRA"){
-          pureBounds = [[3890,775.6195746527787],[4240,1000]];
-        }
-        // ignore Norways arctic area
-        if(countryID=="NOR"){
-          pureBounds = [[4152,280],[4700,622]];
-        }
-        // ignore some Dutch colonies
-        if(countryID=="NLD"){
-          pureBounds = [[4075,715],[4160,780]];
-        }
-        // ignore some Portuguese colonies
-        if(countryID=="PRT"){
-          pureBounds = [[3790,974.7243923611107],[3861.9444444444443,1090]];
-        }
-        // US mainland only
-        if(countryID=="USA"){
-          pureBounds = [[1230,810],[2520.9444444444443,1370]];
-        }
-        // Chile mainland only
-        if(countryID=="CHL"){
-          pureBounds = [[2320,2300.1345486111104],[2523.649088541667,3153.148871527778]];
-        }
-        // Smaller area of Russia
-        if(countryID=="RUS"){
-          pureBounds = [[4610,350],[6200,1000]];
-        }
-        // igonre BAlearics for Spain
-        if(countryID=="ESP"){
-          pureBounds = [[3790,938.5655381944433],[4096.046006944445,1120]];
-        }
-        return pureBounds;
-      }
-
-      // FIX CENTROIDS
-      function getCountryCentroid(feature){
-        pureCentroid = path.centroid(feature);
-        if(feature.properties.iso_a3=="FRA"){
-          pureCentroid = [4050,880];
-        }
-        if(feature.properties.iso_a3=="NOR"){
-          pureCentroid = [4200,550];
-        }
-        if(feature.properties.iso_a3=="USA"){
-          pureCentroid = [1800,1050];
-        }
-        if(feature.properties.iso_a3=="CHL"){
-          pureCentroid = [2390,2750];
-        }
-        if(feature.properties.iso_a3=="RUS"){
-          pureCentroid = [5800,600];
-        }
-        return pureCentroid;
-      }
-      /*
-      FRA
-      */
-
-      function combineBounds(bounds){
-        maxX = 0;
-        minX = w;
-        maxY = 0;
-        minY = h;
-        for(i=0;i<bounds.length;i++){
-          if(bounds[i][0][0]<minX)minX = bounds[i][0][0];
-          if(bounds[i][0][1]<minY)minY = bounds[i][0][1];
-          if(bounds[i][1][0]>maxX)maxX = bounds[i][1][0];
-          if(bounds[i][1][1]>maxY)maxY = bounds[i][1][1];
-        }
-        return [[minX,minY],[maxX,maxY]];
-      }
-
-      function moveProgressFlag(game){
-        game = game || currentGame;
-        var position = $("#progButton"+game).offset();
-        position.top+=12;
-        if(position.left<11){
-          $("#progressFlag").css("background-image", "url('images/icons/prog-flag-l.png')"); 
-        }else if(position.left>($(window).width()-23)){
-          $("#progressFlag").css("background-image", "url('images/icons/prog-flag-r.png')");
-          position.left-=23;
-        }else{
-          $("#progressFlag").css("background-image", "url('images/icons/prog-flag.png')");
-          position.left-=11;
-        }
-        $("#progressFlag").css(position);
-        $("#progressFlag").html(game);
-      }
-
-
-      // display the passed game as the current game
-      function displayGame(gameNo){
-        $("#gameDisplay").hide();
-        $("#homeArrow").hide();
-        $("#awayArrow").hide();
-        // get details of game (teams, champion, etc)
-        currentWinner = gamesData[gameNo-1][0];
-        currentHome = gamesData[gameNo-1][1];
-        currentAway = gamesData[gameNo-1][3];
-        currentScore = gamesData[gameNo-1][2];
-        currentTournament = gamesData[gameNo-1][4];
-        currentDate = gamesData[gameNo-1][5];
-        currentVenue = gamesData[gameNo-1][6];
-        currentIndexH = findTeamIndex(currentHome);
-        currentIndexA = findTeamIndex(currentAway);
-        winnerIndex = findTeamIndex(currentWinner);
-        homeCode = findTeamCode(currentHome);
-        awayCode = findTeamCode(currentAway);
-        winnerCode = findTeamCode(currentWinner);
-        // update progress bar
-        $(".progressButton").css("background-color",challengerColour);
-        $("#progButton"+gameNo).css("background-color",championColour);
-        console.log("displayGame");
-        moveProgressFlag();
-        // display game details in game display box
-        gameNoTxt.text("Match No. " + gameNo + "/" + gamesData.length);
-        gameHomeTxt.text(currentHome);
-        gameScoreTxt.text(currentScore);
-        gameAwayTxt.text(currentAway);
-        gameDetailsTxt.text(currentTournament + " - " + currentVenue + " (" + currentDate + ")");
-        if(winnerCode==homeCode){
-          gameHomeTxt.attr("fill",championColour);
-        }else{
-          gameHomeTxt.attr("fill",challengerColour);
-        }
-        if(winnerCode==awayCode){
-          gameAwayTxt.attr("fill",championColour);
-        }else{
-          gameAwayTxt.attr("fill",challengerColour);
-        }
-        // display game details in navigation
-        $("#detailsNo").text("Match No. " + gameNo + "/" + gamesData.length);
-        $("#detailsResult").text(currentHome + " " + currentScore + " " + currentAway);
-        $("#detailsEvent").text(currentTournament);
-        $("#detailsVenue").text(" - " + currentVenue + " (" + currentDate + ")");
-        if(currentWinner==""){
-          $("#detailsChampions").text("NO CHAMPION");
-        }else{
-          $("#detailsChampions").text(currentWinner);
-        }
-        // zoom to countries on map
-        boundArray = [];
-        boundArray.push(getCountryBounds(homeCode));
-        boundArray.push(getCountryBounds(awayCode));
-        combinedBound = combineBounds(boundArray);
-        boxZoom(combinedBound, 20);
-  }
-
-      // display the passed game as a past game (i.e. change the colours to represent previous success)
-      function displayPast(gameNo){
-        gameID = "#game"+gameNo;
-        pastHome = gamesData[gameNo-1][1];
-        pastAway = gamesData[gameNo-1][3];
-        homeIndex=findTeamIndex(pastHome);
-        awayIndex=findTeamIndex(pastAway);
-        // update country colours for each team
-        if(teamsData[homeIndex][4]>0){
-          countryFill(homeCode,pastChampionColour);
-        }else{
-          countryFill(homeCode,pastChallengerColour);
-        }
-        if(teamsData[awayIndex][4]>0){
-          countryFill(awayCode,pastChampionColour);
-        }else{
-          countryFill(awayCode,pastChallengerColour);
-        }
-      }
-
+////// NAVIGATE THROUGH GAME TIMELINE //////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      // go to first game
       function goToFirst(){
         goToGame(1);
       }
-      
+      // go to last game
       function goToLast(){
         goToGame(gamesData.length);
       }
-      
+      // go to specified game
       function goToGame(gameNo){
         stopVis();
         // reset score labels
@@ -844,119 +246,81 @@
         // update game stats and colours for each country up to requested game
         champ=-1;
         for(i=0;i<gameNo;i++){
-          newHome = gamesData[i][1];
-          newAway = gamesData[i][3];
-          newWinner = gamesData[i][0];
-          homeIndex=findTeamIndex(newHome);
-          awayIndex=findTeamIndex(newAway);
-          winnerIndex=findTeamIndex(newWinner);
-          homeCode = findTeamCode(newHome);
-          awayCode = findTeamCode(newAway);
-          winnerCode = findTeamCode(newWinner);
+          // get game details for new game 
+          newGame = getGameDetails(i+1);
           // each team has played one more game
-          teamsData[homeIndex][3]++;
-          teamsData[awayIndex][3]++;
-          // was it a "real" win?
-//          scoreArray = gamesData[i][2].split("-");
-//          if(scoreArray.length==2){
-//            if(scoreArray[0].trim()!==scoreArray[1].trim()){
-              // winning team has won one more game
-              teamsData[winnerIndex][4]++;
-//            }
-//          }
-          d3.select("#labelScore"+winnerCode).text(teamsData[winnerIndex][4]);
-          $("#scoreLabel"+winnerCode).show();
+          teamsData[newGame.homeIndex][3]++;
+          teamsData[newGame.awayIndex][3]++;
+          teamsData[newGame.winnerIndex][4]++;
+          d3.select("#labelScore"+newGame.winnerCode).text(teamsData[newGame.winnerIndex][4]);
+          $("#scoreLabel"+newGame.winnerCode).show();
           // if new champion that team has been champion one more
-          if(winnerIndex!=champ){
-            teamsData[winnerIndex][1]++;
-            champ=winnerIndex;
+          if(newGame.winnerIndex!=champ){
+            teamsData[newGame.winnerIndex][1]++;
+            champ=newGame.winnerIndex;
           }
           // update country colours for each team
-          if(teamsData[homeIndex][4]>0){
-            countryFill(homeCode,pastChampionColour);
+          if(teamsData[newGame.homeIndex][4]>0){
+            countryFill(newGame.homeCode,pastChampionColour);
           }else{
-            countryFill(homeCode,pastChallengerColour);
+            countryFill(newGame.homeCode,pastChallengerColour);
           }
-          if(teamsData[awayIndex][4]>0){
-            countryFill(awayCode,pastChampionColour);
+          if(teamsData[newGame.awayIndex][4]>0){
+            countryFill(newGame.awayCode,pastChampionColour);
           }else{
-            countryFill(awayCode,pastChallengerColour);
+            countryFill(newGame.awayCode,pastChallengerColour);
           }
         }
         // set current game
         currentGame=gameNo;
         // display current game
-        displayGame(gameNo);
+        displayGamePreZoom(gameNo);
       }
-
+      // go to next game
       function advanceGame(){
-        // get current champ
-        champ = gamesData[currentGame-1][0];
-        champIndex = findTeamIndex(champ);
-        // get old details
-        oldHome = gamesData[currentGame-1][1];
-        oldAway = gamesData[currentGame-1][3];
-        oldWinner = gamesData[currentGame-1][0];
-        oldHomeIndex=findTeamIndex(newHome);
-        oldAwayIndex=findTeamIndex(newAway);
-        oldWinnerIndex=findTeamIndex(newWinner);
-        oldHomeCode = findTeamCode(newHome);
-        oldAwayCode = findTeamCode(newAway);
-        oldWinnerCode = findTeamCode(newWinner);
-
+        // get game details for old game 
+        oldGame = getGameDetails(currentGame);
         // remove "challenger" colour from loser
-        if(oldHomeCode!=oldWinnerCode){
-          if(teamsData[oldHomeIndex][4]>0){
-            countryFill(oldHomeCode,pastChampionColour);
+        if(oldGame.homeCode!=oldGame.winnerCode){
+          if(teamsData[oldGame.homeIndex][4]>0){
+            countryFill(oldGame.homeCode,pastChampionColour);
           }else{
-            countryFill(oldHomeCode,pastChallengerColour);
+            countryFill(oldGame.homeCode,pastChallengerColour);
           }
         }
-        if(oldAwayCode!=oldWinnerCode){
-          if(teamsData[oldAwayIndex][4]>0){
-            countryFill(oldAwayCode,pastChampionColour);
+        if(oldGame.awayCode!=oldGame.winnerCode){
+          if(teamsData[oldGame.awayIndex][4]>0){
+            countryFill(oldGame.awayCode,pastChampionColour);
           }else{
-            countryFill(oldAwayCode,pastChallengerColour);
+            countryFill(oldGame.awayCode,pastChallengerColour);
           }
         }
         // increment game count
         currentGame++;
-        // update team stats
-        newHome = gamesData[currentGame-1][1];
-        newAway = gamesData[currentGame-1][3];
-        newWinner = gamesData[currentGame-1][0];
-        homeIndex=findTeamIndex(newHome);
-        awayIndex=findTeamIndex(newAway);
-        winnerIndex=findTeamIndex(newWinner);
-        homeCode = findTeamCode(newHome);
-        awayCode = findTeamCode(newAway);
-        winnerCode = findTeamCode(newWinner);
+        // get game details for old game 
+        newGame = getGameDetails(currentGame);
         // each team has played one more game
-        teamsData[homeIndex][3]++;
-        teamsData[awayIndex][3]++;
-        // was it a "real" win?
-//        scoreArray = gamesData[currentGame-1][2].split("-");
-//        if(scoreArray.length==2){
-//          if(scoreArray[0].trim()!==scoreArray[1].trim()){
-            // winning team has won one more game
-            teamsData[winnerIndex][4]++;
-//          }
-//        }
+        teamsData[newGame.homeIndex][3]++;
+        teamsData[newGame.awayIndex][3]++;
+        teamsData[newGame.winnerIndex][4]++;
         // if new champion that team has been champion one more
-        if(winnerIndex!=champIndex){
-          teamsData[winnerIndex][1]++;
+        if(newGame.winnerIndex!=oldGame.winnerIndex){
+          teamsData[newGame.winnerIndex][1]++;
         }
         // display this game
-        displayGame(currentGame);
+        displayGamePreZoom(currentGame);
         // stop if at last game
         if(currentGame>=gamesData.length){
           stopVis();
         }
       }
-      
 
+////// ANIMATION CONTROLS//////////// //////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      // start animation
       function playVis(){
         if(!playing){
+          // set animation control graphics 
           $("#play").attr("src","images/icons/play-off.png");
           $("#pause").attr("src","images/icons/pause-on.png");
           if(frameGap<=minGap){
@@ -976,7 +340,7 @@
           runVis = setInterval(advanceGame, frameGap);
         }
       }
-
+      // stop animation
       function stopVis(){
         if(playing){
           $("#play").attr("src","images/icons/play-on.png");
@@ -987,7 +351,7 @@
           clearInterval(runVis);
         }
       }
-
+      // decrease animation speed
       function slower(){
         if(playing){
           stopVis();
@@ -999,7 +363,7 @@
           playVis();
         }
       }
-
+      // increase animation speed
       function faster(){
         if(playing){
           stopVis();
@@ -1012,13 +376,10 @@
         }
       }
 
-      $(window).on('load', function() {
-        $("#overlay").click(function (event){
-          console.log(event.target);
-          if($(event.target).is("#overlay")) {
-            closeOverlay();
-          }
-        })
+////// PROGRESS BAR ////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      // creates the progress bar
+      function createProgressBar(){
         progress = d3.select("#progressBar");
         for(i=1;i<=gamesData.length;i++){
           progress
@@ -1026,7 +387,7 @@
             .attr("class","progressButton")
             .attr("id","progButton"+(i))
             .attr('game-id',i)
-            .style("width", ($(window).width()/gamesData.length) + "px")
+//            .style("width", ($(window).width()/gamesData.length) + "px")
             .style("background-color", challengerColour)
             .on('click', function(d,i) {
               goToGame(d3.select(this).attr("game-id"));
@@ -1039,10 +400,628 @@
             })
           ;
         }
-      });
+        resizeProgressButtons();
+      } 
+      // resize progress bar
+      function resizeProgressButtons(){
+        $(".progressButton").width($(window).width()/gamesData.length);
+      }
+      // move the progress flag
+      function moveProgressFlag(game){
+        // if no game specified use current game 
+        game = game || currentGame;
+        // find position of progress button corresponding to specified game
+        var position = $("#progButton"+game).offset();
+        // set position below button
+        position.top+=12;
+        // flag has different image with pointer to left or right to allow positiing near end of bar:
+        // if flag is close to left edge use image with left pointer and position slightly right of button
+        if(position.left<11){
+          $("#progressFlag").css("background-image", "url('images/icons/prog-flag-l.png')"); 
+        // if flag is close to right edge use image with right pointer and position slightly left of button
+        }else if(position.left>($(window).width()-23)){
+          $("#progressFlag").css("background-image", "url('images/icons/prog-flag-r.png')");
+          position.left-=23;
+        // otherwise use image with left pointer and position directly below button
+        }else{
+          $("#progressFlag").css("background-image", "url('images/icons/prog-flag.png')");
+          position.left-=11;
+        }
+        // set the flag position to determined values
+        $("#progressFlag").css(position);
+        // set the flag text to specified game
+        $("#progressFlag").html(game);
+      }
 
+////// SVG /////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      function generateSVG(){
+        //Create SVG element
+        svg = d3.select("body")
+          .append("svg")
+          .call(zoom)
+        ;
+        //Resize SVG element
+        resizeViewBox();
+        //Load in GeoJSON data
+        d3.json("mapdata/custom50ukSplit.json", function(json) {
+          //Bind data and create one path per GeoJSON feature
+          countriesGroup = svg
+            .append("g")
+            .attr("id", "map")
+            .attr("transform", "translate(0,0)")  // set inital transform otherwise future transitions throw error
+          ;
+          // add a background rectangle
+          countriesGroup.append("rect")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("width", w)
+            .attr("height", h)
+            .attr("fill", oceanColour)
+          ;
+          // draw a path for each country
+          countries = countriesGroup
+            .selectAll("path")
+            .data(json.features)
+            .enter()
+            .append("path")
+            .attr("d", path)
+            .attr("fill", landColour)
+            .attr("stroke", oceanColour)
+            // add a mouseover action to show name label for country
+            .on("mouseover", function(d,i) {
+              $("#countryLabel" + d.properties.iso_a3).show();
+            })
+            .on("mouseout", function(d,i) {
+              $("#countryLabel" + d.properties.iso_a3).hide();
+            })
+            // we've edited the standard geo file to add seperate features for England, Wales, Scotland and Northern Ireland so we remove Great Britain 
+            .filter(function(d) {
+              return d.properties.iso_a3 === "GBR";
+            })
+            .remove()
+          ;
+          // draw an arrow that will point fromn the game display box to the home country
+          homeArrow = countriesGroup
+            .append("line")
+            .attr("id", "homeArrow")
+          ;
+          // draw an arrow that will point fromn the game display box to the away country
+          awayArrow = countriesGroup
+            .append("line")
+            .attr("id", "awayArrow")
+          ;
+          // Add a label group to each feature. This will contain the country name and a background rectangle  
+          countryLabels = countriesGroup
+            .selectAll("g")
+            .data(json.features)
+            .enter()
+            .append("g")
+            .attr("class", "countryLabel")
+            .attr("id", function(d) {
+              return "countryLabel" + d.properties.iso_a3;
+            })
+            .attr("transform", function(d) {
+              return "translate("+getCountryCentroid(d)[0]+","+getCountryCentroid(d)[1]+")";
+            })
+            // add mouseover functionality to the label
+            .on("mouseover", function(d,i) {
+              $("#countryLabel" + d.properties.iso_a3).show();
+            })
+            .on("mouseout", function(d,i) {
+              $("#countryLabel" + d.properties.iso_a3).hide();
+            })
+          ;
+          // add the text to the label group showing country name
+          countryLabels
+            .append("text")
+            .attr("class", "countryName")
+            .attr("fill", challengerColour)
+            .style("text-anchor", "middle")
+            .attr("dx", 0)
+            .attr("dy", 0)
+            .text(function(d) {
+              return d.properties.name;
+            })
+            .call(getTextBox)
+          ;
+          // add a background rectangle the same size as the text
+          countryLabels
+            .insert("rect","text")
+            .attr("transform", function(d) {
+              return "translate("+(d.bbox.x-2)+","+(d.bbox.y)+")";
+            })
+            .attr("width", function(d){return (d.bbox.width+4)})
+            .attr("height", function(d){return d.bbox.height})
+            .style("fill", oceanColour)
+          ;
+          // add a label group to each feature. This will contain the score and a background circle
+          scoreLabels = countriesGroup
+            .selectAll(".scorelabel")
+            .data(json.features)
+            .enter()
+            .append("g")
+            .attr("class", "scoreLabel")
+            .attr("id", function(d) {
+              return "scoreLabel" + d.properties.iso_a3;
+            })
+            .attr("transform", function(d) {
+              return "translate("+getCountryCentroid(d)[0]+","+(getCountryCentroid(d)[1]+20)+")";
+            })
+            .on("mouseover", function(d,i) {
+              $("#countryLabel" + d.properties.iso_a3).show();
+            })
+            .on("mouseout", function(d,i) {
+              $("#countryLabel" + d.properties.iso_a3).hide();
+            })
+          ;
+          // add a background circle to each label group
+          scoreLabels
+            .append("circle")
+            .attr("cx", 0)
+            .attr("cy", 0)
+            .attr("r", 12)
+            .style("fill", oceanColour)
+          ;
+          // add the score text to each label group. We will define the text string later.
+          scoreLabels
+            .append("text")
+            .attr("class", "labelScore")
+            .attr("id", function(d) {
+              return "labelScore" + d.properties.iso_a3;
+            })
+            .attr("fill", challengerColour)
+            .style("text-anchor", "middle")
+            .attr("dx", 0)
+            .attr("dy", 5)
+          ;
+          // create game display box holder
+          gameDisplay = svg
+            .append("g")
+            .attr("id", "gameDisplay")
+            .attr("transform", "translate(0,0)")
+          ;
+          // create background rectangle for game display box
+          gameDisplayRect = gameDisplay
+            .append("rect")
+            .attr("fill", oceanColour)
+            .attr("stroke", championColour)
+            .attr("stroke-width", 2)
+          ;
+          // create "Game No" text for game display box
+          gameNoTxt = gameDisplay
+            .append("text")
+            .attr("id", "gameNo")
+            .attr("fill", challengerColour)
+            .style("text-anchor", "middle")
+            .attr("dx", 0)
+          ;
+          // create home team text for game display box
+          gameHomeTxt = gameDisplay
+            .append("text")
+            .attr("id", "gameHome")
+            .attr("fill", challengerColour)
+            .style("text-anchor", "middle")
+            .attr("dx", 0)
+          ;
+          // create score text for game display box
+          gameScoreTxt = gameDisplay
+            .append("text")
+            .attr("id", "gameScore")
+            .attr("fill", challengerColour)
+            .style("text-anchor", "middle")
+            .attr("dx", 0)
+          ;
+          // create home team text for game display box
+          gameAwayTxt = gameDisplay
+            .append("text")
+            .attr("id", "gameAway")
+            .attr("fill", challengerColour)
+            .style("text-anchor", "middle")
+            .attr("dx", 0)
+          ;
+          // create competition/venue/date text for game display box
+          gameDetailsTxt = gameDisplay
+            .append("text")
+            .attr("id", "gameDetails")
+            .attr("fill", challengerColour)
+            .style("text-anchor", "middle")
+            .attr("dx", 0)
+          ;
+          // svg is complete
+          // initiate zoom, setting max/min scale
+          initZoom();
+          // set display box size for current breakpoint
+          sizeDisplayBox();
+          // display the most recent game
+          goToLast();
+          // allow user to close overlay
+          allowOverlayClose();
+//          initZoom();
+        });
+      }
+      // resize viewBox
+      function resizeViewBox(){
+        svg
+          .attr("viewBox", "0 0 " + $(window).width() + " " + ($(window).height() - $("#navigation").height()))
+        ;
+      }
+      // resize game display box   
+      function sizeDisplayBox(){
+        // change rectangle dimensions and offset within group 
+        gameDisplayRect
+          .attr("x", 0-(gameDisplayDimensions[respIndex][0]/2))
+          .attr("y", 0-(gameDisplayDimensions[respIndex][1]/2))
+          .attr("width", gameDisplayDimensions[respIndex][0])
+          .attr("height", gameDisplayDimensions[respIndex][1])
+        ;
+        // change vertical spacing of text 
+        gameNoTxt.attr("dy", gameDisplayTextSpacing[respIndex][0]);
+        gameHomeTxt.attr("dy", gameDisplayTextSpacing[respIndex][1]);
+        gameScoreTxt.attr("dy", gameDisplayTextSpacing[respIndex][2]);
+        gameAwayTxt.attr("dy", gameDisplayTextSpacing[respIndex][3]);
+        gameDetailsTxt.attr("dy", gameDisplayTextSpacing[respIndex][4]);
+      }
+      // make "pre-zoom" changes to display the passed game as the current game
+      function displayGamePreZoom(gameNo){
+        // if no gameNo specified use current game 
+        gameNo = gameNo || currentGame;
+        // hide the game display box and arrows whilst in zoom transition
+        $("#gameDisplay").hide();
+        $("#homeArrow").hide();
+        $("#awayArrow").hide();
+        // get details of game (teams, champion, etc)
+        gameDetails = getGameDetails(gameNo);
+        // update progress bar
+        $(".progressButton").css("background-color",challengerColour);
+        $("#progButton"+gameNo).css("background-color",championColour);
+        moveProgressFlag(gameNo);
+        // display game details in game display box
+        gameNoTxt.text("Match No. " + gameNo + "/" + gamesData.length);
+        gameHomeTxt.text(gameDetails.home);
+        gameScoreTxt.text(gameDetails.score);
+        gameAwayTxt.text(gameDetails.away);
+        gameDetailsTxt.text(gameDetails.tournament + " - " + gameDetails.venue + " (" + gameDetails.date + ")");
+        if(gameDetails.winnerCode==gameDetails.homeCode){
+          gameHomeTxt.attr("fill",championColour);
+        }else{
+          gameHomeTxt.attr("fill",challengerColour);
+        }
+        if(gameDetails.winnerCode==gameDetails.awayCode){
+          gameAwayTxt.attr("fill",championColour);
+        }else{
+          gameAwayTxt.attr("fill",challengerColour);
+        }
+        // display game details in navigation
+        $("#detailsNo").text("Match No. " + gameNo + "/" + gamesData.length);
+        $("#detailsResult").text(gameDetails.home + " " + gameDetails.score + " " + gameDetails.away);
+        $("#detailsEvent").text(gameDetails.tournament);
+        $("#detailsVenue").text(" - " + gameDetails.venue + " (" + gameDetails.date + ")");
+        if(gameDetails.winner==""){
+          $("#detailsChampions").text("NO CHAMPION");
+        }else{
+          $("#detailsChampions").text(gameDetails.winner);
+        }
+        // zoom to countries on map
+        boundArray = [];
+        boundArray.push(getCountryBounds(gameDetails.homeCode));
+        boundArray.push(getCountryBounds(gameDetails.awayCode));
+        combinedBound = combineBounds(boundArray);
+        boxZoom(combinedBound, 20);
+      }
+      // make "post-zoom" changes to display the passed game as the current game
+      function displayGamePostZoom(gameNo){
+        // if no gameNo specified use current game 
+        gameNo = gameNo || currentGame;
+        // get details of game (teams, champion, etc)
+        gameDetails = getGameDetails(gameNo);
+        // display correct country colours
+        if(gameDetails.winnerIndex==gameDetails.homeIndex){
+          countryFill(gameDetails.homeCode,championColour);
+          homeArrow.attr("stroke",championColour);
+        }else{
+          countryFill(gameDetails.homeCode,challengerColour);
+          homeArrow.attr("stroke",challengerColour);
+        }
+        if(gameDetails.winnerIndex==gameDetails.awayIndex){
+          countryFill(gameDetails.awayCode,championColour);
+          awayArrow.attr("stroke",championColour);
+        }else{
+          countryFill(gameDetails.awayCode,challengerColour);
+          awayArrow.attr("stroke",challengerColour);
+        }
+        // update score label for winning country
+        d3.select("#labelScore"+gameDetails.winnerCode).text(teamsData[gameDetails.winnerIndex][4]);
+        // ensure score label is displayed (hiddden on load, only shown for countries with at least 1 win)
+        $("#scoreLabel"+gameDetails.winnerCode).show();
+        // get the features for the home and away countries
+        homeFeature = countriesGroup.selectAll('path')
+          .filter(function(d) {
+            return d.properties.iso_a3 === gameDetails.homeCode;
+          })
+        ;
+        awayFeature = countriesGroup.selectAll('path')
+          .filter(function(d) {
+            return d.properties.iso_a3 === gameDetails.awayCode;
+          })
+        ;
+        // get the centroids for home and away countries
+        homeCentroid = getCountryCentroid(homeFeature.datum());
+        awayCentroid = getCountryCentroid(awayFeature.datum());
+        // set the x and y attributes of the ends of the arrows to the centroids of the home and away countries
+        homeArrow
+          .attr("x2", homeCentroid[0])
+          .attr("y2", homeCentroid[1])
+        ;
+        awayArrow
+          .attr("x2", awayCentroid[0])
+          .attr("y2", awayCentroid[1])
+        ;
+        // get the current country group scale and offsets
+        newScale = countriesGroup.node().getCTM().a;
+        newXoffset = countriesGroup.node().getCTM().e;
+        newYoffset = countriesGroup.node().getCTM().f;
+        // find screen equivalent coordinates of centroids (relative to svg)
+        homeScreenX = (homeCentroid[0]*newScale)+newXoffset;
+        homeScreenY = (homeCentroid[1]*newScale)+newYoffset;
+        awayScreenX = (awayCentroid[0]*newScale)+newXoffset;
+        awayScreenY = (awayCentroid[1]*newScale)+newYoffset;
+        // create array to represent 4 quadrants of screen in order: top left, top right, bottom left, bottom right 
+        quads=[0,0,0,0];
+        // determine which quadrant both home and away centroids are in, increment appropriate quadrant for each centroid
+        if(homeScreenX<$("svg").width()/2){ // home is at left
+          if(homeScreenY<$("svg").height()/2){  // home is at top left
+            quads[0]++;
+          }else{ // home is at bottom left
+            quads[2]++;
+          }
+        }else{  // home is at right
+          if(homeScreenY<$("svg").height()/2){  // home is at top right
+            quads[1]++;
+          }else{  // home is at bottom right
+            quads[3]++;
+          }
+        }
+        if(awayScreenX<$("svg").width()/2){ // away is at left
+          if(awayScreenY<$("svg").height()/2){  // away is at top left
+            quads[0]++;
+          }else{  // away is at bottom left
+            quads[2]++;
+          }
+        }else{  // away is at right
+          if(awayScreenY<$("svg").height()/2){  // away is at top right
+            quads[1]++;
+          }else{  // away is at bottom right
+            quads[3]++;
+          }
+        }
+        // get coordinates to display game display box in an unoccupied quadrant
+        if(quads[0]==2){   // if both country centroids in top left quadrant, display box goes bottom right
+          gameDisplayX = $("svg").width()-gameDisplayOffset[respIndex][0];
+          gameDisplayY = $("svg").height()-gameDisplayOffset[respIndex][1];
+        }else if(quads[1]==2){  // if both country centroids in top right quadrant, display box goes bottom left
+           gameDisplayX = gameDisplayOffset[respIndex][0];
+           gameDisplayY = $("svg").height()-gameDisplayOffset[respIndex][1];
+        }else if(quads[2]==2){  // if both country centroids in bottom left quadrant, display box goes top right
+           gameDisplayX = $("svg").width()-gameDisplayOffset[respIndex][0];
+           gameDisplayY = gameDisplayOffset[respIndex][1];
+        }else if(quads[3]==2){  // if both country centroids in bottom right quadrant, display box goes top left
+           gameDisplayX = gameDisplayOffset[respIndex][0];
+           gameDisplayY = gameDisplayOffset[respIndex][1];
+        }else if(quads[0]==0){  // if top left quadrant empty, display box goes there 
+           gameDisplayX = gameDisplayOffset[respIndex][0];
+           gameDisplayY = gameDisplayOffset[respIndex][1];
+        }else if(quads[1]==0){  // if top right quadrant empty, display box goes there
+           gameDisplayX = $("svg").width()-gameDisplayOffset[respIndex][0];
+           gameDisplayY = gameDisplayOffset[respIndex][1];
+        }else if(quads[2]==0){  // if bottom left quadrant empty, display box goes there
+           gameDisplayX = gameDisplayOffset[respIndex][0];
+           gameDisplayY = $("svg").height()-gameDisplayOffset[respIndex][1];
+        }else {  // display box goes bottom right
+           gameDisplayX = $("svg").width()-gameDisplayOffset[respIndex][0];
+           gameDisplayY = $("svg").height()-gameDisplayOffset[respIndex][1];
+        }
+        // move game display box to new coordinates
+        gameDisplay
+          .attr("transform", "translate("+gameDisplayX+","+gameDisplayY+")")
+        ;
+        // position start of home arrow to centre of display box (as arrow is within countries group and display box is not we must apply transform and scale)
+        homeArrow
+          .attr("x1", (gameDisplayX-newXoffset)/newScale)
+          .attr("y1", (gameDisplayY-newYoffset)/newScale)
+          .attr("stroke-width", 2/newScale)
+        ;
+        // position start of away arrow to centre of display box (as arrow is within countries group and display box is not we must apply transform and scale)
+        awayArrow
+          .attr("x1", (gameDisplayX-newXoffset)/newScale)
+          .attr("y1", (gameDisplayY-newYoffset)/newScale)
+          .attr("stroke-width", 2/newScale)
+        ;
+        // display the game box and arrows
+        $("#gameDisplay").show();
+        $("#homeArrow").show();
+        $("#awayArrow").show();
+     }
+
+////// DATA ARRAY QUERYING /////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      // get teams/score/venue/etc details of game from game no
+      function getGameDetails(gameNo){
+        var newGame ={
+          home: gamesData[gameNo-1][1],
+          away: gamesData[gameNo-1][3],
+          winner: gamesData[gameNo-1][0],
+          homeIndex: findTeamIndex(gamesData[gameNo-1][1]),
+          awayIndex: findTeamIndex(gamesData[gameNo-1][3]),
+          winnerIndex: findTeamIndex(gamesData[gameNo-1][0]),
+          homeCode: findTeamCode(gamesData[gameNo-1][1]),
+          awayCode: findTeamCode(gamesData[gameNo-1][3]),
+          winnerCode: findTeamCode(gamesData[gameNo-1][0]),
+          score: gamesData[gameNo-1][2],
+          tournament: gamesData[gameNo-1][4],
+          date: gamesData[gameNo-1][5],
+          venue: gamesData[gameNo-1][6]
+        }
+        return newGame;
+      }
+      // Find the team array index from the team name string
+      function findTeamIndex(teamVal){
+        for(var i = 0; i<teamsData.length; i++) {
+            if(teamsData[i][0] == teamVal) return i;
+        }
+        return -1;
+      }
+      // Find the team 3 letter country code from the team name string
+      function findTeamCode(teamVal){
+        for(var i = 0; i<teamsData.length; i++) {
+            if(teamsData[i][0] == teamVal) return teamsData[i][2];
+        }
+        return "";
+      }
+
+////// GEO FEATURE QUERYING ////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      // get the feature bounds for a specific country 
+      function getCountryBounds(countryID){
+        countryFeature = countriesGroup.selectAll('path')
+          .filter(function(d) {
+            return d.properties.iso_a3 === countryID
+          })
+          .datum();
+        modifiedBounds = path.bounds(countryFeature);
+        // hack the bounds for nicer display for certain countries
+        // ignore some French colonies
+        if(countryID=="FRA"){
+          modifiedBounds = [[3890,775.6195746527787],[4240,1000]];
+        }
+        // ignore Norways arctic area
+        if(countryID=="NOR"){
+          modifiedBounds = [[4152,280],[4700,622]];
+        }
+        // ignore some Dutch colonies
+        if(countryID=="NLD"){
+          modifiedBounds = [[4075,715],[4160,780]];
+        }
+        // ignore some Portuguese colonies
+        if(countryID=="PRT"){
+          modifiedBounds = [[3790,974.7243923611107],[3861.9444444444443,1090]];
+        }
+        // US mainland only
+        if(countryID=="USA"){
+          modifiedBounds = [[1230,810],[2520.9444444444443,1370]];
+        }
+        // Chile mainland only
+        if(countryID=="CHL"){
+          modifiedBounds = [[2320,2300.1345486111104],[2523.649088541667,3153.148871527778]];
+        }
+        // Use smaller area of Russia in west for aesthetic reasons (using whole area makes bounding box very large, smaller area looks nicer with countries to the west)
+        if(countryID=="RUS"){
+          modifiedBounds = [[4610,350],[6200,1000]];
+        }
+        // igonre Balearics for Spain
+        if(countryID=="ESP"){
+          modifiedBounds = [[3790,938.5655381944433],[4096.046006944445,1120]];
+        }
+        return modifiedBounds;
+      }
+      // get the centroid for a specific feature 
+      function getCountryCentroid(featureDatum){
+        modifiedCentroid = path.centroid(featureDatum);
+        // hack the centroid for nicer display for certain countries, normally where centroid lies outside country mainland
+        // France centroid is outside French mainland due to colonies, move into mainland
+        if(featureDatum.properties.iso_a3=="FRA"){
+          modifiedCentroid = [4050,880];
+        }
+        // Norway centroid is outside Norwegian mainland due to arctic territories, move into mainland
+        if(featureDatum.properties.iso_a3=="NOR"){
+          modifiedCentroid = [4200,550];
+        }
+        // Move centroid into centre of "non-ALaska/Hawaii" states
+        if(featureDatum.properties.iso_a3=="USA"){
+          modifiedCentroid = [1800,1050];
+        }
+        // Chile centroid is outside Chilean mainland due to western islands, move into mainland
+        if(featureDatum.properties.iso_a3=="CHL"){
+          modifiedCentroid = [2390,2750];
+        }
+        // Move centroid further west to be within new bounds
+        if(featureDatum.properties.iso_a3=="RUS"){
+          modifiedCentroid = [5800,600];
+        }
+        return modifiedCentroid;
+      }
+      // get the minimum bounding box that contains several smaller bounding boxes
+      function combineBounds(bounds){
+        maxX = 0;
+        minX = w;
+        maxY = 0;
+        minY = h;
+        for(i=0;i<bounds.length;i++){
+          if(bounds[i][0][0]<minX)minX = bounds[i][0][0];
+          if(bounds[i][0][1]<minY)minY = bounds[i][0][1];
+          if(bounds[i][1][0]>maxX)maxX = bounds[i][1][0];
+          if(bounds[i][1][1]>maxY)maxY = bounds[i][1][1];
+        }
+        return [[minX,minY],[maxX,maxY]];
+      }
+
+////// MAP MANIPULATION ////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      /// inital Zoom
+      function initZoom(){
+        bestFit = Math.max($( window ).width()/w,$( window ).height()/h);
+        zoom.scaleExtent([bestFit, 40*bestFit])
+        initScale = Math.max($( window ).width()/w,$( window ).height()/h);
+      }
+      // zoom to show an area defined by coordinates as large as possible within available screen size
+      function zoomed() {
+        dx = d3.event.translate[0];
+        dy = d3.event.translate[1];
+        dx = Math.min(0,dx);
+        dy = Math.min(0,dy);
+        dx = Math.max($("svg").width() - w*d3.event.scale,dx);
+        dy = Math.max($("svg").height() - h*d3.event.scale,dy);
+        zoom.translate([dx,dy]); 
+        countriesGroup.attr("transform", "translate(" + [dx,dy] + ")scale(" + d3.event.scale + ")");
+        displayGamePostZoom();
+      }
+      // zoom to show a bounding box, with optional additional padding as percenatge of box size
+      function boxZoom(box, paddingPerc){
+        minXY = box[0];
+        maxXY = box[1];
+        // find size of map area defined
+        zoomWidth = Math.abs(minXY[0]-maxXY[0]);
+        zoomHeight = Math.abs(minXY[1]-maxXY[1]);
+        // increase map area to include padding
+        zoomWidth = zoomWidth * (100+paddingPerc)/100;
+        zoomHeight = zoomHeight * (100+paddingPerc)/100;
+        // find midpoint of map area defined
+        zoomMidX = (minXY[0]+maxXY[0])/2;
+        zoomMidY = (minXY[1]+maxXY[1])/2;
+        // find scale required for area to fill svg
+        maxXscale = $("svg").width()/zoomWidth;
+        maxYscale = $("svg").height()/zoomHeight;
+        zoomScale = Math.min(maxXscale, maxYscale);
+        // Find screen pixel equivalent once scaled
+        offsetX = zoomScale*zoomMidX;
+        offsetY = zoomScale*zoomMidY;
+        // Find offset to centre, making sure no gap at left or top of holder
+        dleft = Math.min(0,($("svg").width()/2)-offsetX);
+        dtop = Math.min(0,($("svg").height()/2)-offsetY);
+        // Make sure no gap at bottom or right of holder
+        dleft = Math.max($("svg").width()-(w*zoomScale),dleft);
+        dtop = Math.max($("svg").height()-(h*zoomScale),dtop);
+        // set zoom
+        zoom.translate([dleft,dtop]).scale(zoomScale); 
+        // translate and scale countries
+        countriesGroup
+          .transition()
+          .duration(zoomDuration)
+          .attr("transform", "translate(" + [dleft,dtop] + ") scale(" + zoomScale + ")")
+          // once zoom finished call function to do post-zoom display changes
+          .each("end", displayGamePostZoom);
+        ;
+      }
     </script>
-
-
   </body>
 </html>
