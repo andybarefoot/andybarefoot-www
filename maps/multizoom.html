@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />    
+    <title>Interactive D3.js Map</title>
+    <meta charset="utf-8"><meta property="og:url" content="http://www.andybarefoot.com/maps/">
+    <meta property="og:title" content="Responsive, interactive D3.js map">
+    <meta property="og:description" content="D3.js Map with zoom/pan and rollover labels using D3.js(v4) and JQuery. Set container div size to determine size of map.">
+    <meta property="og:image" content="http://www.andybarefoot.com/maps/images/responsive-D3-map.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/jscript/d3.v4.min.js"></script>
+    <script src="/jscript/analyticstracking.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Yanone+Kaffeesatz:200" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+    <link rel="stylesheet" href="css/map.css">
+  </head>
+
+  <body>
+    <div id="map-holder">
+    </div>
+    <script type="text/javascript">
+
+      // variables for catching colours from CSS
+      var countryFillColour;
+      var countryStrokeColour;
+
+      var countryHighlightColour = "#30BCED";
+
+      // Define size of map group
+      // Full world map is 2:1 ratio
+      // Using 2:5 because we will crop top and bottom of map
+      w = 4000;
+      h = 1600;
+
+      // variables for catching min and max values
+      var minZoom;
+      var maxZoom;
+
+      // minimum and maximum number of countries to be randomly shown
+      var minCountry = 2;
+      var maxCountry = 4;
+
+      // Define map projection
+      var projection = d3.geoEquirectangular()
+          .center([0, 14]) // set centre to further North as we are cropping more off bottom of map
+          .scale([w/(2*Math.PI)]) // scale to fit group width
+          .translate([w/2,h/2]) // ensure centred in group
+      ;
+
+      // Define map path
+      var path = d3.geoPath()
+        .projection(projection)
+      ;
+
+      // Define map zoom behaviour
+      var zoom = d3.zoom()
+        .on("zoom", zoomed)
+      ;
+
+
+      function initiateZoom(){
+        // Define a "minzoom" whereby the "Countries" is as small possible without leaving white space at top/bottom or sides  
+        minZoom = Math.max($("#map-holder").width()/w,$("#map-holder").height()/h);
+        // set max zoom to a suitable factor of this value 
+        maxZoom = 20*minZoom;
+        // define X and Y offset for centre of map to be shown in centre of holder
+        midX = ($("#map-holder").width() - (minZoom*w))/2;
+        midY = ($("#map-holder").height() - (minZoom*h))/2;
+        zoom
+          // set minimum extent of zoom to "minzoom", set max extent to a suitable factor of this value 
+          .scaleExtent([minZoom, maxZoom])
+          // set translate extent so that panning can't cause map to move out of viewport 
+          .translateExtent([[0, 0], [w, h]])
+        ;
+        // change zoom transform to min zoom and centre offsets
+        svg.call(zoom.transform,d3.zoomIdentity.translate(midX, midY).scale(minZoom));
+      }
+
+
+      // on window resize
+      $(window).resize(function() {
+        // Resize SVG
+        svg
+          .attr("width", $("#map-holder").width())
+          .attr("height", $("#map-holder").height())
+        ;
+        initiateZoom();
+      });
+
+
+      // create an SVG
+      var svg = d3.select("#map-holder")
+        .append("svg")
+        // set to the same size as the "map-holder" div
+        .attr("width", $("#map-holder").width())
+        .attr("height", $("#map-holder").height())
+        // add zoom functionality 
+        .call(zoom)
+      ;
+
+      // get map data
+      d3.json("mapdata/custom50.json", function(json){
+          //Bind data and create one path per GeoJSON feature
+          countriesGroup = svg
+            .append("g")
+            .attr("id", "map")
+          ;
+          // add a background rectangle
+          countriesGroup.append("rect")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("width", w)
+            .attr("height", h)
+          ;
+          // draw a path for each feature/country
+          countries = countriesGroup
+            .selectAll("path")
+            .data(json.features)
+            .enter()
+            .append("path")            
+            .attr("d", path)
+            .attr("id", function(d,i) {
+              return "country" + d.properties.iso_a3;
+            })
+            .attr("class", "country")
+            // add a mouseover action to show name label for feature/country
+            .on("mouseover", function(d,i) {
+              $("#countryLabel" + d.properties.iso_a3).show();
+            })
+            .on("mouseout", function(d,i) {
+              $("#countryLabel" + d.properties.iso_a3).hide();
+            })
+          ;
+          // capture default colours for country stroke and fill
+          countryFillColour = d3.selectAll('.country').style("fill");
+          countryStrokeColour = d3.selectAll('.country').style("stroke");
+          // add a background rectangle for country names
+          svg
+            .append("rect")
+            .attr("class", "countriesBG")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("width", 140)
+            .attr("height", 90)
+          ;
+          // add text to display names of randomly selected countries 
+          for(i=0;i<maxCountry;i++){
+            svg
+              .append("text")
+              .attr("id", "randomCountryName"+i)
+              .attr("class", "randomCountryName")
+              .style("text-anchor", "end")
+              .attr("transform", "translate("+130+","+(20+(i*20))+")")
+              .attr("dx", 0)
+              .attr("dy", 0)
+            ;
+          }
+          // add arrows to point at randomly selected countries
+          for(i=0;i<maxCountry;i++){
+            svg
+              .append("line")
+              .attr("id", "arrow"+i)
+              .attr("class", "arrow")
+            ;
+          }
+        // set initial zoom
+        initiateZoom();
+        // start repeating selection of random countries
+        animate = setInterval(randomCountry, 3000);
+      });
+
+      // select a number of random countries between 2 integers (inclusive) 
+      function randomCountry(){
+        // get total number of countries
+        var countryCount = d3.selectAll('.country').size();
+        // get random number between 2 and 4 (inclusive)
+        var chooseCount = Math.floor(Math.random() * (maxCountry - minCountry + 1)) + minCountry;
+        // create array of random numbers
+        var rndArray = [];
+        for(i=0;i<chooseCount;i++){
+          rndArray.push(Math.floor(Math.random() * countryCount));
+        }
+        // filter all countries on this array
+        var rnd = d3.selectAll('.country').filter(function(d, i) {
+          if($.inArray(i, rndArray)=="-1"){
+            return false;
+          }else{
+            return true;
+          }
+        });
+        d3.selectAll('.country').style("fill", countryFillColour);
+        rnd.style("fill", countryHighlightColour);
+        getBounds = combineBounds(rnd);
+        boxZoom(getBounds[0], getBounds[1], 10);
+        hideNames();
+        setTimeout(displayNames.bind(null, rnd), 550);
+      }
+
+      // combine bounding boxes for a selection of countries
+      function combineBounds(bounds){
+        maxX = 0;
+        minX = w;
+        maxY = 0;
+        minY = h;
+        for(i=0;i<bounds.size();i++){
+          boundaryBox = path.bounds(bounds.data()[i]);
+          if(boundaryBox[0][0]<minX)minX = boundaryBox[0][0];
+          if(boundaryBox[0][1]<minY)minY = boundaryBox[0][1];
+          if(boundaryBox[1][0]>maxX)maxX = boundaryBox[1][0];
+          if(boundaryBox[1][1]>maxY)maxY = boundaryBox[1][1];
+        }
+        newBounds =  [[minX,minY],[maxX,maxY]];
+        newCentroid = [(minX+maxX)/2,(minY+maxY)/2];
+        return [newBounds,newCentroid];
+      }
+
+      // hide names for a selection of countries
+      function hideNames(){
+        for(i=0;i<maxCountry;i++){
+          d3.select('#randomCountryName'+i).text("");
+          d3.select('#arrow'+i)
+            .attr("x1",-10)
+            .attr("y1",-10)
+            .attr("x2",-10)
+            .attr("y2",-10)
+          ;
+        }
+      }
+
+      // display names for a selection of countries
+      function displayNames(bounds){
+        // get the current country group scale and offsets
+        newScale = countriesGroup.node().getCTM().a;
+        newXoffset = countriesGroup.node().getCTM().e;
+        newYoffset = countriesGroup.node().getCTM().f;
+        console.log(newScale+":"+newXoffset+":"+newYoffset);
+        for(i=0;i<bounds.size();i++){
+          d3.select('#randomCountryName'+i)
+            .text(bounds.data()[i].properties.name)
+          ;
+          console.log(path.centroid(bounds.data()[i])[0]);
+          console.log(path.centroid(bounds.data()[i])[1]);
+          d3.select('#arrow'+i)
+            .attr("x1",133)
+            .attr("y1",(15+(i*20)))
+            .attr("x2",(path.centroid(bounds.data()[i])[0]*newScale)+newXoffset)
+            .attr("y2",(path.centroid(bounds.data()[i])[1]*newScale)+newYoffset)
+          ;
+        }
+      }
+
+      // apply zoom to countriesGroup
+      function zoomed() {
+        t = d3.event.transform;
+        countriesGroup.attr("transform", "translate(" + [t.x,t.y] + ")scale(" + t.k + ")");
+      }
+
+      // zoom to show a bounding box, with optional additional padding as percentage of box size
+      function boxZoom(box, centroid, paddingPerc){
+        minXY = box[0];
+        maxXY = box[1];
+        // find size of map area defined
+        zoomWidth = Math.abs(minXY[0]-maxXY[0]);
+        zoomHeight = Math.abs(minXY[1]-maxXY[1]);
+        // find midpoint of map area defined
+        zoomMidX = centroid[0];
+        zoomMidY = centroid[1];
+        // increase map area to include padding
+        zoomWidth = zoomWidth * (1+paddingPerc/100);
+        zoomHeight = zoomHeight * (1+paddingPerc/100);
+        // find scale required for area to fill svg
+        maxXscale = $("svg").width()/zoomWidth;
+        maxYscale = $("svg").height()/zoomHeight;
+        zoomScale = Math.min(maxXscale, maxYscale);
+        // handle some edge cases
+        // limit to max zoom (handles tiny countries)
+        zoomScale = Math.min(zoomScale, maxZoom);
+        // limit to min zoom (handles large countries and countries that span the date line)
+        zoomScale = Math.max(zoomScale, minZoom);
+        // Find screen pixel equivalent once scaled
+        offsetX = zoomScale*zoomMidX;
+        offsetY = zoomScale*zoomMidY;
+        // Find offset to centre, making sure no gap at left or top of holder
+        dleft = Math.min(0,($("svg").width()/2)-offsetX);
+        dtop = Math.min(0,($("svg").height()/2)-offsetY);
+        // Make sure no gap at bottom or right of holder
+        dleft = Math.max($("svg").width()-(w*zoomScale),dleft);
+        dtop = Math.max($("svg").height()-(h*zoomScale),dtop);
+        // set zoom
+        svg
+          .transition()
+          .duration(500)
+          .call(zoom.transform,d3.zoomIdentity.translate(dleft, dtop).scale(zoomScale))
+        ;  
+      }
+    </script>
+  </body>
+</html>

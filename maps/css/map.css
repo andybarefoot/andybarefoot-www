@@ -18,20 +18,32 @@
         fill: #2A2C39;
       }
 
-      .country{
+      svg .country{
         stroke: #2A2C39;
         fill: #d0d0d0;
       }
 
-      .countryLabel{
+      svg .countryLabel{
         display: none;
       }
 
-      .countryName{
+      svg .countryName{
         fill: #FFFAFF;
       }
 
-      .countryBg{
+      svg .countryBg{
         fill: #30BCED;
       }
 
+      svg .arrow{
+        stroke: #30BCED;
+      }
+      
+      svg .randomCountryName{
+        fill: #30BCED;
+        font-size: 15px;
+      }
+
+      svg .countriesBG{
+        fill: rgba(42,44,57,0.7);
+      }

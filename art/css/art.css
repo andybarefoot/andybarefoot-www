@@ -1,0 +1,74 @@
+body {
+	background-color: #1f1f1f;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	font-size: 14px;
+}
+
+h1 {
+	font-family: 'Sansita', sans-serif;
+	font-weight: 900;
+	font-size: 50px;
+	font-style: italic;
+	color: #ddd;
+}
+
+h2 {
+	font-family: 'Sansita', sans-serif;
+	font-weight: 400;
+	font-size: 22px;
+	font-style: italic;
+	color: #ddd;
+	margin-bottom: 40px;
+}
+
+p {
+	color: #ddd;
+	margin-top: 10px;
+}
+
+a {
+	color: #ddd;
+}
+
+#intro{
+	margin: 50px 50px 0px 50px;
+	width: 900px;
+}
+
+.keyText, .axisText, .labelText, .overlayText{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	font-size: 12px;
+}
+
+.chartTitle{
+	font-family: 'Sansita', sans-serif;
+	font-weight: 400;
+	font-size: 40px;
+	font-style: italic;
+}
+
+.bgDatesClass{
+	fill: #1f1f1f;
+}
+
+#headerDatesClass text{
+}
+
+#datesClass{
+	margin-bottom: 100px;
+}
+#datesClass text{
+	fill: #ddd;
+}
+.cell{
+	fill: #00ffff;
+}
+.axis{
+	stroke: #fff;
+}
+
+xxxOpen+Sans:300,300i,400,400i
+xxxSansita:400,400i,700,700i,800,800i,900,900i
+

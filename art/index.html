@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />    
+    <title>Data Vis: The Met's Art Collection</title>
+    <meta property="og:url" content="http://www.andybarefoot.com/art/" />
+    <meta property="og:title" content="Data Vis: The Met's Art Collection" />
+    <meta property="og:description" content="446,029 objects from the collection of The Metropolitan Museum of Art displayed by creation date." />
+    <meta property="og:image" content="http://www.andybarefoot.com/art/images/met-collection-dates.png" />
+-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Sansita:400i,900i" rel="stylesheet">
+    <script src="/jscript/analyticstracking.js"></script>
+    <script src="/jscript/d3.v4.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="css/art.css">
+   </head>
+  <body>
+    <div id="intro">
+      <h1>Data Vis: The Met's Art Collection</h1>
+      <h2>446,029 objects from the collection of The Metropolitan Museum of Art displayed by creation date.</h2>
+      <p>The chart below is a representation of the data made available by <a href="http://www.metmuseum.org/" target="met">The Metropolitan Museum of Art</a> under their <a href="http://www.metmuseum.org/blogs/digital-underground/2017/open-access-at-the-met" target="metOA">Open Access policy</a>. The data was downloaded from <a href="https://github.com/metmuseum/openaccess" target="github">GitHub</a>.</p>
+      <p>The original data used over 1000 distinct classifications which I grouped into 36 wider classifications as best as my understanding of the classification names allowed.</p>
+      <p>The data provides a text description of each object's date as well as "start" and "end" dates which bookend the possible timeframe taking into account any inaccuracy of the date. So for an object described "early 7th-mid 7th century BC" the start and end dates are -675 and -650.</p>
+      <p>For an object with a range of possible creation dates this visualisation distributes the object across the full range. So an article made between 1840 and 1850 is distributed as 1/11 of an object for each year in the range 1840-1850 inclusive. This is why some years are shown as having only fractions of an item.</p>   
+    </div>
+    <div id="datesClass">
+    </div>
+
+
+    <script>
+      // ESTABLISH PARAMETERS
+      classifications = 36; // number of classifications
+      yearWidth = 25;
+      yearHeight = 2;
+      maxYear = 2020;
+      minYear = -8000;
+      leftMargin = 50;
+      topMargin = 270;
+      offSetX = leftMargin;
+      offSetY = topMargin+(maxYear*yearHeight);
+      w = (2*leftMargin)+(classifications*yearWidth); // chart width
+      h = topMargin+leftMargin+((maxYear-minYear)*yearHeight); // chart height
+
+      function drawDatesClass(){
+
+        var svg = d3.select("#datesClass")
+          .append("svg")
+          .attr("width", w)
+          .attr("height", h)
+        ;
+
+        svg
+          .append("rect")
+         .attr("x", 0)
+         .attr("y", 0)
+         .attr("width", w)
+         .attr("height", h)
+         .attr("class", "bgDatesClass")
+        ;
+/*
+        var title = svg
+          .append("text")
+          .style("text-anchor", "start")
+          .attr("transform", "translate("+leftMargin+",70)")
+          .attr("class", "chartTitle")
+          .text("The Met collection by year and classification")
+        ;
+*/
+        var key = svg
+          .append("g")
+          .attr("transform", "translate("+leftMargin+",70)")
+        ;
+
+        key
+          .append("text")
+          .style("text-anchor", "start")
+          .attr("transform", "translate(0,-8)")
+          .attr("class", "keyText")
+          .text("Number of items from year:")
+        ;
+
+        key
+          .append("text")
+          .style("text-anchor", "start")
+          .attr("transform", "translate(0,44)")
+          .attr("class", "keyText")
+          .text("Note: For objects of uncertain age, e.g \"4th to 2nd Century B.C.\", then the item is distributed accross all these years, hence the possibility for less than 1 item per year")
+        ;
+
+        j=0;
+        for(i=0.01;i<=10000;i=i*10){
+          console.log(i+":"+Math.log(i)+":"+(Math.log(i)+5)*(1/14));
+          key
+            .append("rect")
+            .attr("x", j*80)
+            .attr("y", 0)
+            .attr("width", yearWidth)
+            .attr("height", 20)
+            .attr("class", "cell")
+            .attr('fill-opacity',(Math.log(i)+5)*(1/14))
+          ;
+          key
+            .append("text")
+            .style("text-anchor", "start")
+            .attr("class", "keyText")
+            .attr("transform", "translate("+((j*80)+4+yearWidth)+","+20+")")
+            .attr("dy", -4)
+            .text(i)
+          ;
+          j++;
+        }
+
+/*
+        var xAxis = svg
+          .append("line")
+          .attr("class", "axis")
+          .attr("x1", offSetX)
+          .attr("y1", offSetY)
+          .attr("x2", offSetX+(yearWidth*classifications))
+          .attr("y2", offSetY)
+        ;
+*/
+        var yAxis = svg
+          .append("g")
+          .attr("transform", "translate("+offSetX+","+offSetY+")")
+        ;
+        yAxis
+          .append("line")
+          .attr("class", "axis")
+          .attr("x1", 0)
+          .attr("y1", 0-(maxYear*yearHeight))
+          .attr("x2", 0)
+          .attr("y2", 0-(minYear*yearHeight))
+        ;
+
+        for(i=minYear;i<=maxYear;i+=50){
+          yAxis
+            .append("line")
+            .attr("class", "axis")
+            .attr("x1", -10)
+            .attr("y1", 0-(i*yearHeight))
+            .attr("x2", 0)
+            .attr("y2", 0-(i*yearHeight))
+          ;
+        }
+
+        for(i=minYear;i<=maxYear;i+=50){
+          yAxis
+            .append("text")
+            .style("text-anchor", "end")
+            .attr("transform", "translate(0,"+(0-(i*yearHeight))+")")
+            .attr("dx", -13)
+            .attr("dy", 5)
+            .attr("class", "keyText")
+            .text(function(d) {
+              return i;
+            })
+          ;
+        }
+
+        var headerDatesClass = svg.append("g")
+          .attr("id", "headerDatesClass")
+          .attr("transform", "translate("+offSetX+","+topMargin+")")
+        ;
+
+        var chartDatesClass = svg.append("g")
+          .attr("id", "chartDatesClass")
+          .attr("transform", "translate("+offSetX+","+offSetY+")")
+        ;
+
+        d3.json("classDate.json", function(data) {
+          console.log(data);
+          headerDatesClass
+            .selectAll("text")
+            .data(data.classifications)
+            .enter()
+            .append("text")
+            .style("text-anchor", "start")
+            .attr("class", "labelText")
+            .attr("transform", function(d,i) {
+              return "translate("+yearWidth*i+",0)rotate(300)";
+            })
+            .attr("dx", 15)
+            .attr("dy", 8)
+            .text(function(d) {
+              return d.name;
+            })
+          ;
+
+          for(i=(minYear+250);i<=maxYear;i+=500){
+            svg
+              .append("g")
+              .attr("class", "datesClassLabels")
+              .attr("transform", "translate("+offSetX+","+(offSetY-(i*yearHeight))+")")
+              .selectAll("text")
+              .data(data.classifications)
+              .enter()
+              .append("text")
+              .style("text-anchor", "middle")
+              .attr("class", "overlayText")
+              .attr("transform", function(d,i) {
+                return "translate("+yearWidth*i+",0)rotate(270)";
+              })
+              .attr("dx", 5)
+              .attr("dy", 18)
+              .text(function(d) {
+                return d.name;
+              })
+            ;
+          }
+
+
+          chartDatesClass
+            .selectAll("g")
+            .data(data.classifications)
+            .enter()
+            .append("g")
+            .attr("transform", function(d,i) {
+              return "translate("+yearWidth*i+","+0+")";
+            })
+            .selectAll("rect")
+            .data(function(d){
+              return d3.entries(d.years[0]);
+            })
+            .enter()
+            .append("rect")
+            .attr("class", "cell")
+            .attr("x", 0)
+            .attr("y", function(d){
+//              if(d.key<-1000){
+//                return d.key*yearHeight/10;
+//              }else{
+                return 0-(d.key*yearHeight);
+//              }
+            })
+            .attr("width", yearWidth)
+            .attr("height", function(d){
+//              if(d.key<-1000){
+//                return yearHeight*100;
+//              }else{
+                return yearHeight;
+//              }
+            })
+            .attr('fill-opacity', function(d){
+              return (Math.log(d.value)+5)*(1/14);
+            })
+          ;
+        });
+      }
+
+      $( document ).ready(drawDatesClass);
+
+    </script>
+<!-- FOOTER: Requires footer.css & Open Sans font to be included -->
+     <div id="barefoot-footer">
+        <div id="barefoot-home-links">
+          <a href="/">Andy Barefoot</a> > The Met's Art Collection
+        </div>
+        <div id="barefoot-social-links">
+          <ul>
+            <li><a href="https://www.linkedin.com/in/andybarefoot/" target="_blank"><img src="/images/icons/png32/linkedin.png"></a></li>
+            <li><a href="mailto:andy@andybarefoot.com"><img src="/images/icons/png32/email.png"></a></li>
+            <li><a href="http://instagram.com/andybarefoot" target="_blank"><img src="/images/icons/png32/instagram.png"></a></li>
+            <li><a href="http://twitter.com/andybarefoot" target="_blank"><img src="/images/icons/png32/twitter.png"></a></li>
+            <li><a href="http://www.facebook.com/profile.php?id=729980577" target="_blank"><img src="/images/icons/png32/facebook.png"></a></li>
+          </ul>
+        </div>
+      </div>
+  </body>
+</html>
