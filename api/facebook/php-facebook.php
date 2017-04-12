@@ -1,4 +1,4 @@
-<?
+<?php
 
 require_once __DIR__ . '../../../../vendor/autoload.php';
 date_default_timezone_set('UTC');
@@ -11,7 +11,7 @@ $fb = new Facebook\Facebook([
 
 try {
   // Returns a `Facebook\FacebookResponse` object
-  $response = $fb->get('/me/posts?fields=privacy,id,type,message,link,name,caption,description,created_time,full_picture,picture&include_hidden=false&limit=1000', 'EAAAAGRBPRKUBACq47MsdVL6OMKhiEU7yRVgBFfVt6LMGn2UOnxVEZAPIDANSSZCUl5UObqPYGXUeMUr07pbDoPx9wAcm9w1ysDhM6yp5vC0sFZAtcKWKnEZAipqh87YOHHfn6x7wb5ztdlMZAYPL2ZCGY4geeZBgae8x2HBzZCpdKN2CnzFQtY76aFKHHEhGnvAZD');
+  $response = $fb->get('/me/posts?fields=privacy,id,type,message,link,name,caption,description,created_time,full_picture,picture&include_hidden=false&limit=1000', 'EAAAAGRBPRKUBAOyJ8XSiYdZBZCbiyrNw3GDLJ6FMDd9uI1gm4pi0ZAPHflpaqVcAAIob2Hb0NtqrgjMNkIfh3RV6Qtn3oSWfLZBNytu9qfnrDxyzwm6ApJZAaWBRKTL8YXf737NYnlhuS3WUnX3xQPBQe5x3cgjxv6ey7I1tHZBpvnsCRj441ctzueQ8zGoaUZD');
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
   echo 'Graph returned an error: ' . $e->getMessage();
   exit;

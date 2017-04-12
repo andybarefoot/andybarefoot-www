@@ -1,4 +1,4 @@
-<?
+<?php
 
 $COUNT = intval($_GET["count"]);
 if($COUNT<=0)$COUNT=5;

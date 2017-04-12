@@ -87,7 +87,7 @@
           .style("text-anchor", "start")
           .attr("transform", "translate(0,44)")
           .attr("class", "keyText")
-          .text("Note: For objects of uncertain age, e.g \"4th to 2nd Century B.C.\", then the item is distributed accross all these years, hence the possibility for less than 1 item per year")
+          .text("Note: For objects of uncertain age, e.g \"4th to 2nd Century B.C.\", then the item is distributed across all these years, hence the possibility for less than 1 item per year")
         ;
 
         j=0;
@@ -171,7 +171,7 @@
           .attr("transform", "translate("+offSetX+","+offSetY+")")
         ;
 
-        d3.json("classDate.json", function(data) {
+        d3.json("data/classDate.json", function(data) {
           console.log(data);
           headerDatesClass
             .selectAll("text")
