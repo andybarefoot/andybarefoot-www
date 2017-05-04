@@ -1,0 +1,50 @@
+#contact {
+	/*background-color: #EAC435;*/
+	background-color: #FB4D3D;
+}
+
+.mobileTitle {
+	cursor: pointer;
+	background-color: #4CB944;
+/*	background-color: #ffd900; */
+}
+
+#mobile .project img {
+	width: 100%;
+    margin: 0;
+    float: none;
+}
+
+.mobileThumb {
+	width: 100%;
+    margin: 10px 0 0 0 ;
+	background-color: #011627;
+}
+
+.mobileThumb p{
+	text-align: center;
+    padding: 15px;
+}
+
+.mobileDesc p{
+	line-height: 120%;
+	margin: 0 10px 10px 10px;
+}
+
+#lightbox img {
+	max-width:none;
+}
+
+@media screen and (min-width: 800px){	
+	.mobileThumb {
+		width: 50%;
+		max-width: 800px;
+	    float: left;
+	    margin: 0 24px 20px 0;
+		background-color: #011627;
+	}
+
+	.mobileDesc {
+		padding: 24px;
+	}
+}	

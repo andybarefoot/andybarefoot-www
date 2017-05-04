@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="andybarefoot">
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<meta name="viewport" content="initial-scale=1.0, width=device-width" />		
+		<title>Andy Barefoot | Mobile & VR</title>
+		<link rel="stylesheet" href="/css/reset.css">
+		<link rel="stylesheet" href="/css/main-r.css">
+		<link rel="stylesheet" href="/css/mobile.css">
+		<link rel="stylesheet" href="/css/lightbox.css">
+		<meta charset="utf-8" />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+		<script src="/jscript/analyticstracking.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="/jscript/lightbox.js"></script>
+		<script>
+			document.createElement('header');
+			$(window).on('load', function() {
+				if($(window).width()>1000 && $(window).width()<1300){
+					$("#nameTitle").hide();
+				}else{
+					$("#nameTitle").show();
+				}
+			});
+			$(window).resize(function() {
+				if($(window).width()>1000 && $(window).width()<1300){
+					$("#nameTitle").hide();
+				}else{
+					$("#nameTitle").show();
+				}
+			});
+		</script>
+    </head>
+    <body>
+		<div id="contact"><!-- contact -->
+			<header>
+				<hgroup>
+					<img id="portrait" src="/images/mobile-vr.png" alt="Andy Barefoot - Digital Professional" />
+					<div id="summary">
+						<h1><span id="nameTitle"><a href="/">Andy Barefoot</a> / </span> <a href="/datavis">Mobile</a></h1>
+						<p>A collection of Mobile Gaming and VR projects built using Unity and published to the Google Play and Apple app stores.</p>
+					</div>
+					<ul>
+						<li><a href="https://www.linkedin.com/in/andybarefoot/" target="_blank"><img src="/images/icons/png64/linkedin.png" /></a></li>
+						<li><a href="mailto:andy@andybarefoot.com"><img src="/images/icons/png64/email.png" /></a></li>
+						<li><a href="http://instagram.com/andybarefoot" target="_blank"><img src="/images/icons/png64/instagram.png" /></a></li>
+						<li><a href="http://twitter.com/andybarefoot" target="_blank"><img src="/images/icons/png64/twitter.png" /></a></li>
+						<li><a href="http://www.facebook.com/profile.php?id=729980577" target="_blank"><img src="/images/icons/png64/facebook.png" /></a></li>
+						<li><a href="https://github.com/andybarefoot" target="_blank"><img src="/images/icons/png64/github.png" /></a></li>
+						<li><a href="https://codepen.io/andybarefoot/" target="_blank"><img src="/images/icons/png64/codepen.png" /></a></li>
+					</ul>
+				</hgroup>
+			</header>
+		</div><!-- contact -->
+		<div id="mobile">
+			<div id="projectTitle" class="sectionTitle">
+				<h2>Projects</h2>
+			</div>
+			<div class="project">
+				<div class="mobileTitle"><h3>Work In Progress: Lab Break</h3></div>
+				<div class="mobileDesc">
+					<div class="mobileThumb">
+						<img src="images/lab-thumb.png" />
+						<p><a href="images/lab-02.gif" data-lightbox="lab">More Images</a>
+							<a href="images/lab-01.gif" data-lightbox="lab"></a>
+							<a href="images/lab-03.png" data-lightbox="lab"></a>
+							<a href="images/lab-04.png" data-lightbox="lab"></a>
+						</p></div>
+							<p>Currently working on a mobile game where the character is trying to escape from the research lab it was created in. The aim is to make a combination of a platform and puzzle game.</p>
+							<p>The user controls are very simple, the character is constantly running, reversing direction whenever it hits an obstacle with the player only controlling when to make the character jump by tapping.</p>
+							<p>The character will also be able to drink potions along the way which will change its colour. It will need to do this in the correct order and with the correct timing to pass through doors that will only permit characters of a certain colour.</p>
+							<p>The game is a combination of platformer and puzzle game as the character's progress will depend on the accuracy and timing of jumping but also on collecting the objects at the right time and in the correct order.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="mobileTitle"><h3>VR: Ski VR</h3></div>
+				<div class="mobileDesc">
+					<div class="mobileThumb">
+						<img src="images/ski-thumb.png" />
+						<p><a href="https://play.google.com/store/apps/details?id=com.GunterGames.SkiVR" target="ski"> Play Store</a> | <a href="images/ski-01.png" data-lightbox="ski">More Images</a>
+							<a href="images/ski-02.png" data-lightbox="ski"></a>
+							<a href="images/ski-03.png" data-lightbox="ski"></a>
+							<a href="images/ski-04.png" data-lightbox="ski"></a>
+							<a href="images/ski-05.png" data-lightbox="ski"></a>
+							<a href="images/ski-06.png" data-lightbox="ski"></a>
+							<a href="images/ski-07.png" data-lightbox="ski"></a>
+							<a href="images/ski-08.png" data-lightbox="ski"></a>
+							<a href="images/ski-09.png" data-lightbox="ski"></a>
+							<a href="images/ski-10.png" data-lightbox="ski"></a>
+							<a href="images/ski-11.png" data-lightbox="ski"></a>
+							<a href="images/ski-12.png" data-lightbox="ski"></a>
+							<a href="images/ski-13.png" data-lightbox="ski"></a>
+							<a href="images/ski-14.png" data-lightbox="ski"></a>
+							<a href="images/ski-15.png" data-lightbox="ski"></a>
+							<a href="images/ski-16.png" data-lightbox="ski"></a>
+							<a href="images/ski-17.png" data-lightbox="ski"></a>
+						</p></div>
+							<p>Ski VR is a short VR demo built for Google Cardboard but also playable without a headset.</p>
+							<p>The player slides gracefully down a low-poly mountain between trees and alpine chalets steering by turning their head in the direction they want to go.</p>
+							<p>Ski VR was built in Unity with the Google Cardboard SDK and is available for Android on the Google Play store.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="mobileTitle"><h3>Puzzle: Color Hex</h3></div>
+				<div class="mobileDesc">
+					<div class="mobileThumb">
+						<img src="images/hex-04.png" />
+						<p><a href="https://play.google.com/store/apps/details?id=com.guntergames.colourhexnew" target="hex"> Play Store</a> | <a href="https://itunes.apple.com/gb/app/id1093790722" target="hex">iTunes</a> | <a href="images/hex-01.png" data-lightbox="hex">More Images</a>
+							<a href="images/hex-02.png" data-lightbox="hex"></a>
+							<a href="images/hex-03.png" data-lightbox="hex"></a>
+							<a href="images/hex-04.png" data-lightbox="hex"></a>
+							<a href="images/hex-05.png" data-lightbox="hex"></a>
+							<a href="images/hex-06.png" data-lightbox="hex"></a>
+							<a href="images/hex-07.png" data-lightbox="hex"></a>
+							<a href="images/hex-08.png" data-lightbox="hex"></a>
+							<a href="images/hex-09.png" data-lightbox="hex"></a>
+							<a href="images/hex-10.png" data-lightbox="hex"></a>
+							<a href="images/hex-11.png" data-lightbox="hex"></a>
+							<a href="images/hex-12.png" data-lightbox="hex"></a>
+							<a href="images/hex-13.png" data-lightbox="hex"></a>
+							<a href="images/hex-14.png" data-lightbox="hex"></a>
+							<a href="images/hex-15.png" data-lightbox="hex"></a>
+							<a href="images/hex-16.png" data-lightbox="hex"></a>
+							<a href="images/hex-17.png" data-lightbox="hex"></a>
+							<a href="images/hex-18.png" data-lightbox="hex"></a>
+							<a href="images/hex-19.png" data-lightbox="hex"></a>
+							<a href="images/hex-20.png" data-lightbox="hex"></a>
+						</p></div>
+							<p>Color Hex is a mobile puzzle game for Android and iOS built and published using the Unity platform.</p>
+							<p>The player must try and match patterns by mixing colours together on a hexagonal grid. As the patterns get more complicated the puzzle becomes more difficult.</p>
+							<p>There are 2 play modes with a combined total of 222 levels.</p>
+							<p>Color Hex was built in Unity which supports exporting to both iOS and Android platforms.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="mobileTitle"><h3>Game: Super Dice</h3></div>
+				<div class="mobileDesc">
+					<div class="mobileThumb">
+						<img src="images/dice-03.jpg" />
+						<p><a href="https://play.google.com/store/apps/details?id=com.andybarefoot.superdice" target="hex"> Play Store</a> | <a href="images/dice-12.jpg" data-lightbox="dice">More Images</a>
+							<a href="images/dice-01.jpg" data-lightbox="dice"></a>
+							<a href="images/dice-02.jpg" data-lightbox="dice"></a>
+							<a href="images/dice-03.jpg" data-lightbox="dice"></a>
+							<a href="images/dice-04.jpg" data-lightbox="dice"></a>
+							<a href="images/dice-05.jpg" data-lightbox="dice"></a>
+							<a href="images/dice-06.jpg" data-lightbox="dice"></a>
+							<a href="images/dice-11.jpg" data-lightbox="dice"></a>
+							<a href="images/dice-07.jpg" data-lightbox="dice"></a>
+							<a href="images/dice-08.jpg" data-lightbox="dice"></a>
+							<a href="images/dice-09.jpg" data-lightbox="dice"></a>
+							<a href="images/dice-10.jpg" data-lightbox="dice"></a>
+						</p></div>
+							<p>My first attempt at using the Unity platform to create a game was a mobile version of the dice game Farkle.</p>
+							<p>Players take it in turn to roll 6 dice hoping to get high scoring combinations. As they build up a score they must choose whether to continue and risk everything or play it safe and bank the points they already have. </p>
+							<p>The app keeps track of all the points calculating the sometimes complicated combinations in which different dice rolls can score.</p>
+							<p>App also has a simple "just dice" mode where it can be used as a replacement for physical die.</p>
+				</div>
+			</div>
+		</div><!-- projects -->
+	</body>
+
+
+

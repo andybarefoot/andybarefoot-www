@@ -1,4 +1,4 @@
-<?
+<?php
 include_once '../../includes/db-got.php';
 include_once '../../includes/dbactions.php';
 

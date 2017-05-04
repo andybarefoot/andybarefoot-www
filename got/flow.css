@@ -1,0 +1,79 @@
+body {
+	background-color: #1f1f1f;
+	color: #808080;
+	font-family: 'Trirong', georgia, times, serif;
+	font-weight: 200;
+	font-size: 18px;
+}
+
+svg {
+	margin-bottom: 100px;
+}
+
+svg text {
+	font-size: 14px;
+	font-family: 'Trirong', georgia, times, serif;
+}
+
+svg .node text {
+	font-size: 16px;
+	font-family: 'Trirong', georgia, times, serif;
+	fill: #808080;
+}
+
+svg .season{
+	font-size: 14px;
+	font-family: 'Trirong', georgia, times, serif;
+	fill: #808080;
+}
+
+svg .node--internal text-xxx {
+  text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+}
+
+svg .link {
+  fill: none;
+  stroke-opacity: 0.4;
+  stroke-width: 1.0px;
+}
+
+svg #tribe-1 path{
+/*	fill: #597b81;
+*/	stroke: #edefef;
+	stroke-width: 1.0px;
+}
+
+svg #tribe-1 text{
+	fill: #edefef;
+}
+
+svg #tribe-2 path{
+/*	fill: #7cd4de;
+*/	stroke: #edefef;
+	stroke-width: 1.0px;
+}
+
+svg #tribe-2 text{
+	fill: #edefef;
+}
+
+svg #tribe-3 path{
+/*	fill: #0c0d08;
+*/	stroke: #959592;
+	stroke-width: 1.0px;
+}
+
+svg #tribe-3 text{
+	fill: #959592;
+}
+
+svg #tribe-4 path{
+/*	fill: #7b906f;
+*/	stroke: #d4cdb1;
+	stroke-width: 1.0px;
+}
+
+svg #tribe-4 text{
+	fill: #d4cdb1;
+}
+

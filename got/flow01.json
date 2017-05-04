@@ -1,0 +1,105 @@
+[
+	{
+		"tribeID":"1",
+		"tribeName":"Free Folk",
+		"characters":[
+			{
+				"charID":"1",
+				"charName":"Wildling Girl",
+				"charPath":"[[20,390],[500,240],[750,340],[1200,340]]",
+				"charTribes":"[[20,1],[300,2]]"
+			}
+		]
+	},
+	{
+		"tribeID":"2",
+		"tribeName":"White Walkers",
+		"characters":[
+			{
+				"charID":"2",
+				"charName":"White Walker 1",
+				"charPath":"[[20,410],[520,260],[730,360],[1100,360]]",
+				"charTribes":"[[20,2]]"
+			},{
+				"charID":"3",
+				"charName":"White Walker 2",
+				"charPath":"[[20,430],[540,280],[710,380],[1000,380]]",
+				"charTribes":"[[20,2]]"
+			}
+		]
+	},
+	{
+		"tribeID":"3",
+		"tribeName":"Night Watch",
+		"characters":[
+			{
+				"charID":"4",
+				"charName":"Ser Royce",
+				"charPath":"[[20,450],[1100,450]]",
+				"charTribes":"[[20,3]]"
+			},{
+				"charID":"5",
+				"charName":"Gared",
+				"charPath":"[[20,470],[1000,470]]",
+				"charTribes":"[[20,3]]"
+			},{
+				"charID":"6",
+				"charName":"Will",
+				"charPath":"[[20,490],[1000,490]]",
+				"charTribes":"[[20,3]]"
+			},{
+				"charID":"7",
+				"charName":"Benjen Stark",
+				"charPath":"[[20,510],[1000,510]]",
+				"charTribes":"[[20,3]]"
+			},{
+				"charID":"8",
+				"charName":"Rast",
+				"charPath":"[[120,530],[1000,530]]",
+				"charTribes":"[[20,3]]"
+			}
+		]
+	},
+	{
+		"tribeID":"4",
+		"tribeName":"House Stark",
+		"characters":[
+			{
+				"charID":"9",
+				"charName":"Lord Eddard Stark",
+				"charPath":"[[20,550],[1100,550]]",
+				"charTribes":"[[20,4]]"
+			},{
+				"charID":"10",
+				"charName":"Lady Catelyn Stark",
+				"charPath":"[[20,570],[1000,570]]",
+				"charTribes":"[[20,4]]"
+			},{
+				"charID":"11",
+				"charName":"Rob Stark",
+				"charPath":"[[20,590],[1000,590]]",
+				"charTribes":"[[20,4]]"
+			},{
+				"charID":"12",
+				"charName":"Sansa Stark",
+				"charPath":"[[20,610],[1000,610]]",
+				"charTribes":"[[20,4]]"
+			},{
+				"charID":"13",
+				"charName":"Arya Stark",
+				"charPath":"[[20,630],[1000,630]]",
+				"charTribes":"[[20,4]]"
+			},{
+				"charID":"14",
+				"charName":"Bran Stark",
+				"charPath":"[[20,650],[1000,650]]",
+				"charTribes":"[[20,4]]"
+			},{
+				"charID":"15",
+				"charName":"Rickon Stark",
+				"charPath":"[[20,670],[1000,670]]",
+				"charTribes":"[[20,4]]"
+			}
+		]
+	}
+]
