@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+		<title>Game of Thrones</title>
+
+		<meta charset="utf-8">
+		<meta property="og:url"	content="http://www.andybarefoot.com/got/grid.html" />
+		<meta property="og:title" content="Game of Thrones" />
+		<meta property="og:description" content="" />
+		<meta property="og:image" content="" />
+		<link href="https://fonts.googleapis.com/css?family=Trirong:100,200" rel="stylesheet">
+		<script src="/jscript/analyticstracking.js"></script>
+		<script src="/jscript/d3.v4.min.js"></script>
+		<link rel="stylesheet" href="/css/reset.css">
+		<link rel="stylesheet" href="/css/footer.css">
+		<link rel="stylesheet" href="grid.css">
+   </head>
+	<body>
+
+		<script>
+
+			//Load in character data
+	        d3.json("chars.json", function(data) {
+	        	console.log(data);
+
+				var grid = d3.select("body")
+					.append("div")
+					.attr("id", "grid")
+					.attr("class", "grid")
+				;
+				chars = grid
+					.selectAll("div")
+					.data(data.characters)
+					.enter()
+					.append("div")
+					.attr("class", function(d,i){
+						if(d.totalAppearances>50){
+							return "char size5";
+						}else if(d.totalAppearances>30){
+							return "char size4";
+						}else if(d.totalAppearances>10){
+							return "char size3";
+						}else if(d.totalAppearances>5){
+							return "char size2";
+						}else if(d.totalAppearances>1){
+							return "char size1";
+						}else {
+							return "char tribe";
+						}
+					})
+					.style("background-image", function(d){
+						return 'url("images/sigil/'+d.charSigil+'")';
+					})
+					.on("click", function(d, i) {
+						if(this.className.split(' ').indexOf('open') > -1 ){
+							d3.select(this).classed("open", false);
+						}else{
+							console.log(this.style);
+							console.log(window.getComputedStyle(this));
+//							grid-column-start
+							thisPortrait = this.getElementsByClassName("portrait")[0];
+							if(thisPortrait)thisPortrait.setAttribute("src",thisPortrait.getAttribute("data-src"));
+							d3.selectAll(".char").classed("open", false);
+							d3.select(this).classed("open", true);
+						}
+					})
+				;
+				content = chars
+					.append("div")
+					.attr("class", "charContent")
+				;
+				content
+					.append("h2")
+					.text(function(d,i){
+						return d.charName;
+					})
+				;
+				details = content
+					.append("div")
+					.attr("class", "details")
+				;
+				details
+					.filter(function(d){ return d.charThumb != ""; })
+					.append("div")
+					.attr("class", "imageHolder")
+					.append("img")
+					.attr("class","portrait")
+					.attr("data-src", function(d,i){
+						return "images/char"+d.charID+".png";
+					})
+				;
+				bio = details
+					.append("div")
+					.attr("class", "bio")
+				;
+				bio
+					.append("h3")
+					.text(function(d,i){
+						return d.charName;
+					})
+				;
+				bio
+					.filter(function(d){ return d.charAllegiance != ""; })
+					.append("h4")
+					.text("Allegiance:")
+ 				;
+				bio
+					.filter(function(d){ return d.charAllegiance != ""; })
+					.append("span")
+					.text(function(d,i){
+						return d.charAllegiance;
+					})
+ 				;
+				bio
+					.filter(function(d){ return d.charCulture != ""; })
+					.append("h4")
+					.text("Culture:")
+ 				;
+				bio
+					.filter(function(d){ return d.charCulture != ""; })
+					.append("span")
+					.text(function(d,i){
+						return d.charCulture;
+					})
+ 				;
+				bio
+					.filter(function(d){ return d.charOrigin != ""; })
+					.append("h4")
+					.text("Origin:")
+ 				;
+				bio
+					.filter(function(d){ return d.charOrigin != ""; })
+					.append("span")
+					.text(function(d,i){
+						return d.charOrigin;
+					})
+ 				;
+				bio
+					.filter(function(d){ return d.charReligion != ""; })
+					.append("h4")
+					.text("Religion:")
+ 				;
+				bio
+					.filter(function(d){ return d.charReligion != ""; })
+					.append("span")
+					.text(function(d,i){
+						return d.charReligion;
+					})
+ 				;
+				bio
+					.append("div")
+					.attr("class", "bioLink")
+					.append("a")
+					.attr("href", function(d){ return d.charURL })
+					.attr("target", "_blank")
+					.text("More Details >>")
+ 				;
+				
+
+	        })
+
+		</script>
+	</body>
+</html>

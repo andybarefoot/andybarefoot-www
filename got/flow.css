@@ -1,7 +1,9 @@
 body {
-	background-color: #1f1f1f;
+	background-color: #323232;
+	background-color: #cccccc;
 	color: #808080;
 	font-family: 'Trirong', georgia, times, serif;
+	font-family: tahoma;
 	font-weight: 200;
 	font-size: 18px;
 }
@@ -11,7 +13,7 @@ svg {
 }
 
 svg text {
-	font-size: 14px;
+	font-size: 9px;
 	font-family: 'Trirong', georgia, times, serif;
 }
 
@@ -43,37 +45,7 @@ svg #tribe-1 path{
 	stroke-width: 1.0px;
 }
 
-svg #tribe-1 text{
-	fill: #edefef;
-}
-
-svg #tribe-2 path{
-/*	fill: #7cd4de;
-*/	stroke: #edefef;
-	stroke-width: 1.0px;
-}
-
-svg #tribe-2 text{
-	fill: #edefef;
-}
-
-svg #tribe-3 path{
-/*	fill: #0c0d08;
-*/	stroke: #959592;
-	stroke-width: 1.0px;
-}
-
-svg #tribe-3 text{
-	fill: #959592;
-}
-
-svg #tribe-4 path{
-/*	fill: #7b906f;
-*/	stroke: #d4cdb1;
-	stroke-width: 1.0px;
-}
-
-svg #tribe-4 text{
-	fill: #d4cdb1;
+svg text{
+	text-transform: uppercase;
 }
 

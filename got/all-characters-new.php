@@ -452,6 +452,111 @@ function giveInitTribe(){
 
 }
 
-giveInitTribe();
+function getExtraDetails($start,$number){
+	$sqlStmt="SELECT * FROM `gotChars` WHERE `charTV` = 1 ORDER BY `charName` ASC LIMIT ".$start.",".$number.";";
+	$charResults=getData($sqlStmt);
+	print "<table border='1'>\n";
+	print "<tr>";	
+	print "<td></td>";
+	print "<td>URL</td>";
+	print "<td>Origin</td>";
+	print "<td>Allegiance</td>";
+	print "<td>Culture</td>";
+	print "<td>Religion</td>";
+	print "<td>Actor</td>";
+	print "</tr>";	
+
+	$count=0;
+ 	foreach($charResults as $char){
+		$count++;
+ 		print "<tr>";	
+ 		print "<td>".$count."</td>";
+ 		print "<td>".$char['charURL']."</td>";
+ 		$charID =  $char['charID'];
+ 		$charPageSrc =  curlGet($char['charURL']);
+ 		$thisPageXPath = returnXPathObject($charPageSrc);	// Instantiating new XPath DOM object
+ 		// HANDLE ORIGIN
+ 		$thisOrigin = $thisPageXPath->query("//h3[.='Origin']/following-sibling::div[1]/a");	// Querying for href attributes of pagination
+		if ($thisOrigin->length > 0) {
+			$origin="";
+			print "<td>";
+			for ($i = 0; $i < $thisOrigin->length; $i++) {
+				$origin.=$thisOrigin->item($i)->nodeValue;
+				if($i!=($thisOrigin->length-1))$origin.=", ";
+			}
+			print "$origin</td>";
+			$sqlStmt="UPDATE  `gotChars` SET  `charOrigin` =  '".mysql_real_escape_string($origin)."' WHERE `gotChars`.`charID` ='$charID';";
+			updateData($sqlStmt);
+		}else{
+			print "<td> </td>";
+		}
+ 		// HANDLE ALLEGIANCE
+ 		$thisAllegience = $thisPageXPath->query("//h3[.='Allegiance']/following-sibling::div[1]/a");	// Querying for href attributes of pagination
+		if ($thisAllegience->length > 0) {
+			$allegience="";
+			print "<td>";
+			for ($i = 0; $i < $thisAllegience->length; $i++) {
+				$allegience.=$thisAllegience->item($i)->nodeValue;
+				if($i!=($thisAllegience->length-1))$allegience.=", ";
+			}
+			print "$allegience</td>";
+			$sqlStmt="UPDATE  `gotChars` SET  `charAllegiance` =  '".mysql_real_escape_string($allegience)."' WHERE `gotChars`.`charID` ='$charID';";
+			updateData($sqlStmt);
+		}else{
+			print "<td> </td>";
+		}
+ 		// HANDLE CULTURE
+ 		$thisCulture = $thisPageXPath->query("//h3[.='Culture']/following-sibling::div[1]/a");	// Querying for href attributes of pagination
+		if ($thisCulture->length > 0) {
+			$culture="";
+			print "<td>";
+			for ($i = 0; $i < $thisCulture->length; $i++) {
+				$culture.=$thisCulture->item($i)->nodeValue;
+				if($i!=($thisCulture->length-1))$culture.=", ";
+			}
+			print "$culture</td>";
+			$sqlStmt="UPDATE  `gotChars` SET  `charCulture` =  '".mysql_real_escape_string($culture)."' WHERE `gotChars`.`charID` ='$charID';";
+			updateData($sqlStmt);
+		}else{
+			print "<td> </td>";
+		}
+ 		// HANDLE RELIGION
+ 		$thisReligion = $thisPageXPath->query("//h3[.='Religion']/following-sibling::div[1]/a");	// Querying for href attributes of pagination
+		if ($thisReligion->length > 0) {
+			$religion="";
+			print "<td>";
+			for ($i = 0; $i < $thisReligion->length; $i++) {
+				$religion.=$thisReligion->item($i)->nodeValue;
+				if($i!=($thisReligion->length-1))$religion.=", ";
+			}
+			print "$religion</td>";
+			$sqlStmt="UPDATE  `gotChars` SET  `charReligion` =  '".mysql_real_escape_string($religion)."' WHERE `gotChars`.`charID` ='$charID';";
+			updateData($sqlStmt);
+		}else{
+			print "<td> </td>";
+		}
+ 		// HANDLE ACTOR
+ 		$thisActor = $thisPageXPath->query("//h3[.='Portrayed by']/following-sibling::div[1]/a");	// Querying for href attributes of pagination
+		if ($thisActor->length > 0) {
+			$actor="";
+			print "<td>";
+			for ($i = 0; $i < $thisActor->length; $i++) {
+				$actor.=$thisActor->item($i)->nodeValue;
+				if($i!=($thisActor->length-1))$actor.=", ";
+			}
+			print "$actor</td>";
+			$sqlStmt="UPDATE  `gotChars` SET  `charActor` =  '".mysql_real_escape_string($actor)."' WHERE `gotChars`.`charID` ='$charID';";
+			updateData($sqlStmt);
+		}else{
+			print "<td> </td>";
+		}
+
+ 		print "</tr>";
+ 	}
+	print "</table>\n";
+}
+
+
+getExtraDetails(750,1000);
 
 ?>

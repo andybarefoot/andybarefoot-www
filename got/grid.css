@@ -1,0 +1,219 @@
+body {
+	background-color: #323232;
+	font-family: 'Trirong', georgia, times, serif;
+	font-weight: 100;
+	font-size: 80%;
+}
+
+.grid {
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: repeat(auto-fill, minmax(60px,1fr));
+	grid-auto-rows: 60px;
+	grid-auto-flow: dense;
+}
+
+.char {
+	border-radius: 3px;
+	padding: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+	background-color: #1c1c1c;
+}
+
+.charContent {
+	text-align: center;
+    position: absolute;
+	left: 0;
+	right: 0;
+    bottom: 0.5em;
+    margin: auto;
+}
+
+.char h2 {	
+	display: inline-block;
+	background-color:rgba(28,28,28,1);	
+	font-size: 80%;
+	line-height: auto;
+	color:rgba(210,210,210,1);	
+	padding: 3px 8px 3px 8px;
+}
+
+.char h3 {	
+	font-size: 140%;
+	color:rgba(210,210,210,1);
+}
+
+.char h4 {	
+	font-size: 100%;
+	margin-top: 6px;
+	margin-bottom: 3px;
+	color:rgba(202,173,45,1);
+}
+
+.details {
+	display: none;
+}
+
+.details .bio{
+	padding: 10px;
+	text-align: left;
+}
+
+.details span{
+	font-size: 100%;
+	line-height: auto;
+	color:rgba(210,210,210,1);
+}
+
+.details img {
+	max-height: 100%;
+	margin: 0 -200%;
+}
+
+.bioLink{
+	margin-top: 20px;
+}
+
+.bioLink a{
+	color:rgba(202,173,45,1);
+}
+
+.size1 {
+	grid-column-end: span 2;
+	grid-row-end: span 1;
+}
+
+.size2 {
+	grid-column-end: span 2;
+	grid-row-end: span 2;
+}
+.size2 h2{
+	font-size: 100%;
+}
+
+.size3 {
+	grid-column-end: span 3;
+	grid-row-end: span 2;
+}
+.size3 h2{
+	font-size: 120%;
+}
+
+.size4 {
+	grid-column-end: span 3;
+	grid-row-end: span 3;
+}
+.size4 h2{
+	font-size: 130%;
+}
+
+.size5 {
+	grid-column-end: span 4;
+	grid-row-end: span 4;
+}
+.size5 h2{
+	font-size: 180%;
+}
+
+.open {
+	grid-column-end: span 5;
+	grid-row-end: span 4;
+}
+
+.open .charContent{
+	position: relative;
+    bottom: 0;
+	width: 100%;
+	height: 100%;
+	background-color:rgba(28,28,28,0.8);	
+}
+
+.open .charContent h2{
+	display: none;
+}
+
+.open .details {
+	display: block;
+	height: 100%;
+}
+
+.open .details .imageHolder {
+	float: right;
+	height: 100%;
+	max-width: 150px;
+	overflow: hidden;
+	position: relative;
+}
+
+
+/* Tribe Classes */
+.tribe1 {
+	background-color: #597b81;
+}
+.tribe2 {
+	background-color: #7cd4de;
+}
+.tribe3 {
+	background-color: #0c0d08;
+}
+.tribe4 {
+	background-color: #7b906f;
+}
+.tribe5 {
+	background-color: #ffffff;
+}
+.tribe6 {
+	background-color: #916b3c;
+}
+.tribe7 {
+	background-color: #87090a;
+}
+.tribe8 {
+	background-color: #a9181f;
+}
+.tribe9 {
+	background-color: #5d2801;
+}
+.tribe10 {
+	background-color: #ff00ff;
+}
+.tribe11 {
+	background-color: #0f1a26;
+}
+.tribe15 {
+	background-color: #0f1a26;
+}
+.tribe16 {
+	background-color: #0f1a26;
+}
+.tribe24 {
+	background-color: #0f1a26;
+}
+.tribe25 {
+	background-color: #0f1a26;
+}
+.tribe27 {
+	background-color: #0f1a26;
+}
+.tribe30 {
+	background-color: #0f1a26;
+}
+.tribe31 {
+	background-color: #0f1a26;
+}
+.tribe33 {
+	background-color: #0f1a26;
+}
+.tribe35 {
+	background-color: #0f1a26;
+}
+.tribe36 {
+	background-color: #0f1a26;
+}
+
+.tribe99 {
+	background-color: #1c1c1c;
+}

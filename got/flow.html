@@ -381,6 +381,8 @@
 					characters
 						.append("path")
 						.attr("d", function(d) {
+							console.log(d.charPath);
+							console.log(eval("getArrowPath("+d.charPath+")"));
 							return eval("getArrowPath("+d.charPath+")");
 						})
 						.attr("fill", function(d) {

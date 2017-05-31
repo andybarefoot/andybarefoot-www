@@ -16,7 +16,7 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .White Walkers.Bannen,33,3,4,1,0
  .Unnamed Characters.Baratheon General,35,5,10,1,2
  .Tyrion Lannister.Baratheon officer,36,2,9,1,1
- .Unnamed Characters.Baratheon soldier,37,5,10,1,1
+ .Unnamed Characters.Baratheon soldier,37,5,10,1,2
  .Sansa Stark.Ramsay Bolton.Baratheon soldier (Mother's Mercy),38,5,10,1,1
  .Jon Snow.Janos Slynt.Barra,57,2,1,1,2
  .Sons of the Harpy.Barristan Selmy,708,5,4,1,25
@@ -32,13 +32,13 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Tyene Sand.Caleotte,118,6,1,1,1
  .Arya Stark.Walder Rivers.Catelyn Stark,743,3,9,1,25
  .Wights.Summer.Catspaw assassin,129,1,2,1,1
- .Cersei Lannister,449,0,0,0,55
+ .Cersei Lannister,449,0,0,0,52
  .Unnamed Characters.Mag Mar Tun Doh Weg.Cooper,151,4,9,1,1
  .Daenerys Targaryen.Pyat Pree.Copper King,152,2,7,1,2
  .Jon Snow.Karl Tanner.Craster,159,3,4,1,5
  .Cressen,165,2,1,1,1
  .Daario Naharis,577,0,0,0,21
- .Daenerys Targaryen,792,0,0,0,52
+ .Daenerys Targaryen,792,0,0,0,49
  .Sansa Stark.Ramsay Bolton.Dagmer,171,2,10,1,5
  .Despondent man,184,5,3,1,0
  .Unnamed Characters.Dongo,189,4,9,1,3
@@ -48,7 +48,7 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Daenerys Targaryen.Doreah,192,2,10,1,11
  .Sansa Stark.Ramsay Bolton.Osha.Drennan,197,2,6,1,2
  .Daenerys Targaryen.Mirri Maz Duur.Drogo,198,1,10,1,10
- .Drogon,199,0,0,0,20
+ .Drogon,199,0,0,0,19
  .Dwarf hunter 2.Dwarf 1,208,5,2,1,2
  .Dwarf hunter 2,214,0,0,0,1
  .Sandor Clegane.Dying man,216,4,7,1,1
@@ -90,7 +90,7 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Daario Naharis.Iggo,373,6,4,1,1
  .Daenerys Targaryen.Doreah.Irri,379,2,6,1,13
  .Sansa Stark.Ramsay Bolton.Dagmer.Jack,381,2,7,1,1
- .Wildlings.Jack Bulwer,117,4,8,1,0
+ .Wildlings.Jack Bulwer,117,4,8,1,1
  .Wights.Jafer Flowers,244,1,8,1,1
  .Jaime Lannister,451,0,0,0,43
  .Jon Snow.Janos Slynt,723,5,3,1,15
@@ -100,7 +100,7 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Olenna Tyrell.Joffrey Baratheon,34,4,2,1,26
  .Wights.Jojen Reed,661,4,10,1,10
  .Petyr Baelish.Lysa Arryn.Jon Arryn,15,1,1,1,1
- .Jon Snow,390,0,0,0,52
+ .Jon Snow,390,0,0,0,49
  .Unnamed Characters.Jon Umber,879,6,3,1,3
  .Jorah Mormont,556,0,0,0,42
  .Jaime Lannister.Jory Cassel,127,1,5,1,5
@@ -108,7 +108,7 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Jon Snow.Karl Tanner,774,4,5,1,4
  .Wights.Karsi,399,5,8,1,2
  .Sansa Stark.Ramsay Bolton.Roose Bolton.Robb Stark.Karstark lookout,401,3,5,1,1
- .Wildlings.Kegs,415,4,8,1,0
+ .Wildlings.Kegs,415,4,8,1,1
  .Cersei Lannister.Kevan Lannister,453,6,10,1,12
  .Gregor Clegane.King's Landing boaster,421,6,2,1,1
  .Sandor Clegane.King's Landing rioter 1,422,2,6,1,2
@@ -139,7 +139,7 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Daenerys Targaryen.Mirri Maz Duur.Drogo.Mago,503,1,8,1,2
  .Jon Snow.Mance Rayder,651,5,1,1,5
  .Podrick Payne.Mandon Moore,547,2,9,1,4
- .Cersei Lannister.Margaery Tyrell,869,6,10,1,32
+ .Cersei Lannister.Margaery Tyrell,869,6,10,1,26
  .Sansa Stark.Ramsay Bolton.Roose Bolton.Robb Stark.Rickard Karstark.Martyn Lannister,457,3,5,1,2
  .Sansa Stark.Ramsay Bolton.Master Torturer,528,3,3,1,2
  .Unnamed Characters.Matthos Seaworth,706,2,9,1,4
@@ -156,7 +156,7 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Daenerys Targaryen.Moro's bloodrider 1,560,6,4,1,3
  .Daenerys Targaryen.Moro's bloodrider 2,561,6,4,1,3
  .Daenerys Targaryen.Mossador,564,5,2,1,3
- .Wildlings.Mully,566,4,8,1,0
+ .Wildlings.Mully,566,4,8,1,1
  .Sandor Clegane.Mycah,574,1,2,1,1
  .Theon Greyjoy.Myranda,576,5,10,1,8
  .Ellaria Sand.Myrcella Baratheon,46,5,10,1,13
@@ -186,7 +186,7 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Jorah Mormont.Qotho,641,1,9,1,6
  .Unnamed Characters.Rakharo,646,2,2,1,8
  .Sansa Stark.Ramsay Bolton.Adrack Humble.Ralf Kenning,416,4,8,1,1
- .Sansa Stark.Ramsay Bolton,88,6,9,1,23
+ .Sansa Stark.Ramsay Bolton,88,6,9,1,20
  .Ghost.Rast,648,4,5,1,12
  .Sandor Clegane.Lem.Ray,650,6,7,1,1
  .Grey Worm.Razdal mo Eraz,224,6,9,1,3
@@ -238,12 +238,12 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Brienne of Tarth.Tom,840,2,10,1,1
  .Tommard Baratheon,55,0,0,1,1
  .Tommen Baratheon,56,6,10,1,24
- .Tormund,843,0,0,0,24
+ .Tormund,843,0,0,0,25
  .Jaime Lannister.Torrhen Karstark,413,2,7,1,1
  .Jaqen H'ghar.The Tickler.Tortured prisoner,844,2,4,1,1
  .Obara Sand.Trystane Martell,527,6,1,1,5
  .Tyene Sand,699,0,0,0,7
- .Tyrion Lannister,461,0,0,0,58
+ .Tyrion Lannister,461,0,0,0,54
  .Tyrion Lannister.Tywin Lannister,463,4,10,1,27
  .Unnamed Characters,978,0,0,0,0
  .Sansa Stark.Ramsay Bolton.Urzen,890,2,10,1,1
@@ -251,7 +251,7 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Unnamed Characters.Varly,893,1,7,1,1
  .Unnamed Characters.Vayon Poole,630,1,8,1,1
  .Sansa Stark.Ramsay Bolton.Violet,897,5,6,1,1
- .Viserion,898,0,0,0,16
+ .Viserion,898,0,0,0,15
  .Daenerys Targaryen.Mirri Maz Duur.Drogo.Viserys Targaryen,810,1,6,1,5
  .Arya Stark.Waif,901,6,8,1,11
  .Sansa Stark.Ramsay Bolton.Walda Bolton,90,6,2,1,5
@@ -266,7 +266,7 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Meera Reed.White Walker (The Door),915,6,5,1,1
  .Samwell Tarly.White Walker (Valar Morghulis),917,3,8,1,2
  .White Walkers,982,0,0,0,8
- .Wights,980,0,0,0,11
+ .Wights,980,0,0,0,9
  .Wights.Wildling girl,933,1,1,1,2
  .Wildlings,981,0,0,0,0
  .Olenna Tyrell.Joffrey Baratheon.Eddard Stark.Will,934,1,1,1,1

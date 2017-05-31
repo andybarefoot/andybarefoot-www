@@ -204,7 +204,7 @@
 				    .parentId(function(d) { return d.id.substring(0, d.id.lastIndexOf(".")); });
 
 
-				d3.csv("../../got/deaths.csv", function(error, data) {
+				d3.csv("../../got/deaths.csv?3", function(error, data) {
 					charCount = 0;
 					if (error) throw error;
 					var root = stratify(data)
