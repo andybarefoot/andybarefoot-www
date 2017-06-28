@@ -7,10 +7,10 @@
     <meta property="og:title" content="Game of Thrones - Web of Allegiances" />
     <meta property="og:description" content="An interactive map of Westeros and Essos showing the allegiances of al the characters from Game of Thrones." />
     <meta property="og:image" content="http://www.andybarefoot.com/got/images/web-of-allegiances.png" />
-    <link href="https://fonts.googleapis.com/css?family=Trirong" rel="stylesheet">
     <script src="/jscript/analyticstracking.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="/jscript/d3.v4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="allegiances.css">
@@ -35,7 +35,18 @@
       </div>
     </div>
   <script>
+    //Load the web fonts
+    WebFont.load({
+      google: {
+        families: ['Trirong']
+      }
+    });
 
+    WebFontConfig = {
+      active: function() {
+        fontLoaded = true;
+      },
+    };
 
     //VARIABLES
     // Map coordinates scale: Width of Map/width of World coordinates  
@@ -47,6 +58,14 @@
     radius = 50;
     currentZoom = 1;
     mapImageLoaded = false;
+    // Hack because Safari doesn't detect onload of large map image :-(
+    var ua = navigator.userAgent.toLowerCase(); 
+      if (ua.indexOf('safari') != -1) { 
+        if (ua.indexOf('chrome') > -1) {
+        } else {
+          mapImageLoaded = true;
+        }
+    }
     dataLoaded = false;
     fontLoaded = false;
     // Show photo of character if they have appeared in this many episodes or more
@@ -79,11 +98,12 @@
       resizeZoom();
     });
 
-    document.fonts.ready.then(function () {
+//    document.fonts.ready.then(function () {
       fontLoaded = true;
-    });
+//    });
 
     function resizeZoom(){
+//      svg.attr("viewBox", "0 0 " + $( window ).width() + " " + $( window ).height());
       bestFit = Math.max($( window ).width()/width,$( window ).height()/height);
       zoom.scaleExtent([bestFit, 2])
       if(bestFit>currentZoom){
@@ -191,10 +211,14 @@
     // Add map image
     var map = vis
       .append("image")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", width)
+      .attr("height", height)
+      .attr("xlink:href", "images/largeMapKeyBorder.jpg")
       .on('load', function() {
         isReady('image');
       })
-      .attr("xlink:href", "images/largeMapKeyBorder.jpg")
     ;
     // Add a darker layer over map to make nodes and links more visible
     var shader = vis
