@@ -30,11 +30,17 @@
 			</div>
 		</div>
 		<div id="header">
-			<img id="titleImg" src="../../got/images/valar-morghulis.png" alt="Valar Morghulis: All men must die" />
+			<img id="titleImg" src="../../got/images/valar-morghulis.png" alt="Valar Morghulis: All men must die"  class="title"/>
 			<h1>A guide to who has killed who in Game of Thrones</h1>
-			<p>In Game of Thrones  it's true that "Valar Morghulis" but when over 200 characters have already gone to meet The Seven (or The Old Gods, or The Drowned God, or The Many-Faced God, or The Lord of Light, or the Great Stallion, or the Black Goat) then it gets hard to keep track of the tragedy.</p>
+			<p>In Game of Thrones it's true that "Valar Morghulis" but when over 200 characters have already gone to meet The Seven (or The Old Gods, or The Drowned God, or The Many-Faced God, or The Lord of Light, or the Great Stallion, or the Black Goat) then it gets hard to keep track of the tragedy.</p>
 			<p>Fortunately <a href="http://www.andybarefoot.com">Maester Barefoot</a> has been documenting the deceased and below you will find the results of his labour. A kind of "butchery tree" if you like, showing every death whether violent, very violent or extremely violent.</p>
 			<p>All data and images from the excellent <a href="http://gameofthrones.wikia.com/wiki/Game_of_Thrones_Wiki" target="_blank">Game of Thrones wiki</a>.</p>
+			<p>
+				<a href="javascript:share('twitter');"><img src="/images/icons/png32/twitter.png" class="share"></a>
+				<a href="javascript:share('facebook');"><img src="/images/icons/png32/facebook.png" class="share"></a>
+				<a href="javascript:share('google');"><img src="/images/icons/png32/googleplus.png" class="share"></a>
+				<a href="javascript:share('reddit');"><img src="/images/icons/png32/reddit.png" class="share"></a>
+			</p>
 		</div>
 		<div id="mainContent">
 		</div>
@@ -43,11 +49,21 @@
 		<script>
 			// ESTABLISH PARAMETERS
 			w = 1600; // chart width
-			h = 14500; // chart height
+			h = 20000; // chart height
 			charCount = 0; // RUNNING COUNT OF CHARACTERS
 
 			// MANAGE CHARACTER OVERLAY
 			var popUpClicked = 0;
+
+			function share(platform){
+				shareURL = window.location.href;
+				shareText = 'Valar Morghulis: All the deaths in Game of Thrones';
+				if(platform=="twitter")shareDest = 'http://twitter.com/intent/tweet?status='+shareText+'+'+shareURL;
+				if(platform=="facebook")shareDest = 'http://www.facebook.com/sharer/sharer.php?u='+shareURL;
+				if(platform=="google")shareDest = 'https://plus.google.com/share?url='+shareURL;
+				if(platform=="reddit")shareDest = 'http://www.reddit.com/submit?url='+shareURL+'&title='+shareText;
+				window.open(shareDest,platform,'toolbar=no, menubar=no, width=850, height=600,resizable=yes');
+			}
 
 			function clickPopup(charID, trans){
 				populatePopup(charID, trans);
@@ -99,7 +115,7 @@
 				}else{
 					imgSrc = "";
 				}
-				$("#popup").find( "h2" ).find( "a" ).html(charData[0]['charName']);
+				$("#popup").find( "h2" ).find( "a" ).html("<a href='"+charData[0]['charURL']+"' target='_blank'>"+charData[0]['charName']+"</a>");
 				$("#popup").find( "p" ).html(pString);
 				$("#popup").find( "img" ).attr('src',"");
 				$("#popup").find( "img" ).attr('src',imgSrc);
@@ -110,13 +126,29 @@
 
 			// RECURSIVE FUNCTION FOR HANDLING CHILD ARRAYS AND SETTING VERTICAL POSITION
 			function spaceNodes(nodeChildren){
-				// SORT ARRAY BY EPISODE ASC
-				nodeChildren.sort(function (a, b) {
+				// SORT ARRAY BY:
+				nodeChildren
+				.sort(function (a, b) {
+					// Is it Sansa Stark? (Cheat to get Sansa at top) 
+					if(b.data.value=="752"){
+						return 1;
+					}else if(a.data.value=="752"){
+						return -1;
+					}
+					// Order by Death date 
 					if ((10*a.data.deathSeason)+a.data.deathEpisode > (10*b.data.deathSeason)+b.data.deathEpisode) {
 						return 1;
-					}
-					if ((10*a.data.deathSeason)+a.data.deathEpisode < (10*b.data.deathSeason)+b.data.deathEpisode) {
+					}else if ((10*a.data.deathSeason)+a.data.deathEpisode < (10*b.data.deathSeason)+b.data.deathEpisode) {
 						return -1;
+					}
+					// Order by Number killed 
+					if(a.children && b.children){
+						if(b.children.length>a.children.length){
+							return 1;
+						}
+						if(a.children.length>b.children.length){
+							return -1;
+						}
 					}
 				  return 0;
 				});
@@ -200,16 +232,20 @@
 
 				var g = svg.append("g");
 				var tree = d3.tree()
-				var stratify = d3.stratify()
-				    .parentId(function(d) { return d.id.substring(0, d.id.lastIndexOf(".")); });
+				var stratify = d3
+					.stratify()
+					.parentId(function(d) {
+						return d.id.substring(0, d.id.lastIndexOf("."));
+					})
+				;
 
 
-				d3.csv("../../got/deaths.csv?3", function(error, data) {
+				d3.csv("deaths.csv", function(error, data) {
 					charCount = 0;
 					if (error) throw error;
 					var root = stratify(data)
 						.sort(function(a, b) { return (b.height - a.height) || a.id.localeCompare(b.id); })
-						;
+					;
 					tree(root);
 					root.x = yOff + vertOffset;
 					spaceNodes(root.children);
@@ -252,8 +288,8 @@
 			      ;
 
 				  var node = g.selectAll(".node")
-				      .data(root.descendants())
-				    .enter().append("g")
+				    	.data(root.descendants())
+				    	.enter().append("g")
 				      .attr("class", function(d) { return "node" + (d.children ? " node--internal" : " node--leaf"); })
 				      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
 				      .attr("id", function(d) { return "id" + d.data.value; })
@@ -262,7 +298,15 @@
 							return  2+(10*Math.sqrt(d.data.appearances/(totalSeasons * episodesPerSeason)));
 						})
 						.attr("data-id", function(d) { return d.data.value; })
-				    	.attr("fill", function(d) { return (d.parent ? "#caad2d" : "none"); })
+				    	.attr("stroke", function(d) { return (d.parent ? "#caad2d" : "none"); })
+				    	.attr("fill", function(d) { 
+				    		if(d.data.value==0){
+				    			return (d.parent ? "#1c1c1c" : "none");
+				    		}else{
+				    			return (d.parent ? "#caad2d" : "none");
+				    		}
+				    	})
+			    	    .filter( function(d){ return (d.data.value != 0); })
 						.on("click", function(d) {
 							clickPopup(d3.select(this).attr("data-id"),$(this).position());
 						})

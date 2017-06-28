@@ -1,11 +1,52 @@
 body {
-	background-color: #323232;
+	background-color: #1f1f1f;
+	color: #808080;
 	font-family: 'Trirong', georgia, times, serif;
+	font-weight: 200;
+	font-size: 18px;
+}
+
+#header {
+	text-align: center;
+	max-width: 1000px;
+	margin: auto;
+}
+
+.title{
+	margin: 2%;
+	max-width: 96%;
+}
+
+.share{
+	margin: 20px;
+	opacity: 0.7;
+}
+
+a {
+	color: #808080;
+}
+
+h1 {
+	font-size: 140%;
+	margin: 10px 2% 10px 2%;
 	font-weight: 100;
-	font-size: 80%;
+}
+
+p {
+	margin: 10px 2% 0 2%;
+}
+
+#nav {
+ color: rgb(202, 173, 45);
+}
+
+#nav a {
+ text-decoration: underline;
+ color: rgb(202, 173, 45);
 }
 
 .grid {
+	margin: 10px;
 	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: repeat(auto-fill, minmax(60px,1fr));
@@ -20,7 +61,7 @@ body {
     background-position: center;
     background-size: cover;
     position: relative;
-	background-color: #1c1c1c;
+	background-color: #2E4057;
 }
 
 .charContent {
@@ -35,19 +76,19 @@ body {
 .char h2 {	
 	display: inline-block;
 	background-color:rgba(28,28,28,1);	
-	font-size: 80%;
+	font-size: 60%;
 	line-height: auto;
 	color:rgba(210,210,210,1);	
 	padding: 3px 8px 3px 8px;
 }
 
 .char h3 {	
-	font-size: 140%;
+	font-size: 130%;
 	color:rgba(210,210,210,1);
 }
 
 .char h4 {	
-	font-size: 100%;
+	font-size: 80%;
 	margin-top: 6px;
 	margin-bottom: 3px;
 	color:rgba(202,173,45,1);
@@ -58,6 +99,7 @@ body {
 }
 
 .details .bio{
+	font-size: 80%;
 	padding: 10px;
 	text-align: left;
 }
@@ -68,7 +110,7 @@ body {
 	color:rgba(210,210,210,1);
 }
 
-.details img {
+.portrait{
 	max-height: 100%;
 	margin: 0 -200%;
 }
@@ -81,9 +123,30 @@ body {
 	color:rgba(202,173,45,1);
 }
 
+.imageHolder{
+	position: relative;
+}
+
+.sigilDiv{
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+}
+
+.sigil{
+	width: 40px;
+	height: 40px;
+	margin: 0 5px 0 0;
+	float: left;
+	box-shadow: 3px 3px 2px #000000;
+}
+
 .size1 {
 	grid-column-end: span 2;
 	grid-row-end: span 1;
+}
+.size1 h2{
+	font-size: 80%;
 }
 
 .size2 {

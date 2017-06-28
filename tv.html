@@ -1,0 +1,16 @@
+
+
+<!DOCTYPE html>
+<html lang="en-us">
+   <head>
+		<script src="/jscript/d3.v4.min.js"></script>
+   </head>
+	<body>
+
+		<script>
+			d3.json("http://api.tvmaze.com/singlesearch/shows?q=futurama&embed=episodes", function(data) {
+				console.log(data);
+			})
+		</script>
+	</body>
+</html>

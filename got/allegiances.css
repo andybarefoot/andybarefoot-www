@@ -1,0 +1,110 @@
+
+
+body {
+  background-color: #101211;
+  font-family: 'Trirong', georgia, times, serif;
+  font-weight: 300;
+}
+
+#overlay {
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  position: absolute;
+  display: table;
+  background-color: #17181c;
+}
+
+#loading {
+  font-size: 1.5em;
+}
+
+p {
+  margin-top: 20px;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+li {
+  margin-left: 20px;
+}
+#vertAlign {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#instructions {
+  background-image: url("images/overlay.jpg");
+  width: 800px;
+  height: 656px;
+  margin: auto;
+}
+
+#instructionsText {
+  width: 400px;
+  height: 209px;
+  margin: auto;
+  padding-top: 220px;
+  color: #101211;
+}
+
+#instructions a {
+  color: #101211;
+}
+
+#loading {
+  text-align: center;
+}
+
+svg {
+  width: 100vw;
+  height: 100vh;
+}
+
+.node {
+  stroke-width: 1.5px;
+}
+
+.org {
+  stroke-width: 5px;
+}
+
+.open .nameLabel{
+  visibility: visible;
+}
+
+.open .infoLink{
+  visibility: visible;
+}
+
+.nameLabel{
+  visibility: hidden;
+}
+
+.infoLink{
+  visibility: hidden;
+}
+
+.link {
+  fill: none;
+}
+
+.allegName {
+  font-size: 0.8em;
+}
+
+.nameBg {
+  fill: #EEEBE3;
+}
+
+.keyText {
+  fill: #130802;
+  font-size: 1.6em;
+}
+
+text {
+  fill: #130802;
+}
+

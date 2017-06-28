@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+		<script src="/jscript/d3.v4.min.js"></script>
+		<style type="text/css">
+			body {
+				background-color: #323232;
+				font-family: 'Trirong', georgia, times, serif;
+				font-weight: 200;
+				font-size: 16px;
+			}
+			body, a {
+				color: #808080;
+			}
+			p {
+			  margin: 0;
+			  color: #323232;
+			}
+			.grid {
+			   display: grid;
+			   grid-gap: 10px;
+			   grid-template-columns: repeat(auto-fill, minmax(100px,1fr));
+			   grid-auto-rows: 100px;
+			   grid-auto-flow: dense;
+			}
+
+			.griditem {
+			   border-radius: 3px;
+			   padding: 0.5em;
+			   background-color: #808080;
+			}
+
+			.size1 {
+			 grid-column-end: span 1;
+			 grid-row-end: span 1;
+			}
+			.size2 {
+			 grid-column-end: span 2;
+			 grid-row-end: span 1;
+			}
+			.size3 {
+			 grid-column-end: span 1;
+			 grid-row-end: span 2;
+			}
+			.size4 {
+			 grid-column-end: span 2;
+			 grid-row-end: span 2;
+			}
+			.size5 {
+			 grid-column-end: span 3;
+			 grid-row-end: span 2;
+			}
+			.size6 {
+			 grid-column-end: span 2;
+			 grid-row-end: span 3;
+			}
+			.size7 {
+			 grid-column-end: span 3;
+			 grid-row-end: span 3;
+			}
+
+		</style>
+   </head>
+	<body>
+		<div id="filters">
+		  Order by: 
+		    <a id="orderColour" >Colour</a> |
+		    <a id="orderCategory" >Category</a> |
+		    <a id="orderString" >String</a> |
+		    <a id="orderSize" >Size</a>
+		</div>
+		<script>
+			//Load in character data
+			d3.json("griditems.json", function(data) {
+			  grid = d3.select("body")
+			    .append("div")
+			    .attr("id", "grid")
+			    .attr("class", "grid")
+			  ;
+			  chars = grid
+			    .selectAll("div")
+			    .data(data.griditems)
+			    .enter()
+			    .append("div")
+			    .attr("class", "griditem")
+			    .style("background-color", function(d){
+			      return d.colourHex;
+			    })
+			  ;
+			  chars.filter(function(d){ return d.size == 1; }).classed("size1", true);
+			  chars.filter(function(d){ return d.size == 2; }).classed("size2", true);
+			  chars.filter(function(d){ return d.size == 3; }).classed("size3", true);
+			  chars.filter(function(d){ return d.size == 4; }).classed("size4", true);
+			  chars.filter(function(d){ return d.size == 5; }).classed("size5", true);
+			  chars.filter(function(d){ return d.size == 6; }).classed("size6", true);
+			  chars.filter(function(d){ return d.size == 7; }).classed("size7", true);
+			   chars 
+			    .append("p")
+			    .attr("class", "orderp")
+			    .text(function(d,i){
+			      return "Order: "+i;
+			    })
+			  ;
+			   chars 
+			    .append("p")
+			    .text(function(d,i){
+			      return "Category: " +d.category;
+			    })
+			  ;
+			   chars 
+			    .append("p")
+			    .text(function(d,i){
+			      return "String: " +d.string;
+			    })
+			  ;
+
+			  function reorder(parameter, type){
+			     if(type=="num"){
+			          grid
+			             .selectAll(".griditem")
+			             .sort(function(a, b) { 
+			                return b[parameter] - a[parameter]; 
+			              })
+			           ;
+			     } else if(type=="string"){
+			         grid
+			           .selectAll(".griditem")
+			           .sort(function(a, b) { 
+			              return d3.ascending(a[parameter], b[parameter]);
+			           })
+			        ;
+			     }
+			     d3
+			     	.selectAll(".orderp")
+					.text(function(d,i){
+						return "Order: "+i;
+					})
+				;
+			  }  
+			  
+			  
+			  d3
+			   .select("#orderColour")
+			   .on("click", function () {
+			      reorder("colourID", "num");
+			   })
+			;
+			d3
+			   .select("#orderCategory")
+			   .on("click", function () {
+			      reorder("category", "string");
+			   })
+			;
+			d3
+			   .select("#orderString")
+			   .on("click", function () {
+			      reorder("string","string");
+			   })
+			;
+			d3
+			   .select("#orderSize")
+			   .on("click", function () {
+			      reorder("size","num");
+			   })
+			;
+
+
+			})
+		</script>
+	</body>
+</html>
