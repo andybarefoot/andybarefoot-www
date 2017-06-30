@@ -1,0 +1,105 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.2em;
+}
+
+h1 {
+	font-family: 'Fascinate', cursive;
+	text-align: center;
+	font-size: 5em;
+	margin-bottom: 50px;
+	color: #4f0906;
+	width: 800px;
+	margin: auto;
+}
+
+h2 {
+	font-family: 'Fascinate', cursive;
+	text-align: center;
+	font-size: 1.2em;
+	margin-bottom: 10px;
+	color: #4f0906;
+}
+
+p {
+	margin-top: 20px;
+}
+
+ul {
+	list-style-image: url('cookie-12.png');	
+	list-style-position: inside;
+}
+
+li {
+	padding-top: 5px;
+}
+
+strong {
+	font-weight: 900;
+	text-transform: uppercase;
+}
+
+.caption {
+	font-style: italic;
+	font-size: 0.8em;
+}
+
+.break {
+	display: block;
+	margin: auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+#header {
+	width: 100%;
+	background-color: #f0ca7f;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+#intro {
+	font-size: 1.5em;
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+#contentColumn {
+	width: 900px;
+	margin: auto;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+#origRecipe {
+	color: #4f0906;
+	background-color: #f0ca7f;
+	width: 400px;
+	float: right;
+	margin: 0 -50px 20px 20px;
+	text-align: center;
+	padding: 20px;
+}
+
+#techniqueTable {
+	color: #4f0906;
+	background-color: #f0ca7f;
+	width: 400px;
+	float: left;
+	margin: 20px 20px 20px -50px;
+	padding: 20px;
+}
+
+#techniqueTable th{
+	text-align: left;
+	padding: 2px 20px 2px 0;
+}
+
+#techniqueTable tr td:first-child{
+	text-align: left;
+}
+
+#techniqueTable td{
+	text-align: right;
+	padding: 2px 20px 2px 0;
+}
