@@ -1,0 +1,337 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<style>
+
+body{
+  max-width: 900px;
+  margin: 0px auto;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#container{
+  position: relative;
+}
+
+#sections{
+  width: 340px;
+}
+
+#sections > div{
+  background: white;
+  opacity: .2;
+  margin-bottom: 200px;
+}
+#sections > div:last-child{
+  margin-bottom: 30px;
+}
+#sections > div.graph-scroll-active{
+  opacity: 1;
+}
+
+#graph{
+  margin-left: 40px;
+  width: 500px;
+  position: absolute;
+  top: 0px;
+  margin-left: 380px;
+}
+
+.graph-scroll-fixed #graph{
+  position: fixed;
+  top: 0px;
+}
+
+.graph-scroll-below #graph{
+  bottom: 0px;
+  top: auto;
+}
+
+@media (max-width: 925px)  {
+  #graph{
+    width: 100%;
+    transform: translate(-50%, 0);
+    margin-left: 50%;
+  }
+
+  #sections{
+    position: relative;
+    margin: 0px auto;
+    padding-top: 400px;
+  }
+
+  #sections div{
+    background: rgba(255,255,255,.5);
+    padding: 10px;
+    border: 1px solid;
+    max-width: 400px;
+    margin-bottom: 500px;
+  }
+}
+
+h1{
+  margin: 50px;
+}
+
+h1, h3{
+  text-align: center;
+}
+
+circle{
+  fill: steelblue;
+}
+
+.mono{
+  font-family: monospace;
+}
+
+svg{
+  background-color: #eee;
+}
+
+</style>
+
+<h1><a href='https://github.com/1wheel/graph-scroll'>graph-scroll.js</a></h1>
+<h3>Simple scrolling events for d3 graphics.</h3>
+
+<div id='container'>
+  <div id='graph'></div>
+  <div id='sections'>
+    <div>
+      <h3>Connect text and graphics</h3>
+      <span class='mono'>graph-scroll</span> 
+      takes a selection of explanatory text sections and dispatches <span class='mono'>active</span> events as different sections are scrolled into to view. These active events are used to update a graph's state.
+      <pre>
+d3.graphScroll()
+  .sections(d3.selectAll('#sections > div'))
+  .on('active', function(i){
+    console.log(i + 'th section active') })
+      </pre>
+
+    </div>
+
+    <div>
+      <h3>Highlight active text</h3>
+      The top most text section scrolled into view is classed <span class='mono'>graph-scroll-active</span>. This makes it easy to highlight the active section with css: 
+<pre>
+#sections > div{
+  opacity: .3
+} 
+
+#sections div.graph-scroll-active{
+  opacity: 1;
+}
+</pre>
+    </div>
+
+
+    <div>
+      <h3>Headers and footers</h3>
+      To support headers and intro images/text, the explanatory text and graphic are wrapped with a container element:    
+<pre>
+&lt;h1&gt;Page Title&lt;/div&gt;
+&lt;div id='container'&gt;
+  &lt;div id='graph'&gt;&lt;/div&gt;
+  &lt;div id='sections'&gt;
+    &lt;div&gt;Section 0&lt;/div&gt;
+    &lt;div&gt;Section 1&lt;/div&gt;
+    &lt;div&gt;Section 2&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;h1&gt;Footer&lt;/h1&gt;
+</pre>
+
+    and passed to <span class='mono'>graphScroll</span>
+
+<pre>
+d3.graphScroll()
+  .graph(d3.select('#graph'))
+  .container(d3.select('#container'))
+<pre>
+    </div>
+
+    <div>
+      <h3>Sticky graph</h3>
+      When the graph starts to scroll out of view, the container is classed with <span class='mono'>graph-scroll-fixed</span>. With a little bit of css, the graph element snaps to the top of the page while the text scrolls by. 
+<pre>
+#container{
+  position: relative;
+}
+
+#sections{
+  width: 340px;
+}
+
+#graph{
+  width: 500px;
+  margin-left: 380px;
+  position: absolute;
+  top: 0px;
+}
+
+.graph-scroll-fixed #graph{
+  position: fixed;
+}
+</pre>
+    </div>
+
+  </div>
+
+</div>
+
+<h1>
+  Multiple graphs
+</h1>
+
+<div id='container' class='container-2'>
+  <div id='graph'></div>
+
+  <div id='sections'>
+    <div>
+      <h3>Scroll away</h3>
+
+      As the bottom of the container approaches the top of the page, the graph is classed with <span class='mono'>graph-scroll-below</span>. A little more css allows the graph slide out of view gracefully:
+<pre>
+.graph-scroll-below #graph{
+  position: absolute;
+  bottom: 0px;
+}
+</pre>
+    </div>
+
+    <div>
+      <h3>Mobile</h3>
+
+      On mobile centering the graph and sections while adding a some padding for the first slide is a good option: 
+<pre>
+@media (max-width: 925px)  {
+  #graph{
+    width: 100%;
+    transform: translate(-50%, 0);
+    margin-left: 50%;
+  }
+
+  #sections{
+    position: relative;
+    margin: 0px auto;
+    padding-top: 400px;
+  }
+}
+</pre>
+    </div>
+
+    <div>
+      <h3>Examples</h3>
+      <p><a href='http://www.bloomberg.com/graphics/2015-auto-sales/'>Auto Sales</a></p>
+      <p><a href='http://www.bloomberg.com/graphics/2015-measles-outbreaks/'>Measles</a></p>
+      <p><a href='http://roadtolarissa.com/blog/2015/01/04/coloring-maps-with-d3/'>Coloring Maps</a></p>
+      <!--<p><a href='http://www.bloomberg.com/graphics/2015-fifa-scandal/'>FIFA Scandal</a></p>-->
+      <p><a href='http://www.bloomberg.com/graphics/2015-whats-warming-the-world/'>Global Warming</a></p>
+      <p><a href='http://www.bloomberg.com/politics/graphics/2015-hillary-womens-movement-timeline/'>Hillary Clinton’s Debt to Feminism
+</a></p>
+      <p><a href='http://www.bloomberg.com/graphics/year-ahead-2016/'>The Year Ahead</a></p>
+      <p><a href='http://www.bloomberg.com/graphics/2015-pace-of-social-change/'>Pace of Social Change</a></p>
+      <p><a href='http://www.bloomberg.com/graphics/2015-red-meat-cancer/'>Red Meat</a></p>
+    </div>
+
+    <div>
+      <h3>More reading</h3>
+      <p><a href='http://bost.ocks.org/mike/scroll/'>How To Scroll</a></p>
+      <p><a href='http://vallandingham.me/scroller.html/'>So You Want to Build A Scroller</a></p>
+      <p><a href='https://source.opennews.org/en-US/articles/behind-scenes-fewer-helmets-more-deaths/'>Making “Fewer Helmets, More Deaths”</a></p>
+      <p><a href='http://www.nytimes.com/interactive/2015/10/27/world/greenland-is-melting-away.html'>Greenland Is Melting Away</a></p>
+      <p><a href='http://www.theguardian.com/us-news/ng-interactive/2015/oct/19/homan-square-chicago-police-detainees'>Homan Square</a></p>
+   </div>
+
+    <div>
+      <h3>Todos</h3>
+      <p>- Simple examples
+      <p>- Self explanatory graphics
+      <p>- Swiper 
+    </div>
+  </div>
+
+
+</div>
+
+<h3 id='source'><a href='https://github.com/1wheel/graph-scroll'>contribute/view on github</a></h3>
+
+
+<script src="/jscript/d3v4+jetpack.js"></script>
+<script src="/jscript/graph-scroll.js"></script>
+<script>
+
+var oldWidth = 0
+function render(){
+  if (oldWidth == innerWidth) return
+  oldWidth = innerWidth
+
+  var width = d3.select('#graph').node().offsetWidth,
+      height = innerWidth > 925 ? width : innerHeight*.7,
+      r = 40
+
+  var svg = d3.select('#graph').html('')
+    .append('svg')
+      .attrs({width: width, height: height})
+
+  var circle = svg.append('circle')
+      .attrs({cx: 0, cy: 0, r: r})
+
+  var colors = ['orange', 'purple', 'steelblue', 'pink', 'black']
+  var gs = d3.graphScroll()
+      .container(d3.select('#container'))
+      .graph(d3.selectAll('#graph'))
+      .eventId('uniqueId1')
+      .sections(d3.selectAll('#sections > div'))
+      // .offset(innerWidth < 900 ? innerHeight - 30 : 200)
+      .on('active', function(i){
+        var pos = [ {cx: width - r, cy: r},
+                    {cx: r,         cy: r},
+                    {cx: width - r, cy: height - r},
+                    {cx: width/2,   cy: height/2} ][i]
+        
+        circle.transition().duration(1000)
+            .attrs(pos)
+          .transition()
+            .style('fill', colors[i])
+      })
+
+
+  var svg2 = d3.select('.container-2 #graph').html('')
+    .append('svg')
+      .attrs({width: width, height: height})
+
+  var path = svg2.append('path')
+
+  var gs2 = d3.graphScroll()
+      .container(d3.select('.container-2'))
+      .graph(d3.selectAll('.container-2 #graph'))
+      .eventId('uniqueId1')
+      .sections(d3.selectAll('.container-2 #sections > div'))
+      .on('active', function(i){
+        var h = height
+        var w = width
+        var dArray = [
+          [[w/4, h/4], [w*3/4, h/4],  [w*3/4, h*3/4], [w/4, h*3/4]],
+          [[0, 0],     [w*3/4, h/4],  [w*3/4, h*3/4], [w/4, h*3/4]],
+          [[w/2, h/2], [w, h/4],      [w, h],         [w/4, h]],
+          [[w/2, h/2], [w, h/4],      [w, h],         [w/4, h]],
+          [[w/2, h/2], [w, h/2],      [0, 0],         [w/4, h/2]],
+          [[w/2, h/2], [0, h/4],      [0, h/2],         [w/4, 0]],
+        ].map(function(d){ return 'M' + d.join(' L ') })
+
+
+        path.transition().duration(1000)
+            .attr('d', dArray[i])
+            .style('fill', colors[i])
+      })
+
+  d3.select('#source')
+      .styles({'margin-bottom': window.innerHeight - 450 + 'px', padding: '100px'})
+}
+render()
+d3.select(window).on('resize', render)
+
+
+</script>

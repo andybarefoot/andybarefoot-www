@@ -1,0 +1,22 @@
+[
+	{"ingredient": "Chocolate Chips", "number":913, "alt": "Raspberries", "altNumber":5},
+	{"ingredient": "Sugar", "number":796, "alt": "Strawberries", "altNumber":6},
+	{"ingredient": "Flour", "number":793, "alt": "Morello cherries", "altNumber":2},
+	{"ingredient": "Butter", "number":790, "alt": "Pumpkin", "altNumber":2},
+	{"ingredient": "Eggs", "number":766, "alt": "Garbanzo beans", "altNumber":3},
+	{"ingredient": "Vanilla", "number":757, "alt": "Sweet potatoes", "altNumber":7},
+	{"ingredient": "Salt", "number":733, "alt": "Ginger", "altNumber":21},
+	{"ingredient": "Baking powder/Bicarbonate of soda", "number":726, "alt": "Rosemary leaves", "altNumber":1},
+	{"ingredient": "Oats", "number":143, "alt": "Cloves", "altNumber":2},
+	{"ingredient": "Coconut", "number":110, "alt": "Cardamom", "altNumber":5},
+	{"ingredient": "Cocoa powder", "number":94, "alt": "Jalapeno chiles", "altNumber":2},
+	{"ingredient": "Walnuts", "number":86, "alt": "Chia seeds", "altNumber":4},
+	{"ingredient": "Cinnamon", "number":82, "alt": "Tea bags", "altNumber":1},
+	{"ingredient": "Peanuts/Peanut butter", "number":80, "alt": "Potato chips", "altNumber":3},
+	{"ingredient": "Browning", "number":67, "alt": "Popcorn", "altNumber":4},
+	{"ingredient": "Milk", "number":66, "alt": "Rice Krispies", "altNumber":2},
+	{"ingredient": "Margarine", "number":41, "alt": "Moose", "altNumber":2},
+	{"ingredient": "Bananas", "number":37, "alt": "Orange Juice", "altNumber":5},
+	{"ingredient": "Pecans", "number":30, "alt": "Guinness", "altNumber":3},
+	{"ingredient": "Golden syrup", "number":25, "alt": "Whisky", "altNumber":5}
+]

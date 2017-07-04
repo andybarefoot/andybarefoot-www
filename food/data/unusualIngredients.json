@@ -1,0 +1,22 @@
+[
+	{"ingredient": "Raspberries", "number":5},
+	{"ingredient": "Strawberries", "number":6},
+	{"ingredient": "Morello cherries", "number":2},
+	{"ingredient": "Pumpkin", "number":2},
+	{"ingredient": "Garbanzo beans", "number":3},
+	{"ingredient": "Sweet potatoes", "number":7},
+	{"ingredient": "Ginger", "number":21},
+	{"ingredient": "Rosemary leaves", "number":1},
+	{"ingredient": "Cloves", "number":2},
+	{"ingredient": "Cardamom", "number":5},
+	{"ingredient": "Jalapeno chiles", "number":2},
+	{"ingredient": "Chia seeds", "number":4},
+	{"ingredient": "Tea bags", "number":1},
+	{"ingredient": "Potato chips", "number":3},
+	{"ingredient": "Popcorn", "number":4},
+	{"ingredient": "Rice Krispies", "number":2},
+	{"ingredient": "Moose", "number":2},
+	{"ingredient": "Orange Juice", "number":5},
+	{"ingredient": "Guinness", "number":3},
+	{"ingredient": "Whisky", "number":5}
+]

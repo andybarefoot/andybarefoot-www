@@ -40,7 +40,7 @@
 			</div>
 			<p>The Chocolate Chip Cookie is a classic. The King of Cookies. A timeless masterpiece and the favourite of America’s foremost cookie connoisseur: Cookie Monster.</p>
 			<p>It was invented in 1938 by Ruth Graves Wakefield and named the Toll House Cookie after the inn she owned. The original recipe contains just 10 ingredients of which fat, sugar, flour, eggs and, of course, chocolate chips are the staples.</p>
-			<p>Pretty simple. However in the intervening 79 years the chefs of the world have not been satisfied to leave a culinary classic alone. In fact so many have tried to modify and improve the humble CCC that we are now in the regrettable situation where a search on <a href="http://www.yummly.com" target="yummly">yummly.com</a> for “Chocolate Chip Cookie” returns an astonishing 29,921 recipes.</p>
+			<p>Pretty simple. However in the intervening 79 years the chefs of the world have not been satisfied to leave a culinary classic alone. Infact so many have tried to modify and improve the humble CCC that we are now in the regrettable situation where a search on <a href="http://www.yummly.com" target="yummly">yummly.com</a> for “Chocolate Chip Cookie” returns an astonishing 29,921 recipes.</p>
 			<p>For the home cookie maker it leaves an obvious but impossible to answer question: Which of these recipes is the best?</p>
 			<p><a href="http://www.yummly.uk/#recipe/Perfect-Chocolate-Chip-Cookies-1688970" target="yummly">“Perfect Chocolate Chip Cookies”</a> from The Guardian website is the most popular with over 3000 “Yums” but has a below-perfect average rating of 4.1/5 from 7 reviews.</p>
 			<p><a href="http://www.yummly.uk/#recipe/Chocolate-Chip-Cookies-1759719" target="yummly">"Chocolate Chip Cookies”</a> from Manu’s Menu has a perfect rating of 5/5 but from only 3 reviews and boasts a paltry 230 “Yums”.</p>
@@ -48,105 +48,167 @@
 			<p>We can’t. But with such a large dataset we can at least submit ourselves to the wisdom of the crowd. We will gratefully utilise these millions of hours of kitchen experimentation by thousands of nameless internet chefs. We will take all these recipes, mix them together, stir vigorously and bake in the pre-warmed oven of data analysis until we have the scientifically(-ish) proven <strong>greatest ever chocolate chip cookie recipe</strong>. The pinnacle of milk-dunking perfection.</p>
 			<p>Or failing that the mathematically established “most average”.</p>
 			<img src="cookie-break.png" class="break" />
-			<p>Before we dive into this ocean of recipes are we sure that all 30,000 really do produce something Ruth Wakefield would recognise as a Toll House Cookie? Or are some merely imposters trading off the good name of the Chocolate Chip Cookie? And how are we going to separate the genuine article from the less-than-blue-chip cookie?</p>
+			<p>Before we dive into this ocean of recipes are we sure that all 30,000 really do produce something Ruth Wakefield would recognise as a Toll House Cookie? Or are some merely imposters trading off the good name of the Chocolate Chip Cookie? And how are we going to seperate the genuine article from the less-than-blue-chip cookie?</p>
 			<p>Its time to introduce a a couple of ground rules:</p>
-			<div id="filterContainer" class="container">
-				<div id="filterChart" class="scrollChart">
+			<div id="filterContainer">
+				<div id="filterChart">
 					<div class="inset">
 						<h2>Cooking Techniques</h2>
 						<svg id="filterSVG" width="560" height="410"></svg>
 					</div>
 				</div>
-				<div id="filterSections" class="scrollSections">
+				<div id='filterSections'>
 					<div>
 						<p><strong>1. The cookie must be baked</strong></p>
 						<p>Yummly allows us to filter on "cooking technique" and remarkably when we choose "baked" a huge 12,000 recipes are deselected. That is an awful lot of cookies that are browned, microwaved, boiled or even braised. But the original recipe says "bake" and that is good enough for us. There won't be any marinating involved with our cookie.</p>
 					</div>
 					<div>
 						<p><strong>2. The cookie must contain chocolate chips</strong></p>
-						<p>These are tempestuous times but if there is one thing I am still absolutely certain of it is this: the ultimate Chocolate Chip Cookie contains chocolate chips. Not M&Ms. Not broken Oreos. Not Toblerone, Mars, Hershey's Kisses, Andes Cr&egrave;me de Menthe Thins or any of the other imposters some 2,856 recipes would substitute. Equally we won't be making a chocolate chip cookie that doesn't contain any chocolate. These recipes have embarrassed themselves and we won't be wasting any more time on them.</p>
-					</div>
-					<div>
-						<p><strong>Interesting filter fact:</strong> We aren’t going to cater for people with food intolerances but its reassuring to know that even if you are allergic to dairy, egg, gluten, peanuts, seafood, sesame, soy, sulfites, tree nuts AND wheat there are still 44 recipes you can use.</p>
-					</div>
-				</div>
-			</div>
-			<img src="cookie-break.png" class="break" />
-			
-
-			<div id="ingredientsContainer" class="container">
-				<div id="ingredientsChart" class="scrollChart">
-					<div class="inset" id="ingredientsGraph">
-						<h2 id="ingredientsTitle">Top Ingredients</h2>
-						<svg id="ingredientsSVG" width="560" height="600"></svg>
-					</div>
-				</div>
-				<div id='ingredientsSections' class="scrollSections">
-					<div>
-						<p>So we've discovered that some chefs are going dangerously off-piste with their interpretation of the chocolate chip cookie but is their meddling confined just to the chocolate component are are they taking liberties with other ingredients as well?</p>
-						<p>The table shows the top 20 ingredients by occurrence in our remaining recipes. Reassuringly the most common ingredients match the original recipe pretty closely. Most versions agree on the need for sugar, flour, butter, eggs, vanilla, salt and some sort of baking powder/bicarbonate of soda.</p>
-						<p>Beyond these staples even the most popular ingredient appears in less than 20% of the recipes. Oats, coconut and cocoa powder have plenty of fans but they feature in only a minority of recipes. It seems obvious that our ultimate cookie should consist of only these top 8 ingredients. But that would mean ignoring... </p>
-						<p><strong>The Walnut Dilemma</strong></p>
-						<p>Walnuts sneak into the original Toll House Cookie recipe almost as an afterthought. Included in parentheses after chocolate chips the recipe gives no indication of the amount to add or even their ratio to the chips. What does this mean for our quest? Should we include them? Should we include recipes that feature different nuts? This is a big decision but I'm going to allow them. We've been strict on the cooking method and different chocolate types so I'm cutting some slack on the nuts. But only the nuts. (This is not a green light to sneak in raisins or, God forbid, cranberries.)</p>
-					</div>
-					<div>
-						<p>Having mentioned raisins and cranberries lets take a look at some of the other more unusual ingredients that are being used in so-called chocolate chip cookies. It goes without saying that we won't be using any of these but as with other dangers that face our society its important to be aware of the threats that are out there. Forewarned is forearmed and all that.</p>
-
-						<p>It gives me no pleasure to report that people are adding some pretty strange things to their cookies. These include fruits (strawberries, raspberries, morello cherries) and vegetables (sweet potatoes, garbanzo beans and pumpkin) which should be rejected for trying to sneak healthy eating into a cookie.</p>
-						<p>Meanwhile popcorn and potato chips have no place in a cookie because they are already a snack. If we start indiscriminately mashing our snacks into each other where does it end? Jerky donuts? BBQ smoked Twinkies? Chocolate coated Pringles?</p>
-						<p>And if you know anyone who is adding jalapeno chiles, rosemary leaves or tea bags to their cookies please get them the assistance they need. Cries for help don't come louder.</p>
+						<p>These are tempestuous times but if there is one thing I am still absolutely certain of it is this: the ultimate Chocolate Chip Cookie contains chocolate chips. Not M&Ms. Not broken Oreos, Not Toblerone, Mars, Hershey's Kisses, Andes Cr&egrave;me de Menthe Thins or any of the other imposters some 2,856 recipes would substitute. Equally we won't be making a chocolate chip cookie that doesn't contain any chocolate. These recipes have embarrassed themselves and we won't be wasting any more time on them.</p>
 					</div>
 					<div>&nbsp;</div>
 				</div>
 			</div>
-			<p>[Writing continues with analysis of different amounts of types of key ingredients. E.g. Amount of brown/white sugar used plotted on scatter graph with size of point to indicate user rating/number of 'yums' for that recipe. Idea to not only show distribution  but also how that correlates to 'deliciousness' (as judged from recipe ratings)].</p>
+			<p>Exploring the Yummly filters reveals that 2,834 recipes involve microwaving, 1,228 boiling, 128 broiling and one even calls for brining. I don't want to live in a world where the ultimate CCC involves brining so we won’t be using any of these techniques and will stick to traditional baking. This immediately reduces our recipe count to a, still formidable, 17,153.</p>
+			<p></p>
 
-			<p>[Results of analysis will result in different recipes for comparison, e.g.:]</p>
-			<p>[
-				<strong>Average</strong> - Mean amount/type of every key ingredient. So recipe may consist of:<ul>
-				<li>- 1.56 cups white flour/1.34 cups wholemeal flour</li>
-				<li>- 0.32 cups butter/0.26 cups margerine/0.14 cups shortening</li>
-				<li>- 2.45 eggs</li>
-				<li>- 0.22 cups milk chocolate chips/0.14 cups dark chocolate chips/0.08 white chocolate chips</li>
-				<li>- Etc for 8 identified key ingredients...</li>
-			</ul>
-			Bake at 327 degrees for 12 minutes 18 seconds]</p>
-			<p>[
-				<strong>Single ingredients</strong> - Most popular type of each ingredient is used but amounts are averaged:<ul>
-				<li>- 2.92 cups <strong>white</strong> flour</li>
-				<li>- 1.62 cups <strong>butter</strong></li>
-				<li>- 2.45 eggs</li>
-				<li>- 0.56 cups <strong>milk</strong> chocolate chips</li>
-			</ul>
-			Bake at 327 degrees for 12 minutes 18 seconds]</p>
-			<p>[
-				<strong>Every possible ingredient</strong> - Mean of <strong>every</strong> ingredient from every recipe (that equates to more than 'trace' amounts):<ul>
-				<li>- 1.56 cups white flour/1.34 cups wholemeal flour</li>
-				<li>- 0.32 cups butter/0.26 cups margerine/0.14 cups shortening</li>
-				<li>- 2.45 eggs</li>
-				<li>- 0.22 cups milk chocolate chips/0.14 cups dark chocolate chips/0.08 white chocolate chips</li>
-				<li>- 0.2 cups oats</li>
-				<li>- 7 grams M&Ms</li>
-				<li>- 1 teaspoon peanut butter</li>
-				<li>- 1/2 teaspoon pecans</li>
-				<li>- 1 teaspoon vanilla essence</li>
-				<li>- 1 teaspoon Guiness </li>
-				<li>- Etc as practicality allows...</li>
-				</ul>
-			]</p>
+			<p>We can also filter on whether a recipe contains a certain ingredient. Later we will be discussing whether a CCC should be made with shortening or butter, with plain or self raising flour, with brown or white sugar but there is one ingredient that is essential in a CCC and that is chocolate chips. A quick scan through our recipes reveals various other chocolate imposters have been substituted (M&Ms, Oreos, Toblerone, Mars, Hershey's Kisses, even Andes Cr&egrave;me de Menthe Thins) but if there is one thing I am absolutely certain of in these tempestuous times it is this: the ultimate Chocolate Chip Cookie contains chocolate chips. Our total recipe count is now 13,272.</p>
+			<p>(Interesting filter found fact: We aren’t going to cater for people with food intolerances but its reassuring to know that even if you are allergic to dairy, egg, gluten, peanuts, seafood, sesame, soy, sulfites, tree nuts AND wheat there are still 44 recipes you can use.)</p>
+			<img src="cookie-break.png" class="break" />
+			<p>We've identified that some chefs are going unacceptably off-piste by leaving chocolate chips out of their chocolate chip cookie recipes but are there also unsanctioned ingredients that they have been sneaking in? I've analysed the ingredients of all the remaining recipes and there are some shocking inclusions.</p>
 
-			<p>[Bake these recipes and compare them with "benchmark" recipes: original Toll House cookie, Best rated Yummly recipe, most saved Yummly recipe, etc]</p>
 
-			<p>[Find willing volunteers to eat and judge cookies. Present definitive results.]</p>
+			<p>Filler</p>
+			<p>Filler</p>
 
-			<p> [Eat all surplus cookies. Fall into excess cookie induced coma. Finally wake to never eat another cookie again. Violently react to even the mention of cookies or the sound of cookie monster's voice.]</p>
+			<div id="container">
+				<div id="graph">
+					<div class="inset" id="ingredientsGraph">
+						<h2>Ingredients</h2>
+					</div>
+				</div>
+				<div id='sections'>
+					<div>
+						<h3>Connect text and graphics</h3>
+						takes a selection of explanatory text sections and dispatches <span class='mono'>active</span> events as different sections are scrolled into to view. These active events are used to update a graph's state.
+						<pre>
+						d3.graphScroll()
+						.sections(d3.selectAll('#sections > div'))
+						.on('active', function(i){
+						console.log(i + 'th section active') })
+						</pre>
+					</div>
+					<div>
+						<h3>Highlight active text</h3>
+						The top most text section scrolled into view is classed <span class='mono'>graph-scroll-active</span>. This makes it easy to highlight the active section with css: 
+						<pre>
+						#sections > div{
+						opacity: .3
+						} 
 
-	
+						#sections div.graph-scroll-active{
+						opacity: 1;
+						}
+						</pre>
+					</div>
+					<div>
+						<h3>Headers and footers</h3>
+						To support headers and intro images/text, the explanatory text and graphic are wrapped with a container element:    
+						<pre>
+						&lt;h1&gt;Page Title&lt;/div&gt;
+						&lt;div id='container'&gt;
+						&lt;div id='graph'&gt;&lt;/div&gt;
+						&lt;div id='sections'&gt;
+						&lt;div&gt;Section 0&lt;/div&gt;
+						&lt;div&gt;Section 1&lt;/div&gt;
+						&lt;div&gt;Section 2&lt;/div&gt;
+						&lt;/div&gt;
+						&lt;/div&gt;
+						&lt;h1&gt;Footer&lt;/h1&gt;
+						</pre>
+
+						and passed to <span class='mono'>graphScroll</span>
+
+						<pre>
+						d3.graphScroll()
+						.graph(d3.select('#graph'))
+						.container(d3.select('#container'))
+						<pre>
+					</div>
+					<div>
+						<h3>Sticky graph</h3>
+						When the graph starts to scroll out of view, the container is classed with <span class='mono'>graph-scroll-fixed</span>. With a little bit of css, the graph element snaps to the top of the page while the text scrolls by. 
+						<pre>
+						#container{
+						position: relative;
+						}
+
+						#sections{
+						width: 340px;
+						}
+
+						#graph{
+						width: 500px;
+						margin-left: 380px;
+						position: absolute;
+						top: 0px;
+						}
+
+						.graph-scroll-fixed #graph{
+						position: fixed;
+						}
+						</pre>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+			<p>Filler</p>
+			<p>Filler</p>
+			<div id="techniqueTable">
+				<div class="inset">
+					<h2>Cooking Techniques</h2>
+					<table>
+						<tr><th>Cooking Technique</th><th>No. of recipes</th></tr>
+						<tr><td>Baking</td><td>17153</td></tr>
+						<tr><td>Blending</td><td>556</td></tr>
+						<tr><td>Boiling</td><td>1228</td></tr>
+						<tr><td>Braising</td><td>1</td></tr>
+						<tr><td>Brining</td><td>1</td></tr>
+						<tr><td>Broiling</td><td>128</td></tr>
+						<tr><td>Browning</td><td>7464</td></tr>
+						<tr><td>Drying</td><td>74</td></tr>
+						<tr><td>Frosting</td><td>843</td></tr>
+						<tr><td>Frying</td><td>0</td></tr>
+						<tr><td>Glazing</td><td>227</td></tr>
+						<tr><td>Grilling</td><td>33</td></tr>
+						<tr><td>Marinating</td><td>2</td></tr>
+						<tr><td>Microwaving</td><td>2834</td></tr>
+						<tr><td>Poaching</td><td>2</td></tr>
+						<tr><td>Pressure Cooking</td><td>4</td></tr>
+						<tr><td>Roasting</td><td>54</td></tr>
+						<tr><td>Sauteeing</td><td>73</td></tr>
+						<tr><td>Slow Cooking</td><td>60</td></tr>
+						<tr><td>Steaming</td><td>12</td></tr>
+						<tr><td>Stir Frying</td><td>0</td></tr>
+						<tr><td>Stuffing</td><td>0</td></tr>
+					</table>
+				</div>
+				<p class="caption">Are some chefs really marinating their cookies?</p>
+			</div>
+
+			<p>OK, now we have thinned the field a little lets find out which way this cookie crumbles.</p>
+			<p>[Editorial note: For now I have scraped 913 recipes from the Yummly site but ideally I would use their API to access the entire database]</p>
+			<p>Also worryingly there are 51 recipes classed as “More Spicy” and 190 classed as “More Sour”. These don’t sound like ideal characteristics for a definitive CCC so we’ll also filter these out. </p>
+		</div>
 		<script>
 			var scroll = d3.graphScroll()
-				.container(d3.select('#ingredientsContainer'))
-				.graph(d3.select('#ingredientsChart'))
-				.sections(d3.selectAll('#ingredientsSections > div'))
+				.container(d3.select('#container'))
+				.graph(d3.select('#graph'))
+				.sections(d3.selectAll('#sections > div'))
 				.on('active', function(i){
 					console.log(i + 'th section active');
 					if(i%2==1){
@@ -157,10 +219,18 @@
 				})
 			;
 
+			var filterScroll = d3.graphScroll()
+				.container(d3.select('#filterContainer'))
+				.graph(d3.select('#filterChart'))
+				.sections(d3.selectAll('#filterSections > div'))
+				.on('active', function(i){
+					updateFilterChart(i);
+				})
+			;
 
 
-			var svg = d3.select("#ingredientsSVG"),
-				margin = {top: 20, right: 20, bottom: 0, left: 100},
+			var svg = d3.select("#ingredientsGraph").append("svg").attr("width", 800).attr("height", 600),
+				margin = {top: 50, right: 20, bottom: 0, left: 180},
     			width = +svg.attr("width") - margin.left - margin.right,
     			height = +svg.attr("height") - margin.top - margin.bottom
     		;
@@ -221,17 +291,6 @@
 						.duration(750)
 						.call(yAxis)
 					;
-					if(dataset=="data/unusualIngredients.json"){
-						svg.select("#ingredientsTitle")
-							.delay(750)
-							.text("Unusual Ingredients")
-						;
-					}else{
-						svg.select("#ingredientsTitle")
-							.delay(750)
-							.text("Top Ingredients")
-						;
-					}
 					var bar = g.selectAll(".bar")
 						.data(data, function(d) { return d.ingredient; })
 					;
@@ -251,16 +310,7 @@
 
    			drawChart("data/topIngredients.json");
 
-			// var stack = d3.stack();
-
-			var filterScroll = d3.graphScroll()
-				.container(d3.select('#filterContainer'))
-				.graph(d3.select('#filterChart'))
-				.sections(d3.selectAll('#filterSections > div'))
-				.on('active', function(i){
-					updateFilterChart(i);
-				})
-			;
+			var stack = d3.stack();
 
 			var filterWidth = 560;
 			var filterHeight = 410;

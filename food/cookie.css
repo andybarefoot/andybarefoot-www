@@ -1,6 +1,12 @@
 body {
 	font-family: 'Open Sans', sans-serif;
-	font-size: 1.2em;
+	font-size: 1em;
+	background-color: #E0E0E0;
+	color: #063244;
+}
+
+a {
+	color: #063244;
 }
 
 h1 {
@@ -25,7 +31,7 @@ p {
 	margin-top: 20px;
 }
 
-ul {
+.inset > ul {
 	list-style-image: url('cookie-12.png');	
 	list-style-position: inside;
 }
@@ -42,6 +48,7 @@ strong {
 .caption {
 	font-style: italic;
 	font-size: 0.8em;
+	margin-top: 8px;
 }
 
 .break {
@@ -49,6 +56,12 @@ strong {
 	margin: auto;
 	margin-top: 30px;
 	margin-bottom: 30px;
+}
+
+.inset{
+	color: #4f0906;
+	background-color: #f0ca7f;
+	padding: 20px;
 }
 
 #header {
@@ -59,7 +72,7 @@ strong {
 }
 
 #intro {
-	font-size: 1.5em;
+	font-size: 1.8em;
 	text-align: center;
 	margin-bottom: 50px;
 }
@@ -72,34 +85,83 @@ strong {
 }
 
 #origRecipe {
-	color: #4f0906;
-	background-color: #f0ca7f;
 	width: 400px;
 	float: right;
 	margin: 0 -50px 20px 20px;
 	text-align: center;
-	padding: 20px;
 }
 
-#techniqueTable {
-	color: #4f0906;
-	background-color: #f0ca7f;
-	width: 400px;
-	float: left;
-	margin: 20px 20px 20px -50px;
-	padding: 20px;
+
+
+
+.container{
+  position: relative;
 }
 
-#techniqueTable th{
-	text-align: left;
-	padding: 2px 20px 2px 0;
+.scrollChart {
+  margin-bottom: 50px;
+  margin-top: 50px;
+  position: absolute;
 }
 
-#techniqueTable tr td:first-child{
-	text-align: left;
+#filterChart {
+  margin-left: -50px;
+  margin-right: 350px;
+  width: 600px;
 }
 
-#techniqueTable td{
-	text-align: right;
-	padding: 2px 20px 2px 0;
+#ingredientsChart {
+  margin-left: 350px;
+  margin-right: -50px;
+  width: 600px;
 }
+
+#filterSections{
+  width: 300px;
+  margin-left: 600px;
+}
+
+#ingredientsSections{
+  width: 300px;
+  margin-right: 600px;
+}
+
+.scrollSections div{
+  margin-bottom: 250px;
+}
+
+.scrollSections div:last-child{
+  margin-bottom: 50px;
+}
+
+.graph-scroll-fixed .scrollChart{
+  position: fixed;
+  top: 0;
+}
+
+.graph-scroll-below .scrollChart{
+  bottom: 0px;
+  top: auto;
+}
+
+.filterLabel {
+	font-size: 0.8em;
+}
+
+.filterLabel2 {
+	font-size: 0.8em;
+}
+
+.big {
+	font-size: 1.1em;
+}
+
+.filterLine {
+	stroke-width: 1px;
+	stroke: black;
+}
+.filterLine2 {
+	stroke-width: 1px;
+	stroke: black;
+}
+

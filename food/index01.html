@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+		<title>The Perfect Chocolate Chip Cookie</title>
+		<meta charset="utf-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Fascinate|Open+Sans" rel="stylesheet">
+		<script src="/jscript/d3.v4.min.js"></script>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="/jscript/analyticstracking.js"></script>
+		<link rel="stylesheet" href="/css/reset.css">
+		<link rel="stylesheet" href="cookie.css">
+   </head>
+	<body>
+		<div id="header">
+			<h1>The Perfect Chocolate Chip Cookie</h1>
+		</div>
+		<div id="contentColumn">
+			<p id="intro">The quest to find the ultimate recipe for America's most beloved snack from every recipe the web has to offer.</p>
+			<div id="origRecipe">
+				<div class="inset">
+					<h2>The Toll House Cookie</h2>
+					<ul>
+						<li>1 1/2 cups of shortening</li>
+						<li>1 1/8 cups of sugar</li>
+						<li>1 1/8 cups of brown sugar</li>
+						<li>3 eggs</li>
+						<li>1 1/2 teaspoon of salt</li>
+						<li>3 1/8 cups of flour</li>
+						<li>1 1/2 teaspoon of hot water</li>
+						<li>1 1/2 teaspoon of baking soda</li>
+						<li>1 1/2 teaspoon of vanilla</li>
+						<li>Chocolate chips (and walnuts)</li>
+					</ul>
+					<p>Bake at 350 degrees for 12-13 minutes</p>
+				</div>
+				<p class="caption">Is the original recipe still the best?</p>
+			</div>
+			<p>The Chocolate Chip Cookie is a classic. The King of Cookies. A timeless masterpiece and the favourite of America’s foremost cookie connoisseur: Cookie Monster.</p>
+			<p>It was invented in 1938 by Ruth Graves Wakefield and named the Toll House Cookie after the inn she owned. The original recipe contains just 10 ingredients of which fat, sugar, flour, eggs and, of course, chocolate chips are the staples.</p>
+			<p>Pretty simple. However in the intervening 79 years the chefs of the world have not been satisfied to leave a bona fide classic alone. Infact so many have tried to modify and improve the humble CCC that we are now at the regrettable situation where a search for “Chocolate Chip Cookie” on yummly.com returns an astonishing 29,921 recipes.</p>
+			<p>For the home cookie maker it leaves an obvious but impossible to answer question: Which of these recipes is the best?</p>
+			<p>“Perfect Chocolate Chip Cookies” from The Guardian website is the most popular with over 3000 “Yums” but has a below-perfect average rating of 4.1/5 from 7 reviews.</p>
+			<p>“Chocolate Chip Cookies” from Manu’s Menu has a perfect rating of 5/5 but from only 3 reviews and boasts a paltry 230 “Yums”.</p>
+			<p>And what about the rest? Has anyone ever scrolled all the way down to recipe 29,921 and tried it? Perhaps it is the greatest recipe ever formulated. Perhaps it renders cookies of such breathtaking deliciousness that after one bite Otis Spunkmeyer would hang up his floppy white hat and denounce his life’s work as a meaningless sham. We don’t know. Even trying to scroll that far would wear the tip of your finger to the bone. How can we ever be sure which is the definitive Chocolate Chip Cookie recipe?</p>
+			<p>We can’t. But with such a large dataset we can at least submit ourselves to the wisdom of the crowd. We will gratefully utilise these millions of hours of kitchen experimentation by thousands of nameless internet chefs. We will take all these recipes, mix them together, stir vigorously and bake in the pre-warmed oven of data analysis until we have the scientifically(-ish) proven <strong>greatest ever chocolate chip cookie recipe</strong>. The pinnacle of milk-dunking perfection.</p>
+			<p>Or failing that the mathematically established “most average”.</p>
+			<img src="cookie-break.png" class="break" />
+			<div id="techniqueTable">
+				<div class="inset">
+					<h2>Cooking Techniques</h2>
+					<table>
+						<tr><th>Cooking Technique</th><th>No. of recipes</th></tr>
+						<tr><td>Baking</td><td>17153</td></tr>
+						<tr><td>Blending</td><td>556</td></tr>
+						<tr><td>Boiling</td><td>1228</td></tr>
+						<tr><td>Braising</td><td>1</td></tr>
+						<tr><td>Brining</td><td>1</td></tr>
+						<tr><td>Broiling</td><td>128</td></tr>
+						<tr><td>Browning</td><td>7464</td></tr>
+						<tr><td>Drying</td><td>74</td></tr>
+						<tr><td>Frosting</td><td>843</td></tr>
+						<tr><td>Frying</td><td>0</td></tr>
+						<tr><td>Glazing</td><td>227</td></tr>
+						<tr><td>Grilling</td><td>33</td></tr>
+						<tr><td>Marinating</td><td>2</td></tr>
+						<tr><td>Microwaving</td><td>2834</td></tr>
+						<tr><td>Poaching</td><td>2</td></tr>
+						<tr><td>Pressure Cooking</td><td>4</td></tr>
+						<tr><td>Roasting</td><td>54</td></tr>
+						<tr><td>Sauteeing</td><td>73</td></tr>
+						<tr><td>Slow Cooking</td><td>60</td></tr>
+						<tr><td>Steaming</td><td>12</td></tr>
+						<tr><td>Stir Frying</td><td>0</td></tr>
+						<tr><td>Stuffing</td><td>0</td></tr>
+					</table>
+				</div>
+				<p class="caption">Are some chefs really marinating their cookies?</p>
+			</div>
+			<p>First, lets take a look at the sheer number of recipes. Can there really be 30,000 versions of the CCC? Do they all really produce something Ruth Wakefield would recognise as a Toll House Cookie? Or is Yummly a bit too over zealous with its search results?</p>
+			<p>Exploring the Yummly filters reveals that 2,834 recipes involve microwaving, 1,228 boiling, 128 broiling and one even calls for brining. I don't want to live in a world where the ultimate CCC involves brining so we won’t be using any of these techniques and will stick to traditional baking. This immediately reduces our recipe count to a, still formidable, 17,153.</p>
+			<p>We can also filter on whether a recipe contains a certain ingredient. Later we will be discussing whether a CCC should be made with shortening or butter, with plain or self raising flour, with brown or white sugar but there is one ingredient that is essential in a CCC and that is chocolate chips. A quick scan through our recipes reveals various other chocolate imposters have been substituted (M&Ms, Oreos, Toblerone, Mars, Hershey's Kisses, even Andes Cr&egrave;me de Menthe Thins) but if there is one thing I am absolutely certain of in these tempestuous times it is this: the ultimate Chocolate Chip Cookie contains chocolate chips. Our total recipe count is now 13,272.</p>
+			<p>(Interesting filter found fact: We aren’t going to cater for people with food intolerances but its reassuring to know that even if you are allergic to dairy, egg, gluten, peanuts, seafood, sesame, soy, sulfites, tree nuts AND wheat there are still 44 recipes you can use.)</p>
+			<img src="cookie-break.png" class="break" />
+			<p>We've identified that some chefs are going unacceptably off-piste by leaving chocolate chips out of their chocolate chip cookie recipes but are there also unsanctioned ingredients that they have been sneaking in? I've analysed the ingredients of all the remaining recipes and there are some shocking inclusions.</p>
+			<div id="ingredientsTable">
+				<div class="inset" id="ingredientsGraph">
+					<h2>Ingredients</h2>
+					<p><a href="javascript:showCookingMethod()">Cooking Method</a> | <a href="javascript:showTopIngredients()">Top Ingredients</a> | <a href="javascript:showWeirdIngredients()">Weird Ingredients</a></p>
+				</div>
+			</div>
+
+
+			<p></p>
+			<p></p>
+			<p>OK, now we have thinned the field a little lets find out which way this cookie crumbles.</p>
+			<p>[Editorial note: For now I have scraped 913 recipes from the Yummly site but ideally I would use their API to access the entire database]</p>
+			<p>Also worryingly there are 51 recipes classed as “More Spicy” and 190 classed as “More Sour”. These don’t sound like ideal characteristics for a definitive CCC so we’ll also filter these out. </p>
+		</div>
+		<script>
+			var svg = d3.select("#ingredientsGraph").append("svg").attr("width", 800).attr("height", 600),
+				margin = {top: 50, right: 20, bottom: 0, left: 180},
+    			width = +svg.attr("width") - margin.left - margin.right,
+    			height = +svg.attr("height") - margin.top - margin.bottom
+    		;
+    		
+    		var x = d3.scaleLinear().range([0, width]);
+			var y = d3.scaleBand().range([height, 0]);
+			
+			var g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+			d3.json("data/ingredients.json", function(error, data) {
+				if (error) throw error;
+				data.sort(function(a, b) { return a.number - b.number; });
+				xscale = x.domain([0, d3.max(data, function(d) { return d.number; })]);
+
+				y.domain(data.map(function(d) { return d.ingredient; })).padding(0.4);
+				g.append("g")
+					.attr("class", "x axis")
+					.attr("transform", "translate(0,0)")
+					.call(d3.axisTop(x).ticks(5).tickFormat(function(d) { return d; }).tickSizeInner([-height]))
+				;
+				g.append("g")
+					.attr("class", "y axis")
+					.call(d3.axisLeft(y))
+				;
+				var bar = g.selectAll(".bar")
+					.data(data, function(d) { return d.ingredient; })
+					.enter().append("rect")
+					.attr("class", "bar")
+					.attr("x", 0)
+					.attr("height", y.bandwidth())
+					.attr("y", function(d) { return y(d.ingredient); })
+					.attr("width", function(d) { return x(d.number); })
+				;
+			});  
+			function showWeirdIngredients(){
+   			}
+
+
+
+
+
+		</script>
+	</body>
+</html>
+

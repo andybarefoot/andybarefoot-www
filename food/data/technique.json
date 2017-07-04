@@ -1,0 +1,32 @@
+{"techniques":[
+		{"name":"Baking", "number":17153, "chocolate":[
+			{"type":"Chocolate Chips","number":12700},
+			{"type":"M&Ms","number":851},
+			{"type":"Oreos","number":703},
+			{"type":"Toblerone","number":462},
+			{"type":"Mars","number":48},
+			{"type":"Hershey's Kisses","number":33},
+			{"type":"Andes Crème de Menthe Thins","number":5},
+			{"type":"Other Chocolate","number":754},
+			{"type":"No Chocolate","number":1165}
+		]},
+		{"name":"Blending", "number":556, "chocolate":[{"type":"Chocolate Chips","number":556}]},
+		{"name":"Boiling", "number":1228, "chocolate":[{"type":"Chocolate Chips","number":1228}]},
+		{"name":"Braising", "number":1, "chocolate":[{"type":"Chocolate Chips","number":1}]},
+		{"name":"Brining", "number":1, "chocolate":[{"type":"Chocolate Chips","number":1}]},
+		{"name":"Broiling", "number":128, "chocolate":[{"type":"Chocolate Chips","number":128}]},
+		{"name":"Browning", "number":7464, "chocolate":[{"type":"Chocolate Chips","number":7464}]},
+		{"name":"Drying", "number":74, "chocolate":[{"type":"Chocolate Chips","number":74}]},
+		{"name":"Frosting", "number":843, "chocolate":[{"type":"Chocolate Chips","number":843}]},
+		{"name":"Glazing", "number":227, "chocolate":[{"type":"Chocolate Chips","number":227}]},
+		{"name":"Grilling", "number":33, "chocolate":[{"type":"Chocolate Chips","number":33}]},
+		{"name":"Marinating", "number":2, "chocolate":[{"type":"Chocolate Chips","number":2}]},
+		{"name":"Microwaving", "number":2834, "chocolate":[{"type":"Chocolate Chips","number":2834}]},
+		{"name":"Poaching", "number":2, "chocolate":[{"type":"Chocolate Chips","number":2}]},
+		{"name":"Pressure Cooking", "number":4, "chocolate":[{"type":"Chocolate Chips","number":4}]},
+		{"name":"Roasting", "number":54, "chocolate":[{"type":"Chocolate Chips","number":54}]},
+		{"name":"Sauteeing", "number":73, "chocolate":[{"type":"Chocolate Chips","number":73}]},
+		{"name":"Slow Cooking", "number":60, "chocolate":[{"type":"Chocolate Chips","number":60}]},
+		{"name":"Steaming", "number":12, "chocolate":[{"type":"Chocolate Chips","number":12}]}
+	]
+}
