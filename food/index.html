@@ -149,9 +149,9 @@
 				.sections(d3.selectAll('#ingredientsSections > div'))
 				.on('active', function(i){
 					console.log(i + 'th section active');
-					if(i%2==1){
+					if(i==1){
 						updateData('data/unusualIngredients.json');
-					}else{
+					}else if(i==0){
 						updateData('data/topIngredients.json');
 					}
 				})
