@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+    <title>Valar Dohaeris: Who's who in Game of Thrones</title>
+    <meta charset="utf-8">
+    <script src="/jscript/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script src="/jscript/d3v4+jetpack.js"></script>
+    <script src="/jscript/graph-scroll.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Trirong:100,200" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+    <script src="/jscript/analyticstracking.js"></script>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="timeline.css">
+   </head>
+  <body>
+      <div id="container">
+        <div id="chart">
+          <svg id="chartSVG"></svg>
+        </div>
+        <div id="sections">
+          <div class="introContent">
+            <img src="images/valar-dohaeris.png" alt="Valar Dohaeris">
+            <h1>Who's who in Game of Thrones</h1>
+            <p>There are a lot of characters in Game of Thrones and some of them don't last long. Therefore you may need to consult this record compiled by <a href="http://www.andybarefoot.com">Maester Barefoot</a>.</p>
+            <p>Here you will find all the named characters, when they first appeared and, if the gods have been cruel, when they were dispatched.</p>
+            <p>All data and images from the excellent <a href="http://gameofthrones.wikia.com/wiki/Game_of_Thrones_Wiki" target="_blank">Game of Thrones wiki</a>.</p>
+            <p>
+              <a href="javascript:share('twitter');"><img src="/images/icons/png32/twitter.png" class="share"></a>
+              <a href="javascript:share('facebook');"><img src="/images/icons/png32/facebook.png" class="share"></a>
+              <a href="javascript:share('google');"><img src="/images/icons/png32/googleplus.png" class="share"></a>
+              <a href="javascript:share('reddit');"><img src="/images/icons/png32/reddit.png" class="share"></a>
+            </p>
+            <p>[ XXXXXX ]</p>
+          </div>
+        </div>
+      </div>
+
+    <script>
+
+      episodeSpacing = 200;
+      episodeOffset = 50;
+      charSpacing = 10;
+      lastShown = 0;
+
+      function drawChart(){
+        chartWidth = $("#chart").width();
+        chartHeight = $("#chart").height();
+        var svg = d3.select("#chartSVG"),
+          margin = {top: 50, right: 20, bottom: 50, left: 20},
+          width = chartWidth - margin.left - margin.right,
+          height = chartHeight - margin.top - margin.bottom
+        ;
+        var everything = svg
+          .append("g")
+        ;
+          
+        d3.json("travelEpisodes.json", function(error, data) {
+          if (error) throw error;
+          var episodeLines = everything
+           .selectAll(".episodeLines")
+            .data(data.episodes)
+            .enter()
+            .append("g")
+            .attr("class", "episodeLines")
+            .attr("transform", function(d,i) {
+              return "translate("+margin.left+","+(margin.top+(episodeSpacing*i))+")";
+            })
+          ;
+          episodeLines
+            .append("line")
+            .attr("x1", 0)
+            .attr("y1", 0)
+            .attr("x2", width)
+            .attr("y2", 0)
+          ;
+          episodeLines
+            .append("text")
+            .attr("x", 5)
+            .attr("y", -6)
+            .attr("class", "epiNumber")
+            .text(function(d,i){
+              return "Season:" + d.episodeSeason + " Episode:" + d.episodeNumber;
+            })
+          ;
+          episodeLines
+            .append("text")
+            .attr("x", 5)
+            .attr("y", 14)
+            .attr("class", "epiTitle")
+            .text(function(d,i){
+              return d.episodeName;
+            })
+          ;
+          var sections = d3
+            .select("#sections");
+          var content = sections
+            .selectAll(".addedContent")
+            .data(data.episodes)
+            .enter()
+            .append("div")
+            .attr("class", "addedContent")
+            .append("div")
+            .attr("class", "content")
+          ;
+          content
+            .append("p")
+            .attr("class", "episodeSub")
+            .text(function(d,i){
+              return "Season:" + d.episodeSeason + " Episode:" + d.episodeNumber;
+            })
+          ;
+          content
+            .append("h2")
+            .text(function(d,i){
+              return d.episodeName;
+            })
+          ;
+          content
+            .append("p")
+            .text(function(d,i){
+              return d.episodeDesc;
+            })
+          ;
+
+          var scroll = d3.graphScroll()
+            .container(d3.select('#container'))
+            .graph(d3.select('#chart'))
+            .sections(d3.selectAll('#sections > div'))
+            .on('active', function(i){
+              console.log(i + 'th section active');
+              for(x=1;x<=60;x++){
+                if(x<=i){
+                  d3.selectAll(".showLine"+x).transition().attr("y2",function(d) {
+                    return (d.appEpisode-d.lastEpisode)*episodeSpacing;
+                  }).duration(2000);
+                  d3.selectAll(".showCircle"+x).transition().attr("opacity",1).delay(2000);
+                }else{
+                  d3.selectAll(".showLine"+x).transition().attr("y2",0).duration(2000);
+                  d3.selectAll(".showCircle"+x).transition().attr("opacity",0).delay(0);
+                }
+              }
+              // if(i>lastShown){
+              //   d3.selectAll(".showLine"+i).transition().attr("y2",function(d,i) {
+              //     return (d.appEpisode-d.lastEpisode)*episodeSpacing;
+              //   }).duration(2000);
+              //   d3.selectAll(".showCircle"+i).transition().attr("opacity",1).delay(2000);
+              // }else if(i<lastShown){
+              //   d3.selectAll(".showLine"+lastShown).transition().attr("y2",0).duration(2000);
+              //   d3.selectAll(".showCircle"+lastShown).transition().attr("opacity",0).delay(0);
+              // }
+              if((i*episodeSpacing)>height){
+                  newOffset = height - (i*episodeSpacing);
+                  everything.transition().attr("transform","translate(0,"+ newOffset +")").duration(500);
+              }else{
+                  everything.transition().attr("transform","translate(0,0)").duration(500);
+              }
+//              lastShown = i;
+            })
+          ;
+
+
+        });  
+
+        d3.json("timeline.json", function(error, data) {
+          if (error) throw error;
+          console.log(data);
+          charSpacing = width/data.maxColumns;
+
+          var characters = everything
+            .selectAll(".characters")
+            .data(data.characters)
+            .enter()
+            .append("g")
+            .attr("class", "characters")
+            .attr("transform", function(d,i) {
+              vertOffset = (episodeSpacing/7)*((i%6)+1);
+              return "translate("+(margin.left+(charSpacing*d.charColumn))+","+(margin.top+vertOffset)+")";
+            })
+          ;
+          characters
+            .selectAll("circle")
+            .data(function(d) {
+              return d.appearances;
+            })
+            .enter()
+            .append("circle")
+            .attr("class", function(d,i) {
+              return "showCircle"+d.appEpisode;
+            })
+            .attr("transform", function(d,i) {
+              return "translate(0,"+(episodeSpacing*(d.appEpisode-1))+")";
+            })
+            .attr("r", function(d,i) {
+              if(i==0){
+                return 5;
+              }else{
+                return 2;
+              }
+            })
+            .attr("stroke", function(d) {
+              return d.charBackground;
+            })
+            .attr("fill", function(d) { 
+              return d.charBackground;
+            })
+            .attr("opacity", 0)
+          ;
+          characters
+            .selectAll("line")
+            .data(function(d) {
+              return d.appearances;
+            })
+            .enter()
+            .filter(function(d,i){ return i != 0; })
+            .append("line")
+            .attr("class", function(d,i) {
+              return "showLine"+d.appEpisode;
+            })
+            .attr("transform", function(d,i) {
+              return "translate(0,"+(episodeSpacing*(d.lastEpisode-1))+")";
+            })
+            .attr("x1", 0)
+            .attr("y1", 0)
+            .attr("x2", 0)
+            .attr("y2", 0)
+            .attr("stroke", function(d) {
+              return d.charBackground;
+            })
+   //         .attr("opacity", 0)
+          ;
+        });  
+
+      }
+
+
+
+//      $(window).resize(drawChart);
+      $(document).ready(drawChart);
+
+    </script>
+  </body>
+</html>
+

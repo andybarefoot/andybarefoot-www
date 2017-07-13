@@ -7,7 +7,6 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Arya Stark.Lothar Frey,257,6,10,1,6
  .Arya Stark.Lothar Frey.Talisa Stark,753,3,9,1,11
  .Arya Stark.Meryn Trant,849,5,10,1,18
- .Arya Stark.Meryn Trant.Syrio Forel,246,1,8,1,3
  .Arya Stark.Polliver,627,4,1,1,3
  .Arya Stark.Polliver.Lommy,483,2,3,1,4
  .Arya Stark.Rorge,677,4,7,1,5
@@ -46,7 +45,6 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Cersei Lannister.High Sparrow,355,6,10,1,12
  .Cersei Lannister.Kevan Lannister,453,6,10,1,12
  .Cersei Lannister.Lancel,454,6,10,1,16
- .Cersei Lannister.Lancel.Robert Baratheon,50,1,7,1,7
  .Cersei Lannister.Lancel.Unknown Baratheon man,0,2,9,1,1
  .Cersei Lannister.Loras,865,6,10,1,20
  .Cersei Lannister.Loras.Unnamed Baratheon men,0,2,9,1,1
@@ -59,6 +57,8 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Daario Naharis.Akho,5,6,4,1,2
  .Daario Naharis.Iggo,373,6,4,1,1
  .Daario Naharis.Mero,536,3,8,1,1
+ .Daario Naharis.Mossador,564,5,2,1,3
+ .Daario Naharis.Mossador.Son of the Harpy,726,5,2,1,1
  .Daario Naharis.Oznak zo Pahl,620,4,3,1,1
  .Daario Naharis.Prendahl na Ghezn,297,3,8,1,1
  .Daario Naharis.Sons of the Harpy,0,5,9,1,1
@@ -78,8 +78,6 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Daenerys Targaryen.Moro,559,6,4,1,3
  .Daenerys Targaryen.Moro's bloodrider 1,560,6,4,1,3
  .Daenerys Targaryen.Moro's bloodrider 2,561,6,4,1,3
- .Daenerys Targaryen.Mossador,564,5,2,1,3
- .Daenerys Targaryen.Mossador.Son of the Harpy,726,5,2,1,1
  .Daenerys Targaryen.Pyat Pree,632,2,10,1,4
  .Daenerys Targaryen.Pyat Pree.Copper King,152,2,7,1,2
  .Daenerys Targaryen.Pyat Pree.Other Thirteen members,832,2,7,1,3
@@ -91,7 +89,7 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Daenerys Targaryen.Xaro Xhoan Daxos,948,2,10,1,5
  .Despondent man,184,5,3,1,0
  .Drogon,199,0,0,0,19
- .Drogon.Kraznys mo Nakloz,579,4,4,1,3
+ .Drogon.Kraznys mo Nakloz,579,3,4,1,3
  .Drogon.Sons of the Harpy,0,5,9,1,1
  .Drogon.Unnamed Slaver's fleet,0,6,9,1,1
  .Drogon.Zalla,961,4,10,1,0
@@ -335,10 +333,10 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Unnamed Frey men.Wendel Manderly,512,3,9,1,1
  .Unnamed Goldcloak,0,0,0,0,1
  .Unnamed Goldcloak.Varly,893,1,7,1,1
- .Unnamed Hill tribesmen,0,0,0,0,5
+ .Unnamed Hill tribesmen,0,0,0,0,1
  .Unnamed Hill tribesmen.Kurleket,431,1,5,1,2
  .Unnamed Hill tribesmen.Willis Wode,941,1,5,1,2
- .Unnamed Lannister men,0,0,0,0,5
+ .Unnamed Lannister men,0,0,0,0,1
  .Unnamed Lannister men.Brynden Tully,851,6,8,1,7
  .Unnamed Lannister men.Heward,350,1,5,1,0
  .Unnamed Lannister men.Mordane,551,1,8,1,7
@@ -361,7 +359,7 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Viserion,898,0,0,0,15
  .Viserion.Great Master,316,5,5,1,1
  .Viserion.Unnamed Slaver's fleet,0,6,9,1,1
- .White Walkers,982,0,0,0,8
+ .White Walkers,0,0,0,0,1
  .White Walkers.Gared,286,1,1,1,1
  .White Walkers.Waymar Royce,684,1,1,1,1
  .Wights,0,0,0,0,1
@@ -383,7 +381,9 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Wights.Summer.Wight,0,6,5,1,1
  .Wights.Summer.Wights,0,4,10,1,1
  .Wights.Wildling girl,933,1,1,1,2
- .Wildlings,981,0,0,0,0
+ .Wild Boar,0,0,0,0,1
+ .Wild Boar.Robert Baratheon,50,1,7,1,7
+ .Wildlings,0,0,0,0,1
  .Wildlings.Borba,91,2,6,1,2
  .Wildlings.Harker,345,2,6,1,2
  .Wildlings.Jack Bulwer,117,4,8,1,1
