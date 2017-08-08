@@ -11,6 +11,7 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Arya Stark.Polliver.Lommy,483,2,3,1,4
  .Arya Stark.Rorge,677,4,7,1,5
  .Arya Stark.Stableboy,729,1,8,1,1
+ .Arya Stark.Unnamed Frey men,0,7,1,1,1
  .Arya Stark.Unnamed Lannister man,0,4,1,1,1
  .Arya Stark.Waif,901,6,8,1,11
  .Arya Stark.Waif.Lady Crane,434,6,8,1,3
@@ -41,6 +42,7 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Bronn.Unnamed Baratheon men,0,2,9,1,1
  .Bronn.Unnamed Hill tribesmen,0,1,5,1,1
  .Bronn.Vardis Egen,219,1,6,1,2
+ .Bronn.Unnamed Dothraki,0,7,4,1,1
  .Cersei Lannister,449,0,0,0,52
  .Cersei Lannister.High Sparrow,355,6,10,1,12
  .Cersei Lannister.Kevan Lannister,453,6,10,1,12
@@ -52,6 +54,10 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Cersei Lannister.Margaery Tyrell,869,6,10,1,26
  .Cersei Lannister.Unnamed Faith Militant,0,6,10,1,1
  .Cersei Lannister.Unnamed King's Landing citizens,0,6,10,1,1
+ .Cersei Lannister.Tyene Sand,699,7,3,1,7
+ .Cersei Lannister.Tyene Sand.Areo Hotah,368,6,1,1,6
+ .Cersei Lannister.Tyene Sand.Caleotte,118,6,1,1,1
+ .Cersei Lannister.Tyene Sand.Unnamed Greyjoy men,0,7,2,1,1
  .Cressen,165,2,1,1,1
  .Daario Naharis,577,0,0,0,21
  .Daario Naharis.Akho,5,6,4,1,2
@@ -88,11 +94,14 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Daenerys Targaryen.Wineseller,938,1,7,1,1
  .Daenerys Targaryen.Xaro Xhoan Daxos,948,2,10,1,5
  .Despondent man,184,5,3,1,0
+ .Dickon Tarly,813,0,0,0,5
+ .Dickon Tarly.Unnamed Dothraki,0,7,4,1,1
  .Drogon,199,0,0,0,19
  .Drogon.Kraznys mo Nakloz,579,3,4,1,3
  .Drogon.Sons of the Harpy,0,5,9,1,1
  .Drogon.Unnamed Slaver's fleet,0,6,9,1,1
  .Drogon.Zalla,961,4,10,1,0
+ .Drogon.Unnamed Lannister/Tarly men,0,7,4,1,1
  .During the War of the Five Kings,0,0,0,0,1
  .During the War of the Five Kings.Galbart Glover,303,6,7,1,2
  .During the War of the Five Kings.Jon Umber,879,6,3,1,3
@@ -107,6 +116,12 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Ellaria Sand.Myrcella Baratheon,46,5,10,1,13
  .Euron Greyjoy,329,0,0,0,2
  .Euron Greyjoy.Balon Greyjoy,328,6,2,1,4
+ .Euron Greyjoy.Unnamed Greyjoy men,0,7,2,1,1
+ .Euron Greyjoy.Obara Sand,696,7,2,1,7
+ .Euron Greyjoy.Obara Sand.Merchant captain,535,5,4,1,1
+ .Euron Greyjoy.Obara Sand.Trystane Martell,527,6,1,1,5
+ .Euron Greyjoy.Nymeria Sand,695,7,2,1,8
+ .Euron Greyjoy.Nymeria Sand.Unnamed Greyjoy man,0,7,2,1,1
  .Ghost,299,0,0,0,20
  .Ghost.Rast,648,4,5,1,12
  .Ghost.Rast.Jeor Mormont,555,3,4,1,12
@@ -124,6 +139,8 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Grey Worm.Razdal mo Eraz,224,6,9,1,3
  .Grey Worm.Sons of the Harpy,0,5,4,1,1
  .Grey Worm.Yunkai soldiers,0,3,9,1,1
+ .Grey Worm.Unnamed Lannister men,0,7,3,1,1
+ .Harald Karstark,407,7,1,1,3
  .Hobb,360,0,0,0,1
  .Hobb.Unnamed Wildling,0,4,9,1,1
  .Hoster Tully,854,3,3,1,1
@@ -142,6 +159,10 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Jaime Lannister.Jory Cassel,127,1,5,1,5
  .Jaime Lannister.Jory Cassel.Unnamed Lannister man,0,1,5,1,1
  .Jaime Lannister.Torrhen Karstark,413,2,7,1,1
+ .Jaime Lannister.Olenna Tyrell,870,7,3,1,16
+ .Jaime Lannister.Olenna Tyrell.Joffrey Baratheon,34,4,2,1,26
+ .Jaime Lannister.Olenna Tyrell.Joffrey Baratheon.Ros,678,3,6,1,14
+ .Jaime Lannister.Unnamed Dothraki,0,7,4,1,1
  .Jaqen H'ghar,340,0,0,0,18
  .Jaqen H'ghar.Amory Lorch,485,2,6,1,4
  .Jaqen H'ghar.Amory Lorch.Yoren,951,2,3,1,7
@@ -206,13 +227,7 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Melisandre.Unnamed Dragonstone residents,0,4,2,1,1
  .Night King,585,0,0,0,5
  .Night King.Three-eyed raven,835,6,5,1,10
- .Obara Sand,696,0,0,0,7
- .Obara Sand.Merchant captain,535,5,4,1,1
- .Obara Sand.Trystane Martell,527,6,1,1,5
  .Old Nan,581,2,1,1,4
- .Olenna Tyrell,870,0,0,0,16
- .Olenna Tyrell.Joffrey Baratheon,34,4,2,1,26
- .Olenna Tyrell.Joffrey Baratheon.Ros,678,3,6,1,14
  .Petyr Baelish,30,0,0,0,34
  .Petyr Baelish.Dontos Hollard,364,4,3,1,6
  .Petyr Baelish.Lysa Arryn,16,4,7,1,5
@@ -223,6 +238,8 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Podrick Payne.Unnamed Bolton man,0,6,1,1,1
  .Rhaegal,664,0,0,0,13
  .Rhaegal.Unnamed Slaver's fleet,0,6,9,1,1
+ .Farmer,233,7,1,1,2
+ .Farmer.Sally,688,7,1,1,2
  .Samwell Tarly,816,0,0,0,38
  .Samwell Tarly.Thenn warg,826,4,9,1,3
  .Samwell Tarly.White Walker,917,3,8,1,2
@@ -299,6 +316,7 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Theon Greyjoy.Rodrik Cassel.Unnamed Hill tribesman,0,1,5,1,1
  .Theon Greyjoy.Stiv,758,1,6,1,1
  .Theon Greyjoy.Unnamed Bolten man,0,6,1,1,1
+ .Theon Greyjoy.Unnamed Greyjoy men,0,7,2,1,1
  .Tommard Baratheon,55,1,0,1,1
  .Tommen Baratheon,56,6,10,1,24
  .Tormund,843,0,0,0,25
@@ -313,9 +331,6 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Tormund.Unnamed Night's Watch,715,6,2,1,1
  .Tormund.Villagers,0,4,3,1,1
  .Tormund.Wights,0,5,8,1,1
- .Tyene Sand,699,0,0,0,7
- .Tyene Sand.Areo Hotah,368,6,1,1,6
- .Tyene Sand.Caleotte,118,6,1,1,1
  .Tyrion Lannister,461,0,0,0,54
  .Tyrion Lannister.Baratheon officer,36,2,9,1,1
  .Tyrion Lannister.Shae,713,4,10,1,20
@@ -393,3 +408,4 @@ id,value,deathSeason,deathEpisode,dead,appearances
  .Wildlings.Stonesnake,763,2,6,1,2
  .Yara Greyjoy,335,0,0,0,12
  .Yara Greyjoy.Unnamed Bolten men,0,4,6,1,1
+ .Yara Greyjoy.Unnamed Greyjoy men,0,7,2,1,1

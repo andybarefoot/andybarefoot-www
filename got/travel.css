@@ -22,6 +22,10 @@ h2 {
   font-size: 1.4em;
 }
 
+strong {
+  color: #caad2d;
+}
+
 p {
   margin-top: 10px;
 }

@@ -38,11 +38,11 @@
 
     <script>
 
-      episodeSpacing = 200;
+      episodeSpacing = 300;
       episodeOffset = 50;
       charSpacing = 10;
       lastShown = 0;
-      photoDiameter = 12;
+      photoDiameter = 15;
 
       function getTextBox(selection) {
         selection
@@ -210,8 +210,10 @@
           ;
           content
             .append("p")
-            .text(function(d,i){
-              return d.episodeDesc;
+            .html(function(d,i){
+              desc = d.episodeDesc.replace("//p//", "</p><p>");
+              desc = d.episodeDesc;
+              return desc;
             })
           ;
 
@@ -263,7 +265,7 @@
             .append("g")
             .attr("class", "characters")
             .attr("transform", function(d,i) {
-              vertOffset = (episodeSpacing/7)*((i%6)+1);
+              vertOffset = 20+(episodeSpacing/9)*((i%8));
               return "translate("+margin.left+","+(margin.top+vertOffset)+")";
             })
           ;

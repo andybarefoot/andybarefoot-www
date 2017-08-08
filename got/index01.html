@@ -54,7 +54,7 @@
 		<script>
 			// ESTABLISH PARAMETERS
 			w = 1600; // chart width
-			h = 40000; // chart height
+			h = 20000; // chart height
 			charCount = 0; // RUNNING COUNT OF CHARACTERS
 
 			// MANAGE CHARACTER OVERLAY
@@ -182,15 +182,11 @@
 				yOff = 50; // vertical offset
 				vertSpacing = 50; // vert spacing between characters
 				vertOffset = 50; // vert offset from chart top to first character
-				episodeArray = [10,10,10,10,10,10,4];
-				function episodesSoFar(season){
-					t=0;
-					for (var i = 0; i < season; i++) {
-						t+=episodeArray[i];
-					}
-					return t;
-				}
-				epiWidth = (w - (2*xOff))/episodesSoFar(episodeArray.length); // episode width
+				totalSeasons = 6;
+				episodesPerSeason = 10;
+				epiWidth = 20; // episode width
+				epiWidth = (w - (2*xOff))/(totalSeasons*episodesPerSeason); // episode width
+
 
 				$("svg").remove();
 				// CREATE CHART
@@ -209,33 +205,34 @@
 				   ;
 
 				// ADD SEASON TITLES & BACKGROUNDS
-				for (s=0; s<episodeArray.length; s++) {
+				for (var i = 0; i < totalSeasons; ++i) {
 					svg.append("text")
-						.attr("x", xOff + (episodesSoFar(episodeArray.length) - episodeArray[s]/2 - episodesSoFar(s)) * epiWidth )
+						.attr("x", xOff + i*episodesPerSeason*epiWidth + 5*epiWidth)
 						.attr("y", yOff)
 						.attr("dy", -5)
 						.attr("class", "season")
 						.style("text-anchor", "middle")
-						.text("Season "+(s+1))
-					;
-					if((s/2)==Math.floor(s/2)){
+						.text("Season "+(totalSeasons-i))
+						;
+					if((i/2)==Math.floor(i/2)){
 						svg.append("rect")
-						   .attr("x", xOff + (episodesSoFar(episodeArray.length) - episodesSoFar(s+1)) * epiWidth)
+						   .attr("x", xOff + i*episodesPerSeason*epiWidth)
 						   .attr("y", yOff)
-						   .attr("width", episodeArray[s]*epiWidth)
+						   .attr("width", episodesPerSeason*epiWidth)
 						   .attr("height", h-yOff)
 						   .attr("fill", "#1c1c1c")
-						;
+						   ;
 					}
-					for (var j = 1; j < episodeArray[s]; ++j) {
+					// ADD EPISODE KEYLINES
+					for (var j = 1; j < episodesPerSeason; ++j) {
 						svg.append("line")
-						   .attr("x1", xOff + (episodesSoFar(episodeArray.length) - episodesSoFar(s+1) + j) *epiWidth)
+						   .attr("x1", xOff + i*episodesPerSeason*epiWidth + j*epiWidth)
 						   .attr("y1", yOff)
-						   .attr("x2", xOff + (episodesSoFar(episodeArray.length) - episodesSoFar(s+1) + j) *epiWidth)
+						   .attr("x2", xOff + i*episodesPerSeason*epiWidth + j*epiWidth)
 						   .attr("y2", h)
 						   .attr("stroke-width", 1)
 						   .attr("stroke", "#292929")
-						;
+						   ;
 					}
 				}
 
@@ -274,12 +271,12 @@
 						if(dead==0){
 							root.descendants().slice(1)[i].y = xOff - 25;
 						} else if(episodeNo==0){
-							root.descendants().slice(1)[i].y = xOff + 25 + (episodesSoFar(episodeArray.length)*epiWidth);
+							root.descendants().slice(1)[i].y = xOff + 25 + (totalSeasons*episodesPerSeason*epiWidth);
 						} else {
-							root.descendants().slice(1)[i].y =  xOff + ((episodesSoFar(episodeArray.length) - episodeNo) * epiWidth) +epiWidth/2;
+							root.descendants().slice(1)[i].y =  xOff + ((totalSeasons*episodesPerSeason - episodeNo) * epiWidth) +epiWidth/2;
 							if(episodeNo == episodeParent){
 								root.descendants().slice(1)[i].y+=epiWidth/4;
-								root.descendants().slice(1)[i].parent.y = xOff + ((episodesSoFar(episodeArray.length) - episodeParent) * epiWidth) + epiWidth/4;
+								root.descendants().slice(1)[i].parent.y = xOff + ((totalSeasons*episodesPerSeason - episodeParent) * epiWidth) + epiWidth/4;
 							}
 						}
 					}
@@ -304,7 +301,7 @@
 				      .attr("id", function(d) { return "id" + d.data.value; })
 				  node.append("circle")
 						.attr("r", function(d) {
-							return  2+(10*Math.sqrt(d.data.appearances/(episodesSoFar(episodeArray.length))));
+							return  2+(10*Math.sqrt(d.data.appearances/(totalSeasons * episodesPerSeason)));
 						})
 						.attr("data-id", function(d) { return d.data.value; })
 				    	.attr("stroke", function(d) { return (d.parent ? "#caad2d" : "none"); })
@@ -341,7 +338,7 @@
 							}	
 						})
 						.attr("dx", function(d,i) {
-							spacing = 3+(10*d.data.appearances/(episodesSoFar(episodeArray.length)));
+							spacing = 3+(10*d.data.appearances/(totalSeasons * episodesPerSeason));
 							if((d.y + this.getBBox().width + 20)>w){
 								return 0-spacing; 
 							}else{
