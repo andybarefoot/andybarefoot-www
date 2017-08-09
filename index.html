@@ -8,10 +8,10 @@
 		<link rel="stylesheet" href="css/main-r.css">
 		<meta charset="utf-8" />
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
-		<script async src="/jscript/analyticstracking.js"></script>
-		<script async src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-		<script async src="jscript/imagesloaded.pkgd.min.js"></script>
-		<script async src="jscript/masonry.pkgd.min.js"></script>
+		<script src="/jscript/analyticstracking.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="jscript/imagesloaded.pkgd.min.js"></script>
+		<script src="jscript/masonry.pkgd.min.js"></script>
         <script src="//code.angularjs.org/1.3.0-rc.1/angular.min.js"></script>
         <script src="jscript/angular-masonry.min.js"></script>
         <script src="jscript/andybarefoot.js"></script>
@@ -56,6 +56,34 @@
 		<div id="projects">
 			<div id="projectTitle" class="sectionTitle">
 				<h2>Personal Projects</h2>
+			</div>
+
+			<div class="project">
+				<div class="projectTitle"><h3>Data Vis: Game of Thrones Allegiances</h3></div>
+				<div class="projectDesc">
+					<a href="/got/allegiances.html" target="gotmap"><img src="images/got-map.png" /></a>
+					<p>To play the Game of Thrones you will need allies. But when those allies are Petyr Baelish, Roose Bolton or Alliser Thorne you will also need stab proof armour.</p>
+					<p>This <a href="/got/allegiances.html" target="gotmap">map</a> shows all the major houses and institutions of the Game of Thrones world with the many, many allegiances and connections to the hundreds of characters in the show.</p>
+					<p><a href="/got/allegiances.html" target="gotmap">The visualisation</a> was built using D3.js using data from the excellent <a class="ext" href="http://gameofthrones.wikia.com/wiki/Game_of_Thrones_Wiki" target="got-wiki">Game of Thrones wiki</a>.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>CSS Grid: Grid of Thrones</h3></div>
+				<div class="projectDesc">
+					<a href="/got/grid.html" target="gotgrid"><img src="images/got-grid.png" /></a>
+					<p>The dilligent and learned maesters at the excellent <a class="ext" href="http://gameofthrones.wikia.com/wiki/Game_of_Thrones_Wiki" target="got-wiki">Game of Thrones wiki</a> have documented everything you could ever need to know about Game of Thrones. This includes every character who has appeared in the show. From Daenerys Tagaryen to Othell Yarwyck to "Dwarf Hunter 2". If they speak a line or even if they are just an interesting corpse they will be on the site.</p>
+					<p>I used this data as the basis for an experiment using CSS Grid to create a grid whose elements expand to show more content when clicked.</p>
+					<p><a href="/got/grid.html" target="gotgrid">The grid</a> was built using D3.js to load in the data and populate the grid with content.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Data Vis: The Met Collection</h3></div>
+				<div class="projectDesc">
+					<a href="/art/" target="metcollection"><img src="images/met-collection.png" /></a>
+					<p><a class="ext" href="http://www.metmuseum.org/" target="met">The Metropolitan Museum of Art</a> recently published to GitHub the <a class="ext" href="https://github.com/metmuseum/openaccess" target="metgithub">details of 446,029 objects</a> from their collection.</p>
+					<p>This data visualisation attemts to show the distribution of the entire collection by date and to show the difference in age depending on the type of artifact. For example, the majority of vases in the collection are from around the year 300 A.D or before.</p>
+					<p><a href="/art/" target="metcollection">The visualisation</a> was made using D3.js after the raw data had been consolidated into JSON using PHP.</p>
+				</div>
 			</div>
 			<div class="project">
 				<div class="projectTitle"><h3>Data Vis: UFWC Map</h3></div>
