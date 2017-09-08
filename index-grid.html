@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+	<html lang="en-us" ng-app="andybarefoot">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<meta name="viewport" content="initial-scale=1.0, width=device-width" />		
+		<title>Andy Barefoot</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main-grid.css">
+		<meta charset="utf-8" />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+		<script src="/jscript/analyticstracking.js"></script>
+		<script src="/jscript/d3.v4.min.js"></script>
+		<script src="/jscript/imagesloaded.pkgd.min.js"></script>
+		<style>
+			.grid {
+				display: grid;
+				grid-gap: 10px;
+				grid-template-columns: repeat(auto-fill, minmax(80px,1fr));
+				grid-auto-rows: 80px;
+				grid-auto-flow: dense;
+			}
+			#contact {
+				background-color: #08BDBD;
+				color: #FFFFFF;
+				grid-column: 1 / -1;
+				grid-row-end: span 2;
+			}
+			.griditem {
+			}
+			.social {
+				background-color: #08BDBD;
+				grid-column-end: span 1;
+				grid-row-end: span 1;
+			}
+			.social img{
+				width: 70%;
+				margin: 12% 15% 0 15%;
+			}
+			.social .gridcontent{
+				display: inline;
+				justify-self: center;
+				align-self: center;
+			}
+			.data-vis {
+				grid-column-end: span 4;
+				grid-row-end: span 1;
+			}
+			.css-grid {
+				grid-column-end: span 3;
+				grid-row-end: span 1;
+			}
+			.javascript {
+				grid-column-end: span 4;
+				grid-row-end: span 1;
+			}
+			.web {
+				grid-column-end: span 3;
+				grid-row-end: span 1;
+			}
+			.mobile-gaming {
+				grid-column-end: span 4;
+				grid-row-end: span 1;
+			}
+			.blog {
+				grid-column-end: span 3;
+				grid-row-end: span 1;
+			}
+			.data-vis .gridTitle{
+				background-color: #E40066;
+			}
+			.css-grid .gridTitle {
+				background-color: #E40066;
+			}
+			.javascript .gridTitle {
+				background-color: #E40066;
+			}
+			.web .gridTitle {
+				background-color: #E40066;
+			}
+			.mobile-gaming .gridTitle {
+				background-color: #E40066;
+			}
+			.blog .gridTitle {
+				background-color: #E40066;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="contact"><!-- contact -->
+			<header>
+				<hgroup>
+					<img id="portrait" src="images/andy-barefoot-portrait.png" alt="Andy Barefoot - Digital Professional" />
+					<div id="summary">
+						<h1><a href="/">Andy Barefoot</a></h1>		
+						<p>Digital professional with over 15 years experience of programming, management and digital strategy at Cond&eacute; Nast and adidas.</p>
+					</div>
+					<ul>
+						<li><a href="https://www.linkedin.com/in/andybarefoot/" target="_blank"><img src="images/icons/png64/linkedin.png" /></a></li>
+						<li><a href="https://codepen.io/andybarefoot/" target="_blank"><img src="images/icons/png64/codepen.png" /></a></li>
+						<li><a href="https://medium.com/@andybarefoot/" target="_blank"><img src="images/icons/png64/medium.png" /></a></li>
+						<li><a href="https://github.com/andybarefoot" target="_blank"><img src="images/icons/png64/github.png" /></a></li>
+						<li><a href="http://twitter.com/andybarefoot" target="_blank"><img src="images/icons/png64/twitter.png" /></a></li>
+						<li><a href="http://instagram.com/andybarefoot" target="_blank"><img src="images/icons/png64/instagram.png" /></a></li>
+						<li><a href="http://www.facebook.com/profile.php?id=729980577" target="_blank"><img src="images/icons/png64/facebook.png" /></a></li>
+						<li><a href="mailto:andy@andybarefoot.com"><img src="images/icons/png64/email.png" /></a></li>
+					</ul>
+				</hgroup>
+			</header>
+		</div><!-- contact -->
+		<div>
+			Order by: 
+			<a id="orderColour" >Colour</a> |
+			<a id="orderCategory" >Category</a> |
+			<a id="orderString" >String</a> |
+			<a id="orderSize" >Size</a>
+		</div>
+		<div id="grid" class="grid">
+		</div>
+		<script>
+			d3.json("andybarefoot.json", function(data) {
+				grid = d3.select("#grid");
+				griditems = grid
+					.selectAll(".griditem")
+					.data(data.griditems)
+					.enter()
+					.append("div")
+					.attr("class", "griditem")
+					.style("background-color", function(d){
+						return d.colourHex;
+					})
+				;
+				gridcontent = griditems
+					.append("div")
+					.attr("class", "gridcontent")
+				;
+				griditems.filter(function(d){ return d.category == "Contact"; }).filter(function(d){ return d.subCategory == "Social"; }).classed("social", true);
+				griditems.filter(function(d){ return d.category == "Project"; }).filter(function(d){ return d.subCategory == "Data Vis"; }).classed("data-vis", true);
+				griditems.filter(function(d){ return d.category == "Project"; }).filter(function(d){ return d.subCategory == "CSS Grid"; }).classed("css-grid", true);
+				griditems.filter(function(d){ return d.category == "Project"; }).filter(function(d){ return d.subCategory == "JavaScript"; }).classed("javascript", true);
+				griditems.filter(function(d){ return d.category == "Project"; }).filter(function(d){ return d.subCategory == "Web"; }).classed("web", true);
+				griditems.filter(function(d){ return d.category == "Project"; }).filter(function(d){ return d.subCategory == "Mobile Gaming"; }).classed("mobile-gaming", true);
+				griditems.filter(function(d){ return d.category == "Project"; }).filter(function(d){ return d.subCategory == "Blog"; }).classed("blog", true);
+				gridcontent
+					.filter(function(d){ return d.category == "Project"; }) 
+					.append("div")
+					.attr("class",function(d){ return "gridTitle"})
+					.append("h3")
+					.text(function(d,i){
+						return d.subCategory + " : " + d.title;
+					})
+				;
+				gridcontent
+					.append("a")
+					.attr("href",function(d,i){
+						return d.url;
+					})
+					.append("img")
+					.attr("src",function(d,i){
+						return d.thumb;
+					})
+				;
+				gridcontent 
+					.filter(function(d){ return d.category == "Project"; }) 
+					.append("div")
+					.html(function(d,i){
+						return d.content;
+					})
+				;
+				d3
+					.select("#orderColour")
+					.on("click", function (){
+						griditems.sort(function(a, b) {
+							return a["colourID"] - b["colourID"];
+						});
+					})
+				;
+
+				imagesLoaded( document.querySelector('#grid'), function( instance ) {
+					griditems
+						.each(function(d,i) {
+							rowHeight = 1;
+							while(this.querySelector('.gridcontent').getBoundingClientRect().height > this.getBoundingClientRect().height){
+								rowHeight++;
+								d3.select(this).style("grid-row-end", "span "+rowHeight);
+							}
+						})
+					;
+				});
+			});
+		</script>
+	</body>
+</html>

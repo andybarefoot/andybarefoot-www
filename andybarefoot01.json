@@ -1,0 +1,254 @@
+{"griditems":[
+	{
+		"date":"",
+		"category":"Contact",
+		"subCategory":"Social",
+		"title":"LinkedIn",
+		"url":"https://www.linkedin.com/in/andybarefoot/",
+		"thumb":"images/icons/png64/linkedin.png",
+		"content":""
+	},
+	{
+		"date":"",
+		"category":"Contact",
+		"subCategory":"Social",
+		"title":"CodePen",
+		"url":"https://codepen.io/andybarefoot/",
+		"thumb":"images/icons/png64/codepen.png",
+		"content":""
+	},
+	{
+		"date":"",
+		"category":"Contact",
+		"subCategory":"Social",
+		"title":"Medium",
+		"url":"https://medium.com/@andybarefoot/",
+		"thumb":"images/icons/png64/medium.png",
+		"content":""
+	},
+	{
+		"date":"",
+		"category":"Contact",
+		"subCategory":"Social",
+		"title":"GitHub",
+		"url":"https://github.com/andybarefoot",
+		"thumb":"images/icons/png64/github.png",
+		"content":""
+	},
+	{
+		"date":"",
+		"category":"Contact",
+		"subCategory":"Social",
+		"title":"Twitter",
+		"url":"http://twitter.com/andybarefoot",
+		"thumb":"images/icons/png64/twitter.png",
+		"content":""
+	},
+	{
+		"date":"",
+		"category":"Contact",
+		"subCategory":"Social",
+		"title":"Instagram",
+		"url":"http://instagram.com/andybarefoot",
+		"thumb":"images/icons/png64/instagram.png",
+		"content":""
+	},
+	{
+		"date":"",
+		"category":"Contact",
+		"subCategory":"Social",
+		"title":"Facebook",
+		"url":"http://www.facebook.com/profile.php?id=729980577",
+		"thumb":"images/icons/png64/facebook.png",
+		"content":""
+	},
+	{
+		"date":"",
+		"category":"Contact",
+		"subCategory":"Social",
+		"title":"Email",
+		"url":"mailto:andy@andybarefoot.com",
+		"thumb":"images/icons/png64/email.png",
+		"content":""
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Data Vis",
+		"title":"Game of Thrones Allegiances",
+		"url":"/got/allegiances.html",
+		"thumb":"images/got-map.png",
+		"content":"<p>To play the Game of Thrones you will need allies. But when those allies are Petyr Baelish, Roose Bolton or Alliser Thorne you will also need stab proof armour.</p><p>This <a href=\"/got/allegiances.html\" target=\"gotmap\">map</a> shows all the major houses and institutions of the Game of Thrones world with the many, many allegiances and connections to the hundreds of characters in the show.</p><p><a href=\"/got/allegiances.html\" target=\"gotmap\">The visualisation</a> was built using D3.js using data from the excellent <a class=\"ext\" href=\"http://gameofthrones.wikia.com/wiki/Game_of_Thrones_Wiki\" target=\"got-wiki\">Game of Thrones wiki</a>.</p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"CSS Grid",
+		"title":"Grid of Thrones",
+		"url":"/got/grid.html",
+		"thumb":"images/got-grid.png",
+		"content":"<p>The dilligent and learned maesters at the excellent <a class=\"ext\" href=\"http://gameofthrones.wikia.com/wiki/Game_of_Thrones_Wiki\" target=\"got-wiki\">Game of Thrones wiki</a> have documented everything you could ever need to know about Game of Thrones. This includes every character who has appeared in the show. From Daenerys Tagaryen to Othell Yarwyck to \"Dwarf Hunter 2\". If they speak a line or even if they are just an interesting corpse they will be on the site.</p><p>I used this data as the basis for an experiment using CSS Grid to create a grid whose elements expand to show more content when clicked.</p><p><a href=\"/got/grid.html\" target=\"gotgrid\">The grid</a> was built using D3.js to load in the data and populate the grid with content.</p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Data Vis",
+		"title":"The Met Collection",
+		"url":"/art/",
+		"thumb":"images/met-collection.png",
+		"content":"<p><a class=\"ext\" href=\"http://www.metmuseum.org/\" target=\"met\">The Metropolitan Museum of Art</a> recently published to GitHub the <a class=\"ext\" href=\"https://github.com/metmuseum/openaccess\" target=\"metgithub\">details of 446,029 objects</a> from their collection.</p><p>This data visualisation attemts to show the distribution of the entire collection by date and to show the difference in age depending on the type of artifact. For example, the majority of vases in the collection are from around the year 300 A.D or before.</p><p><a href=\"/art/\" target=\"metcollection\">The visualisation</a> was made using D3.js after the raw data had been consolidated into JSON using PHP.</p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Data Vis",
+		"title":"UFWC Map",
+		"url":"/football/world-champions.html",
+		"thumb":"images/ufwc-map.png",
+		"content":"<p>Following on from my previous <a class=\"ext\" href=\"/football/\" target=\"football\">UFWC data visualisation</a> I wanted to show the progress of the Unofficial World Football Championship using an <a href=\"/football/world-champions.html\" target=\"footballmap\">animated interactive map</a>.</p><p>The animation shows details of all 926 matches played so far as the map updates to show which teams have held or challenged for the title.</p><p>The visualisation was built using D3.js and JQuery and all the game data was sourced from the <a class=\"ext\" href=\"http://www.ufwc.co.uk/results/\" target=\"ufwc\">UFWC website</a>.</p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Data Vis",
+		"title":"Premier League",
+		"url":"/football/path.html",
+		"thumb":"images/premier.png",
+		"content":"<p>A <a href=\"/football/path.html\" target=\"premier\">data visualisation</a> to show the distance travelled by each Premier League footballer to get to their current club. It shows the distance from the player's birthplace and the clubs they have been at along the way both individually and totalled for each club. </p><p>See which clubs cast their nets the furthest and which rely on the largest number of journeymen.</p><p>The visualisation was built using D3.js and JQuery and all the data was scraped from Wikipedia.</p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"JavaScript",
+		"title":"Codepen",
+		"url":"https://codepen.io/andybarefoot/",
+		"thumb":"images/codepen.png",
+		"content":"p>As I was spending more and more time playing with JavaScript it made sense to work directly in <a href=\"https://codepen.io/andybarefoot/\" target=\"codepen\">Codepen</a> for some of the smaller experiements. At the moment it holds a few experiements with SVGs (dynamic scaling, animation and background images).</p><p>The amount of content here will continue to grow.</p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Data Vis",
+		"title":"UFWC",
+		"url":"/football/",
+		"thumb":"images/football.png",
+		"content":"<p>The <a class=\"ext\" href=\"http://www.ufwc.co.uk/\" target=\"ufwc\">Unofficial Football World Championships</a> is a project by Paul Brown that tracks the World Champions of football as if the title were decided in the same way as boxing, i.e a team remains champions until they lose a game.</p><p>My <a href=\"/football/\" target=\"football\">data visualisation</a> shows all of the 918 \"title decider\" games that have been played so far showing how thetitle has jumped from nation to nation and continent to continent.</p><p>The visualisation was built using D3.js and JQuery and all the data was sourced from the <a class=\"ext\" href=\"http://www.ufwc.co.uk/results/\" target=\"ufwc\">UFWC website</a>.</p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Data Vis",
+		"title":"Olympics 2016",
+		"url":"/olympics/",
+		"thumb":"images/olympics.png",
+		"content":"<p>A selection of data visualisations from the <a href=\"/olympics/\" target=\"olympics\">2016 Summer Olympics</a>.</p><p>Data was either manually collected from wikipedia or scraped in real time from the BBC medal table and then stored in MySQL and formatted to CSV or JSON files.</p><p>The visualisations were built using D3.js and JQuery using some of Mike Bostock's excellent <a class=\"ext\" href=\"https://bl.ocks.org/mbostock\" target=\"d3\">examples</a> as a starting point.</p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Data Vis",
+		"title":"Cocktail Menu",
+		"url":"/cocktails/",
+		"thumb":"images/cocktails.png",
+		"content":"<p>An exercise in using D3.js and SVG to create <a href=\"/cocktails/\" target=\"cocktails\">data visualisations of cocktails</a> and their ingredients.</p><p>Inspired by this <a class=\"ext\" href=\"http://www.informationisbeautiful.net/visualizations/cocktails/\" target=\"_blank\">original visualisation</a> by Tatjana Dubovina & David McCandless I wanted to make an entirely dynamically generated version.</p><p>The data was taken from <a class=\"ext\" href=\"https://en.wikipedia.org/wiki/List_of_cocktails\" target=\"_blank\">Wikipedia</a> and is served in JSON from a MySQL database.</p><p>Each visualisation is generated programmatically from the data, including the drawing of the glass outline to create a <a href=\"/cocktails/\" target=\"cocktails\">menu of over 70 cocktails</a>.</p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Data Vis",
+		"title":"Valar Morghulis",
+		"url":"/got/",
+		"thumb":"images/got-deaths.png",
+		"content":"<p>Fans of Game of Thrones know that Valar Morghulis (all men must die) but when over 200 named characters have already gone to meet The Seven (or The Old Gods, or The Drowned God, or The Lord of Light, or The Many-Faced God of Death, or the Great Stallion, etc...) then it gets hard to keep track of the tragedy.</p><p>Fortunately Maester Barefoot has created a comprehensive record of all these deaths, whether violent, very violent or extremely violent.</p><p><a href=\"/got/\" target=\"_whip\">Valar Morghulis</a> shows every death and who was responsibly for the slaying. A kind of \"butchery tree\" if you like.</p><p>The data was scraped from the excellent <a class=\"ext\" href=\"http://gameofthrones.wikia.com/wiki/Game_of_Thrones_Wiki\" target=\"got-wiki\">Game of Thrones wiki</a> and the data representation is implemented using Mike Bostock's marvellous <a class=\"ext\" href=\"https://bl.ocks.org/mbostock\" target=\"d3\">D3 library</a>.</p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Web",
+		"title":"MP CoMParison",
+		"url":"/politics/mpcompare/",
+		"thumb":"images/mp-compare.png",
+		"content":"<p>The site <a class=\"ext\" href=\"http://www.publicwhip.org.uk/\" target=\"_whip\">the Public Whip</a> aggregates the data on how MPs in the UK parliament vote. They then group this by similar votes to provide an insight into how much each MP supports a particular policy.</p><p>However at the moment the site does not provide a tool to enable users to easily compare MPs and see their relative support for each issue.</p><p>I made a <a href=\"/politics/mpcompare/\" target=\"mp-compare\">small site</a> that scrapes the data from <a class=\"ext\" href=\"http://www.publicwhip.org.uk/\" target=\"_whip\">the Public Whip</a> and allows the user to compare support for related policies across groups of MPs. The tool also allows the user to select any policy or MP and add them to the comparison.</p><p>The site was built using PHP to scrape the data and serve via API, and AngularJS to provide the interactive front-end functionality.</p><p><a href=\"/politics/mpcompare/\" target=\"mp-compare\">CoMParison - Compare MPs on their support for key policies.</a></p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Web",
+		"title":"Social Feed",
+		"url":"https://medium.com/@andybarefoot/adding-instagram-photos-to-my-site-with-angularjs-a3eb2a436746#.m70yzvvdb",
+		"thumb":"images/medium-instagram.png",
+		"content":"<p>I updated the implementation of the social feed on this site to use AngularJS.</p><p>Due to limitations with the Instagram API I scraped my content directly from the Instagram site and wrote an API in PHP to allow the content to be pulled into the site.</p><p>I detailed the approach in a post on <a href=\"https://medium.com/@andybarefoot/adding-instagram-photos-to-my-site-with-angularjs-a3eb2a436746#.m70yzvvdb\" target=\"medium-instagram\">Medium</a>.</p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Mobile Gaming",
+		"title":"Ski VR",
+		"url":"https://play.google.com/store/apps/details?id=com.GunterGames.SkiVR",
+		"thumb":"images/ski-vr.png",
+		"content":"<p>Ski VR is a quick VR demo built for Google Cardboard but also playable without a headset.</p><p>Slide gracefully down the mountain between trees and alpine chalets in a Virtual Reality winter wonderland.</p><p>Ski VR was built in <a class=\"ext\" href=\"https://unity3d.com/\" target=\"_unity\">Unity</a> with the Google Cardboard SDK and uses 3rd party graphical assets.</p><p><a href=\"https://play.google.com/store/apps/details?id=com.GunterGames.SkiVR\" target=\"skivr\">Ski VR on Google Play.</a></p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Mobile Gaming",
+		"title":"Color Hex",
+		"url":"http://www.guntergames.com/colorhex",
+		"thumb":"images/color-hex.jpg",
+		"content":"<p>Color Hex is a mobile puzzle game for Android and iOS built and published uing the Unity platform.</p><p>The player must try and match patterns by mixing colours together on a hexagonal grid. As the patterns get more complicated the puzzle becomes more difficult.</p><p>There are 2 play modes with a combined total of 222 levels.</p><p>Color Hex was built in <a class=\"ext\" href=\"https://unity3d.com/\" target=\"_unity\">Unity</a> which supports exporting to both iOS and Android platforms.</p><p><a href=\"https://play.google.com/store/apps/details?id=com.guntergames.colourhexnew\" target=\"colorhexplay\">Color Hex on Google Play.</a><br /><a href=\"https://itunes.apple.com/gb/app/id1093790722\" target=\"colorhexitunes\">Super Color Hex on iTunes.</a></p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Mobile Gaming",
+		"title":"Super Dice",
+		"url":"http://www.guntergames.com/superdice",
+		"thumb":"images/super-dice.jpg",
+		"content":"<p>My first attempt at using the <a class=\"ext\" href=\"https://unity3d.com/\" target=\"_unity\">Unity</a> platform to create a mobile game was a mobile version of the dice game Farkle.</p><p><a href=\"http://www.guntergames.com/superdice\" target=\"sneakers\">Super Dice</a></p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Web",
+		"title":"All The Sneakers",
+		"url":"http://www.allthesneakers.com/",
+		"thumb":"images/all-the-sneakers.jpg",
+		"content":"<p>In-progress search engine of sneakers collating and comparing sneakers from a number of eCommerce sites.</p><p>Regularly spiders a number of sites and compares prices where identical sneakers appear on multiple sites.</p><p>The spiders and APIs are built in PHP, the database in MySql and the front-end uses <a class=\"ext\" href=\"http://sass-lang.com/\" target=\"_sass\">SASS</a> for the CSS. <p><a href=\"http://www.allthesneakers.com/\" target=\"sneakers\">All The Sneakers</a></p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Web",
+		"title":"Winstagram",
+		"url":"winstagram",
+		"thumb":"images/winstagram.jpg",
+		"content":"<p>More and more people are posting photos on their social web blogs. But most of them are not very good photographers. Or have poorly made cameras. The colours come out funny, the edges are all crackly and often some of the image is out of focus.</p><p>I have developed an app to restore these poor quality photographs: <a href=\"winstagram\" target=\"winstagram\" >Winstagram!</a></p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Web",
+		"title":"We can't go on like this",
+		"url":"/politics/cameron.php",
+		"thumb":"images/cameron.jpg",
+		"content":"<p>Good old David Cameron. He's so suave yet so caring. he just wants the best for the country. He says so in his lovely new <a class=\"ext\" href=\"http://www.flickr.com/photos/conservatives/4244583668/sizes/l/in/photostream/\" target=\"flickr-tory\">poster campaign</a> (NSFDuring lunch).</p><p>Deface David's poster with your own words with <a href=\"/politics/cameron.php\" target=\"cameron\">\"Make your own David Cameron poster\"</a>.</p><p>Go on, <a href=\"/politics/cameron.php\" target=\"_blank\">have a go</a>. You know you want to. Make it look like he is saying rude words. Hurr hurr hurr!</p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Web",
+		"title":"Malcolm Tucker",
+		"url":"/politics/tucker.php",
+		"thumb":"images/malcolm-tucker.jpg",
+		"content":"<p>Combines the <a href=\"/politics/cameron.php\" target=\"cameron\">David Cameron poster generator</a> with the foul-mouthed tirades of Malcolm Tucker, <a class=\"ext\" href=\"http://www.youtube.com/watch?v=LugJd6uGJqI\" target=\"youtube-tucker\">sweary spin doctor</a> from The Thick of It.</p><p>A random choice of blue bon-mot is substituted every time you click the \"Tuckerise\" button so <a href=\"/politics/tucker.php\" target=\"tucker\">click away</a>. However, be warned. He is a very very rude man and if you don't like naughty words you probably won't like this.</p>"
+	},
+	{
+		"date":"",
+		"category":"Project",
+		"subCategory":"Blog",
+		"title":"Invented by the English",
+		"url":"http://inventedbytheenglish.wordpress.com",
+		"thumb":"images/invented.jpg",
+		"content":"<p>If it was invented, it was probably invented by an Englishman.</p><p>A retired blog detailing all the greatest inventions of the English.</p>"
+	}
+]}

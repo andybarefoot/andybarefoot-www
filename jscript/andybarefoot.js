@@ -2,7 +2,7 @@ var andybarefoot = angular.module('andybarefoot', ['wu.masonry',]);
 
 andybarefoot.controller('mainController', ['$scope', '$filter', '$http', '$sce', '$timeout', function ($scope, $filter, $http, $sce, $timeout) {
 	$scope.instagramOffset = 0;
-	$scope.instagramCount = 6;
+	$scope.instagramCount = 12;
 	$scope.instagrams = [];
 	$scope.showMoreSocial = false;
 	$scope.noMoreSocial = false;

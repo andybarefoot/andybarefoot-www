@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+	<html lang="en-us" ng-app="andybarefoot">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<meta name="viewport" content="initial-scale=1.0, width=device-width" />		
+		<title>Andy Barefoot</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<meta charset="utf-8" />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+		<script src="/jscript/analyticstracking.js"></script>
+		<script src="/jscript/d3.v4.min.js"></script>
+		<script src="/jscript/imagesloaded.pkgd.min.js"></script>
+		<style>
+			body {
+				margin: 10px;
+				color: #374046;
+				background-color: #374046;
+				font-family: 'Open Sans Condensed', sans-serif;
+				font-size: 1.15em;
+				text-rendering: optimizeLegibility;
+				-webkit-font-smoothing: antialiased;
+			}
+			a {
+				color: #374046;
+			}
+			.grid {
+				display: grid;
+				grid-gap: 10px;
+				grid-template-columns: repeat(auto-fill, minmax(160px,1fr));
+				grid-auto-rows: 20px;
+				grid-auto-flow: dense;
+			}
+			.griditem {
+				background-color: #ffffff;
+			}
+			.project {
+				grid-column-end: span 2;
+				grid-row-end: span 1;
+			}
+			.instagram {
+				grid-column-end: span 1;
+				grid-row-end: span 1;
+			}
+			.instagram img{
+				width: 100%;
+			}
+/*			.data-vis {
+				grid-column-end: span 4;
+				grid-row-end: span 1;
+			}
+			.css-grid {
+				grid-column-end: span 3;
+				grid-row-end: span 1;
+			}
+			.javascript {
+				grid-column-end: span 4;
+				grid-row-end: span 1;
+			}
+			.web {
+				grid-column-end: span 3;
+				grid-row-end: span 1;
+			}
+			.mobile-gaming {
+				grid-column-end: span 4;
+				grid-row-end: span 1;
+			}
+			.blog {
+				grid-column-end: span 3;
+				grid-row-end: span 1;
+			}
+*/			.gridTitle {
+				padding: 20px;
+			}
+			.gridTitle h3{
+				font-size: 1.2em;
+				color: #ffffff;
+				text-transform: uppercase;
+			}
+			.instagram .gridTitle{
+				background-color: #ff9800;
+			}
+			.data-vis .gridTitle{
+				background-color: #f44336;
+			}
+			.css-grid .gridTitle {
+				background-color: #9c27b0;
+			}
+			.javascript .gridTitle {
+				background-color: #3f51b5;
+			}
+			.web .gridTitle {
+				background-color: #03a9f4;
+			}
+			.mobile-gaming .gridTitle {
+				background-color: #009688;
+			}
+			.blog .gridTitle {
+				background-color: #8bc34a;
+			}
+			.gridDesc{
+				padding: 10px 10px 5px 10px;
+			}
+			.gridDesc img{
+				width: 50%;
+				margin: 0 10px 10px 0;
+				float: left;
+			}
+			.gridDesc p{
+				margin-bottom: 10px;
+			}
+			#sorting {
+				text-align: center;
+				background-color: #ffffff;
+				margin-bottom: 10px;
+				padding: 10px;
+			}
+			#sorting a{
+				text-decoration: underline;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="sorting">
+			Order by: 
+			<a id="orderDate" >Date</a> |
+			<a id="orderCategory" >Category</a> |
+			<a id="orderString" >String</a> |
+			<a id="orderSize" >Size</a>
+		</div>
+		<div id="grid" class="grid">
+		</div>
+		<script>
+			d3.json("andybarefoot.json", function(data) {
+				grid = d3.select("#grid");
+				griditems = grid
+					.selectAll(".griditem")
+					.data(data.griditems)
+					.enter()
+					.append("div")
+					.attr("class", "griditem")
+					.style("background-color", function(d){
+						return d.colourHex;
+					})
+				;
+				gridcontent = griditems
+					.append("div")
+					.attr("class", "gridcontent")
+				;
+				griditems.filter(function(d){ return d.category == "Instagram"; }).classed("instagram", true);
+				griditems.filter(function(d){ return d.category == "Project"; }).classed("project", true);
+				griditems.filter(function(d){ return d.category == "Project"; }).filter(function(d){ return d.subCategory == "Data Vis"; }).classed("data-vis", true);
+				griditems.filter(function(d){ return d.category == "Project"; }).filter(function(d){ return d.subCategory == "CSS Grid"; }).classed("css-grid", true);
+				griditems.filter(function(d){ return d.category == "Project"; }).filter(function(d){ return d.subCategory == "JavaScript"; }).classed("javascript", true);
+				griditems.filter(function(d){ return d.category == "Project"; }).filter(function(d){ return d.subCategory == "Web"; }).classed("web", true);
+				griditems.filter(function(d){ return d.category == "Project"; }).filter(function(d){ return d.subCategory == "Mobile Gaming"; }).classed("mobile-gaming", true);
+				griditems.filter(function(d){ return d.category == "Project"; }).filter(function(d){ return d.subCategory == "Blog"; }).classed("blog", true);
+				gridcontent
+					.filter(function(d){ return d.category == "Project"; }) 
+					.append("div")
+					.attr("class","gridTitle")
+					.append("h3")
+					.text(function(d,i){
+						return d.subCategory + " : " + d.title;
+					})
+				;
+				gridcontent
+					.filter(function(d){ return d.category == "Instagram"; }) 
+					.append("div")
+					.attr("class","gridTitle")
+					.append("h3")
+					.text(function(d,i){
+						return d.title;
+					})
+				;
+				gridcontent
+					.filter(function(d){ return d.category == "Instagram"; }) 
+					.append("a")
+					.attr("href",function(d,i){
+						return d.url;
+					})
+					.append("img")
+					.attr("src",function(d,i){
+						return d.thumb;
+					})
+				;
+				griddesc = gridcontent
+					.append("div")
+					.attr("class","gridDesc")
+				;
+				griddesc
+					.filter(function(d){ return d.category == "Project"; }) 
+					.append("a")
+					.attr("href",function(d,i){
+						return d.url;
+					})
+					.append("img")
+					.attr("src",function(d,i){
+						return d.thumb;
+					})
+				;
+				griddesc 
+					.append("div")
+					.html(function(d,i){
+						return d.content;
+					})
+				;
+				d3
+					.select("#orderDate")
+					.on("click", function (){
+						griditems.sort(function(a, b) {
+							x = new Date(a.date);
+							y = new Date(b.date);
+							return y - x;
+						});
+					})
+				;
+
+				imagesLoaded( document.querySelector('#grid'), function( instance ) {
+					griditems
+						.each(function(d,i) {
+							rowHeight = 1;
+							while(this.querySelector('.gridcontent').getBoundingClientRect().height > this.getBoundingClientRect().height){
+								rowHeight++;
+								d3.select(this).style("grid-row-end", "span "+rowHeight);
+							}
+						})
+					;
+				});
+			});
+		</script>
+	</body>
+</html>

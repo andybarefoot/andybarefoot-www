@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="andybarefoot">
+    <head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	    <meta name="viewport" content="initial-scale=1.0, width=device-width" />    
+	    <title>Andy Barefoot | Data Visualisation</title>
+	    <meta charset="utf-8" />
+	    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+	    <link rel="stylesheet" href="/css/reset.css">
+	    <script src="/jscript/d3v4+jetpack.js"></script>
+	    <script src="/jscript/graph-scroll.js"></script>
+	    <script src="/jscript/analyticstracking.js"></script>
+		<style>
+		path {
+		  fill: none;
+		  stroke: #3F80B4;
+		  stroke-width: 3;
+		}
+		</style>
+	</head>
+    <body>
+
+<script>
+var d_t0 = "m 605.64948,125.70792 c 0,0 -99.54078,100.71185 -188.2772,49.24174 -38.6712,-22.43058 1.08103,-74.38787 -15.93116,-102.104157 -51.63406,-84.12232 -225.75063,-50.74452 -296.89856,0.72414 C 36.473079,122.81133 -20.824851,206.15978 29.955799,345.12314 73.711059,217.51389 163.42188,235.59082 150.8877,341.50244 c -169.412101,-96.8068 171.5025,-242.868497 147.72517,5.7933 19.96922,-63.393 77.89203,-176.49959 131.79402,-94.8627 8.23724,12.4755 -41.45493,30.9999 -73.8626,37.6553 113.63623,-122.60497 60.31426,-123.6243 -14.48287,-112.24214 -99.93171,15.207 -81.99064,-147.860107 66.6212,-149.897557 92.66541,-1.27045 164.67007,177.299127 141.20782,257.070697 -14.48285,49.2417 -74.5341,35.6544 -72.41425,19.5519 4.54647,-34.5349 29.68985,-19.5519 29.68985,-19.5519";
+var d = "m 556.7838,238.51151 c 33.18851,-32.43422 -21.40033,-34.28753 -68.63981,-49.02841 -63.15567,-19.70746 -99.7075,-77.73967 -29.41712,-89.759797 97.69182,-16.70596 56.57136,-42.23992 99.56551,-65.62272 2.26287,64.11408 52.79985,68.639867 65.62272,77.691227 1.13146,19.98853 -42.12989,8.75907 -70.7141,19.3285 C 511.88717,146.39684 479.84686,190.23739 428.55553,285.2771 460.9898,95.197563 252.80738,266.42004 221.88174,289.04855 409.45785,107.27659 77.338484,106.48347 31.047854,240.02009 222.75371,249.68678 288.9165,123.02037 320.6929,133.66603 c 101.82461,34.11316 13.57709,103.3369 6.03432,112.38837 14.55909,13.16742 38.46846,37.71418 38.46846,37.71418";
+
+var svg = d3.select("body")
+          .append('svg')
+          .attr('width', '700px')
+          .attr('height', '600px');
+
+
+svg.append('path')
+  .attr('d', d_t0)
+  .transition().duration(3500).delay(1000)
+  .attrTween("d", pathTween(d, 4))
+
+/* =========================================
+  path tween function by Mike Bostock 
+  https://gist.github.com/mbostock/3916621
+==========================================*/
+function pathTween(d1, precision) {
+  return function() {
+    var path0 = this,
+        path1 = path0.cloneNode(),
+        n0 = path0.getTotalLength(),
+        n1 = (path1.setAttribute("d", d1), path1).getTotalLength();
+ 
+    // Uniform sampling of distance based on specified precision.
+    var distances = [0], i = 0, dt = precision / Math.max(n0, n1);
+    while ((i += dt) < 1) distances.push(i);
+    distances.push(1);
+ 
+    // Compute point-interpolators at each distance.
+    var points = distances.map(function(t) {
+      var p0 = path0.getPointAtLength(t * n0),
+          p1 = path1.getPointAtLength(t * n1);
+      return d3.interpolate([p0.x, p0.y], [p1.x, p1.y]);
+    });
+ 
+    return function(t) {
+      return t < 1 ? "M" + points.map(function(p) { return p(t); }).join("L") : d1;
+    };
+  };
+}</script>
+
+  </body>
+</html>
+
