@@ -13,7 +13,7 @@
    height="111.211"
    width="124.285"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="square-b.svg">
+   sodipodi:docname="tile-b.svg">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -53,6 +53,6 @@
   <path
      inkscape:connector-curvature="0"
      style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     d="m 105.45077,14.08439 -75.809602,0 0,75.80965 75.809602,0 z"
-     id="path8956" />
+     d="M 67.546473,-1.6168111 51.8453,14.08439 l -22.203126,0 0,22.203101 -15.701173,15.701201 15.701173,15.701101 0,22.203102 22.203126,0 15.701173,15.701195 15.701172,-15.701195 22.203125,0 0,-22.203102 15.70118,-15.701101 -15.70118,-15.701201 0,-22.203101 -22.203125,0 -15.701172,-15.7012011 z"
+     id="path10126-2" />
 </svg>
