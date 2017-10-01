@@ -5,11 +5,11 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   width="111.211"
-   height="124.284"
-   viewBox="0 0 111.211 124.284"
+   version="1.1"
    id="svg7096"
-   version="1.1">
+   viewBox="0 0 111.211 124.284"
+   height="124.284"
+   width="111.211">
   <defs
      id="defs7098" />
   <metadata
@@ -25,7 +25,7 @@
     </rdf:RDF>
   </metadata>
   <path
-     id="path10126"
-     d="m 21.400391,29.691406 0,22.203125 15.701171,15.701172 -15.701171,15.701172 0,22.203125 22.203125,0 L 59.304688,89.798828 75.005859,105.5 l 22.203125,0 0,-22.203125 -15.701172,-15.701172 15.701172,-15.701172 0,-22.203125 -22.203125,0 -15.701171,15.701172 -15.701172,-15.701172 -22.203125,0 z"
-     style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+     style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 21.40039,105.5 22.203125,0 L 59.304687,89.798828 75.005859,105.5 l 22.203125,0 0,-22.203125 -15.701172,-15.701172 15.701172,-15.701172 0,-22.203125 -22.203125,0 -15.701172,15.701172 -15.701172,-15.701172 -22.203125,0 0,22.203125 15.701172,15.701172 -15.701172,15.701172 0,22.203125 z"
+     id="path10126" />
 </svg>
