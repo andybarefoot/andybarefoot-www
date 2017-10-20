@@ -11,7 +11,7 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="1000"
    height="923.75201"
-   viewBox="0 0 264.58333 244.40939"
+   viewBox="0 0 132.29167 122.20469"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.2 5c3e80d, 2017-08-06"
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.959798"
-     inkscape:cx="-13.448469"
-     inkscape:cy="877.01288"
+     inkscape:zoom="2.8"
+     inkscape:cx="106.09285"
+     inkscape:cy="881.70139"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -67,7 +67,7 @@
      transform="translate(0,-52.5906)">
     <g
        id="g1110"
-       transform="translate(-0.01146405,20.221726)"
+       transform="matrix(0.5,0,0,0.5,-0.01497984,36.456916)"
        style="stroke:#000000;stroke-opacity:1">
       <path
          inkscape:connector-curvature="0"
