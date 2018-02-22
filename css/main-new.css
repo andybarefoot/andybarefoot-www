@@ -6,6 +6,10 @@ body {
   text-align: center;
 }
 
+a {
+  color: #1A2830;
+}
+
 #portrait{
   width: 100%;
   margin-top: 5vw;
@@ -37,7 +41,7 @@ h1 > span{
   background-color: #C60F0F;
 }
 
-h1 > span:nth-child(2n), .collection > h2, .collection > span, .summary{
+h1 > span:nth-child(2n), .collection > h2, .collection > span{
   transform: skewY(-11deg);
   z-index: 3;
 }
@@ -99,13 +103,24 @@ h1 > span:nth-child(10){
 }
 
 .collection > .summary{
-  width: 80%;
-  height: 100%;
+  z-index: 2;
+  background-color: transparent;
+  transform: none;
+  box-shadow: none;
+  position: relative;
+}
+
+.collection > .summary > span{
+  display: block;
+  width: 80vw;
+  height: 20vw;
   margin: auto;
   background-color: white;
-  z-index: 2;
   line-height: 20vw;
   text-align: center;
+  position: relative;
+  z-index: 2;
+  transform: skewY(-11deg);
 }
 
 .summary p{
@@ -121,12 +136,33 @@ h3{
   vertical-align: middle;
   line-height: normal;
   font-weight: 700;
+  margin: 0 5vw 0 5vw;
 }
 
 .collection > li {
   margin-top: -10vw;
   height: 40vw;
   overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.collection > li:after, .collection > .summary:after {
+  position: absolute;
+  top: 10vw;
+  left: 0vw;
+  content: "";
+  background-color: #19513E;
+  width: 100vw;
+  height: 20vw;
+  z-index: -1;
+  transform: skewY(11deg);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.27);
+}
+
+.collection > .summary:after {
+  position: absolute;
+  top: 0vw;
 }
 
 .collection > li > p {
@@ -134,8 +170,21 @@ h3{
 }
 
 .collection > li > a > img {
+  z-index: 2;
   width: 80vw;
   margin-top: -10vw;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.27);
+}
+
+xh3:before {
+    content: "";
+    display: inline;
+    background: url("/images/chevron.png") no-repeat;
+    background-size: 100% 100%;
+    margin: 1.2vw 1vw 0 0;
+    width: 8vw;
+    height: 5vw;
+    float: left;
 }
 
 

@@ -28,14 +28,10 @@ function dom400(){
     var listItems = thisCollection.getElementsByTagName("li");
     for(y=0;y<listItems.length;y++){
       var newSpan = document.createElement("span");
-      newSpan.appendChild(listItems[y].getElementsByTagName("H3")[0]);
+      newSpan.appendChild(listItems[y].getElementsByTagName("a")[0]);
       thisCollection.insertBefore(newSpan, listItems[y]);
     }
 
-    // colLength = thisCollection.length;
-    // var listItems = thisCollection.getElementsByTagName("H1")[0]
-    // var newspan1 = document.createElement("span");
-    // thisCollection[y].parentNode.insertBefore(newspan1, thisCollection[y].nextSibling);
     var newspan0 = document.createElement("span");
     thisCollection.appendChild(newspan0);
     var newspan0 = document.createElement("span");
