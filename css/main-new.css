@@ -23,6 +23,16 @@ h1, h2{
   line-height: 20vw;
 }
 
+#social li {
+  display: inline;
+}
+
+#social li img{
+  width: 8vw;
+  height: 8vw;
+  margin: 0;
+}
+
 h1, .collection{
   display: grid;
   width: 100vw;
@@ -82,18 +92,12 @@ h1 > span:nth-child(10){
   box-shadow: none;
 }
 
-#social li {
-  display: inline;
-}
-
-#social li img{
-  width: 8vw;
-  height: 8vw;
-  margin: 0;
-}
-
 .collection > span:first-child, .collection > span:last-child{
   background-color: #19513E;
+}
+
+.collection:nth-child(2n+1) > span:first-child, .collection:nth-child(2n+1) > span:last-child{
+  background-color: #C60F0F;
 }
 
 .collection > h2,.collection > span{
@@ -102,7 +106,11 @@ h1 > span:nth-child(10){
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.27);
 }
 
-.collection > .summary{
+.collection:nth-child(2n+1) > h2,.collection:nth-child(2n+1) > span{
+  background-color: #FE4E00;
+}
+
+.collection:nth-child(n) > .summary{
   z-index: 2;
   background-color: transparent;
   transform: none;
@@ -115,7 +123,7 @@ h1 > span:nth-child(10){
   width: 80vw;
   height: 20vw;
   margin: auto;
-  background-color: white;
+  background-color: #D9E3E9;
   line-height: 20vw;
   text-align: center;
   position: relative;
@@ -128,6 +136,7 @@ h1 > span:nth-child(10){
   display: inline-block;
   vertical-align: middle;
   line-height: normal;
+  margin: 0 2vw 0 2vw;
 }
 
 h3{
@@ -159,6 +168,11 @@ h3{
   transform: skewY(11deg);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.27);
 }
+
+.collection:nth-child(2n+1) > li:after, .collection:nth-child(2n+1) > .summary:after {
+  background-color: #C60F0F;
+}
+
 
 .collection > .summary:after {
   position: absolute;
@@ -247,52 +261,11 @@ xh3:before {
 
 
 
-
 /*600px, 900px, 1200px, and 1800px */
 /*
 
 
 
-h1 > span:nth-child(2n), .collection > h2, .collection > h3{
-  transform: skewY(-11deg);
-  z-index: 3;
-}
-
-h1 > span:nth-child(2n){
-  background-color: #FE4E00;
-}
-
-.collection > p {
-  transform: skewY(-11deg);
-  background-color: #1A2830;
-  color: white;
-  width: 70%;
-  height: 100%;
-  margin: auto;
-  z-index: 4;
-  font-size: 4vw;
-  line-height: 5vw;
-}
-
-.collection > li{
-  position: relative;
-  z-index: 2;
-}
-
-.collection > li img{
-  margin-top: -10vw;
-  left: 15vw;
-  width: 70vw; 
-  height: 40vw; 
-  position: absolute;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.27)
-}
-
-
-
-.collection > li > p{
-  display: none;
-}
 
 
 
