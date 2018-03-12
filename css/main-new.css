@@ -15,7 +15,14 @@
 
 }
 
-@media only screen and (min-width: 600px) and (max-width: 900px) {
+@media only screen and (min-width: 901px){
+  body {
+    background-color: var(--lowlight2);
+  }
+}
+
+
+@media only screen and (min-width: 601px) and (max-width: 900px) {
   body {
     background-color: var(--neutral);
     color: var(--text-dark);
@@ -46,7 +53,8 @@
     font-size: 2.5vw;
     line-height: normal;
     font-weight: 700;
-    margin: 2vw 3vw;
+    padding: 2vw 3vw;
+    background-color: var(--highlight1);
   }
 
   a {
@@ -101,7 +109,7 @@
   #bricks li{
     grid-column-end: span 3;
     grid-row-end: span 10;
-    background-color: var(--highlight1);
+    background-color: white;
   }
 
   #social img, svg{
