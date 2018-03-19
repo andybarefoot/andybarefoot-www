@@ -156,12 +156,12 @@ function domDesktop(){
   for(var x=listCount-1;x>0;x--){
     lists[x].remove();
   }
-  var c1 = 6;
-  var r1 = 9;
-  var c2 = 2;
-  var r2 = 14;
-  var c3 = 138;
-  var r3 = 5;
+  var c1 = 1;
+  var r1 = 4;
+  var c2 = 5;
+  var r2 = 10;
+  var c3 = 96;
+  var r3 = 6;
 
   for(var x=0; x<grid3.childNodes.length; x++){
     grid1.childNodes[x].style.gridColumnStart = c1;
@@ -172,18 +172,18 @@ function domDesktop(){
     grid3.childNodes[x].style.gridRowStart = r3;
     if(x%3==2){
       c1-=10;
-      r1-=3;
+      r1-=6;
       c2-=10;
-      r2+=7;
-      c3-=7;
-      r3-=3;
+      r2+=4;
+      c3-=4;
+      r3-=6;
     }else{
       c1+=5;
-      r1+=7;
+      r1+=8;
       c2+=5;
-      r2+=2;
-      c3-=2;
-      r3+=7;
+      r2+=3;
+      c3-=3;
+      r3+=8;
     }
   }  
 }
