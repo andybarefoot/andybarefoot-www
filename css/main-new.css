@@ -37,7 +37,7 @@
     font-weight: 500;
     font-size: 1vw;
     line-height: 1.2vw;
-    background: url("/images/gridBackground.svg"), linear-gradient(var(--desktopDark3), var(--desktopDark2));
+    background: url("/images/newGridBackground2.svg"), linear-gradient(var(--desktopDark3), var(--desktopDark2));
   }
   #holder {
     display:inline-block;  
@@ -72,9 +72,12 @@
     border-top: var(--desktopLight3) 3px solid;
   }
 
-
+  #social ul {
+    margin: 0;
+    padding: 0;
+  }
   #social li {
-    display: inline;
+    float: left;
   }
   img{
     width: 100%;
@@ -83,8 +86,9 @@
   }
   svg {
     width: 2.5vw;
+    height: 2.5vw;
     fill: white;
-    margin: -1vw 1vw 0 0;
+    margin: 1vw 1vw 0 0;
   }
   a {
     color: black;
