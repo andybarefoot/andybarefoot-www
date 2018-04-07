@@ -214,13 +214,11 @@
     margin-bottom: -20px;
   }
 
-  #portrait{
-    width: 100%;
-    -webkit-filter: drop-shadow(0 0 10px  rgba(0, 0, 0, 0.27));
-    filter: drop-shadow(5px 5px 5px #222);
+  #portrait {
+    width: 113%;
     position: absolute;
-    left: 0;
-    top: -20px;
+    left: -12vw;
+    top: -3vw;
     z-index: -1;
   }
 
@@ -381,7 +379,7 @@
     text-decoration: underline;
   }
 
-  #portrait{
+  #portrait img{
     width: 100%;
     margin-top: 5vw;
     -webkit-filter: drop-shadow(0 0 10px  rgba(0, 0, 0, 0.27));

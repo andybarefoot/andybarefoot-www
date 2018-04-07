@@ -106,7 +106,7 @@ function domDesktop(){
   console.log("domDesktop");
   var h1 = document.getElementsByTagName("h1")[0];
   var portraitDiv = document.createElement("div");
-  var portrait = document.getElementsByTagName("img")[0];
+  var portrait = document.getElementById('portrait');
   portraitDiv.appendChild(portrait);
   var lists = document.getElementsByTagName("ul");
   var holder = document.createElement("div");
