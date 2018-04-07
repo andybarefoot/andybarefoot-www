@@ -224,7 +224,7 @@ function getSize(){
       document.getElementsByTagName("BODY")[0].innerHTML = bodyHTML;
       domMobile();
     }
-  }else if(window.innerWidth<=1200){
+  }else if(window.innerWidth<=900){
     newDisplayMode = "tablet";
     if(newDisplayMode!=currentDisplayMode){
       currentDisplayMode = "tablet";

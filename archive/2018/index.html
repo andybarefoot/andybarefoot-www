@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="andybarefoot">
+    <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<meta name="viewport" content="initial-scale=1.0, width=device-width" />		
+		<title>Andy Barefoot</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main-r.css">
+		<meta charset="utf-8" />
+		<link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+		<script src="/jscript/analyticstracking.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="jscript/imagesloaded.pkgd.min.js"></script>
+		<script src="jscript/masonry.pkgd.min.js"></script>
+        <script src="//code.angularjs.org/1.3.0-rc.1/angular.min.js"></script>
+        <script src="jscript/angular-masonry.min.js"></script>
+        <script src="jscript/andybarefoot.js"></script>
+		<script>
+			document.createElement('header');
+			jQuery(document).ready(function( $ ) {
+				$(function(){
+					$(".projectTitle").click(function(){
+						$(this).siblings(".projectDesc").slideToggle();
+					});
+				});
+				$(function(){
+					$(".highlightTitle").click(function(){
+						$(this).siblings(".projectDesc").slideToggle();
+					});
+				});
+			});
+		</script>
+    </head>
+    <body>
+		<div id="contact"><!-- contact -->
+			<header>
+				<hgroup>
+					<img id="portrait" src="images/andy-barefoot-portrait.png" alt="Andy Barefoot - Digital Professional" />
+					<div id="summary">
+						<h1><a href="/">Andy Barefoot</a></h1>		
+						<p>Digital professional with over 15 years experience of programming, management and digital strategy at Cond&eacute; Nast and adidas.</p>
+					</div>
+					<ul>
+						<li><a href="https://www.linkedin.com/in/andybarefoot/" target="_blank"><img src="images/icons/png64/linkedin.png" /></a></li>
+						<li><a href="https://codepen.io/andybarefoot/" target="_blank"><img src="images/icons/png64/codepen.png" /></a></li>
+						<li><a href="https://medium.com/@andybarefoot/" target="_blank"><img src="images/icons/png64/medium.png" /></a></li>
+						<li><a href="https://github.com/andybarefoot" target="_blank"><img src="images/icons/png64/github.png" /></a></li>
+						<li><a href="http://twitter.com/andybarefoot" target="_blank"><img src="images/icons/png64/twitter.png" /></a></li>
+						<li><a href="http://instagram.com/andybarefoot" target="_blank"><img src="images/icons/png64/instagram.png" /></a></li>
+						<li><a href="http://www.facebook.com/profile.php?id=729980577" target="_blank"><img src="images/icons/png64/facebook.png" /></a></li>
+						<li><a href="mailto:andy@andybarefoot.com"><img src="images/icons/png64/email.png" /></a></li>
+					</ul>
+				</hgroup>
+			</header>
+		</div><!-- contact -->
+		<div id="projects">
+			<div id="projectTitle" class="sectionTitle">
+				<h2>Personal Projects</h2>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>CSS Grid: Rodchenko poster layout</h3></div>
+				<div class="projectDesc">
+					<a href="https://codepen.io/andybarefoot/full/GMvygq" target="booksPoster"><img src="images/books.png" /></a>
+					<p>A CSS Grid layout experiment on <a href="https://codepen.io/andybarefoot/full/GMvygq" target="booksPoster">CodePen</a> using CSS Grid and CSS transformations and perspective.</p>
+					<p>The layout is based on the famous 1924 poster by Alexander Rodchenko for the Gosizdat publishing house.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>CSS Grid: Animated lizard tiles</h3></div>
+				<div class="projectDesc">
+					<a href="https://codepen.io/andybarefoot/full/MEbORa" target="animatedLizards"><img src="images/lizards.png" /></a>
+					<p>An experiment on <a href="https://codepen.io/andybarefoot/full/MEbORa" target="animatedLizards">CodePen</a> combining CSS Grid and SVG animation using D3.js.</p>
+					<p>The tessellated lizard tiles are based on a painting by M. C. Escher.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>CSS Grid: Diamond Grid layout</h3></div>
+				<div class="projectDesc">
+					<a href="https://codepen.io/andybarefoot/full/QqGBro" target="cssgridDiamonds"><img src="images/diamonds.png" /></a>
+					<p>A CSS Grid layout on <a href="https://codepen.io/andybarefoot/full/QqGBro" target="cssgridDiamonds">CodePen</a> with a diagonal grid that fills exactly the browser window and orders the items appropriately.</p>
+					<p>The user can specify the total number of grid items and the number of items per row. JavaScript is used to resize the grid and place the items in the correct order.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>CSS Grid: Masonry layout with CSS Grid</h3></div>
+				<div class="projectDesc">
+					<a href="https://codepen.io/andybarefoot/pen/zdbVMm" target="cssgridMasonry"><img src="images/cssgrid-masonry.png" /></a>
+					<p>CSS Grid makes laying out content in a grid much easier and does a good job of Masonry style layouts as long as you are able to specify the size of each grid item in advance.</p>
+					<p>I wrote an example of how you can use a little bit of JavaScript to automatically resize the grid items to get a perfect <a href="https://codepen.io/andybarefoot/pen/zdbVMm" target="cssgridMasonry" target="cssgridMasonry">Masonry layout with CSS Grid</a>.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Data Vis: Game of Thrones Allegiances</h3></div>
+				<div class="projectDesc">
+					<a href="/got/allegiances.html" target="gotmap"><img src="images/got-map.png" /></a>
+					<p>To play the Game of Thrones you will need allies. But when those allies are Petyr Baelish, Roose Bolton or Alliser Thorne you will also need stab proof armour.</p>
+					<p>This <a href="/got/allegiances.html" target="gotmap">map</a> shows all the major houses and institutions of the Game of Thrones world with the many, many allegiances and connections to the hundreds of characters in the show.</p>
+					<p><a href="/got/allegiances.html" target="gotmap">The visualisation</a> was built using D3.js using data from the excellent <a class="ext" href="http://gameofthrones.wikia.com/wiki/Game_of_Thrones_Wiki" target="got-wiki">Game of Thrones wiki</a>.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>CSS Grid: Grid of Thrones</h3></div>
+				<div class="projectDesc">
+					<a href="/got/grid.html" target="gotgrid"><img src="images/got-grid.png" /></a>
+					<p>The dilligent and learned maesters at the excellent <a class="ext" href="http://gameofthrones.wikia.com/wiki/Game_of_Thrones_Wiki" target="got-wiki">Game of Thrones wiki</a> have documented everything you could ever need to know about Game of Thrones. This includes every character who has appeared in the show. From Daenerys Tagaryen to Othell Yarwyck to "Dwarf Hunter 2". If they speak a line or even if they are just an interesting corpse they will be on the site.</p>
+					<p>I used this data as the basis for an experiment using CSS Grid to create a grid whose elements expand to show more content when clicked.</p>
+					<p><a href="/got/grid.html" target="gotgrid">The grid</a> was built using D3.js to load in the data and populate the grid with content.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Data Vis: The Met Collection</h3></div>
+				<div class="projectDesc">
+					<a href="/art/" target="metcollection"><img src="images/met-collection.png" /></a>
+					<p><a class="ext" href="http://www.metmuseum.org/" target="met">The Metropolitan Museum of Art</a> recently published to GitHub the <a class="ext" href="https://github.com/metmuseum/openaccess" target="metgithub">details of 446,029 objects</a> from their collection.</p>
+					<p>This data visualisation attemts to show the distribution of the entire collection by date and to show the difference in age depending on the type of artifact. For example, the majority of vases in the collection are from around the year 300 A.D or before.</p>
+					<p><a href="/art/" target="metcollection">The visualisation</a> was made using D3.js after the raw data had been consolidated into JSON using PHP.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Data Vis: UFWC Map</h3></div>
+				<div class="projectDesc">
+					<a href="/football/world-champions.html" target="footballmap"><img src="images/ufwc-map.png" /></a>
+					<p>Following on from my previous <a class="ext" href="/football/" target="football">UFWC data visualisation</a> I wanted to show the progress of the Unofficial World Football Championship using an <a href="/football/world-champions.html" target="footballmap">animated interactive map</a>.</p>
+					<p>The animation shows details of all 926 matches played so far as the map updates to show which teams have held or challenged for the title.</p>
+					<p>The visualisation was built using D3.js and JQuery and all the game data was sourced from the <a class="ext" href="http://www.ufwc.co.uk/results/" target="ufwc">UFWC website</a>.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Data Vis: Premier League</h3></div>
+				<div class="projectDesc">
+					<a href="/football/path.html" target="premier"><img src="images/premier.png" /></a>
+					<p>A <a href="/football/path.html" target="premier">data visualisation</a> to show the distance travelled by each Premier League footballer to get to their current club. It shows the distance from the player's birthplace and the clubs they have been at along the way both individually and totalled for each club. </p>
+					<p>See which clubs cast their nets the furthest and which rely on the largest number of journeymen.</p>
+					<p>The visualisation was built using D3.js and JQuery and all the data was scraped from Wikipedia.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Javascript: Codepen</h3></div>
+				<div class="projectDesc">
+					<a href="https://codepen.io/andybarefoot/" target="codepen"><img src="images/codepen.png" /></a>
+					<p>As I was spending more and more time playing with JavaScript it made sense to work directly in <a href="https://codepen.io/andybarefoot/" target="codepen">Codepen</a> for some of the smaller experiements. At the moment it holds a few experiements with SVGs (dynamic scaling, animation and background images).</p>
+					<p>The amount of content here will continue to grow.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Data Vis: UFWC</h3></div>
+				<div class="projectDesc">
+					<a href="/football/" target="football"><img src="images/football.png" /></a>
+					<p>The <a class="ext" href="http://www.ufwc.co.uk/" target="ufwc">Unofficial Football World Championships</a> is a project by Paul Brown that tracks the World Champions of football as if the title were decided in the same way as boxing, i.e a team remains champions until they lose a game.</p>
+					<p>My <a href="/football/" target="football">data visualisation</a> shows all of the 918 "title decider" games that have been played so far showing how thetitle has jumped from nation to nation and continent to continent.</p>
+					<p>The visualisation was built using D3.js and JQuery and all the data was sourced from the <a class="ext" href="http://www.ufwc.co.uk/results/" target="ufwc">UFWC website</a>.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Data vis: Olympics 2016</h3></div>
+				<div class="projectDesc">
+					<a href="/olympics/" target="olympics"><img src="images/olympics.png" /></a>
+					<p>A selection of data visualisations from the <a href="/olympics/" target="olympics">2016 Summer Olympics</a>.</p>
+					<p>Data was either manually collected from wikipedia or scraped in real time from the BBC medal table and then stored in MySQL and formatted to CSV or JSON files.</p>
+					<p>The visualisations were built using D3.js and JQuery using some of Mike Bostock's excellent <a class="ext" href="https://bl.ocks.org/mbostock" target="d3">examples</a> as a starting point.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Data Vis: Cocktail Menu</h3></div>
+				<div class="projectDesc">
+					<a href="/cocktails/" target="cocktails"><img src="images/cocktails.png" /></a>
+					<p>An exercise in using D3.js and SVG to create <a href="/cocktails/" target="cocktails">data visualisations of cocktails</a> and their ingredients.</p>
+					<p>Inspired by this <a class="ext" href="http://www.informationisbeautiful.net/visualizations/cocktails/" target="_blank">original visualisation</a> by Tatjana Dubovina & David McCandless I wanted to make an entirely dynamically generated version.</p>
+					<p>The data was taken from <a class="ext" href="https://en.wikipedia.org/wiki/List_of_cocktails" target="_blank">Wikipedia</a> and is served in JSON from a MySQL database.</p>
+					<p>Each visualisation is generated programmatically from the data, including the drawing of the glass outline to create a <a href="/cocktails/" target="cocktails">menu of over 70 cocktails</a>.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Data Vis: Valar Morghulis</h3></div>
+				<div class="projectDesc">
+					<a href="/got/" target="got"><img src="images/got-deaths.png" /></a>
+					<p>Fans of Game of Thrones know that Valar Morghulis (all men must die) but when over 200 named characters have already gone to meet The Seven (or The Old Gods, or The Drowned God, or The Lord of Light, or The Many-Faced God of Death, or the Great Stallion, etc...) then it gets hard to keep track of the tragedy.</p>
+					<p>Fortunately Maester Barefoot has created a comprehensive record of all these deaths, whether violent, very violent or extremely violent.</p>
+					<p><a href="/got/" target="_whip">Valar Morghulis</a> shows every death and who was responsibly for the slaying. A kind of "butchery tree" if you like.</p>
+					<p>The data was scraped from the excellent <a class="ext" href="http://gameofthrones.wikia.com/wiki/Game_of_Thrones_Wiki" target="got-wiki">Game of Thrones wiki</a> and the data representation is implemented using Mike Bostock's marvellous <a class="ext" href="https://bl.ocks.org/mbostock" target="d3">D3 library</a>.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Web: MP CoMParison</h3></div>
+				<div class="projectDesc">
+					<a href="/politics/mpcompare/" target="mp-compare"><img src="images/mp-compare.png" /></a>
+					<p>The site <a class="ext" href="http://www.publicwhip.org.uk/" target="_whip">the Public Whip</a> aggregates the data on how MPs in the UK parliament vote. They then group this by similar votes to provide an insight into how much each MP supports a particular policy.</p>
+					<p>However at the moment the site does not provide a tool to enable users to easily compare MPs and see their relative support for each issue.</p>
+					<p>I made a <a href="/politics/mpcompare/" target="mp-compare">small site</a> that scrapes the data from <a class="ext" href="http://www.publicwhip.org.uk/" target="_whip">the Public Whip</a> and allows the user to compare support for related policies across groups of MPs. The tool also allows the user to select any policy or MP and add them to the comparison.</p>
+					<p>The site was built using PHP to scrape the data and serve via API, and AngularJS to provide the interactive front-end functionality.</p>
+					<p><a href="/politics/mpcompare/" target="mp-compare">CoMParison - Compare MPs on their support for key policies.</a></p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Web: Social Feed</h3></div>
+				<div class="projectDesc">
+					<a href="https://medium.com/@andybarefoot/adding-instagram-photos-to-my-site-with-angularjs-a3eb2a436746#.m70yzvvdb" target="medium-instagram"><img src="images/medium-instagram.png" /></a>
+					<p>I updated the implementation of the social feed on this site to use AngularJS.</p>
+					<p>Due to limitations with the Instagram API I scraped my content directly from the Instagram site and wrote an API in PHP to allow the content to be pulled into the site.</p>
+					<p>I detailed the approach in a post on <a href="https://medium.com/@andybarefoot/adding-instagram-photos-to-my-site-with-angularjs-a3eb2a436746#.m70yzvvdb" target="medium-instagram">Medium</a>.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Mobile Gaming: Ski VR</h3></div>
+				<div class="projectDesc">
+					<a href="https://play.google.com/store/apps/details?id=com.GunterGames.SkiVR" target="skivr"><img src="images/ski-vr.png" /></a>
+					<p>Ski VR is a quick VR demo built for Google Cardboard but also playable without a headset.</p>
+					<p>Slide gracefully down the mountain between trees and alpine chalets in a Virtual Reality winter wonderland.</p>
+					<p>Ski VR was built in <a class="ext" href="https://unity3d.com/" target="_unity">Unity</a> with the Google Cardboard SDK and uses 3rd party graphical assets.</p>
+					<p><a href="https://play.google.com/store/apps/details?id=com.GunterGames.SkiVR" target="skivr">Ski VR on Google Play.</a></p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Mobile Gaming: Color Hex</h3></div>
+				<div class="projectDesc">
+					<a href="http://www.guntergames.com/colorhex" target="colorhex"><img src="images/color-hex.jpg" /></a>
+					<p>Color Hex is a mobile puzzle game for Android and iOS built and published uing the Unity platform.</p>
+					<p>The player must try and match patterns by mixing colours together on a hexagonal grid. As the patterns get more complicated the puzzle becomes more difficult.</p>
+					<p>There are 2 play modes with a combined total of 222 levels.</p>
+					<p>Color Hex was built in <a class="ext" href="https://unity3d.com/" target="_unity">Unity</a> which supports exporting to both iOS and Android platforms.</p>
+					<p><a href="https://play.google.com/store/apps/details?id=com.guntergames.colourhexnew" target="colorhexplay">Color Hex on Google Play.</a><br />
+					<a href="https://itunes.apple.com/gb/app/id1093790722" target="colorhexitunes">Super Color Hex on iTunes.</a></p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Mobile Gaming: Super Dice</h3></div>
+				<div class="projectDesc">
+					<a href="http://www.guntergames.com/superdice" target="sneakers"><img src="images/super-dice.jpg" /></a>
+					<p>My first attempt at using the <a class="ext" href="https://unity3d.com/" target="_unity">Unity</a> platform to create a mobile game was a mobile version of the dice game Farkle.</p>
+					<p><a href="http://www.guntergames.com/superdice" target="sneakers">Super Dice</a></p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Web: All The Sneakers</h3></div>
+				<div class="projectDesc">
+					<a href="http://www.allthesneakers.com/" target="sneakers"><img src="images/all-the-sneakers.jpg" /></a>
+					<p>In-progress search engine of sneakers collating and comparing sneakers from a number of eCommerce sites.</p>
+					<p>Regularly spiders a number of sites and compares prices where identical sneakers appear on multiple sites.</p>
+					<p>The spiders and APIs are built in PHP, the database in MySql and the front-end uses <a class="ext" href="http://sass-lang.com/" target="_sass">SASS</a> for the CSS. 
+					<p><a href="http://www.allthesneakers.com/" target="sneakers">All The Sneakers</a></p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Web: Winstagram</h3></div>
+				<div class="projectDesc">
+					<a href="winstagram" target="winstagram" ><img src="images/winstagram.jpg" /></a>
+					<p>More and more people are posting photos on their social web blogs. But most of them are not very good photographers. Or have poorly made cameras. The colours come out funny, the edges are all crackly and often some of the image is out of focus.</p>
+					<p>I have developed an app to restore these poor quality photographs: <a href="winstagram" target="winstagram" >Winstagram!</a></p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Web: We can't go on like this</h3></div>
+				<div class="projectDesc">
+					<a href="/politics/cameron.php" target="cameron"><img src="images/cameron.jpg" /></a>
+					<p>Good old David Cameron. He's so suave yet so caring. he just wants the best for the country. He says so in his lovely new <a class="ext" href="http://www.flickr.com/photos/conservatives/4244583668/sizes/l/in/photostream/" target="flickr-tory">poster campaign</a> (NSFDuring lunch).</p>
+					<p>Deface David's poster with your own words with <a href="/politics/cameron.php" target="cameron">"Make your own David Cameron poster"</a>.</p>
+					<p>Go on, <a href="/politics/cameron.php" target="_blank">have a go</a>. You know you want to. Make it look like he is saying rude words. Hurr hurr hurr!</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Web: Malcolm Tucker</h3></div>
+				<div class="projectDesc">
+					<a href="/politics/tucker.php" target="tucker"><img src="images/malcolm-tucker.jpg" /></a>
+					<p>Combines the <a href="/politics/cameron.php" target="cameron">David Cameron poster generator</a> with the foul-mouthed tirades of Malcolm Tucker, <a class="ext" href="http://www.youtube.com/watch?v=LugJd6uGJqI" target="youtube-tucker">sweary spin doctor</a> from The Thick of It.</p>
+					<p>A random choice of blue bon-mot is substituted every time you click the "Tuckerise" button so <a href="/politics/tucker.php" target="tucker">click away</a>. However, be warned. He is a very very rude man and if you don't like naughty words you probably won't like this.</p>
+				</div>
+			</div>
+			<div class="project">
+				<div class="projectTitle"><h3>Blog: Invented by the English</h3></div>
+				<div class="projectDesc">
+					<a href="http://inventedbytheenglish.wordpress.com" target="english"><img src="images/invented.jpg" /></a>
+					<p>If it was invented, it was probably invented by an Englishman.</p>
+					<p>A retired blog detailing all the greatest inventions of the English.</p>
+				</div>
+			</div>
+		</div><!-- projects -->
+		<div id="highlights">
+			<div id="highlightTitle" class="sectionTitle">
+				<h2>Work Highlights</h2>
+			</div>
+			<div class="highlight">
+				<div class="highlightTitle"><h3>The Scene</h3></div>
+				<div class="projectDesc">
+					<a href="http://www.thescene.de/" target="the-scene"><img src="images/the-scene.jpg" /></a>
+					<p>Cond&eacute; Nast wanted to provide a showcase for the large amount of high quality video content made across the many different titles and countries.</p>
+					<p>The Scene brings all that content together using the Brightcove  platform to serve the videos.</p>
+					<p><a href="http://www.thescene.de" target="the-scene">The Scene Germany</a></p>
+				</div>
+			</div>
+			<div class="highlight">
+				<div class="highlightTitle"><h3>WIRED Germany</h3></div>
+				<div class="projectDesc">
+					<a href="http://www.wired.de" target="wired"><img src="images/wired-germany.jpg" /></a>
+					<p>I was Product Owner for the digital launch of WIRED magazine in Germany.</p>
+					<p>WIRED Germany is the first Cond&eacute; Nast title to have a digital membership model with some content only visible to subscribers.</p>
+					<p>We launched a responsive website with the emphasis on giving the long form in-depth articles the presentation they deserve.</p>
+					<p><a href="http://www.wired.de" target="wired">WIRED Germany</a></p>
+				</div>
+			</div>
+			<div class="highlight">
+				<div class="highlightTitle"><h3>Cond&eacute; Nast Hackathon</h3></div>
+				<div class="projectDesc">
+					<a href="http://www.whatsnewinpublishing.co.uk/content/f%E2%80%99nito-winner-cond%C3%A9-nast-international-hackathon" target="fnito"><img src="images/conde-nast-fnito.jpg" /></a>
+					<p>I took part in the first Cond&eacute; Nast International Hackathon joining with the "F&#8217;Nito" team to help them develop their cross-platform content concept.</p>
+					<p>F&#8217;Nito enables the user to read or listen to an article on any of their devices seamlessly switching from text to audio and back and maintaining their place as they switch devices.</p>
+					<p>F&#8217;Nito won the first prize at the hackathon.</p>
+					<p><a href="https://www.youtube.com/watch?v=gDkb41jttqI" target="fnito">Cond&eacute; Nast Hackathon</a></p>
+				</div>
+			</div>
+			<div class="highlight">
+				<div class="highlightTitle"><h3>adidas.com</h3></div>
+				<div class="projectDesc">
+					<a href="http://www.adidas.co.uk" target="adidas"><img src="images/adidas.jpg" /></a>
+					<p>As Director Digital Brand Platforms I led the implementation of the adidas.com global redesign for the Global Marketing department.</p>
+					<p>The site integrates a global CMS that supports each of the local markets as well as the global team.</p>
+					<p><a href="http://www.adidas.co.uk" target="adidas">adidas</a></p>
+				</div>
+			</div>
+			<div class="highlight">
+				<div class="highlightTitle"><h3>adidas Go All In</h3></div>
+				<div class="projectDesc">
+					<a href="http://discover.adidas.co.uk/goallin/" target="goallin"><img src="images/go-all-in.jpg" /></a>
+					<p>The adidas Go All In platform highlighted the breadth of the adidas brand across all sports as well as the Street and Style side of the business.</p>
+					<p>I was the adidas person responsible for the technical implementation of the platform and CMS.</p>
+					<p>The site was launched globally across over 40 markets.</p>
+					<p><a href="http://discover.adidas.co.uk/goallin/" target="goallin">Go All In</a></p>
+				</div>
+			</div>
+			<div class="highlight">
+				<div class="highlightTitle"><h3>adidas Store Finder</h3></div>
+				<div class="projectDesc">
+					<a href="http://discover.adidas.co.uk/storefinder/#/" target="store-finder"><img src="images/adidas-store-finder.jpg" /></a>
+					<p>The adidas Store finder was the first responsive functionality on the adidas.com platform, designed to display well on both web and mobile devices.</p>
+					<p>As well as the front end implementation with Google Maps we also used the Google API to tidy up and validate the thousands of store records which until that point had been maintained manually on disparate documents throughout the organisation.</p>
+					<p> We developed a central database with an easy to use buusiness interface and provided an API allowing store data to be integrated into marketing campaigns wherever they were integrated.</p>
+					<p><a href="http://discover.adidas.co.uk/storefinder/#/" target="store-finder">adidas Store Finder</a></p>
+				</div>
+			</div>
+			<div class="highlight">
+				<div class="highlightTitle"><h3>The Webby Awards</h3></div>
+				<div class="projectDesc">
+					<a href="http://webbyawards.com/winners/2009/web/site-features-and-design-categories/best-homewelcome-page/adidascom-homepage/" target="webby"><img src="images/webby.jpg" /></a>
+					<p>The adidas.com redesigned home page won the "Web: Best Home/Welcome Page" at the Webby Awards 2009.</p>
+					<p>I worked on the project from the adidas side with the agencies Molecular and de-construct.</p>
+					<p><a href="http://webbyawards.com/winners/2009/web/site-features-and-design-categories/best-homewelcome-page/adidascom-homepage/" target="webby">The Webby Awards</a></p>
+				</div>
+			</div>
+		</div><!-- highlights -->
+		<div id="social" ng-controller="mainController">
+			<div id="socialTitle" class="sectionTitle">
+				<h2>Social Feed</h2>
+			</div><!-- socialTitle -->
+			<div masonry  preserve-order id="container">
+				<!-- SOCIAL CONTENT -->
+				<div class="item masonry-brick" ng-repeat="instagram in instagrams">
+					<div class="facebook-post" ng-if="instagram.facebook">
+						<div class="dateText">
+							<a ng-if="instagram.facebook" ng-href="{{facebookPostLink(instagram.id)}}" target="_blank"><img src="images/icons/png32/facebook.png" width="24" height="24" /></a>
+							<a ng-if="!instagram.facebook" ng-href="{{userURLString(instagram.owner.id)}}" target="_blank"><img src="images/icons/png32/instagram.png" width="24" height="24" /></a>
+							Facebook | {{ instagram.date * 1000 | date:'d MMMM yyyy' }}
+						</div><!-- class: dateText -->
+<!-- 'type' options - status : photo : link : video -->
+						<p ng-bind-html="renderHtml(instagram.message)"></p>
+						<div ng-if="instagram.type!='status'" class="facebook-link">
+							<a ng-if="instagram.link" ng-href="{{instagram.link}}" target="_blank">
+
+								<img class="facebook-image" ng-if="instagram.full_picture && instagram.type == 'photo'" ng-src="{{ instagram.full_picture }}" />
+
+								<img class="facebook-image" ng-if="instagram.picture && instagram.type != 'photo'" ng-src="{{ instagram.picture }}" />
+
+							</a>
+							<a ng-if="instagram.link" ng-href="{{instagram.link}}" target="_blank"><h4 ng-if="instagram.name">{{ instagram.name }}</h4></a>
+							<p class="facebook-caption" ng-if="instagram.caption">{{ instagram.caption }}</p>
+							<p class="facebook-description" ng-if="instagram.description">{{ instagram.description }}</p>
+						</div>
+						<p>
+						</p>
+					</div>
+					<div class="instagram-post" ng-if="!instagram.facebook">
+						<div class="dateText">
+							<a ng-if="instagram.facebook" ng-href="{{facebookPostLink(instagram.id)}}" target="_blank"><img src="images/icons/png32/facebook.png" width="24" height="24" /></a>
+							<a ng-if="!instagram.facebook" ng-href="{{userURLString(instagram.owner.id)}}" target="_blank"><img src="images/icons/png32/instagram.png" width="24" height="24" /></a>
+							{{ userNameString(instagram.owner.id) }}{{ instagram.date * 1000 | date:'d MMMM yyyy' }}
+						</div><!-- class: dateText -->
+						<img ng-click="instagram.is_clicked = true" class="video-play" ng-if="instagram.is_video && !instagram.is_clicked" src="images/video-icon.png" />
+						<img ng-src="{{ getImage(instagram.local_image) }}" alt="{{ instagram.caption }}" ng-show="!instagram.is_clicked" />
+						<video ng-if="instagram.is_video && instagram.is_clicked" controls="controls" autoplay poster="{{ getImage(instagram.local_image) }}" name="Video Name" ng-src="{{ getVideo(instagram.local_video) }}"></video>
+						<p>{{ instagram.caption }}</p>
+					</div>
+				</div><!-- class: item -->
+			</div><!-- container -->
+			<div id="more" class="dateText" ng-show="showMoreSocial" ng-click="loadMoreSocial()">LOAD MORE SOCIAL FEED</div>
+			<div id="all" class="dateText" ng-show="noMoreSocial">SOCIAL FEED FULLY LOADED</div>
+		</div><!-- social -->
+	</body>
+</html>
