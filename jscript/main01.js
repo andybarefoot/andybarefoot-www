@@ -46,7 +46,6 @@ function domTablet(){
   console.log("domTablet");
   var header = document.getElementsByTagName("h1")[0];
   var headerArr = header.innerHTML.split("<br>");
-  var intro = document.getElementById('intro');
   var social = document.getElementById('social');
 
   for(x=0;x<headerArr.length;x++){
@@ -58,11 +57,8 @@ function domTablet(){
     newList.appendChild(header);
     social.appendChild(newList);
   }
-  var newIntro = document.createElement("li");
-  newIntro.appendChild(intro);
-  social.appendChild(newIntro);
   document.getElementsByTagName("h1")[0].remove();
-  for(x=0;x<16;x++){
+  for(x=0;x<17;x++){
     var newHole = document.createElement("li");
     newHole.classList.add("hole");
     social.appendChild(newHole);
