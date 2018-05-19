@@ -164,12 +164,21 @@ function domDesktop(){
   for(var x=listCount-1;x>0;x--){
     lists[x].remove();
   }
-  var c1 = 6;
-  var r1 = 9;
-  var c2 = 2;
-  var r2 = 14;
-  var c3 = 138;
-  var r3 = 5;
+  if(currentDisplayMode == "bigdesktop"){
+    var c1 = 5;
+    var r1 = 8;
+    var c2 = 2;
+    var r2 = 14;
+    var c3 = 138;
+    var r3 = 5;
+  }else{
+    var c1 = 6;
+    var r1 = 9;
+    var c2 = 2;
+    var r2 = 14;
+    var c3 = 138;
+    var r3 = 5;
+  }
 
   for(var x=0; x<grid3.childNodes.length; x++){
     grid1.childNodes[x].style.gridColumnStart = c1;
@@ -178,20 +187,38 @@ function domDesktop(){
     grid2.childNodes[x+3].style.gridRowStart = r2;
     grid3.childNodes[x].style.gridColumnStart = c3;
     grid3.childNodes[x].style.gridRowStart = r3;
-    if(x%3==2){
-      c1-=10;
-      r1-=3;
-      c2-=10;
-      r2+=7;
-      c3-=7;
-      r3-=3;
+    if(currentDisplayMode == "bigdesktop"){
+      if(x%4==3){
+        c1-=12;
+        r1-=6;
+        c2-=12;
+        r2+=6;
+        c3-=6;
+        r3-=6;
+      }else{
+        c1+=4;
+        r1+=5;
+        c2+=4;
+        r2+=1;
+        c3-=1;
+        r3+=5;
+      }
     }else{
-      c1+=5;
-      r1+=7;
-      c2+=5;
-      r2+=2;
-      c3-=2;
-      r3+=7;
+      if(x%3==2){
+        c1-=10;
+        r1-=3;
+        c2-=10;
+        r2+=7;
+        c3-=7;
+        r3-=3;
+      }else{
+        c1+=5;
+        r1+=7;
+        c2+=5;
+        r2+=2;
+        c3-=2;
+        r3+=7;
+      }
     }
   }  
 }
@@ -239,10 +266,17 @@ function getSize(){
       document.getElementsByTagName("BODY")[0].innerHTML = bodyHTML;
       domTablet();
     }
-  }else{
+  }else if(window.innerWidth<=1600){
     newDisplayMode = "desktop";
     if(newDisplayMode!=currentDisplayMode){
       currentDisplayMode = "desktop";
+      document.getElementsByTagName("BODY")[0].innerHTML = bodyHTML;
+      domDesktop();
+    }
+  }else{
+    newDisplayMode = "bigdesktop";
+    if(newDisplayMode!=currentDisplayMode){
+      currentDisplayMode = "bigdesktop";
       document.getElementsByTagName("BODY")[0].innerHTML = bodyHTML;
       domDesktop();
     }
