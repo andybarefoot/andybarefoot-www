@@ -153,6 +153,17 @@ function domDesktop(){
               grid1.appendChild(dupNode);
             }else if(listItems[y].childNodes[z].childNodes[0].nodeName=="IMG"){
               var dupNode = listItems[y].childNodes[z].cloneNode(true);
+              if(lists[x].id=="css"){
+                dupNode.classList.add("subCss");
+              }else if(lists[x].id=="posts"){
+                dupNode.classList.add("subPost");
+              }else if(lists[x].id=="datavis"){
+                dupNode.classList.add("subData");
+              }else if(lists[x].id=="mobile"){
+                dupNode.classList.add("subMobile");
+              }else if(lists[x].id=="web"){
+                dupNode.classList.add("subWeb");
+              } 
               grid3.appendChild(dupNode);
             }
           }

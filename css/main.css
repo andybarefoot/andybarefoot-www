@@ -45,7 +45,7 @@
   #holder {
     display:inline-block;  
     width: 95vw;
-    height: 630vw;
+    height: 750vw;
     overflow: hidden;
     position: relative;
     margin: 0;
@@ -96,8 +96,28 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    border-top: 3px solid var(--desktopLight2);
+    border-right: 3px solid var(--desktopLight2);
   }
+
+  #grid3 a { 
+    position: relative;
+  }
+
+  #grid3 a::before { 
+    font-family: 'Bungee', cursive;
+    color: var(--desktopDark1);
+    background-color:  var(--desktopLight2);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 1.8vw;
+  }
+
+  .subCss::before { content: "CSS"; }
+  .subPost::before { content: "POST"; }
+  .subData::before { content: "DATA VIS"; }
+  .subMobile::before { content: "MOBILE"; }
+  .subWeb::before { content: "WEB"; }
 
   svg {
     width: 3vw;
@@ -267,7 +287,7 @@
     grid-row-start: 5;
   }
   #holder {
-    height: 410vw;
+    height: 480vw;
   }
 }
 
