@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en-uk">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />    
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/reset.css">
+    <style>
+        body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .A {
+      background-color: #F7F6F2;
+    }
+
+    .A > svg{
+      filter: url(#filterA);
+    }
+  </style>
+
+    </head>
+    <body>
+      <div class="A">
+        <svg viewBox="0 0 1200 1200" style="fill:#FD151B; height: 404px; stroke-width: 0;">
+        <defs>     
+          <filter id="filterA">
+            <!-- define some colours -->
+            <feFlood flood-color="#D01217" result="COLORred"></feFlood>
+            <feFlood flood-color="#01295F" result="COLORblue"></feFlood>
+            <feFlood flood-color="#AD661A" result="COLORgold"></feFlood>
+            <!-- load a pattern -->
+            <feImage xlink:href="fade.svg" preserveAspectRatio="xMidYMid slice" result="IMAGEfade"></feImage>
+            <!-- adjust offset -->
+            <feOffset dx="0" dy="80" in="IMAGEfade" result="IMAGEfade"></feOffset>
+            <!-- start with outline of letter and color it blue -->
+            <feComposite in="COLORblue" in2="SourceAlpha" operator="in" result="blueLetter"></feComposite>
+            <!-- use imported pattern to cut blue outline to pattern -->
+            <feComposite in="blueLetter" in2="IMAGEfade" operator="in" result="blueOverlay"></feComposite>
+            <!-- create dilated version of original letter -->
+            <feMorphology operator="dilate" radius="6" in="SourceGraphic" result="dilatedLetter"></feMorphology>
+            <!-- create bigger dilated version of original letter -->
+            <feMorphology operator="dilate" radius="6" in="dilatedLetter" result="largeDilatedLetter"></feMorphology>
+            <!-- extrude the large dilated letter to create our block shadow -->
+            <feConvolveMatrix order="8,8" divisor="1" kernelMatrix="
+                                                                    0 0 0 0 0 0 0 1 
+                                                                    0 0 0 0 0 0 1 0 
+                                                                    0 0 0 0 0 1 0 0 
+                                                                    0 0 0 0 1 0 0 0 
+                                                                    0 0 0 1 0 0 0 0 
+                                                                    0 0 1 0 0 0 0 0 
+                                                                    0 1 0 0 0 0 0 0 
+                                                                    1 0 0 0 0 0 0 0
+                                                                    " in="largeDilatedLetter" result="extrudedLetter"></feConvolveMatrix>
+            <!-- create 6 offset versions of the extrusion, offset further from the letter each time -->
+            <feOffset dx="-4" dy="4" in="extrudedLetter" result="offetExtrusion1"></feOffset>
+            <feOffset dx="-8" dy="8" in="extrudedLetter" result="offetExtrusion2"></feOffset>
+            <feOffset dx="-12" dy="12" in="extrudedLetter" result="offetExtrusion3"></feOffset>
+            <feOffset dx="-16" dy="16" in="extrudedLetter" result="offetExtrusion4"></feOffset>
+            <feOffset dx="-20" dy="20" in="extrudedLetter" result="offetExtrusion5"></feOffset>
+            <feOffset dx="-24" dy="24" in="extrudedLetter" result="offetExtrusion6"></feOffset>
+            <!-- combine the 4 offset extrusions into one element -->
+            <feMerge result="superExtrusion">
+              <feMergeNode in="offetExtrusion1"></feMergeNode>
+              <feMergeNode in="offetExtrusion2"></feMergeNode>
+              <feMergeNode in="offetExtrusion3"></feMergeNode>
+              <feMergeNode in="offetExtrusion4"></feMergeNode>
+              <feMergeNode in="offetExtrusion5"></feMergeNode>
+              <feMergeNode in="offetExtrusion6"></feMergeNode>
+            </feMerge>
+            <!-- colour this combined extrusion gold  -->
+            <feComposite in="COLORgold" in2="superExtrusion" operator="in" result="superExtrusion"></feComposite>
+            <feComposite in="superExtrusion" in2="largeDilatedLetter" operator="out" result="superExtrusion"></feComposite>
+                <feMerge result="fullMerge">
+                  <feMergeNode in="superExtrusion"></feMergeNode>
+                  <feMergeNode in="dilatedLetter"></feMergeNode>
+                  <feMergeNode in="SourceGraphic"></feMergeNode>
+                  <feMergeNode in="blueOverlay"></feMergeNode>
+                </feMerge>
+
+            </filter>
+          </defs>
+      <path id="letterPath" unicode="A" d="M695 32T695 -3Q647 0 557 0Q454 0 409 -3Q409 37 416 59Q440 64 451 71T462 93Q462 105 449 136L426 190Q293 190 182 183L169 150Q159 122 159 106Q159 65 207 59Q214 35 214 -3Q180 0 107 0Q45 0 17 -3Q17 34 25 59Q50 63 65 83T105 163L315 677Q329 680 343 681T375 682L604 169Q625 122 637 100T661 70T687 59Q695 32 695 -3ZM401 246L347 372Q321 431 300 500Q280 434 256 373L206 246H401Z" transform="scale(1.4598540145985401, -1.4598540145985401) translate(75.18248175182481, -780.6204379562043)"></path>
+      </svg>
+      </div>
+        <div class="A">
+        <img src="inspA.jpg">
+          </div>
+      <div class="A">
+        <svg viewBox="0 0 1200 1200" style="fill:#FD151B; height: 404px; stroke-width: 0;">
+        <defs>     
+          <filter id="filterA">
+            <!-- define some colours -->
+            <feFlood flood-color="#D01217" result="COLORred"></feFlood>
+            <feFlood flood-color="#01295F" result="COLORblue"></feFlood>
+            <feFlood flood-color="#AD661A" result="COLORgold"></feFlood>
+            <!-- load a pattern -->
+            <feImage xlink:href="fade.svg" preserveAspectRatio="xMidYMid slice" result="IMAGEfade"></feImage>
+            <!-- adjust offset -->
+            <feOffset dx="0" dy="80" in="IMAGEfade" result="IMAGEfade"></feOffset>
+            <!-- start with outline of letter and color it blue -->
+            <feComposite in="COLORblue" in2="SourceAlpha" operator="in" result="blueLetter"></feComposite>
+            <!-- use imported pattern to cut blue outline to pattern -->
+            <feComposite in="blueLetter" in2="IMAGEfade" operator="in" result="blueOverlay"></feComposite>
+            <!-- create dilated version of original letter -->
+            <feMorphology operator="dilate" radius="6" in="SourceGraphic" result="dilatedLetter"></feMorphology>
+            <!-- create bigger dilated version of original letter -->
+            <feMorphology operator="dilate" radius="6" in="dilatedLetter" result="largeDilatedLetter"></feMorphology>
+            <!-- extrude the large dilated letter to create our block shadow -->
+            <feConvolveMatrix order="8,8" divisor="1" kernelMatrix="
+                                                                    0 0 0 0 0 0 0 1 
+                                                                    0 0 0 0 0 0 1 0 
+                                                                    0 0 0 0 0 1 0 0 
+                                                                    0 0 0 0 1 0 0 0 
+                                                                    0 0 0 1 0 0 0 0 
+                                                                    0 0 1 0 0 0 0 0 
+                                                                    0 1 0 0 0 0 0 0 
+                                                                    1 0 0 0 0 0 0 0
+                                                                    " in="largeDilatedLetter" result="extrudedLetter"></feConvolveMatrix>
+            <!-- create 6 offset versions of the extrusion, offset further from the letter each time -->
+            <feOffset dx="-4" dy="4" in="extrudedLetter" result="offetExtrusion1"></feOffset>
+            <feOffset dx="-8" dy="8" in="extrudedLetter" result="offetExtrusion2"></feOffset>
+            <feOffset dx="-12" dy="12" in="extrudedLetter" result="offetExtrusion3"></feOffset>
+            <feOffset dx="-16" dy="16" in="extrudedLetter" result="offetExtrusion4"></feOffset>
+            <feOffset dx="-20" dy="20" in="extrudedLetter" result="offetExtrusion5"></feOffset>
+            <feOffset dx="-24" dy="24" in="extrudedLetter" result="offetExtrusion6"></feOffset>
+            <!-- combine the 4 offset extrusions into one element -->
+            <feMerge result="superExtrusion">
+              <feMergeNode in="offetExtrusion1"></feMergeNode>
+              <feMergeNode in="offetExtrusion2"></feMergeNode>
+              <feMergeNode in="offetExtrusion3"></feMergeNode>
+              <feMergeNode in="offetExtrusion4"></feMergeNode>
+              <feMergeNode in="offetExtrusion5"></feMergeNode>
+              <feMergeNode in="offetExtrusion6"></feMergeNode>
+            </feMerge>
+            <!-- colour this combined extrusion gold  -->
+            <feComposite in="COLORgold" in2="superExtrusion" operator="in" result="superExtrusion"></feComposite>
+            <feComposite in="superExtrusion" in2="largeDilatedLetter" operator="out" result="superExtrusion"></feComposite>
+                <feMerge result="fullMerge">
+                  <feMergeNode in="superExtrusion"></feMergeNode>
+                  <feMergeNode in="dilatedLetter"></feMergeNode>
+                  <feMergeNode in="SourceGraphic"></feMergeNode>
+                  <feMergeNode in="blueOverlay"></feMergeNode>
+                </feMerge>
+
+            </filter>
+          </defs>
+      <path id="letterPath" unicode="R" d="M327 356T341 364T376 372T413 364Q485 420 485 521Q485 585 447 614T329 644Q205 644 120 606T35 511Q35 488 54 474T95 456Q96 447 96 434Q96 380 78 354Q31 360 -7 395T-45 496Q-45 600 70 661T365 722Q508 722 591 672T674 526Q674 458 622 404T495 315Q531 280 595 121T695 -38Q702 -38 714 -34L733 -87Q674 -127 601 -127T495 -95T439 37Q435 54 426 100Q403 209 389 255H372Q346 255 328 276Q320 282 320 307T323 344ZM151 487Q151 506 147 515T127 541V553Q147 565 192 574T271 584Q326 584 344 579Q350 569 350 538T299 309T238 11Q166 -6 76 -6Q52 -6 43 -3Q48 59 99 244T151 487Z" transform="scale(1.1778563015312131, -1.1778563015312131) translate(153.0035335689046, -799.4122497055359)"></path>
+      </svg>
+      </div>
+      <div class="A">
+        <img src="inspA.jpg">
+        </div>
+      <div class="A">
+        <svg viewBox="0 0 1200 1200" style="fill:#FD151B; height: 404px; stroke-width: 0;">
+        <defs>     
+          <filter id="filterA">
+            <!-- define some colours -->
+            <feFlood flood-color="#D01217" result="COLORred"></feFlood>
+            <feFlood flood-color="#01295F" result="COLORblue"></feFlood>
+            <feFlood flood-color="#AD661A" result="COLORgold"></feFlood>
+            <!-- load a pattern -->
+            <feImage xlink:href="fade.svg" preserveAspectRatio="xMidYMid slice" result="IMAGEfade"></feImage>
+            <!-- adjust offset -->
+            <feOffset dx="0" dy="80" in="IMAGEfade" result="IMAGEfade"></feOffset>
+            <!-- start with outline of letter and color it blue -->
+            <feComposite in="COLORblue" in2="SourceAlpha" operator="in" result="blueLetter"></feComposite>
+            <!-- use imported pattern to cut blue outline to pattern -->
+            <feComposite in="blueLetter" in2="IMAGEfade" operator="in" result="blueOverlay"></feComposite>
+            <!-- create dilated version of original letter -->
+            <feMorphology operator="dilate" radius="6" in="SourceGraphic" result="dilatedLetter"></feMorphology>
+            <!-- create bigger dilated version of original letter -->
+            <feMorphology operator="dilate" radius="6" in="dilatedLetter" result="largeDilatedLetter"></feMorphology>
+            <!-- extrude the large dilated letter to create our block shadow -->
+            <feConvolveMatrix order="8,8" divisor="1" kernelMatrix="
+                                                                    0 0 0 0 0 0 0 1 
+                                                                    0 0 0 0 0 0 1 0 
+                                                                    0 0 0 0 0 1 0 0 
+                                                                    0 0 0 0 1 0 0 0 
+                                                                    0 0 0 1 0 0 0 0 
+                                                                    0 0 1 0 0 0 0 0 
+                                                                    0 1 0 0 0 0 0 0 
+                                                                    1 0 0 0 0 0 0 0
+                                                                    " in="largeDilatedLetter" result="extrudedLetter"></feConvolveMatrix>
+            <!-- create 6 offset versions of the extrusion, offset further from the letter each time -->
+            <feOffset dx="-4" dy="4" in="extrudedLetter" result="offetExtrusion1"></feOffset>
+            <feOffset dx="-8" dy="8" in="extrudedLetter" result="offetExtrusion2"></feOffset>
+            <feOffset dx="-12" dy="12" in="extrudedLetter" result="offetExtrusion3"></feOffset>
+            <feOffset dx="-16" dy="16" in="extrudedLetter" result="offetExtrusion4"></feOffset>
+            <feOffset dx="-20" dy="20" in="extrudedLetter" result="offetExtrusion5"></feOffset>
+            <feOffset dx="-24" dy="24" in="extrudedLetter" result="offetExtrusion6"></feOffset>
+            <!-- combine the 4 offset extrusions into one element -->
+            <feMerge result="superExtrusion">
+              <feMergeNode in="offetExtrusion1"></feMergeNode>
+              <feMergeNode in="offetExtrusion2"></feMergeNode>
+              <feMergeNode in="offetExtrusion3"></feMergeNode>
+              <feMergeNode in="offetExtrusion4"></feMergeNode>
+              <feMergeNode in="offetExtrusion5"></feMergeNode>
+              <feMergeNode in="offetExtrusion6"></feMergeNode>
+            </feMerge>
+            <!-- colour this combined extrusion gold  -->
+            <feComposite in="COLORgold" in2="superExtrusion" operator="in" result="superExtrusion"></feComposite>
+            <feComposite in="superExtrusion" in2="largeDilatedLetter" operator="out" result="superExtrusion"></feComposite>
+                <feMerge result="fullMerge">
+                  <feMergeNode in="superExtrusion"></feMergeNode>
+                  <feMergeNode in="dilatedLetter"></feMergeNode>
+                  <feMergeNode in="SourceGraphic"></feMergeNode>
+                  <feMergeNode in="blueOverlay"></feMergeNode>
+                </feMerge>
+
+            </filter>
+          </defs>
+      <path id="letterPath" unicode="Q" d="M468 -113T443 -97T406 -56T380 8Q335 -6 287 -6Q203 -6 156 42T108 195Q108 284 140 395T233 585T379 664Q409 664 431 656Q387 630 347 549T281 368T256 191V173Q256 156 258 148Q294 157 320 157Q365 157 400 130Q451 196 487 309T523 529Q523 591 513 628T474 685T395 704Q318 704 252 673T147 583T107 447Q107 420 112 408T117 393Q67 393 42 413T16 477Q16 546 72 609T222 711T419 750Q544 750 600 682T656 494Q656 420 635 336T571 175T465 52Q491 13 519 -8T590 -29Q596 -29 612 -27Q593 -76 569 -94T509 -113Q468 -113 443 -97ZM336 75T352 86Q332 120 295 120Q279 120 266 116Q280 75 314 75Q336 75 352 86Z" transform="scale(1.1587485515643106, -1.1587485515643106) translate(81.46002317497103, -832.0614136732329)"></path>
+      </svg>
+      </div>
+        <div class="A">
+        <img src="inspA.jpg">
+      </div>
+      <div class="A">
+        <svg viewBox="0 0 1200 1200" style="fill:#FD151B; height: 404px; stroke-width: 0;">
+        <defs>     
+          <filter id="filterA">
+            <!-- define some colours -->
+            <feFlood flood-color="#D01217" result="COLORred"></feFlood>
+            <feFlood flood-color="#01295F" result="COLORblue"></feFlood>
+            <feFlood flood-color="#AD661A" result="COLORgold"></feFlood>
+            <!-- load a pattern -->
+            <feImage xlink:href="fade.svg" preserveAspectRatio="xMidYMid slice" result="IMAGEfade"></feImage>
+            <!-- adjust offset -->
+            <feOffset dx="0" dy="80" in="IMAGEfade" result="IMAGEfade"></feOffset>
+            <!-- start with outline of letter and color it blue -->
+            <feComposite in="COLORblue" in2="SourceAlpha" operator="in" result="blueLetter"></feComposite>
+            <!-- use imported pattern to cut blue outline to pattern -->
+            <feComposite in="blueLetter" in2="IMAGEfade" operator="in" result="blueOverlay"></feComposite>
+            <!-- create dilated version of original letter -->
+            <feMorphology operator="dilate" radius="6" in="SourceGraphic" result="dilatedLetter"></feMorphology>
+            <!-- create bigger dilated version of original letter -->
+            <feMorphology operator="dilate" radius="6" in="dilatedLetter" result="largeDilatedLetter"></feMorphology>
+            <!-- extrude the large dilated letter to create our block shadow -->
+            <feConvolveMatrix order="8,8" divisor="1" kernelMatrix="
+                                                                    0 0 0 0 0 0 0 1 
+                                                                    0 0 0 0 0 0 1 0 
+                                                                    0 0 0 0 0 1 0 0 
+                                                                    0 0 0 0 1 0 0 0 
+                                                                    0 0 0 1 0 0 0 0 
+                                                                    0 0 1 0 0 0 0 0 
+                                                                    0 1 0 0 0 0 0 0 
+                                                                    1 0 0 0 0 0 0 0
+                                                                    " in="largeDilatedLetter" result="extrudedLetter"></feConvolveMatrix>
+            <!-- create 6 offset versions of the extrusion, offset further from the letter each time -->
+            <feOffset dx="-4" dy="4" in="extrudedLetter" result="offetExtrusion1"></feOffset>
+            <feOffset dx="-8" dy="8" in="extrudedLetter" result="offetExtrusion2"></feOffset>
+            <feOffset dx="-12" dy="12" in="extrudedLetter" result="offetExtrusion3"></feOffset>
+            <feOffset dx="-16" dy="16" in="extrudedLetter" result="offetExtrusion4"></feOffset>
+            <feOffset dx="-20" dy="20" in="extrudedLetter" result="offetExtrusion5"></feOffset>
+            <feOffset dx="-24" dy="24" in="extrudedLetter" result="offetExtrusion6"></feOffset>
+            <!-- combine the 4 offset extrusions into one element -->
+            <feMerge result="superExtrusion">
+              <feMergeNode in="offetExtrusion1"></feMergeNode>
+              <feMergeNode in="offetExtrusion2"></feMergeNode>
+              <feMergeNode in="offetExtrusion3"></feMergeNode>
+              <feMergeNode in="offetExtrusion4"></feMergeNode>
+              <feMergeNode in="offetExtrusion5"></feMergeNode>
+              <feMergeNode in="offetExtrusion6"></feMergeNode>
+            </feMerge>
+            <!-- colour this combined extrusion gold  -->
+            <feComposite in="COLORgold" in2="superExtrusion" operator="in" result="superExtrusion"></feComposite>
+            <feComposite in="superExtrusion" in2="largeDilatedLetter" operator="out" result="superExtrusion"></feComposite>
+                <feMerge result="fullMerge">
+                  <feMergeNode in="superExtrusion"></feMergeNode>
+                  <feMergeNode in="dilatedLetter"></feMergeNode>
+                  <feMergeNode in="SourceGraphic"></feMergeNode>
+                  <feMergeNode in="blueOverlay"></feMergeNode>
+                </feMerge>
+
+            </filter>
+          </defs>
+      <path id="letterPath" unicode="B" d="M361 336Q358 348 358 364T365 409Q374 409 399 414T453 456T482 548Q482 644 317 644Q252 644 189 628T81 580T37 509Q37 465 97 453Q98 446 98 434Q98 388 80 351Q36 355 -3 390T-43 494T16 619Q128 722 349 722Q673 722 673 560Q673 426 504 373Q564 367 609 329Q705 356 789 363Q803 335 803 310T797 261Q774 264 742 264T659 256Q670 226 670 192Q670 93 608 21T451 -51Q379 -51 342 -16T304 77T345 191T460 280Q443 336 376 336H361ZM168 487Q168 505 164 514T144 540V553Q164 565 209 574T288 584Q343 584 361 579Q367 569 367 538T316 309T255 11Q183 -6 93 -6Q69 -6 60 -3Q65 59 116 243T168 487ZM418 40Q444 40 461 80T478 179Q478 195 477 208Q436 195 408 161T379 96Q379 40 418 40Z" transform="scale(1.2936610608020698, -1.2936610608020698) translate(155.6486309885516, -807.0232858990944)"></path>
+      </svg>
+      </div>
+        <div class="A">
+        <img src="inspA.jpg">
+          </div>
+  </body>
+</html>
+
+
+
