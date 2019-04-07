@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+		<title>Game of Thrones</title>
+
+		<meta charset="utf-8">
+		<meta property="og:url"	content="http://www.andybarefoot.com/got/flow.html" />
+		<meta property="og:title" content="Game of Thrones" />
+		<meta property="og:description" content="" />
+		<meta property="og:image" content="" />
+
+		<link href="https://fonts.googleapis.com/css?family=Trirong:100,200" rel="stylesheet">
+	    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+		<script src="/jscript/analyticstracking.js"></script>
+		<script src="/jscript/d3.v4.min.js"></script>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<link rel="stylesheet" href="/css/reset.css">
+		<link rel="stylesheet" href="/css/footer.css">
+		<link rel="stylesheet" href="flow.css">
+   </head>
+	<body>
+		<div id="popup">
+			<div id="imgHolder">
+				<a href="#" class="charLink" target="_blank"><img /></a>
+			</div>
+			<h2><a href="#" class="charLink" target="_blank"></a></h2>
+			<p></p>
+			<div id="close">
+				<a href="javascript:closePopup()">X</a>
+			</div>
+		</div>
+		<div id="header">
+			<img id="titleImg" src="../../got/images/valar-morghulis.png" alt="Valar Morghulis: All men must die" />
+			<h1>Game of Thrones</h1>
+			<p>Who's who</p>
+			<p>All data and images from the excellent <a href="http://gameofthrones.wikia.com/wiki/Game_of_Thrones_Wiki" target="_blank">Game of Thrones wiki</a>.</p>
+		</div>
+		<div id="mainContent">
+			<svg width="10000" height="15000" id="mainSvg">
+				<defs>
+					<linearGradient id="linear" x1="0%" y1="90%" x2="100%" y2="0%">
+						<stop offset="0%"   stop-color="#05a"/>
+						<stop offset="100%" stop-color="#0a5"/>
+					</linearGradient>
+					<linearGradient id="linear2" x1="0%" y1="0%" x2="100%" y2="0%">
+						<stop offset="0%"   stop-color="#597b81"/>
+						<stop offset="100%" stop-color="#7cd4de"/>
+					</linearGradient>
+				</defs>
+			</svg>
+		</div>
+
+
+		<script>
+			// ESTABLISH PARAMETERS
+			w = 10000; // chart width
+			h = 12500; // chart height
+			epiWidth = 150; // episode width
+			aw = 20; //arrow width
+			sr = aw/2; //small radius
+			br = sr; //big radius
+			totalSeasons = 6;
+			episodesPerSeason = 10;
+			xOff = 50; // horizontal offset
+			yOff = 50; // vertical offset
+			flowOffset = 70; // flow vertical offset
+
+			// TRIBE FILLS
+			fills = ["#cccccc","#597b81","#7cd4de","#0c0d08","#7b906f","#ffffff","#916b3c","#87090a","#a9181f","#5d2801"];
+			strokes = ["#999999","#edefef","#edefef","#959592","#d4cdb1","#000000","#1b0d0c","#ded8c0","#010001","#fdd660"];
+			regionfills = ["#ffffff","#cccccc","#999999","#666666","#333333","#91ffff","#84f0f0","#65cfcf","#48b0b0","#2c9191","#1d8080","#006161","#ddff80","#d1f073","#c6e065","#8aa12d","#304500","#ffbe54","#e09326"];
+			// SEASONS/EPISODES
+			episodes = [
+				[
+					"Winter is Coming",
+					"The Kingsroad",
+					"Lord Snow",
+					"Cripples, Bastards and Broken Things",
+					"The Wolf and the Lion",
+					"A Golden Crown",
+					"You Win or You Die",
+					"The Pointy End",
+					"Baelor",
+					"Fire and Blood"
+				],[
+					"The North Remembers",
+					"The Night Lands",
+					"What is Dead May Never Die",
+					"Garden of Bones",
+					"The Ghost of Harrenhal",
+					"The Old Gods and the New",
+					"A Man Without Honor",
+					"The Prince of Winterfell",
+					"Blackwater",
+					"Valar Morghulis"
+				],[	
+					"Valar Dohaeris",
+					"Dark Wings, Dark Words",
+					"Walk of Punishment",
+					"And Now His Watch is Ended",
+					"Kissed by Fire",
+					"The Climb",
+					"The Bear and the Maiden Fair",
+					"Second Sons",
+					"The Rains of Castamere",
+					"Mhysa"
+				],[
+					"Two Swords",
+					"The Lion and the Rose",
+					"Breaker of Chains",
+					"Oathkeeper",
+					"First of His Name",
+					"The Laws of Gods and Men",
+					"Mockingbird",
+					"The Mountain and the Viper",
+					"The Watchers on the Wall",
+					"The Children"
+				],[
+					"The Wars to Come",
+					"The House of Black and White",
+					"High Sparrow",
+					"Sons of the Harpy",
+					"Kill the Boy",
+					"Unbowed, Unbent, Unbroken",
+					"The Gift",
+					"Hardhome",
+					"The Dance of Dragons",
+					"Mother’s Mercy"
+				],[
+					"The Red Woman",
+					"Home",
+					"Oathbreaker",
+					"Book of the Stranger",
+					"The Door",
+					"Blood of My Blood",
+					"The Broken Man",
+					"No One",
+					"Battle of the Bastards",
+					"The Winds of Winter"
+				]
+			];
+
+
+
+
+			function getTextPos(pArr){
+				return "translate("+ ( xOff + (pArr[0][0]-1) *epiWidth) +","+pArr[0][1]+")";
+			}
+
+			function getTextStroke(tribeNo){
+		   		if(tribeNo>=50){
+		   			tribeNo=0;
+		   		}
+		   		return strokes[tribeNo];
+			}
+
+			function getArrowStroke(charID, lengthArr, tribeArr){
+		   		thisNo = tribeArr[0][1];
+		   		if(thisNo>=50){
+		   			thisNo=0;
+		   		}
+		   		return strokes[thisNo];
+				return strokes[tribeArr[0][1]];
+			}
+
+			function getArrowFill(charID, lengthArr, tribeArr){
+			   	console.log(lengthArr);
+			   	console.log(tribeArr);
+			   	console.log("---");
+			   	if(tribeArr.length<=1){
+			   		thisNo = tribeArr[0][1];
+			   		if(thisNo>=50){
+			   			thisNo=0;
+			   		}
+			   		return fills[thisNo];
+			   	}else{
+				   	arrowLength = lengthArr[lengthArr.length-1][0]-lengthArr[0][0];
+					var newGrad = d3.select("defs")
+						.append("linearGradient")
+						.attr("id", "linear"+charID)
+						.attr("x1", "0%")
+						.attr("x2", "100%")
+						.attr("y1", "0%")
+						.attr("y2", "0%")
+				   	;
+				   	for(i=1; i<tribeArr.length; i++) {
+						newGrad.append("stop")
+							.attr("offset", (100*(tribeArr[i][0]-30)/arrowLength)+"%")
+							.attr("stop-color", fills[tribeArr[i-1][1]-1])
+					   	;
+						newGrad.append("stop")
+							.attr("offset", (100*(tribeArr[i][0]+30)/arrowLength)+"%")
+							.attr("stop-color", fills[tribeArr[i][1]-1])
+					   	;
+				   	}
+					return "url(#linear"+charID+")";
+			   	}
+			}
+
+			function getArrowPath(pArr){
+ 				pArr[0][0] = xOff + (pArr[0][0]-1)*epiWidth;
+	 			for(i=1; i<pArr.length; i++) {
+	 				pArr[i][0] = xOff + pArr[i][0]*epiWidth;
+	 			}
+				pStr = ""; // path string
+				// loop through the array forwards to define top of arrow
+	 			for(i=0; i<pArr.length; i++) {
+		 			// if the first point move to start point
+		 			if(i==0){
+			 			pStr+="M"+pArr[0][0]+" "+(pArr[0][1]-aw/2);	
+		 			// if the last point draw an arrow head
+		 			}else if(i+1==pArr.length){
+		 				// if arrow pointing left to right
+		 				if(pArr[i][0]>pArr[i-1][0]){
+		 					pStr+=" L "+pArr[i][0]+" "+(pArr[i][1]-aw/2);
+		 					pStr+=" L "+(pArr[i][0]+aw/2)+" "+(pArr[i][1]);
+		 					pStr+=" L "+pArr[i][0]+" "+(pArr[i][1]+aw/2);
+		 				// if arrow pointing left to right
+		 				}else if(pArr[i][0]<pArr[i-1][0]){
+		 					pStr+=" L "+pArr[i][0]+" "+(pArr[i][1]-aw/2);
+		 					pStr+=" L "+(pArr[i][0]-aw/2)+" "+(pArr[i][1]);
+		 					pStr+=" L "+pArr[i][0]+" "+(pArr[i][1]+aw/2);
+		 				// if arrow pointing up
+		 				}else if(pArr[i][1]<pArr[i-1][1]){
+		 					pStr+=" L "+(pArr[i][0]-aw/2)+" "+(pArr[i][1]);
+		 					pStr+=" L "+pArr[i][0]+" "+(pArr[i][1]-aw/2);
+		 					pStr+=" L "+(pArr[i][0]+aw/2)+" "+(pArr[i][1]);
+		 				// if arrow pointing down
+		 				}else{
+		 					pStr+=" L "+(pArr[i][0]-aw/2)+" "+(pArr[i][1]);
+		 					pStr+=" L "+pArr[i][0]+" "+(pArr[i][1]+aw/2);
+		 					pStr+=" L "+(pArr[i][0]+aw/2)+" "+(pArr[i][1]);
+		 				}
+		 			// neither first or last point
+		 			}else{
+						if(pArr[i][1]>pArr[i-1][1]){
+							pStr+=" L "+(pArr[i][0]+(aw/2-br))+" "+(pArr[i-1][1]-aw/2);
+							pStr+=" A "+br+" "+br+" 0 0 1 "+(pArr[i][0]+(aw/2))+" "+(pArr[i-1][1]+(br-aw/2));
+							pStr+=" L "+(pArr[i][0]+(aw/2))+" "+(pArr[i][1]-(sr+aw/2));
+							pStr+=" A "+sr+" "+sr+" 0 0 0 "+(pArr[i][0]+(sr+aw/2))+" "+(pArr[i][1]-(aw/2));
+						// if arrow kinks upwards
+						}else if(pArr[i][1]<pArr[i-1][1]){
+							pStr+=" L "+(pArr[i][0]-(sr+aw/2))+" "+(pArr[i-1][1]-aw/2);
+							pStr+=" A "+sr+" "+sr+" 0 0 0 "+(pArr[i][0]-(aw/2))+" "+(pArr[i-1][1]-(aw/2+sr));
+							pStr+=" L "+(pArr[i][0]-(aw/2))+" "+(pArr[i][1]+(br-aw/2));
+							pStr+=" A "+br+" "+br+" 0 0 1 "+(pArr[i][0]+(br-aw/2))+" "+(pArr[i][1]-(aw/2));
+						// if no change in height
+						}else{
+							pStr+=" L "+pArr[i][0]+" "+(pArr[i-1][1]-aw/2);
+						}
+		 			}
+	 			}
+				// loop through the array backwards to define bottom of arrow
+	 			for(i=pArr.length-2; i>=0; i--) {
+	 				if(i==0){
+						pStr+=" L "+pArr[i][0]+" "+(pArr[i][1]+aw/2);
+	 				}else{
+						if(pArr[i][1]>pArr[i-1][1]){
+							pStr+=" L "+(pArr[i][0]+(br-aw/2))+" "+(pArr[i][1]+aw/2);
+							pStr+=" A "+br+" "+br+" 0 0 1 "+(pArr[i][0]-(aw/2))+" "+(pArr[i][1]+(aw/2-br));
+							pStr+=" L "+(pArr[i][0]-(aw/2))+" "+(pArr[i-1][1]+(sr+aw/2));
+							pStr+=" A "+sr+" "+sr+" 0 0 0 "+(pArr[i][0]-(sr+aw/2))+" "+(pArr[i-1][1]+(aw/2));
+						// if arrow kinks upwards
+						}else if(pArr[i][1]<pArr[i-1][1]){
+							pStr+=" L "+(pArr[i][0]+(sr+aw/2))+" "+(pArr[i][1]+aw/2);
+							pStr+=" A "+sr+" "+sr+" 0 0 0 "+(pArr[i][0]+(aw/2))+" "+(pArr[i][1]+(aw/2+sr));
+							pStr+=" L "+(pArr[i][0]+(aw/2))+" "+(pArr[i-1][1]-(br-aw/2));
+							pStr+=" A "+br+" "+br+" 0 0 1 "+(pArr[i][0]-(br-aw/2))+" "+(pArr[i-1][1]+(aw/2));
+						// if no change in height
+						}else{
+							pStr+=" L "+pArr[i][0]+" "+(pArr[i-1][1]+aw/2);
+						}
+	 				}
+	 			}
+				pStr+=" Z";
+				return pStr;
+			}
+
+			function drawChart(){
+				// var svg = d3.select("#mainContent")
+		  //           .append("svg")
+		  //           .attr("width", w)
+		  //           .attr("height", h)
+		  //       ;
+
+				var svg = d3.select("#mainSvg")
+		        ;
+
+				svg.append("rect")
+				   .attr("x", 0)
+				   .attr("y", 0)
+				   .attr("width", w)
+				   .attr("height", h)
+				   .attr("fill", "#1f1f1f")
+			   	;
+
+				seasons = svg
+					.append("g")
+					.attr("id", "seasons")
+				;
+
+
+				// ADD SEASON TITLES & BACKGROUNDS
+				episodesTotal = 0;
+				for (var i = 0; i < episodes.length; ++i) {
+					seasons.append("text")
+						.attr("x", xOff + i*episodesPerSeason*epiWidth + 5*epiWidth)
+						.attr("y", yOff)
+						.attr("dy", -5)
+						.attr("class", "season")
+						.style("text-anchor", "middle")
+						.text("SEASON "+(1+i))
+						;
+					if((i/2)==Math.floor(i/2)){
+						seasons.append("rect")
+						   .attr("x", xOff + i*episodes[i].length*epiWidth)
+						   .attr("y", yOff)
+						   .attr("width", episodes[i].length*epiWidth)
+						   .attr("height", h-yOff)
+						   .attr("fill", "#1c1c1c")
+						   ;
+					}
+					// ADD EPISODE KEYLINES
+					for (var j = 0; j < episodes[i].length; ++j) {
+						if(j!=0){
+							seasons.append("line")
+							   .attr("x1", xOff + episodesTotal*epiWidth)
+							   .attr("y1", yOff)
+							   .attr("x2", xOff + episodesTotal*epiWidth)
+							   .attr("y2", h)
+							   .attr("stroke-width", 1)
+							   .attr("stroke", "#292929")
+							   ;
+						}
+						seasons.append("text")
+							.attr("x", xOff + episodesTotal*epiWidth + epiWidth/2)
+							.attr("y", yOff + 25 + 20*(episodesTotal%2))
+							.attr("dy", -5)
+							.attr("class", "season")
+							.style("text-anchor", "middle")
+							.text(episodes[i][j])
+						;
+						episodesTotal++;
+					}
+				}
+
+				//Load in character data
+		        d3.json("boxes.json", function(data) {
+		        	console.log(data);
+		            // add a group to hold all data flows
+					grid = svg
+			            .append("g")
+			            .attr("id", "grid")
+					;
+					boxes = grid
+				        .selectAll("g")
+			            .data(data.appearances)
+				        .enter()
+						.append("g")
+						// .attr("x", function(d) {
+						// 	return (50 + (d.appEpisode-1)*150);
+						// })
+						// .attr("y", function(d) {
+						// 	return (100 + d.regionOrder*1000 + d.order*62);
+						// })
+						.attr("transform", function(d) {
+							return ("translate("+(50 + (d.appEpisode-1)*150)+","+(100 + (d.regionOrder-1)*1000 +  d.order*62)+")");
+						})
+		            ;
+		            rectangles = boxes
+						.append("rect")
+						.attr("x", 0)
+						.attr("y", 0)
+						.attr("width", 149)
+						.attr("height", 60)
+						.attr("fill", function(d) {
+							return regionfills[d.regionOrder];
+						})
+						.attr("stroke", function(d) {
+							return regionfills[d.regionOrder];
+						})
+		            ;
+					labels = boxes
+						.append("text")
+						.style("text-anchor", "start")
+						.attr("dx", 10)
+						.attr("dy", 15)
+						.attr("stroke", function(d) {
+							return strokes[d.charTribe];
+						})
+		            ;
+		            labels
+						.append("text:tspan")
+						.attr("x", 0)
+						.attr("dy", 15)
+						.text(function(d) {
+							return d.charName;
+						})
+					;
+					labels
+						.append("text:tspan")
+						.attr("x", 5)
+						.attr("dy", 15)
+						.text(function(d) {
+							return d.placeRegion;
+						})
+					;
+					labels
+						.append("text:tspan")
+						.attr("x", 5)
+						.attr("dy", 15)
+						.text(function(d) {
+							return d.placeName;
+						})
+					;
+		        })
+			}
+
+//			$(window).resize(drawChart);
+			$( document ).ready(drawChart);
+		</script>
+<!-- FOOTER: Requires footer.css & Open Sans font to be included -->
+     <div id="barefoot-footer">
+        <div id="barefoot-home-links">
+          <a href="/">Andy Barefoot</a> > Valar Morghulis
+        </div>
+        <div id="barefoot-social-links">
+          <ul>
+            <li><a href="https://www.linkedin.com/in/andybarefoot/" target="_blank"><img src="/images/icons/png32/linkedin.png"></a></li>
+            <li><a href="mailto:andy@andybarefoot.com"><img src="/images/icons/png32/email.png"></a></li>
+            <li><a href="http://instagram.com/andybarefoot" target="_blank"><img src="/images/icons/png32/instagram.png"></a></li>
+            <li><a href="http://twitter.com/andybarefoot" target="_blank"><img src="/images/icons/png32/twitter.png"></a></li>
+            <li><a href="http://www.facebook.com/profile.php?id=729980577" target="_blank"><img src="/images/icons/png32/facebook.png"></a></li>
+          </ul>
+        </div>
+      </div>
+<!-- END FOOTER -->
+	</body>
+</html>

@@ -291,7 +291,7 @@
     grid-row-start: 5;
   }
   #holder {
-    height: 480vw;
+    height: 520vw;
   }
 }
 
@@ -381,6 +381,10 @@
 
   svg {
     fill: var(--tabletDark);
+  }
+
+  svg:hover {
+    fill: #4e7352;
   }
 
   #social{

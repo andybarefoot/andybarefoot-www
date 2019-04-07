@@ -2992,12 +2992,12 @@
 		"charName": "Petyr Baelish",
 		"charURL": "http://gameofthrones.wikia.com/wiki/Petyr_Baelish",
 		"charThumb": "http://vignette1.wikia.nocookie.net/gameofthrones/images/2/29/Petyr_littlefinger_s6_The_Door.jpg/revision/latest/scale-to-width-down/270?cb=20160530232347",
-		"charDead": "0",
-		"charDeathDesc": "",
-		"episodeName": null,
-		"episodeURL": null,
-		"episodeSeason": null,
-		"episodeNumber": null
+		"charDead": "1",
+		"charDeathDesc": "Throat slit by Arya Stark with the Valyrian steel dagger on the orders of Sansa Stark",
+		"episodeName": "The Dragon and the Wolf",
+		"episodeURL": "https://gameofthrones.fandom.com/wiki/The_Dragon_and_the_Wolf",
+		"episodeSeason": "7",
+		"episodeNumber": "7"
 	},
 	{
 		"charID": "816",
@@ -3160,12 +3160,12 @@
 		"charName": "Viserion",
 		"charURL": "http://gameofthrones.wikia.com/wiki/Viserion",
 		"charThumb": "http://vignette2.wikia.nocookie.net/gameofthrones/images/d/d9/Viserion_Season_4.jpg/revision/latest/scale-to-width-down/270?cb=20160710223640",
-		"charDead": "0",
-		"charDeathDesc": "",
-		"episodeName": null,
-		"episodeURL": null,
-		"episodeSeason": null,
-		"episodeNumber": null
+		"charDead": "1",
+		"charDeathDesc": "Pierced through the neck with an ice spear by the Night King during the Wight Hunt. Raised as a wight.",
+		"episodeName": "Beyond the Wall",
+		"episodeURL": "https://gameofthrones.fandom.com/wiki/Beyond_the_Wall_(episode)",
+		"episodeSeason": "7",
+		"episodeNumber": "6"
 	},
 	{
 		"charID": "390",
@@ -3400,12 +3400,12 @@
 		"charName": "Benjen Stark",
 		"charURL": "http://gameofthrones.wikia.com/wiki/Benjen_Stark",
 		"charThumb": "https://vignette3.wikia.nocookie.net/gameofthrones/images/0/0f/610_Benjen_Promo_Crop.png/revision/latest/scale-to-width-down/350?cb=20160629183134",
-		"charDead": "0",
-		"charDeathDesc": "",
-		"episodeName": null,
-		"episodeURL": null,
-		"episodeSeason": null,
-		"episodeNumber": null
+		"charDead": "1",
+		"charDeathDesc": "Overwhelmed fighting wights in order to give Jon Snow time to escape.",
+		"episodeName": "Beyond the Wall",
+		"episodeURL": "https://gameofthrones.fandom.com/wiki/Beyond_the_Wall_(episode)",
+		"episodeSeason": "7",
+		"episodeNumber": "6"
 	},
 	{
 		"charID": "188",
@@ -3489,8 +3489,8 @@
 		"charDeathDesc": "Killed himself rather than starve to death.",
 		"episodeName": "Dragonstone",
 		"episodeURL": "http://gameofthrones.wikia.com/wiki/Dragonstone_(episode)",
-		"episodeSeason": 7,
-		"episodeNumber": 1
+		"episodeSeason": "7",
+		"episodeNumber": "1"
 	},
 	{
 		"charID": "688",
@@ -3501,8 +3501,8 @@
 		"charDeathDesc": "Killed by her father rather than let her starve to death.",
 		"episodeName": "Dragonstone",
 		"episodeURL": "http://gameofthrones.wikia.com/wiki/Dragonstone_(episode)",
-		"episodeSeason": 7,
-		"episodeNumber": 1
+		"episodeSeason": "7",
+		"episodeNumber": "1"
 	},
 	{
 		"charID": "407",
@@ -3513,8 +3513,8 @@
 		"charDeathDesc": "Revealed to have died leading the cavalry charge at the Battle of the Bastards.",
 		"episodeName": "Dragonstone",
 		"episodeURL": "http://gameofthrones.wikia.com/wiki/Dragonstone_(episode)",
-		"episodeSeason": 7,
-		"episodeNumber": 1
+		"episodeSeason": "7",
+		"episodeNumber": "1"
 	},
 	{
 		"charID": "813",
@@ -3522,11 +3522,11 @@
 		"charURL": "http://gameofthrones.wikia.com/wiki/Dickon_Tarly",
 		"charThumb": "x",
 		"charDead": "1",
-		"charDeathDesc": "",
+		"charDeathDesc": "Burned alive by Drogon on the orders of Daenerys Targaryen after the Battle of the Goldroad.",
 		"episodeName": "Eastwatch",
 		"episodeURL": "http://gameofthrones.wikia.com/wiki/Eastwatch_(episode)",
-		"episodeSeason": 7,
-		"episodeNumber": 5
+		"episodeSeason": "7",
+		"episodeNumber": "5"
 	},
 	{
 		"charID": "815",
@@ -3534,11 +3534,11 @@
 		"charURL": "http://gameofthrones.wikia.com/wiki/Randyll_Tarly",
 		"charThumb": "x",
 		"charDead": "1",
-		"charDeathDesc": "",
+		"charDeathDesc": "Burned alive by Drogon on the orders of Daenerys Targaryen after the battle of the Goldroad.",
 		"episodeName": "Eastwatch",
 		"episodeURL": "http://gameofthrones.wikia.com/wiki/Eastwatch_(episode)",
-		"episodeSeason": 7,
-		"episodeNumber": 5
+		"episodeSeason": "7",
+		"episodeNumber": "5"
 	},
 	{
 		"charID": "293",
@@ -3551,5 +3551,233 @@
 		"episodeURL": null,
 		"episodeSeason": null,
 		"episodeNumber": null
+	},
+	{
+		"charID": "1001",
+		"charName": "The silver",
+		"charURL": "https://gameofthrones.fandom.com/wiki/The_silver",
+		"charThumb": "https://vignette.wikia.nocookie.net/gameofthrones/images/d/d9/The_Silver.jpg/revision/latest?cb=20140323190609",
+		"charDead": "1",
+		"charDeathDesc": "The ​silver, a mare given to Daenerys Targaryen by Khal Drogo as a wedding gift, died of starvation and thirst.",
+		"episodeName": "The North Remembers",
+		"episodeURL": "http://gameofthrones.wikia.com/wiki/The_North_Remembers",
+		"episodeSeason": "2",
+		"episodeNumber": "1"
+	},
+	{
+		"charID": "1002",
+		"charName": "Meereenese Champion",
+		"charURL": "https://gameofthrones.fandom.com/wiki/Meereenese_Champion",
+		"charThumb": "",
+		"charDead": "1",
+		"charDeathDesc": "Slain by Ser Jorah Mormont during the Great Games.",
+		"episodeName": "The Dance of Dragons",
+		"episodeURL": "http://gameofthrones.wikia.com/wiki/The_Dance_of_Dragons",
+		"episodeSeason": "5",
+		"episodeNumber": "9"
+	},
+	{
+		"charID": "1003",
+		"charName": "Norvoshi pit fighter",
+		"charURL": "https://gameofthrones.fandom.com/wiki/Norvoshi_pit_fighter",
+		"charThumb": "",
+		"charDead": "1",
+		"charDeathDesc": "Slain by Ser Jorah Mormont during the Great Games.",
+		"episodeName": "The Dance of Dragons",
+		"episodeURL": "http://gameofthrones.wikia.com/wiki/The_Dance_of_Dragons",
+		"episodeSeason": "5",
+		"episodeNumber": "9"
+	},
+	{
+		"charID": "1004",
+		"charName": "Pit fighter",
+		"charURL": "https://gameofthrones.fandom.com/wiki/Norvoshi_pit_fighter",
+		"charThumb": "",
+		"charDead": "1",
+		"charDeathDesc": "Killed fighting in Daznak's Pit during the Great Games by a Meereenese champion.",
+		"episodeName": "The Dance of Dragons",
+		"episodeURL": "http://gameofthrones.wikia.com/wiki/The_Dance_of_Dragons",
+		"episodeSeason": "5",
+		"episodeNumber": "9"
+	},
+	{
+		"charID": "1005",
+		"charName": "Qorro",
+		"charURL": "https://gameofthrones.fandom.com/wiki/Qorro",
+		"charThumb": "https://vignette.wikia.nocookie.net/gameofthrones/images/d/db/Khal_Quorro.PNG/revision/latest?cb=20160517042100",
+		"charDead": "1",
+		"charDeathDesc": "Burned alive along with all the other khals by Daenerys Targaryen.",
+		"episodeName": "Book of the Stranger",
+		"episodeURL": "http://gameofthrones.wikia.com/wiki/Book_of_the_Stranger",
+		"episodeSeason": "6",
+		"episodeNumber": "4"
+	},
+	{
+		"charID": "1006",
+		"charName": "The red",
+		"charURL": "https://gameofthrones.fandom.com/wiki/The_red",
+		"charThumb": "https://vignette.wikia.nocookie.net/gameofthrones/images/d/db/Khal_Quorro.PNG/revision/latest?cb=20160517042100",
+		"charDead": "1",
+		"charDeathDesc": "Throat slit by Mirri Maz Duur.",
+		"episodeName": "Baelor",
+		"episodeURL": "http://gameofthrones.wikia.com/wiki/Baelor",
+		"episodeSeason": "1",
+		"episodeNumber": "9"
+	},
+	{
+		"charID": "1007",
+		"charName": "Lannister spearman",
+		"charURL": "https://gameofthrones.fandom.com/wiki/Lannister_spearman",
+		"charThumb": "https://vignette.wikia.nocookie.net/gameofthrones/images/6/66/Lannister_spearman.jpg/revision/latest/scale-to-width-down/700?cb=20170808215912",
+		"charDead": "1",
+		"charDeathDesc": "Burned to death by Drogon in the Battle of the Goldroad.",
+		"episodeName": "The Spoils of War",
+		"episodeURL": "https://gameofthrones.fandom.com/wiki/The_Spoils_of_War",
+		"episodeSeason": "7",
+		"episodeNumber": "4"
+	},
+	{
+		"charID": "1008",
+		"charName": "Gold Cloak",
+		"charURL": "https://gameofthrones.fandom.com/wiki/Gold_Cloak_1_(Eastwatch)",
+		"charThumb": "x",
+		"charDead": "1",
+		"charDeathDesc": "Face caved in with a warhammer by Gendry.",
+		"episodeName": "Eastwatch",
+		"episodeURL": "http://gameofthrones.wikia.com/wiki/Eastwatch_(episode)",
+		"episodeSeason": "7",
+		"episodeNumber": "5"
+	},
+	{
+		"charID": "1009",
+		"charName": "Gold Cloak",
+		"charURL": "https://gameofthrones.fandom.com/wiki/Gold_Cloak_2_(Eastwatch)",
+		"charThumb": "x",
+		"charDead": "1",
+		"charDeathDesc": "Face caved in with a warhammer by Gendry.",
+		"episodeName": "Eastwatch",
+		"episodeURL": "http://gameofthrones.wikia.com/wiki/Eastwatch_(episode)",
+		"episodeSeason": "7",
+		"episodeNumber": "5"
+	},
+	{
+		"charID": "1010",
+		"charName": "Bolton officer",
+		"charURL": "https://gameofthrones.fandom.com/wiki/Bolton_officer",
+		"charThumb": "x",
+		"charDead": "1",
+		"charDeathDesc": "Slain with Oathkeeper by Brienne of Tarth.",
+		"episodeName": "The Red Woman",
+		"episodeURL": "http://gameofthrones.wikia.com/wiki/The_Red_Woman",
+		"episodeSeason": "6",
+		"episodeNumber": "1"
+	},
+	{
+		"charID": "1011",
+		"charName": "Captured wight",
+		"charURL": "https://gameofthrones.fandom.com/wiki/Captured_wight",
+		"charThumb": "x",
+		"charDead": "1",
+		"charDeathDesc": "Stabbed in the axilla with a Dragonglass dagger by Jon Snow.",
+		"episodeName": "The Dragon and the Wolf",
+		"episodeURL": "https://gameofthrones.fandom.com/wiki/The_Dragon_and_the_Wolf",
+		"episodeSeason": "7",
+		"episodeNumber": "7"
+	},
+	{
+		"charID": "1012",
+		"charName": "Child of the Forest",
+		"charURL": "https://gameofthrones.fandom.com/wiki/Child_of_the_Forest_3",
+		"charThumb": "x",
+		"charDead": "1",
+		"charDeathDesc": "Killed by Wights.",
+		"episodeName": "The Door",
+		"episodeURL": "http://gameofthrones.wikia.com/wiki/The_Door",
+		"episodeSeason": "6",
+		"episodeNumber": "5"
+	},
+	{
+		"charID": "1013",
+		"charName": "Child of the Forest",
+		"charURL": "https://gameofthrones.fandom.com/wiki/Child_of_the_Forest_4",
+		"charThumb": "x",
+		"charDead": "1",
+		"charDeathDesc": "Killed by Wights.",
+		"episodeName": "The Door",
+		"episodeURL": "http://gameofthrones.wikia.com/wiki/The_Door",
+		"episodeSeason": "6",
+		"episodeNumber": "5"
+	},
+	{
+		"charID": "1014",
+		"charName": "Water Dancer",
+		"charURL": "https://gameofthrones.fandom.com/wiki/Water_Dancer",
+		"charThumb": "",
+		"charDead": "1",
+		"charDeathDesc": "Slain by the Meereenese Champion during the Great Games.",
+		"episodeName": "The Dance of Dragons",
+		"episodeURL": "http://gameofthrones.wikia.com/wiki/The_Dance_of_Dragons",
+		"episodeSeason": "5",
+		"episodeNumber": "9"
+	},
+	{
+		"charID": "1015",
+		"charName": "White Walker",
+		"charURL": "https://gameofthrones.fandom.com/wiki/White_Walker_1_(Beyond_the_Wall)",
+		"charThumb": "x",
+		"charDead": "1",
+		"charDeathDesc": "Killed by Jon Snow with Longclaw.",
+		"episodeName": "Beyond the Wall",
+		"episodeURL": "https://gameofthrones.fandom.com/wiki/Beyond_the_Wall_(episode)",
+		"episodeSeason": "7",
+		"episodeNumber": "6"
+	},
+	{
+		"charID": "1016",
+		"charName": "Boake",
+		"charURL": "https://gameofthrones.fandom.com/wiki/Boake",
+		"charThumb": "x",
+		"charDead": "1",
+		"charDeathDesc": "Burned alive by wildfire during the Destruction of the Great Sept of Baelor orchestrated by Cersei Lannister.",
+		"episodeName": "The Winds of Winter",
+		"episodeURL": "http://gameofthrones.wikia.com/wiki/The_Winds_of_Winter",
+		"episodeSeason": "6",
+		"episodeNumber": "10"
+	},
+	{
+		"charID": "1017",
+		"charName": "Fighting pit announcer",
+		"charURL": "https://gameofthrones.fandom.com/wiki/Fighting_pit_announcer",
+		"charThumb": "x",
+		"charDead": "1",
+		"charDeathDesc": "Killed by the Sons of the Harpy.",
+		"episodeName": "The Dance of Dragons",
+		"episodeURL": "http://gameofthrones.wikia.com/wiki/The_Dance_of_Dragons",
+		"episodeSeason": "5",
+		"episodeNumber": "9"
+	},
+	{
+		"charID": "1018",
+		"charName": "Ser Pounce",
+		"charURL": "https://gameofthrones.fandom.com/wiki/Ser_Pounce",
+		"charThumb": "x",
+		"charDead": "1",
+		"charDeathDesc": "Killed on the order of Cersei Lannister.",
+		"episodeName": "Dragonstone",
+		"episodeURL": "http://gameofthrones.wikia.com/wiki/Dragonstone_(episode)",
+		"episodeSeason": "7",
+		"episodeNumber": "1"
+	},
+	{
+		"charID": "834",
+		"charName": "Thoros",
+		"charURL": "https://gameofthrones.fandom.com/wiki/Thoros",
+		"charThumb": "x",
+		"charDead": "1",
+		"charDeathDesc": "Injured by a wight snow bear and froze to death during the Wight Hunt.",
+		"episodeName": "Beyond the Wall",
+		"episodeURL": "https://gameofthrones.fandom.com/wiki/Beyond_the_Wall_(episode)",
+		"episodeSeason": "7",
+		"episodeNumber": "6"
 	}
 ]

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Game of Thrones</title>
+    <meta charset="utf-8">
+    <meta property="og:url" content="http://www.andybarefoot.com/got/allegiances.html" />
+    <meta property="og:title" content="Game of Thrones - Web of Allegiances" />
+    <meta property="og:description" content="An interactive map of Westeros and Essos showing the allegiances of al the characters from Game of Thrones." />
+    <meta property="og:image" content="http://www.andybarefoot.com/got/images/web-of-allegiances.png" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@andybarefoot">
+    <meta name="twitter:creator" content="@andybarefoot">
+    <meta name="twitter:title" content="Game of Thrones - Web of Allegiances">
+    <meta name="twitter:description" content="An interactive map of Westeros and Essos showing the allegiances of al the characters from Game of Thrones.">
+    <meta name="twitter:image" content="http://www.andybarefoot.com/got/images/web-of-allegiances.png">
+    <script src="/jscript/analyticstracking.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/jscript/d3.v4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="allegiances.css">
+  </head>
+  <body>
+    <div id="overlay">
+      <div id="vertAlign">
+        <div id="instructions">
+          <div id="instructionsText">
+            <p>An interactive map of allegiances within the Game of Thrones world.</p>
+            <p>Map Controls
+              <ul>
+                <li>Zoom in/out: (Shift) Double click/touch stretch/mouse wheel</li>
+                <li>Pan: Touch drag/click and drag</li>
+                <li>Mouseover character/sigil for details and link to full details on GoT wiki</li>
+              </ul>
+            </p>
+            <p>All data and images from the <a href="http://gameofthrones.wikia.com/wiki/Game_of_Thrones_Wiki" target="_blank">Game of Thrones wiki </a> and <a href="http://awoiaf.westeros.org/index.php/Main_Page" target="_blank">A Wiki of Ice and Fire</a>.</p>
+            <p id="loading">Generating map...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <script>
+    //Load the web fonts
+    WebFont.load({
+      google: {
+        families: ['Trirong']
+      }
+    });
+
+    WebFontConfig = {
+      active: function() {
+        fontLoaded = true;
+      },
+    };
+
+    //VARIABLES
+    // Map coordinates scale: Width of Map/width of World coordinates  
+    scale=5652/10000;
+    // Visualisation size
+    width = 5652;
+    height = 3682;
+    // ?? 
+    radius = 50;
+    currentZoom = 1;
+    mapImageLoaded = false;
+    // Hack because Safari doesn't detect onload of large map image :-(
+    var ua = navigator.userAgent.toLowerCase(); 
+      if (ua.indexOf('safari') != -1) { 
+        if (ua.indexOf('chrome') > -1) {
+        } else {
+          mapImageLoaded = true;
+        }
+    }
+    dataLoaded = false;
+    fontLoaded = false;
+    // Show photo of character if they have appeared in this many episodes or more
+    photoThreshold = 3;
+    // Empty array that will track locations of organisations so that organisations with duplicate locations can be handled
+    var mapCoords = [];
+    // Colour scheme, hopefully unused
+    var color = d3.scaleOrdinal(d3.schemeCategory20);
+    // Set up force simulation
+    var simulation = d3.forceSimulation()
+        .force("link", d3.forceLink().distance(10).strength(0.5)) // orig values dist: 10, strength: 0.5
+        .force("charge", d3.forceManyBody())
+        .force("collide", d3.forceCollide().radius(function(d) { return 20; }).iterations(2))
+    ;
+    // zoom function
+    function zoomed() {
+      currentZoom = d3.event.transform.k;
+      vis.attr("transform", d3.event.transform);
+    }
+
+    // Set up zoom (we'll change min extent later when we know size of window and viz)
+    var zoom = d3.zoom()
+        .scaleExtent([0.1, 2])
+        .translateExtent([[0,0],[5652,3682]])
+        .on("zoom", zoomed)
+    ;
+
+    // On window resize
+    $(window).resize(function() {
+      resizeZoom();
+    });
+
+//    document.fonts.ready.then(function () {
+      fontLoaded = true;
+//    });
+
+    function resizeZoom(){
+//      svg.attr("viewBox", "0 0 " + $( window ).width() + " " + $( window ).height());
+      bestFit = Math.max($( window ).width()/width,$( window ).height()/height);
+      zoom.scaleExtent([bestFit, 2])
+      if(bestFit>currentZoom){
+        zoom.scaleBy(svg, bestFit);
+      }
+    }
+
+    function initZoom(){
+      bestFit = Math.max($( window ).width()/width,$( window ).height()/height);
+      zoom.scaleExtent([bestFit, 2])
+      xOffset = $( window ).width()/2 - 3237;
+      yOffset = $( window ).height()/2 - 732;
+      scaleWidth = Math.min($( window ).width(),1000);
+      scaleHeight = Math.min($( window ).height(),800);
+      startZoom = Math.min(scaleWidth/1587,scaleHeight/1236);
+      zoom.translateBy(svg,xOffset,yOffset);
+      zoom.scaleBy(svg, startZoom);
+    }
+
+    function openWiki(url){
+      window.open(url);
+    }
+
+    function positionLink(d) {
+      return "M" + d[0].x + "," + d[0].y
+           + "S" + d[1].x + "," + d[1].y
+           + " " + d[2].x + "," + d[2].y;
+    }
+
+    function positionNode(d,i) {
+      if(d.type == "individual"){
+        d.x = Math.max(radius, Math.min(width - radius, d.x)); 
+        d.y = Math.max(radius, Math.min(height - radius, d.y));
+        return "translate(" + d.x + "," + d.y + ")";
+      }else{
+        d.fx = d.xPos*scale;
+        d.fy = (d.yPos*scale)+30;
+        return "translate(" + d.fx + "," + d.fy + ")";
+      }
+    }
+
+    function dragstarted(d) {
+      if(d.type == "individual"){
+        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x, d.fy = d.y;
+      }
+    }
+
+    function dragged(d) {
+      if(d.type == "individual"){
+        d.fx = d3.event.x, d.fy = d3.event.y;
+      }
+    }
+
+    function dragended(d) {
+      if(d.type == "individual"){
+        if (!d3.event.active) simulation.alphaTarget(0);
+        d.fx = null, d.fy = null;
+      }
+    }
+    
+    function getTextBox(selection) {
+      selection
+        .each(function(d) {
+          d.bbox = this
+            .getBBox();
+          })
+      ;
+    }
+
+    function getTextBox2(selection) {
+      selection
+        .each(function(d) {
+          if(!d3.select(this.parentNode).datum().bboxArray){
+            d3.select(this.parentNode).datum().bboxArray=[];
+          }
+          d3.select(this.parentNode).datum().bboxArray.push(this.getBBox());
+          })
+      ;
+    }
+
+    function isReady(complete){
+      if(complete=="image")mapImageLoaded = true;
+      if(complete=="data")dataLoaded = true;
+      if(mapImageLoaded && dataLoaded){
+        d3.select("#loading").html('<a href="javascript:reveal();">View Map >>></a>');
+      }
+    }
+
+    function reveal(){
+      d3.select("#overlay").style("display", "none");;
+    }
+
+    // START DRAWING
+    // Add SVG
+    var svg = d3
+      .select("body")
+      .append("svg")
+      .call(zoom)
+    ;
+    // Add group for entire visualisation
+    var vis = svg
+      .append("g")
+    ;
+    // Add map image
+    var map = vis
+      .append("image")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", width)
+      .attr("height", height)
+      .attr("xlink:href", "images/largeMapKeyBorder.jpg")
+      .on('load', function() {
+        isReady('image');
+      })
+    ;
+    // Add a darker layer over map to make nodes and links more visible
+    var shader = vis
+      .append("rect")
+      .attr("x", "0")
+      .attr("y", "0")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("fill", "#130802")
+      .attr("fill-opacity", "0.25")
+    ;
+    // Add a text area for introductory text
+    var keyText = vis
+      .append("text")
+      .attr("x", "3000")
+      .attr("y", "500")
+      .attr("class", "keyText")
+      .attr("text-anchor", "middle")
+    ;
+    // Add intro text manually creating line breaks
+    keyText.append("tspan").attr("x", "3250").attr("y", "710").text("To play the Game of Thrones you will need allies.");
+    keyText.append("tspan").attr("x", "3250").attr("y", "740").text("But when those allies are Petyr Baelish, Roose Bolton");
+    keyText.append("tspan").attr("x", "3250").attr("y", "770").text("or Alliser Thorne you will also need stab proof armour.");
+
+    keyText.append("tspan").attr("x", "3250").attr("y", "825").text("Study the intricate web of allegiances, tactical alliances");
+    keyText.append("tspan").attr("x", "3250").attr("y", "855").text("and betrayals waiting to happen on this interactive map.");
+
+    keyText.append("tspan").attr("x", "3250").attr("y", "910").text("But remember, your loyal friend could be just a sack of");
+    keyText.append("tspan").attr("x", "3250").attr("y", "940").text("gold coins away from being your executioner.");
+
+    // LOAD DATA
+    d3
+      .json("allegiances.json", function(error, graph) {
+        if (error) throw error;
+        // add nodes
+        var nodes = graph.nodes,
+        nodeById = d3.map(nodes, function(d) { return d.id; }),
+        links = graph.links,
+        bilinks = [];
+        links.forEach(function(link) {
+          var s = link.source = nodeById.get(link.source),
+          t = link.target = nodeById.get(link.target),
+          i = {}; // intermediate node
+          nodes.push(i);
+          links.push({source: s, target: i}, {source: i, target: t});
+          bilinks.push([s, i, t]);
+        })
+        ;
+        console.log(nodes);
+
+        vis
+          .append("defs")
+          .append("pattern")
+          .attr("id","info")
+          .attr("patternContentUnits","objectBoundingBox")
+          .attr("height","100%")
+          .attr("width","100%")
+          .append("image")
+          .attr("height","1")
+          .attr("width","1")
+          .attr("xlink:href","images/info.png")
+        ;
+
+        // define background images for every node that will show character photo
+        vis
+          .selectAll("defs")
+          .data(nodes)
+          .enter()
+          .filter(function(d){ return ((d.sigil != "") || (d.totalAppearances > photoThreshold)); })
+          .append("defs")
+          .append("pattern")
+          .attr("id",function(d) { return "image"+d.id; })
+          .attr("patternContentUnits","objectBoundingBox")
+          .attr("height","100%")
+          .attr("width","100%")
+          .append("image")
+          .attr("height","1")
+          .attr("width","1")
+          .attr("xlink:href",function(d) { 
+            if(d.type == "individual"){
+              return "images/small/char"+d.id+".png";
+            }else{
+              return "images/sigil/"+d.sigil;
+            }
+          })
+        ;
+        // create links
+        var link = vis.selectAll(".link")
+          .data(bilinks)
+          .enter().append("path")
+          .attr("class", "link")
+          .attr("stroke", function(d){ 
+            if(d[2].colour){
+              return d[2].colour;
+            }else if(d[2].colour){
+              return d[0].colour;
+            }else{
+              return "#ffffff";
+            }
+          })
+        ;
+        // create nodes
+        var node = vis
+          .selectAll(".node")
+          .data(nodes.filter(function(d) { return d.id; }))
+          .enter()
+          .append("g")
+          .call(d3.drag()
+          .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended))
+        ;
+        // set values for organisation nodes
+        node
+          .filter(function(d){ return d.type == "organisation"; })
+          .append("rect")
+          .attr("class", "org")
+          .attr("width", function(d) {
+            // this code deals with duplicate locations and isn't relevant to width
+            moveCount=0;
+            while(mapCoords.indexOf(d.xPos+"-"+d.yPos) > -1 ){
+              if(moveCount==7){
+                d.xPos -= 240;
+                d.yPos += 80;
+              }else if(moveCount==3){
+                d.xPos -= 240;
+                d.yPos += 80;
+              }else{
+                d.xPos += 80;
+              }
+              moveCount++;
+            }
+            mapCoords.push(d.xPos+"-"+d.yPos);
+            // this code sets width
+            if(d.sigil==""){
+              return 18;
+            }else{
+              return 40;
+            } 
+          })
+          .attr("height", function(d) {
+            if(d.sigil==""){
+              return 18;
+            }else{
+              return 40;
+            } 
+          })
+          .attr("x", function(d) {
+            if(d.sigil==""){
+              return -9;
+            }else{
+              return -20;
+            } 
+          })
+          .attr("y", function(d) {
+            if(d.sigil==""){
+              return -9;
+            }else{
+              return -20;
+            } 
+          })
+          .attr("fill", function(d) { 
+            if(d.sigil==""){
+              return "#EEEBE3";
+            }else {
+              return "url(#image"+d.id+")";
+            } 
+          })
+          .attr("stroke", function(d) { 
+           if(d.sigil==""){
+            return "#130802";
+           }else {
+            return "none";
+            } 
+          })
+          .on("mouseover", function(d, i) {
+            this.parentElement.parentElement.appendChild(this.parentElement);
+            if(d.sigil==""){
+              d3.select(this).attr("width", "22");
+              d3.select(this).attr("height", "22");
+              d3.select(this).attr("x", "-11");
+              d3.select(this).attr("y", "-11");
+            }else{
+              d3.select(this).attr("width", "60");
+              d3.select(this).attr("height", "60");
+              d3.select(this).attr("x", "-30");
+              d3.select(this).attr("y", "-30");
+            }
+            d3.select(this.parentNode).classed("open", true);
+          })
+          .on("mouseout", function(d, i) {
+            if(d.sigil==""){
+              d3.select(this).attr("width", "18");
+              d3.select(this).attr("height", "18");
+              d3.select(this).attr("x", "-9");
+              d3.select(this).attr("y", "-9");
+            }else{
+              d3.select(this).attr("width", "40");
+              d3.select(this).attr("height", "40");
+              d3.select(this).attr("x", "-20");
+              d3.select(this).attr("y", "-20");
+            }
+            d3.select(this.parentNode).classed("open", false);
+          })
+        ;
+        // set values for individual nodes
+        node.append("circle")
+          .filter(function(d){ return d.type == "individual"; })
+          .attr("class", "node")
+          .attr("r", function(d) {
+            return 0.8*parseInt(d.totalAppearances) + 5;
+          })
+          .attr("fill", function(d) { 
+            if(d.totalAppearances>photoThreshold){
+              return "url(#image"+d.id+")";
+            }else if(d.colour!=""){
+              return d.colour;
+            }else{
+              return color(d.group);
+            }
+          })
+          .attr("stroke", function(d) { 
+            if(d.colour!=""){
+              return d.colour;
+            }else{
+              return color(d.group);
+            }
+          })
+          .on("mouseover", function(d, i) {
+            this.parentElement.parentElement.appendChild(this.parentElement);
+            if(d.totalAppearances>photoThreshold){
+              d3.select(this).attr("r", "53");
+            }else{
+              d3.select(this).attr("r", "15");
+            }
+            d3.select(this.parentNode).classed("open", true);
+          })
+          .on("mouseout", function(d, i) {
+            d3.select(this).attr("r",  0.8*parseInt(d.totalAppearances) + 5);
+            d3.select(this.parentNode).classed("open", false);
+          })
+        ;
+
+        node
+          .filter(function(d){ return d.type == "individual"; })
+          .append("circle")
+          .attr("class","infoLink")
+          .attr("r", 10)
+          .attr("cx", function(d) { 
+            if(d.totalAppearances>photoThreshold){
+              return 35;
+            }else{
+              return 10;
+            }
+          })
+          .attr("cy", function(d) { 
+            if(d.totalAppearances>photoThreshold){
+              return 35;
+            }else{
+              return 10;
+            }
+          })
+          .attr("fill", "url(#info)")
+          .on("mouseover", function(d, i) {
+            if(d.totalAppearances>photoThreshold){
+              d3.select(this.parentNode).selectAll(".node").attr("r", "53");
+            }else{
+              d3.select(this.parentNode).selectAll(".node").attr("r", "15");
+            }
+            d3.select(this.parentNode).classed("open", true);
+          })
+          .on("mouseout", function(d, i) {
+            d3.select(this.parentNode).selectAll(".node").attr("r",  0.8*parseInt(d.totalAppearances) + 5);
+            d3.select(this.parentNode).classed("open", false);
+          })
+          .on("click", function(d){
+            openWiki(d.url);
+          })
+        ;
+
+        // make labels for nodes
+        nameLabels = node
+          .append("g")
+          .attr("class", "nameLabel")
+        ;
+        makeTextLabels();
+        simulation
+          .nodes(nodes)
+          .on("tick", ticked)
+        ;
+        simulation
+          .force("link")
+          .links(links)
+        ;
+        function ticked() {
+          link.attr("d", positionLink);
+          node.attr("transform", positionNode);
+        }
+        initZoom();
+        isReady('data');
+      })
+    ;
+
+
+    function makeTextLabels(){
+      if(fontLoaded == false){
+        window.setTimeout(makeTextLabels, 100);
+      } else {
+        nameLabels
+          .append("text")
+          .attr("class", "charName")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("dy", function(d) { 
+            if(d.type=="individual"){
+              if(d.totalAppearances>photoThreshold){
+                return 80;
+              }else{
+                return 40;
+              }
+            }else{
+              if(d.sigil==""){
+                return 40;
+              }else{
+                return 57;
+              }
+            }
+          })
+          .style("text-anchor", "middle")
+          .text(function(d) { 
+            if(d.name.indexOf("(")>=0){
+              shortName = d.name.substring(0,d.name.indexOf("("));
+            }else{
+              shortName = d.name;
+            }
+            return shortName; 
+          })
+          .call(getTextBox)
+        ;
+        allegLabels = nameLabels
+          .filter(function(d){ return d.type == "individual"; })
+          .append("g")
+          .attr("class", "allegLabels")
+          .selectAll("text")
+          .data(function(d) { 
+            return d.allegiance; 
+          })
+          .enter()
+        ;
+        allegLabels
+          .append("text")
+          .attr("class", "allegName")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("dy", function(d,i) { 
+            if(d3.select(this.parentNode).datum().totalAppearances>photoThreshold){
+              return 80 + (i+1)*20;
+            }else{
+              return 40 + (i+1)*20;
+            }
+          })
+          .style("text-anchor", "middle")
+          .text(function(d) { return d; })
+          .call(getTextBox2)
+        ;
+        nameLabels
+          .insert("rect", "text")
+          .attr("class", "nameBg")
+          .attr("transform", function(d) {
+            return "translate(" + (d.bbox.x - 4) + "," + d.bbox.y + ")";
+          })
+          .attr("width", function(d) {
+            return d.bbox.width + 8;
+          })
+          .attr("height", function(d) {
+            return d.bbox.height;
+          })
+          .attr("fill", "#ffffff")
+        ;
+        allegLabels
+          .insert("rect", "text")
+          .attr("class", "nameBg")
+          .attr("transform", function(d,i) {
+            thisRect = d3.select(this.parentNode).datum().bboxArray[i];
+            return "translate(" + (thisRect.x - 4) + "," + (thisRect.y-1) + ")";
+          })
+          .attr("width", function(d,i) {
+            thisRect = d3.select(this.parentNode).datum().bboxArray[i];
+            return thisRect.width + 8;
+          })
+          .attr("height", function(d,i) {
+            thisRect = d3.select(this.parentNode).datum().bboxArray[i];
+            return thisRect.height +2;
+          })
+          .attr("fill", "#ffffff")
+        ;
+      }
+    }
+    </script>
+  </body>
+</html>
