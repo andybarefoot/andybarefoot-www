@@ -273,17 +273,19 @@
 						episodeParent = (10*(seasonParent-1))+episodeParent;
 						episodeParent = episodesSoFar(seasonParent-1)+episodeParent;
 						dead = parseInt(root.descendants().slice(1)[i].data.dead);
-						if(dead==0){
-							root.descendants().slice(1)[i].y = xOff - 25;
-						} else if(episodeNo==0){
-							root.descendants().slice(1)[i].y = xOff + 25 + (episodesSoFar(episodeArray.length)*epiWidth);
-						} else {
-							root.descendants().slice(1)[i].y =  xOff + ((episodesSoFar(episodeArray.length) - episodeNo) * epiWidth) +epiWidth/2;
-							if(episodeNo == episodeParent){
-								root.descendants().slice(1)[i].y+=epiWidth/4;
-								root.descendants().slice(1)[i].parent.y = xOff + ((episodesSoFar(episodeArray.length) - episodeParent) * epiWidth) + epiWidth/4;
-							}
-						}
+						console.log(this);
+						root.descendants().slice(1)[i].y = root.descendants().slice(1)[i].y*1000;
+						// if(dead==0){
+						// 	root.descendants().slice(1)[i].y = xOff - 25;
+						// } else if(episodeNo==0){
+						// 	root.descendants().slice(1)[i].y = xOff + 25 + (episodesSoFar(episodeArray.length)*epiWidth);
+						// } else {
+						// 	root.descendants().slice(1)[i].y =  xOff + ((episodesSoFar(episodeArray.length) - episodeNo) * epiWidth) +epiWidth/2;
+						// 	if(episodeNo == episodeParent){
+						// 		root.descendants().slice(1)[i].y+=epiWidth/4;
+						// 		root.descendants().slice(1)[i].parent.y = xOff + ((episodesSoFar(episodeArray.length) - episodeParent) * epiWidth) + epiWidth/4;
+						// 	}
+						// }
 					}
 					var link = g.selectAll(".link")
 				      .data(root.descendants().slice(1))
@@ -364,7 +366,7 @@
 			}
 
 			$(window).resize(drawChart);
-			$( document ).ready(drawChart);
+			$(document).ready(drawChart);
 		</script>
 <!-- FOOTER: Requires footer.css & Open Sans font to be included -->
      <div id="barefoot-footer">
